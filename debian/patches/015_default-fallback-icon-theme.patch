@@ -1,0 +1,13 @@
+Index: gtk+2.0-2.17.3/gtk/gtksettings.c
+===================================================================
+--- gtk+2.0-2.17.3.orig/gtk/gtksettings.c	2009-06-04 21:18:04.000000000 +0200
++++ gtk+2.0-2.17.3/gtk/gtksettings.c	2009-07-09 17:41:28.000000000 +0200
+@@ -301,7 +301,7 @@
+                                              g_param_spec_string ("gtk-fallback-icon-theme",
+ 								  P_("Fallback Icon Theme Name"),
+ 								  P_("Name of a icon theme to fall back to"),
+-								  NULL,
++								  "gnome",
+ 								  GTK_PARAM_READWRITE),
+                                              NULL);
+   g_assert (result == PROP_FALLBACK_ICON_THEME);

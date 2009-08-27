@@ -1,0 +1,18 @@
+Index: gtk+2.0-2.17.3/Makefile.am
+===================================================================
+--- gtk+2.0-2.17.3.orig/Makefile.am	2009-07-02 01:02:21.000000000 +0200
++++ gtk+2.0-2.17.3/Makefile.am	2009-07-09 17:41:19.000000000 +0200
+@@ -1,7 +1,12 @@
+ ## Makefile.am for GTK+
+ include $(top_srcdir)/Makefile.decl
+ 
+-SRC_SUBDIRS = gdk-pixbuf gdk gtk modules demos tests perf contrib
++# don't build perf measurement tools in static builds
++if !ENABLE_STATIC
++MAYBE_PERF = perf
++endif
++
++SRC_SUBDIRS = gdk-pixbuf gdk gtk modules demos tests $(MAYBE_PERF) contrib
+ SUBDIRS = po po-properties $(SRC_SUBDIRS) docs m4macros
+ 
+ # require automake 1.4

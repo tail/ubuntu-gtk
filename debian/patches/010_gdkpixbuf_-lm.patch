@@ -1,0 +1,13 @@
+Index: gtk+2.0-2.17.3/configure.in
+===================================================================
+--- gtk+2.0-2.17.3.orig/configure.in	2009-07-09 17:41:22.000000000 +0200
++++ gtk+2.0-2.17.3/configure.in	2009-07-09 17:41:27.000000000 +0200
+@@ -1773,7 +1773,7 @@
+ CAIRO_PREFIX="`pkg-config --variable=prefix cairo`"
+ 
+ if test $enable_explicit_deps != yes ; then
+-  GDK_PIXBUF_EXTRA_LIBS=
++  GDK_PIXBUF_EXTRA_LIBS="$MATH_LIB"
+ fi
+ 
+ AC_SUBST(GDK_PIXBUF_PACKAGES)

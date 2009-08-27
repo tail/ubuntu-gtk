@@ -1,0 +1,108 @@
+Index: gtk+2.0-2.17.3/gtk/gtkimmodule.c
+===================================================================
+--- gtk+2.0-2.17.3.orig/gtk/gtkimmodule.c	2009-07-09 17:41:30.000000000 +0200
++++ gtk+2.0-2.17.3/gtk/gtkimmodule.c	2009-07-09 17:41:32.000000000 +0200
+@@ -29,6 +29,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <unistd.h>
+ 
+ #include <glib/gstdio.h>
+ #include <gmodule.h>
+@@ -489,10 +490,32 @@
+ 						   GTK_BINARY_VERSION,
+ 						   "immodule-files.d",
+ 						   NULL);
++
++#if defined(__linux__) && defined (__i386__)
++  gchar *compat_im_module_files_d_str = g_build_filename ("/usr/lib32/gtk-2.0",
++						   GTK_BINARY_VERSION,
++						   "immodule-files.d",
++						   NULL);
++#elif defined(__linux__) && ( defined (__x86_64__) || defined(__ia64__) )
++  gchar *compat_im_module_files_d_str = g_build_filename ("/usr/lib64/gtk-2.0",
++						   GTK_BINARY_VERSION,
++						   "immodule-files.d",
++						   NULL);
++#endif
+   FILE *file;
+   gchar *list_str;
+   char **files;
+   int n;
++#if defined(__linux__) && ( defined(__i386__) || defined (__x86_64__) || defined(__ia64__) )
++  /* prefer compat_im_module_files_d_str over im_module_files_d_str on the
++   * above arches if it's usable */
++  if (! g_access(compat_im_module_files_d_str, R_OK|X_OK))
++      list_str = g_strjoin (G_SEARCHPATH_SEPARATOR_S,
++			    compat_im_module_files_d_str,
++			    im_module_file_str,
++			    NULL);
++  else /* continued below */
++#endif
+ 
+   list_str = g_strjoin (G_SEARCHPATH_SEPARATOR_S,
+ 			im_module_files_d_str,
+@@ -544,6 +567,9 @@
+ 
+   g_strfreev (files);
+   g_free (list_str);
++#if defined(__linux__) && ( defined(__i386__) || defined (__x86_64__) || defined(__ia64__) )
++  g_free (compat_im_module_files_d_str);
++#endif
+   g_free (im_module_files_d_str);
+   g_free (im_module_file_str);
+ }
+Index: gtk+2.0-2.17.3/gdk-pixbuf/gdk-pixbuf-io.c
+===================================================================
+--- gtk+2.0-2.17.3.orig/gdk-pixbuf/gdk-pixbuf-io.c	2009-07-09 17:41:30.000000000 +0200
++++ gtk+2.0-2.17.3/gdk-pixbuf/gdk-pixbuf-io.c	2009-07-09 17:41:32.000000000 +0200
+@@ -547,6 +547,18 @@
+ #ifdef USE_GMODULE
+ 	GIOChannel *channel;
+ 	gchar *gdkpixbuf_module_file_str = gdk_pixbuf_get_module_file ();
++
++#if defined(__linux__) && defined (__i386__)
++	gchar *compat_gdkpixbuf_module_files_d_str = g_build_filename ("/usr/lib32/gtk-2.0",
++							GTK_BINARY_VERSION,
++							"loader-files.d",
++							NULL);
++#elif defined(__linux__) && ( defined (__x86_64__) || defined(__ia64__) )
++	gchar *compat_gdkpixbuf_module_files_d_str = g_build_filename ("/usr/lib64/gtk-2.0",
++							GTK_BINARY_VERSION,
++							"loader-files.d",
++							NULL);
++#endif
+ 	gchar *list_str;
+ 	char **files;
+ 	GError *error = NULL;
+@@ -630,6 +642,18 @@
+ #undef load_one_builtin_module
+ 
+ #ifdef USE_GMODULE
++
++#if defined(__linux__) && ( defined(__i386__) || defined (__x86_64__) || defined(__ia64__) )
++  /* prefer compat_gdkpixbuf_module_files_d_str over PIXBUF_FILES_LIBDIR
++   * on the above arches if it's usable */
++  if (! g_access(compat_gdkpixbuf_module_files_d_str, R_OK|X_OK))
++      list_str = g_strjoin (G_SEARCHPATH_SEPARATOR_S,
++			    gdkpixbuf_module_file_str,
++			    compat_gdkpixbuf_module_files_d_str,
++			    NULL);
++  else /* continued below */
++#endif
++
+ 	list_str = g_strjoin (G_SEARCHPATH_SEPARATOR_S,
+ 			      gdkpixbuf_module_file_str,
+ 			      PIXBUF_FILES_LIBDIR,
+@@ -685,6 +709,10 @@
+ 	}
+ 
+ 	g_strfreev (files);
++#if defined(__linux__) && ( defined(__i386__) || defined (__x86_64__) || defined(__ia64__) )
++
++	g_free (compat_gdkpixbuf_module_files_d_str);
++#endif
+ 	g_free (list_str);
+ 	g_free (gdkpixbuf_module_file_str);
+ #endif

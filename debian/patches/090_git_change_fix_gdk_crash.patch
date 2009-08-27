@@ -1,0 +1,51 @@
+From 9f822431970b9744f0184ae2d9e9977f607ffe4e Mon Sep 17 00:00:00 2001
+From: Alexander Larsson <alexl@redhat.com>
+Date: Thu, 13 Aug 2009 15:00:00 +0000
+Subject: Make _gdk_window_process_updates_recurse reentrancy safe
+
+Apps may change the window hierarchy while recursing over it by
+destroying windows from the expose event handler. We need to copy
+the children list and ref all the children while recursing.
+
+This fixes some crashers in gedit (bug #589367, bug #591434)
+---
+diff --git a/gdk/gdkwindow.c b/gdk/gdkwindow.c
+index ba4ad63..e9c5512 100644
+--- a/gdk/gdkwindow.c
++++ b/gdk/gdkwindow.c
+@@ -4751,17 +4751,21 @@ _gdk_window_process_updates_recurse (GdkWindow *window,
+   GdkWindowObject *child;
+   GdkRegion *child_region;
+   GdkRectangle r;
+-  GList *l;
++  GList *l, *children;
+ 
+   if (gdk_region_empty (expose_region))
+     return;
+ 
++  /* Make this reentrancy safe for expose handlers freeing windows */
++  children = g_list_copy (private->children);
++  g_list_foreach (children, g_object_ref, NULL);
++
+   /* Iterate over children, starting at topmost */
+-  for (l = private->children; l != NULL; l = l->next)
++  for (l = children; l != NULL; l = l->next)
+     {
+       child = l->data;
+ 
+-      if (!GDK_WINDOW_IS_MAPPED (child) || child->input_only || child->composited)
++      if (child->destroyed || !GDK_WINDOW_IS_MAPPED (child) || child->input_only || child->composited)
+ 	continue;
+ 
+       /* Ignore offscreen children, as they don't draw in their parent and
+@@ -4799,6 +4803,9 @@ _gdk_window_process_updates_recurse (GdkWindow *window,
+       gdk_region_destroy (child_region);
+     }
+ 
++  g_list_foreach (children, g_object_unref, NULL);
++  g_list_free (children);
++
+   if (!gdk_region_empty (expose_region))
+     {
+       if (private->event_mask & GDK_EXPOSURE_MASK)
+
