@@ -1,8 +1,8 @@
-Index: gtk+2.0-2.17.3/gdk-pixbuf/gdk-pixbuf-io.c
+Index: gtk+-2.17.9/gdk-pixbuf/gdk-pixbuf-io.c
 ===================================================================
---- gtk+2.0-2.17.3.orig/gdk-pixbuf/gdk-pixbuf-io.c	2009-07-09 17:41:32.000000000 +0200
-+++ gtk+2.0-2.17.3/gdk-pixbuf/gdk-pixbuf-io.c	2009-07-09 17:41:33.000000000 +0200
-@@ -301,8 +301,20 @@
+--- gtk+-2.17.9.orig/gdk-pixbuf/gdk-pixbuf-io.c	2009-08-27 16:22:08.000000000 +1000
++++ gtk+-2.17.9/gdk-pixbuf/gdk-pixbuf-io.c	2009-08-27 16:22:11.000000000 +1000
+@@ -308,8 +308,20 @@
    gchar *result = g_strdup (g_getenv ("GDK_PIXBUF_MODULE_FILE"));
  
    if (!result)
@@ -25,10 +25,10 @@ Index: gtk+2.0-2.17.3/gdk-pixbuf/gdk-pixbuf-io.c
    return result;
  }
  
-Index: gtk+2.0-2.17.3/gtk/gtkrc.c
+Index: gtk+-2.17.9/gtk/gtkrc.c
 ===================================================================
---- gtk+2.0-2.17.3.orig/gtk/gtkrc.c	2009-06-04 21:18:04.000000000 +0200
-+++ gtk+2.0-2.17.3/gtk/gtkrc.c	2009-07-09 17:41:33.000000000 +0200
+--- gtk+-2.17.9.orig/gtk/gtkrc.c	2009-06-05 05:18:04.000000000 +1000
++++ gtk+-2.17.9/gtk/gtkrc.c	2009-08-27 16:22:11.000000000 +1000
 @@ -450,7 +450,20 @@
        if (im_module_file)
  	result = g_strdup (im_module_file);
