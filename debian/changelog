@@ -1,4 +1,4 @@
-gtk+2.0 (2.17.9-0ubuntu1) UNRELEASED; urgency=low
+gtk+2.0 (2.17.9-0ubuntu1) karmic; urgency=low
 
   * New upstream release: (LP: #419586)
     2.17.9
@@ -51,7 +51,7 @@ gtk+2.0 (2.17.9-0ubuntu1) UNRELEASED; urgency=low
   * debian/patches/070_mandatory-relibtoolize.patch:
     - Updated
 
- -- Robert Ancell <robert.ancell@canonical.com>  Thu, 27 Aug 2009 15:54:29 +1000
+ -- Robert Ancell <robert.ancell@canonical.com>  Mon, 31 Aug 2009 09:04:57 +0200
 
 gtk+2.0 (2.17.7-0ubuntu3) karmic; urgency=low
 
