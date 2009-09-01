@@ -1,3 +1,46 @@
+gtk+2.0 (2.17.10-0ubuntu1) karmic; urgency=low
+
+  * New upstream version:
+    Client-side windows:
+    - Regression fixes continue
+    - Multiple clipping issues have been fixed
+    - gdk_window_beep() works again
+    - gtk-demo now has a few offscreen window demos
+    GSEAL:
+    - Several more getters and setters have been added: 
+     gtk_widget_is_toplevel(), gtk_widget_is_drawable(), gtk_widget_set_window()
+    Bugs fixed:
+    592752 aisleriot card drag start makes card appear behind...
+    592901 Crash in JPEG pixbuf loader instead of error
+    592263 redraw problem in text view
+    593011 Cannot move applet with middle click (lp: #399031, #404790)
+    592624 BadAccess from gdk_window_x11_set_events
+    592606 Activate the default button in a respose-request callback
+    593249 emacs and acroread don't work properly
+    592883 Spin cell rendererer problem with double click
+    588199 GtkTreeView rendering glitch while using a default...
+    543310 set_enable_tree_lines doesn't work when a cellrenderer...
+    589636 csw broke DND from panel menus
+    593595 broken clip handling in GtkLabel
+    590921 NULL should not be a valid return value for gdk_window_new
+    590861 cups_printer_create_cairo_surface() sets a fallback resolution...
+    544724 delete new line requires two keystrokes
+    593001 Emit 'update-custom-widget' on page setup change
+    593317 gtkwindow leaks startup ID
+    593080 mem leak
+    593481 GtkEntryCompletion action-activated signal is emitted...
+    593135 gtk_entry_set_icon_from_pixbuf only works one time
+    593012 configure doesn't handle --enable-{cups,papi} correctly
+    592862 There is a misprint on the returning value of gdk_pixmap_lookup
+    586466 GtkPrintOperation printing fails if it is the only event source
+    434318 printer detail acquisition needs events
+    593712 configure fails to to check properly for cups...
+    - Translation updates
+  * debian/rules:
+    - updated shlib version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 01 Sep 2009 18:39:11 +0200
+
 gtk+2.0 (2.17.9-0ubuntu1) karmic; urgency=low
 
   * New upstream release: (LP: #419586)
