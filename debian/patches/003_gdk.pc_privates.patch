@@ -1,8 +1,8 @@
-Index: gtk+-2.17.9/configure.in
+Index: gtk+-2.17.11/configure.in
 ===================================================================
---- gtk+-2.17.9.orig/configure.in	2009-08-27 16:21:40.000000000 +1000
-+++ gtk+-2.17.9/configure.in	2009-08-27 16:21:45.000000000 +1000
-@@ -1712,19 +1712,22 @@
+--- gtk+-2.17.11.orig/configure.in	2009-09-07 12:53:34.000000000 +1000
++++ gtk+-2.17.11/configure.in	2009-09-07 12:53:36.000000000 +1000
+@@ -1713,19 +1713,22 @@
  CFLAGS="$saved_cflags"
  LDFLAGS="$saved_ldflags"
  
@@ -29,10 +29,10 @@ Index: gtk+-2.17.9/configure.in
  AC_SUBST(GDK_EXTRA_LIBS)
  AC_SUBST(GDK_EXTRA_CFLAGS)
  AC_SUBST(GDK_DEP_LIBS)
-Index: gtk+-2.17.9/gdk-2.0.pc.in
+Index: gtk+-2.17.11/gdk-2.0.pc.in
 ===================================================================
---- gtk+-2.17.9.orig/gdk-2.0.pc.in	2009-06-05 05:18:03.000000000 +1000
-+++ gtk+-2.17.9/gdk-2.0.pc.in	2009-08-27 16:21:45.000000000 +1000
+--- gtk+-2.17.11.orig/gdk-2.0.pc.in	2009-06-05 05:18:03.000000000 +1000
++++ gtk+-2.17.11/gdk-2.0.pc.in	2009-09-07 12:53:36.000000000 +1000
 @@ -8,5 +8,6 @@
  Description: GTK+ Drawing Kit (${target} target)
  Version: @VERSION@
