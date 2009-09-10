@@ -1,7 +1,5 @@
-Index: gtk+2.0-2.17.3/gtk/gtkimmodule.c
-===================================================================
---- gtk+2.0-2.17.3.orig/gtk/gtkimmodule.c	2009-06-04 21:18:04.000000000 +0200
-+++ gtk+2.0-2.17.3/gtk/gtkimmodule.c	2009-07-09 17:41:30.000000000 +0200
+--- a/gtk/gtkimmodule.c
++++ b/gtk/gtkimmodule.c
 @@ -70,6 +70,9 @@
  #define GTK_IM_MODULE(im_module)    (G_TYPE_CHECK_INSTANCE_CAST ((im_module), GTK_TYPE_IM_MODULE, GtkIMModule))
  #define GTK_IS_IM_MODULE(im_module) (G_TYPE_CHECK_INSTANCE_TYPE ((im_module), GTK_TYPE_IM_MODULE))

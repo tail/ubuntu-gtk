@@ -1,7 +1,5 @@
-Index: gtk+2.0-2.17.3/gtk/updateiconcache.c
-===================================================================
---- gtk+2.0-2.17.3.orig/gtk/updateiconcache.c	2009-07-02 01:02:22.000000000 +0200
-+++ gtk+2.0-2.17.3/gtk/updateiconcache.c	2009-07-09 17:41:36.000000000 +0200
+--- a/gtk/updateiconcache.c
++++ b/gtk/updateiconcache.c
 @@ -660,7 +660,7 @@
  		      directories = g_list_append (directories, g_strdup (subdir));
  		    }

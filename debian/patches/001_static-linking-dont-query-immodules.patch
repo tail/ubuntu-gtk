@@ -1,7 +1,9 @@
-Index: gtk+-2.17.9/configure.in
-===================================================================
---- gtk+-2.17.9.orig/configure.in	2009-08-18 13:53:16.000000000 +1000
-+++ gtk+-2.17.9/configure.in	2009-08-27 16:21:40.000000000 +1000
+Description: Don't query immodules for the local tree when cross-compiling or
+             when --disable-shared was given
+Bug: http://bugzilla.gnome.org/show_bug.cgi?id=346531
+
+--- a/configure.in
++++ b/configure.in
 @@ -157,6 +157,7 @@
  dnl Initialize libtool
  AC_PROG_CC
@@ -10,10 +12,8 @@ Index: gtk+-2.17.9/configure.in
  
  dnl 
  dnl Check for a working C++ compiler, but do not bail out, if none is found.
-Index: gtk+-2.17.9/modules/input/Makefile.am
-===================================================================
---- gtk+-2.17.9.orig/modules/input/Makefile.am	2009-07-20 12:33:48.000000000 +1000
-+++ gtk+-2.17.9/modules/input/Makefile.am	2009-08-27 16:21:40.000000000 +1000
+--- a/modules/input/Makefile.am
++++ b/modules/input/Makefile.am
 @@ -178,8 +178,12 @@
  if CROSS_COMPILING
  RUN_QUERY_IMMODULES_TEST=false

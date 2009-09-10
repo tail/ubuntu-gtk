@@ -1,540 +1,158 @@
-gtk+2.0 (2.17.11-0ubuntu1) karmic; urgency=low
+gtk+2.0 (2.17.11-1) experimental; urgency=low
 
-  * New upstream release (LP: #425484)
-    Client-side windows:
-    - Add gdk_cairo_reset_clip that lets you get back the original
-      drawable clip
-    - Add gdk_window_restack to more conveniently restack child windows
-    - Add gdk_window_is_destroyed as a replacement for GDK_WINDOW_DESTROYED
-    - Deprecated GDK_WINDOW_OBJECT and GdkWindowObject
-    GSEAL:
-    - Add gtk_widget_set_receives_default and gtk_widget_get_receives_default
-      accessors for GTK_RECEIVES_DEFAULT
-    GtkTreeView:
-    - Correctly propagate insensitive state to cell renderers
-    GtkTextView:
-    - Merge a number of scrolling-related fixes from Maemo
-    Bugs fixed:
-    564160 gtk_combo_box_entry_set_text_column too restrictive
-    593868 gtk_im_multicontext_set_client_window recreate a new slave...
-    593644 gdk_x11_screen_get_window_manager_name should not cache...
-    594178 gdk-pixbuf-query-loaders segfault in write_loader_info
-    567124 proposal to delay doing something related to immodule...
-    588788 GTK+ compilation should work with automake1.10
-    584638 Build of gtkupdateiconcache without NLS breaks
-    593788 misprint in the returning value of gdk_selection_property_get
-    593606 Missing include in gtk/gtkcellrendereraccel.c
-    593877 Undefined symbols while compilation
-    - Translation updates
+  * New upstream development release:
+    + debian/patches/070_mandatory-relibtoolize.patch:
+      - Updated for the new version.
+    + debian/rules,
+      debian/*.symbols:
+      - Updated for the new version. 
 
- -- Robert Ancell <robert.ancell@canonical.com>  Mon, 07 Sep 2009 12:31:27 +1000
+ -- Sebastian Dröge <slomo@debian.org>  Sat, 05 Sep 2009 07:16:24 +0200
 
-gtk+2.0 (2.17.10-0ubuntu1) karmic; urgency=low
+gtk+2.0 (2.17.10-1) experimental; urgency=low
 
-  * New upstream version:
-    Client-side windows:
-    - Regression fixes continue
-    - Multiple clipping issues have been fixed
-    - gdk_window_beep() works again
-    - gtk-demo now has a few offscreen window demos
-    GSEAL:
-    - Several more getters and setters have been added: 
-     gtk_widget_is_toplevel(), gtk_widget_is_drawable(), gtk_widget_set_window()
-    Bugs fixed:
-    592752 aisleriot card drag start makes card appear behind...
-    592901 Crash in JPEG pixbuf loader instead of error
-    592263 redraw problem in text view
-    593011 Cannot move applet with middle click (lp: #399031, #404790)
-    592624 BadAccess from gdk_window_x11_set_events
-    592606 Activate the default button in a respose-request callback
-    593249 emacs and acroread don't work properly
-    592883 Spin cell rendererer problem with double click
-    588199 GtkTreeView rendering glitch while using a default...
-    543310 set_enable_tree_lines doesn't work when a cellrenderer...
-    589636 csw broke DND from panel menus
-    593595 broken clip handling in GtkLabel
-    590921 NULL should not be a valid return value for gdk_window_new
-    590861 cups_printer_create_cairo_surface() sets a fallback resolution...
-    544724 delete new line requires two keystrokes
-    593001 Emit 'update-custom-widget' on page setup change
-    593317 gtkwindow leaks startup ID
-    593080 mem leak
-    593481 GtkEntryCompletion action-activated signal is emitted...
-    593135 gtk_entry_set_icon_from_pixbuf only works one time
-    593012 configure doesn't handle --enable-{cups,papi} correctly
-    592862 There is a misprint on the returning value of gdk_pixmap_lookup
-    586466 GtkPrintOperation printing fails if it is the only event source
-    434318 printer detail acquisition needs events
-    593712 configure fails to to check properly for cups...
-    - Translation updates
-  * debian/rules:
-    - updated shlib version
+  * New upstream development release:
+    + debian/patches/070_mandatory-relibtoolize.patch:
+      - Updated for the new version.
+    + debian/rules,
+      debian/*.symbols:
+      - Updated for the new version. 
+  * -
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 01 Sep 2009 18:39:11 +0200
+ -- Sebastian Dröge <slomo@debian.org>  Sat, 05 Sep 2009 07:16:21 +0200
 
-gtk+2.0 (2.17.9-0ubuntu1) karmic; urgency=low
+gtk+2.0 (2.17.9-1) experimental; urgency=low
 
-  * New upstream release: (LP: #419586)
-    2.17.9
-    - Client-side windows:
-      - Add a compatibility mode that falls back to always using native windows,
-        triggered by the GDK_NATIVE_WINDOWS environment variable
-    - Bugs fixed:
-      - 589367 gedit crashed with SIGSEGV in IA__g_list_last()
-      - 478519 GtkTooltip segfaults on NULL gdk-display-current-tooltip.
-      - 592461 preserve errno and use g_strerror
-      - 592403 crash when close the second terminal...
-      - 591549 Default printer in a network
-      - 526149 GtkCellRendererAccel editing conflicts with mnemonics
-      - 528283 Problems when using PageUp & PageDown to navigate Playlists pane
-    2.17.8
-    - Client-side windows:
-      - Various fixes to expose handling
-      - Fix memory leaks
-    - Minor API additions:
-      - New setter as part of the GSEAL effort: gtk_widget_set_allocation
-    - Bugs fixed:
-      - 585211 Add accessor function for GtkWidget->allocation
-      - 588437 gtk 2.17.3 causes dragging in firefox bookmarks sidebar t...
-      - 589367 gedit crashed with SIGSEGV in IA__g_list_last()
-      - 589877 Client side windows leak gdk regions
-      - 590959 Set child_has_focus flag properly
-      - 591432 There is incomplete information on the returning value of...
-      - 591434 firefox-3.5 crashed with SIGSEGV in _gdk_window_process_u...
-      - 591526 Accelerator keys with <super> modifier also triggered by ...
-      - 591751 bad memory access with duplicated id
-      - 591998 Support silent build rules with automake 1.11
-      - 592003 Shift+click should always modify selection
-  * debian/control.in:
-    - Add BZR link
+  [ Josselin Mouette ]
+  * Clean up the .la files in all -dev packages, not only in the main 
+    one.
+
+  [ Sebastian Dröge ]
+  * New upstream development release:
+    + debian/patches/070_mandatory-relibtoolize.patch:
+      - Updated for the new version.
+    + debian/rules,
+      debian/*.symbols:
+      - Updated for the new version.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 25 Aug 2009 18:37:11 +0200
+
+gtk+2.0 (2.17.8-1) experimental; urgency=low
+
+  [ Emilio Pozuelo Monfort ]
+  * New upstream development release.
+    - Handle printers needing authentication. Closes: #499759.
+    - Update libglib2.0-dev requirement.
   * debian/watch:
-    - Watch for unstable versions
-  * debian/patches/090_git_change_fix_gdk_crash.patch:
-    - Applied upstream
-  * debian/patches/001_static-linking-dont-query-immodules.patch:
-  * debian/patches/003_gdk.pc_privates.patch:
-  * debian/patches/004_gtk+-ximian-gtk2-filesel-navbutton-5.patch:
-  * debian/patches/009_gtk-export-filechooser.patch:
-  * debian/patches/010_gdkpixbuf_-lm.patch:
-  * debian/patches/021_loader-files-d.patch:
-  * debian/patches/022_module-files-append-compat-module-files-d.patch:
-  * debian/patches/041_ia32-libs.patch:
-  * debian/patches/042_treeview_single-focus.patch:
-  * debian/patches/061_use_pdf_as_default_printing_standard.patch:
-  * debian/patches/062_correct_manpages_install.patch:
-  * debian/patches/070_mandatory-relibtoolize.patch:
-    - Updated
-
- -- Robert Ancell <robert.ancell@canonical.com>  Mon, 31 Aug 2009 09:04:57 +0200
-
-gtk+2.0 (2.17.7-0ubuntu3) karmic; urgency=low
-
-  * debian/patches/090_git_change_fix_gdk_crash.patch:
-    - git change to fix a lot of gdk crashes in firefox and gedit for example
-      (lp: #404423, #401934)
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 14 Aug 2009 11:52:00 +0200
-
-gtk+2.0 (2.17.7-0ubuntu2) karmic; urgency=low
-
-  * Clean a change file in the diff.gz
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 12 Aug 2009 13:09:51 +0200
-
-gtk+2.0 (2.17.7-0ubuntu1) karmic; urgency=low
-
-  * New upstream version:
-    - Client-side windows: a number of regressions related to embedding
-      have been fixed
-    - Printing: The file backend supports SVG output
-    - Minor API additions:
-      - GtkIconView gained an icon-padding property that can be used to fine-tune
-        how much space each column needs
-      - GtkTreeViewColumn grew a sort-column-id property that can be used to set
-        up sort columns in GtkBuilder files
-      - GdkWindow gained a cursor property and associated getter
-      - GtkFileChooser has a create-folders property to allow disabling the
-        "New Folder" button
-      - gtk_print_operation_get_n_pages_to_print: returns the number of pages
-        that are being printed
-      - New getters and setters as part of the GSEAL effort:
-        gtk_widget_get_allocation, gtk_widget_get_visible, gtk_widget_set_visible
-    - Bugs fixed:
-    589336 Add GtkTreeViewColumn:sort-column-id property
-    534462 Disable interactive search in the file chooser's shortcuts pane
-    161489 n the file chooser, let the left/right arrow keys switch focus...
-    514260 Better filtering for "Recently Used" files
-    509650	ATK_STATE_SHOWING state is not set properly on menu items
-    586374 code does not follow documentation (-> carshes when using...
-    590442 csw broke gvim x11 embedding
-    498010 gtk_tree_view_set_cursor fails if model!=NULL
-    555109 Synthesized crossing events should have proper coordinates
-    570516 Can't disable folder creation
-    573321 additional check in gtk_tree_model_filter_convert_child_i...
-    576601 Double clicking prints to the wrong printer
-    586100 ITEM_PADDING breaks vertical icon views
-    588438 awn uses 100% cpu with gtk+ 2.17.3 (lp: #398008)
-    589732 behavior change of gdk_window_get_type_hint
-    589745 Apply message in GtkAssistant
-    590084 print to FILE with multiple pages per sheet has bad results
-    590086 configure.in is broken on non-X platforms
-    590309 Default cover pages for CUPS printers incorrectly set
-    590448 [win32] build fails because gdk-pixbuf manges a path
-    590959 Set child_has_focus flag properly
-    591288 compat problem with draw_drawable being NULL
-    539377 Unnecessary warnings when GtkTreeView is not realized.
-    546005 priv->tree is not created for unrealized (I think) treeview
-    564695 Pressing enter key in print to file "Name" box does not p...
-    591218 Remove some unused variables
-    357655 "Print to SVG file" for GtkPrintOperation
-    591462 gdk_window_set_cursor doesn't work on the root window
-    - Updated translations
-  * debian/patches/092_bugzilla_fix_gdm_refresh_issue.patch:
-    - dropped, the bug is fixed in the new version now
-  * debian/patches/091_directfb_build_workaround.patch:
-    - dropped, the bug is fixed in the new version now
+    - Don't uupdate.
   * debian/rules:
-    - updated shlib version
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 12 Aug 2009 10:30:01 +0200
-
-gtk+2.0 (2.17.6-0ubuntu2) karmic; urgency=low
-
-  * debian/patches/092_bugzilla_fix_gdm_refresh_issue.patch:
-    - upstream change to workaround a gdm refresh issue 
-      (lp: #405392)
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Sun, 09 Aug 2009 22:17:11 +0200
-
-gtk+2.0 (2.17.6-0ubuntu1) karmic; urgency=low
-
-  * New upstream version:
-    - Client-side windows:
-      - Several optimizations, such as client-side tracking of viewable windows
-      - Clipping for drawing pixbufs on windows has been fixed
-      - Rendering to large subwindows has been fixed
-    - Changes that are relevant for translators:
-      - Markup has been removed from several strings
-    - Bugs fixed:
-    588398 Leak with testgtk::preview_(color|gray) and more
-    588943 set correct selection before emitting cursor-changed...
-    588076 Gnumeric fonts stopped working on upgrading gtk+ 2.17.2 -...
-    574674	GtkMenuItem gets Selected and Focused states when SelectC...
-    582674 Menu item and menu accessibles retain "showing" state aft...
-    588553 [csw] gdk_draw_pixbuf doesnt draw outside expose events s...
-           (lp: #398905)
-    588897 Strange include x11/gdkx.h
-    588958 Typo in startup-id window property
-    589035 Context needed for a propoer translation
-    589275 [csw] Trying to destroy NULL regions (lp: #402118)
-    588964 Remove markup from translatable string in gtkfilechooserd...
-    587337 Suggest to use Glade instead gtk-builder-convert script
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 27 Jul 2009 11:04:02 +0200
-
-gtk+2.0 (2.17.5-0ubuntu1) karmic; urgency=low
-
-  * New upstream version:
-    - Client-side windows:
-      - Quite a few fixes have happened for the win32 and directfb backends
-    - GSEAL:
-      - Accessors have been added for sealed members in GtkCellRenderer and
-        GtkWidget
-    - Changes that are relevant for distributors:
-      - The jpeg2000 pixbuf loader is now optional. Pass --with-libjasper
-        to configure to build it
-    - Bugs fixed
-    588373 Menus broken by client-side-windows
-    588379 testgtk::panes does not change the cursor on mouse over
-    588388 shape rendering is back
-    588461 gtk_editable_get_chars() behaviour change in 2.17.4
-    588666 Incorrect clamping of max_length
-    588665 insert-text signal is not emitted
-    588395 Crash when opening a GtkBuilder file
-    524066 Mandatory jpeg2000?
-    527583 GtkAssistant should set buttons as default widget
-    588694 Missing % in C code
-    588484 Iconview DnD fails when Destination is empty
-    583522 Trivial error in GtkBuilder migration documentation
-    150951 collapsed save dialog needs to indicate filesystem...
-    - Updated translations
-  * debian/patches/070_mandatory-relibtoolize.patch:
-    - new version update
-    debian/patches/091_directfb_build_workaround.patch:
-    - there is still one change required there
-  * debian/patches/092_git_fix_gtkentry_get_chars.patch,
-    debian/patches/093_git_fix_single_include_error.patch:
-    - those isses are fixed in the new version
-  * debian/rules:
-    - updated shlib version
-    - use the libjasper configure option
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 20 Jul 2009 16:19:08 +0200
-
-gtk+2.0 (2.17.4-0ubuntu2) karmic; urgency=low
-
-  * debian/patches/092_git_fix_gtkentry_get_chars.patch:
-    - git change to fix an issue with gtk_entry_get_chars (lp: #398849)
-  * debian/patches/093_git_fix_single_include_error.patch:
-    - git change to not enforce single include for gtkentry
-  * debian/rules:
-    - updated shlibs version
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 13 Jul 2009 19:47:54 +0200
-
-gtk+2.0 (2.17.4-0ubuntu1) karmic; urgency=low
-
-  * New upstream version:
-    - GtkEntry now has model-view separation, with GtkEntryBuffer.
-      One intended use case for this is to support 'secure memory'
-      for password entries.
-    - The print dialog can now optionally include the page setup
-      controls, avoiding the need for a separate page setup dialog
-      in many applications.
-    - Coloring of visited links in GtkLabel can now be turned off, with
-      the ::track-visited-links property.
-    - Support for clipmasks in gdk_draw_pixbuf now works, this will
-      introduce visual changes in code that uses clipmasks when drawing
-      pixbufs. However, since this never worked that is unlikely to happen.
-      Old code using gdk_pixbuf_render_threshold_alpha masks when rendering
-      pixbufs will now produce truncated results at the edges.
-    - A number of regressions from the client-side window merge have been fixed.
-    - The directfb GDK backend has been fixed to build with csw.
-    Bugs fixed:
-    569393 gtk calendar localization YM note is wrong
-    587559 Popup closes immediately
-    551409 Print dialog should include page size and orientation
-    588115 gvim clipboard broken
-  * debian/patches/090_directfb_csw_build.patch:
-    - the change is in the new version
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 13 Jul 2009 10:26:39 +0200
-
-gtk+2.0 (2.17.3-0ubuntu1) karmic; urgency=low
-
-  * New upstream version:
-    GtkFileChooser:
-    - Shows the size column by default now
-    GtkStatusIcon:
-    - Has a title property, which can be used by ATs when they read status icons
-    GtkInfoBar:
-    - The default theme now includes color definitions for infobars
-    - The ::use-tooltip-style style property has been removed
-    GtkMountOperation now supports interaction during unmount operations.
-    The client-side windows branch has been merged; GDK now maintains
-    its own window hierarchy client-side, and only uses X windows where
-    unavoidable. Some of the benefits of this change are
-    - Reduced flicker
-    - The ability to do transformed and animated rendering of widgets
-    - Easier embedding of GTK+ widgets e.g. into Clutter scene graphs
-      This is a fundamental change to the way GDK works, 
-      so watch out for regressions.
-    Bugs fixed:
-    586315 Crash in GTK+ 2.14 when calling gtk.FileChooser.list_shor...
-    461944 pressing the volume icon in full screen shuts down the sound
-    (lp: #137041)
-    490724 iconview item's height would be changed event with same m...
-    564063 regression: Left margin in popup menus
-    582025 Accelerators fail for submenus
-    585626 Setting widget tooltip hammers X11 server on any TCP/IP X...
-    (lp: #386199)
-    585802 Add API to make GtkStatusIcon accessible with a name
-    585858 right-click Add-to-Booksmarks is sometimes greyed out
-    586330 GtkButton ignores user_underline when an image is set
-    318807 Offscreen windows and window redirection
-    587716 GtkInfoBar broken on resize
-    587485 GMountOperation::show-processes support
-    Updated translations
+    - Configure with --with-libjasper, it's disabled by default now.
   * debian/control.in:
-    - updated libglib requirement
-  * debian/patches/090_directfb_csw_build.patch:
-    - new patch from Cody Russel to fix the directfb build
-  * debian/patches/091_directfb_build_workaround.patch:
-    - workaround build issue
+    - Remove conflicts and replaces no longer needed for packages in stable.
+    - Standards-Version is 3.8.3, no changes needed.
+  * debian/patches/005_xpmico.patch:
+    - Removed, this check is not needed as HeaderSize can't overflow because
+      IconCount will be at most 16 bits, and that multiplied by 16 is not
+      enough to overflow an integer. (Checked with upstream)
+  * debian/patches/001_static-linking-dont-query-immodules.patch,
+    debian/patches/002_static-linking-dont-build-perf.patch:
+    - Add headers.
+  * debian/patches/005_gdk_directfb_window_new.patch:
+    - New patch. Readd gdk_directfb_window_new(), which is exported in the
+      public API and was removed by mistake.
+  * debian/patches/*
+    - Refreshed.
+  * debian/libgtk-directfb-2.0-0.symbols,
+    debian/libgtk2.0-0.symbols:
+    - Updated for the new symbols. There's one symbol removed from the
+      directfb backend, gdk_display_pointer_grab(). It wasn't exported in
+      the headers, nor was supposed to be public, so if something out there
+      is using it, they are doing it wrong.
   * debian/rules:
-    - updated shlibs version
+    - Remove a trailing backslash that prevented -c4 to be passed to
+      dh_makeshlibs.
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 09 Jul 2009 17:15:04 +0200
+ -- Josselin Mouette <joss@debian.org>  Thu, 20 Aug 2009 18:29:04 +0200
 
-gtk+2.0 (2.17.2-0ubuntu2) karmic; urgency=low
+gtk+2.0 (2.16.5-1) unstable; urgency=low
 
-  * Updated configure correctly
+  * New upstream bugfix release:
+    + debian/patches/070_mandatory-relibtoolize.patch:
+      - Regenerated for the new version.
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 17 Jun 2009 00:16:13 +0200
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 21 Jul 2009 08:09:50 +0200
 
-gtk+2.0 (2.17.2-0ubuntu1) karmic; urgency=low
+gtk+2.0 (2.16.4-1) unstable; urgency=low
 
-  * New upstream version:
-    GtkInfoBar: A new widget to show a transient 'message area'
-      inside a content pane. The API is similar to GtkDialog and
-      supports theming for different message types (warnings, errors, etc)
-    GtkFileChooser:
-    - Improve path bar by ellipsizing long names and preventing
-      vertical size changes
-    - Backup files are now hidden by default
-    - GTK+ remembers the file chooser sorting state now
-    GtkButtonBox: Implements the GtkOrientable interface now.
-    Printing:
-    - GTK+ supports printing an application-defined 'selection' now,
-      in addition to usual page ranges.
-    Changes that are relevant for theme authors:
-    - The new GtkInfoBar widget uses symbolic colors for theming
-      its background color depending on the message type. By default,
-      it uses the same background color as tooltips. This can be turned
-      off with style property.
-    - The GTK+ file chooser (as well as nautilus and other users of GIO
-      icon information) can now show different icons for xdg user dirs.
-      The icon names are folder-documents, folder-download, folder-music,
-      folder-pictures, folder-publicshare, folder-templates, folder-videos,
-      with an automatic fallback to the standard folder icon.
-    - Bugs fixed:
-    584021 titchy leak
-    579590 gtk_entry_set_icon_from_stock should warn when invalid st...
-    584125 GtkAssistant asserts if last page is GTK_ASSISTANT_PAGE_C...
-    171416 Resume editing if name of new folder is "Type name of new...
-    420335 Page assignment when printing 4 pages to a sheet
-    161670 Bad behaviour from gtk_file_chooser_set_filename
-    327152 Long names in the FileChooserDialog directory buttons sho...
-    355851 File Dialog shows Backup Files
-    390312 Gtk grabs keyboard on DND
-    486839 Filechooser 'Places' items should not move up and down th...
-    562335 Deprecate gtk_tree_view_column_get_cell_renderers and gtk...
-    565317 Resulting image of GtkCellRendererPixbuf depends on order...
-    565998 configure script doesn't check for cairo-xlib.pc
-    580079 Better configure detection of Xinerama on Solaris
-    580511 gdk_x11_atom_to_xatom_for_display translates GDK_NONE as ...
-    580560 Backspace key does not go to the parent directory
-    584598 GtkButtonBox silently ignores gtk_orientable_set_orientation
-    584637 Missing conditionals for X11 shape extension in GdkWindow
-    584805 GtkEntryCompletion selection reset when calling gtk_entry...
-    584832 Duplicate the exec string returned by gtk_recent_info_get...
-    585024 some gtksettings properties need extra initialisation
-    585371 Add additional sizes to the font selector
-    585791 use g_*gettext instead of *gettext directly
-    562579 [Patch] Remove error dialog when directory does not exist
-    344519 custom print ranges
-    484922 Should remember the sort state of columns
-    555344 consider adding a message area widget 
-  * debian/patches/003_gdk.pc_privates.patch:
-    - updated version thanks to Loïc Minier!
-  * debian/patches/091_workaround_no_gtk_init_incorrect_display.patch:
-    - the change is in the new version
+  * New upstream bugfix release:
+    + debian/patches/070_mandatory-relibtoolize.patch:
+      - Regenerated for the new version.
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 16 Jun 2009 14:42:04 +0200
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 02 Jul 2009 06:09:04 +0200
 
-gtk+2.0 (2.17.0-0ubuntu1) karmic; urgency=low
+gtk+2.0 (2.16.3-1) unstable; urgency=low
 
-  * New upstream version:
-    GtkBuilder:
-    - Scale marks can now be specified in builder markup
-    - GtkAssistant action widgets can be added in builder markup
-    Changes that are relevant for theme authors
-    - GtkEntry now has a ::invisible-char style property that allows
-      themes to set the preferred invisible character
-    Printing:
-    - GTK+ supports authentication of users against CUPS servers now.
-    Bugs fixed:
-    578634 gtkdial example fails to compile
-    580678 Minor improvement to GTK+ mediaLib code
-    580511 gdk_x11_atom_to_xatom_for_display translates GDK_NONE...
-    581110 Handlebox widget uses static variables, crashes in multi...
-    553385 gtk-builder-convert creates untranslated combobox models
-    580814 GtkTextLayout incorrectly assumes pango iterates in logi...
-    579366 gtkbuilderparser leaks RequiresInfo objects
-    579741 gailcombox should emit property-changed:accessible-name...
-    574386 Remove deprecated call to gtk_status_icon_set_tooltip...
-    384940 handle rejecting jobs and authentication meaningfully
-  * debian/patches/062_correct_manpages_install.patch:
-    - correctly install the manpage when not rebuilt
-  * debian/rules:
-    - updated shlibs version
+  * New upstream bugfix release:
+    + debian/patches/070_mandatory-relibtoolize.patch:
+      - Regenerated for the new version.
+  * debian/control.in:
+    + Update Standards-Version to 3.8.2.
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 02 Jun 2009 15:58:35 +0200
+ -- Sebastian Dröge <slomo@debian.org>  Mon, 29 Jun 2009 11:39:01 +0200
 
-gtk+2.0 (2.16.1-0ubuntu3) karmic; urgency=low
+gtk+2.0 (2.16.2-1) unstable; urgency=low
 
-  * Add missing backslash after --enable-print-backend which cause the --host
-    and --build args to be ignored and hence the wrong triplet to be used.
+  [ Loic Minier ]
+  * Fix string concat in dh_gtkmodules; thanks Kanru Chen; closes: #528782.
 
- -- Loic Minier <lool@dooz.org>  Sun, 10 May 2009 19:34:06 +0200
+  [ Sebastian Dröge ]
+  * New upstream bugfix release:
+    + debian/patches/091_workaround_no_gtk_init_incorrect_display.patch:
+      - Dropped, merged upstream.
+    + debian/patches/070_mandatory-relibtoolize.patch:
+      - Regenerated for the new version.
+    + debian/*.install:
+      - Install the manpages from their source locations as
+        they're not installed anymore for some reason.
+  * debian/control.in:
+    + Updated Standards-Version to 3.8.1, no additional changes needed.
 
-gtk+2.0 (2.16.1-0ubuntu2) jaunty; urgency=low
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 02 Jun 2009 07:44:43 +0200
 
-  * Set $(opt_configure_flags) to $(shared_configure_flags) for the vfp flavor
-    to pick exactly the same options.
+gtk+2.0 (2.16.1-2) unstable; urgency=low
 
- -- Loic Minier <lool@dooz.org>  Wed, 15 Apr 2009 00:48:15 +0200
+  [ Loic Minier ]
+  * Fix test-print-backend configure flag addition.
+  * Set opt_configure_flags to $(shared_configure_flags) in the sample opt
+    flavor for armel and move the opt flavor and check flavors below the
+    definition of other flags.
 
-gtk+2.0 (2.16.1-0ubuntu1) jaunty; urgency=low
+ -- Josselin Mouette <joss@debian.org>  Thu, 16 Apr 2009 18:08:02 +0200
 
-  * New upstream version:
-    GtkBuilder:
-    - Accessible action names can now be marked as translatable.
-    - gtk-builder-convert correctly handles response ids in all dialogs.
-    - gtk-builder-convert warns about duplicate ids.
-    GDK:
-    - GDK no longer refuses to work on 30-bit visuals
-    Win32:
-    - The appearance of GTK+ menus on Vista has been improved.
-    Bugs fixed:
-    575700 Crash when moving a GtkWindow
-    574283 unused assignment and dead code in gtk_widget_set_tooltip_window
-    538840 [Win32] GTK menu theming could be improved
-    576254 <object> requires attribute "id"
-    576306 gdkscreen.c: get_nearest_monitor too simple...
-    437533 Implement draw_shape PangoRenderer method
-    577224 crash when setting new icon after setting icon...
-    576150 Doc bug for GtkMenuPositionFunc
-    562863 GtkVscrollbar is hardly documented
-    575644 Cygwin gail build patch
-    571374 Add 30-bit visuals to the list of supported depths
-    577650 gtkitemfactory.h fails to compile
-    578094 ProcessIdToSessionId needs to be declared as WINAPI
-    518642 Custom tags and translatable content
-    532858 segv setting GBoxed subclass <property>
-    557629 Response ID not converted for GtkFileChooserDialog
-    577789 about dialogue doesn't linkify licence text
-    577824 empathy_chat_window_init: GClosure is leaked
-    577964 Page Range entry is not accessible
-    578221 Assertion warning `GTK_IS_TEXT_LAYOUT (layout)' failed
-    578271 PageSetup should be sent to the previewer
-    578276 gtk-builder-convert improperly converts GtkComboBox
-    578290 two memory leaks
-    578354 Memory leak in gdkscreen-x11
-    578365 GtkMountOperation does not allow passwordless mount of sf...
-    578366 file descriptor leak
-    573922 Using NET_WM_USER_TIME even if startup notification times...
-    561345 Title of Print Preview window should not be previewXXXXXX...
-    577868 about dialogue changes appearance on style-set (change th...
-    572797 GtkCellRendererAccel display string i18n in OTHER mode
-  * debian/patches/070_mandatory-relibtoolize.patch:
-    - new version update
-  * debian/patches/072_workaround_directfb_build.patch,
-    debian/patches/092_fix_printtest_include.patch,
-    debian/patches/093_git_change_fix_focus_issue.patch:
-    - the changes are in the new version
+gtk+2.0 (2.16.1-1) experimental; urgency=low
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 13 Apr 2009 12:06:09 +0200
+  [ Loic Minier ]
+  * Clarify dh_gtkmodules doc slightly.
 
-gtk+2.0 (2.16.0-1ubuntu8) jaunty; urgency=low
+  [ Gustavo Noronha Silva ]
+  * debian/series:
+  - forgot to add 022_disable-viqr-im-for-vi-locale.patch and
+    061_use_pdf_as_default_printing_standard.patch to the series file
+    (thanks to seb128 for noticing)
+  * debian/control.in:
+  - sync Replaces with ubuntu's package for easier migration from Ubuntu
+    to Debian ;)
 
-  * Move back MODULES_BASE_PATH and friends.
+  [ Josselin Mouette ]
+  * Make update-icon-caches always generate the cache, now that dh_icons
+    is widespread.
 
- -- Loic Minier <lool@dooz.org>  Fri, 10 Apr 2009 22:14:24 +0200
-
-gtk+2.0 (2.16.0-1ubuntu7) jaunty; urgency=low
-
-  * Move LIBDIR def around for OPTLIBDIR to be set properly.
-
- -- Loic Minier <lool@dooz.org>  Fri, 10 Apr 2009 21:19:02 +0200
-
-gtk+2.0 (2.16.0-1ubuntu6) jaunty; urgency=low
-
-  * Also sed @OPTLIBDIR@.
-
- -- Loic Minier <lool@dooz.org>  Fri, 10 Apr 2009 00:15:37 +0200
-
-gtk+2.0 (2.16.0-1ubuntu5) jaunty; urgency=low
+  [ Sebastian Dröge ]
+  * debian/libgtk-directfb-2.0-0.symbols,
+    debian/libgtk2.0-0.symbols,
+    debian/libgail18.symbols,
+    debian/rules:
+    + Add symbol files for GTK.
 
   [ Loic Minier ]
   * Merge the following changes by Emmet Hikory:
@@ -565,44 +183,32 @@ gtk+2.0 (2.16.0-1ubuntu5) jaunty; urgency=low
         optimised flavor to install in libgail18.
 
   [ Loic Minier ]
-  * Enable VFP pass on armel; LP: #349460.
-  * Build-dep on autotools-dev for the config.guess / .sub updates to work.
+  * Only pass -j to the main make call, do not parallelize the debian/rules
+    themselves as it seems to be racy for an unidentified reason which is hard
+    to reproduce.
+  * Merge patch below from Ubuntu.
 
- -- Loic Minier <lool@dooz.org>  Thu, 09 Apr 2009 14:20:02 +0200
-
-gtk+2.0 (2.16.0-1ubuntu4) jaunty; urgency=low
-
+  [ Sebastien Bacher ]
   * debian/patches/093_git_change_fix_focus_issue.patch:
-    - updated version which should really fix the issue (lp: #333366)
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 09 Apr 2009 10:41:37 +0200
-
-gtk+2.0 (2.16.0-1ubuntu3) jaunty; urgency=low
-
-  * debian/patches/093_git_change_fix_focus_issue.patch:
-    - upstream git change to fix a timestamp issue leading to get nautilus 
+    - upstream git change to fix a timestamp issue leading to get nautilus.
       dialog opening sometime unfocussed for example (lp: #333366)
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 08 Apr 2009 16:58:25 +0200
+  [ Loic Minier ]
+  * Build-dep on autotools-dev for the config.guess / .sub updates to work.
+  * Drop duplicate Section/Priority fields.
+  * ppc64: use DEB_HOST_GNU_CPU instead of BUILD; drop TODOs, the current
+    implementation is correct.
 
-gtk+2.0 (2.16.0-1ubuntu2) jaunty; urgency=low
+  [ Sebastian Dröge ]
+  * New upstream bugfix release:
+    + debian/patches/070_mandatory-relibtoolize.patch:
+      - Regenerated for the new version.
+    + debian/patches/072_workaround_directfb_build.patch,
+      debian/patches/092_fix_printtest_include.patch,
+      debian/patches/093_git_change_fix_focus_issue.patch:
+      - Dropped, merged upstream.
 
-  * No-change rebuild to fix lpia shared library dependencies.
-
- -- Colin Watson <cjwatson@ubuntu.com>  Thu, 19 Mar 2009 10:19:14 +0000
-
-gtk+2.0 (2.16.0-1ubuntu1) jaunty; urgency=low
-
-  * Sync on Debian
-  * debian/control.in:
-    - libgtk2.0-0 depends on libgail18 to workaround upgrade issue
-    - use required replaces due to different choice in intrepid and debian
-  * debian/rules:
-    - Fix the binary-arch/binary-indep targets to build
-      cleanly under make -j, by setting a PARALLEL_FLAGS variable and
-      passing it to make instead of exporting MAKEFLAGS.
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 16 Mar 2009 12:14:50 +0100
+ -- Sebastian Dröge <slomo@debian.org>  Sun, 12 Apr 2009 11:21:58 +0200
 
 gtk+2.0 (2.16.0-1) experimental; urgency=low
 
@@ -626,6 +232,7 @@ gtk+2.0 (2.16.0-1) experimental; urgency=low
     - Bump shlibs.
     - debian/patches/070_mandatory-relibtoolize.patch: regenerated.
   * Ship the gtk-builder-convert manpage in libgtk2.0-dev.
+  * Section of dbg packages is debug.
 
  -- Emilio Pozuelo Monfort <pochu@ubuntu.com>  Sun, 15 Mar 2009 20:10:34 +0100
 

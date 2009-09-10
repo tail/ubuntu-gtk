@@ -2,7 +2,7 @@
 002_static-linking-dont-build-perf.patch
 003_gdk.pc_privates.patch
 004_gtk+-ximian-gtk2-filesel-navbutton-5.patch
-005_xpmico.patch
+005_gdk_directfb_window_new.patch
 009_gtk-export-filechooser.patch
 010_gdkpixbuf_-lm.patch
 015_default-fallback-icon-theme.patch
@@ -14,5 +14,4 @@
 042_treeview_single-focus.patch
 060_ignore-random-icons.patch
 061_use_pdf_as_default_printing_standard.patch
-062_correct_manpages_install.patch
 070_mandatory-relibtoolize.patch

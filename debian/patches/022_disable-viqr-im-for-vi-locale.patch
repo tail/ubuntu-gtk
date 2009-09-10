@@ -1,7 +1,7 @@
-Index: gtk+2.0-2.17.3/modules/input/imviqr.c
+Index: gtk+2.0-2.15.2/modules/input/imviqr.c
 ===================================================================
---- gtk+2.0-2.17.3.orig/modules/input/imviqr.c	2009-06-04 21:18:04.000000000 +0200
-+++ gtk+2.0-2.17.3/modules/input/imviqr.c	2009-07-09 17:41:31.000000000 +0200
+--- gtk+2.0-2.15.2.orig/modules/input/imviqr.c	2009-01-27 05:03:01.000000000 +0100
++++ gtk+2.0-2.15.2/modules/input/imviqr.c	2009-01-27 11:21:08.000000000 +0100
 @@ -244,7 +244,7 @@
    N_("Vietnamese (VIQR)"), /* Human readable name */
    GETTEXT_PACKAGE,	   /* Translation domain */

@@ -37,10 +37,7 @@ LIBDIR := usr/lib
 endif
 
 # ppc64 support; see #386815
-# XXX Should probably be fixed in binutils
-# XXX Use LDFLAGS instead of CFLAGS?
-# XXX shouldn't we check the arch instead of the CPU?
-ifeq ($(DEB_BUILD_GNU_CPU),powerpc64)
+ifeq ($(DEB_HOST_GNU_CPU),powerpc64)
 	CFLAGS += -mminimal-toc
 endif
 
@@ -56,7 +53,7 @@ DEBVERSION := $(shell dpkg-parsechangelog | sed -n -e 's/^Version: //p')
 VERSION := $(shell echo $(DEBVERSION) | sed -e 's/-[^-]*$$//')
 APIVER := 2.0
 SONAME := 0
-SHVER := 2.17.10
+SHVER := 2.17.11
 
 # earliest version that this release has backwards binary compatibility for
 GTK_BINARY_VERSION := 2.10.0
@@ -96,28 +93,12 @@ ALL_PKGS := $(BINARY_INDEP_PKGS) $(BINARY_ARCH_PKGS)
 # Note: the shared flavor is required
 FLAVORS := directfb shared static
 
-# optional optimized flavor for some arches
-OPTLIBDIR :=
-# VFP opt flavor on armel
-ifneq ($(filter $(DEB_HOST_ARCH), armel),)
-FLAVORS += opt
-OPTLIBDIR := $(LIBDIR)/vfp
-opt_CFLAGS += $(CFLAGS) -mfpu=vfp -mfloat-abi=softfp
-endif
-
-# list of flavors to run the test suite on
-CHECK_FLAVORS := $(filter directfb opt shared static, $(FLAVORS))
-# don't run the directfb testsuite on kfreebsd as it hangs; see #431477
-ifeq ($(DEB_HOST_ARCH_OS), kfreebsd)
-CHECK_FLAVORS := $(filter-out directfb, $(CHECK_FLAVORS))
-endif
-
 # current flavor we're building; this is only expanded in flavor specific
 # targets
 current_flavor = $*
 
 # macro to get a value for the current flavor we're building; for example
-# when building the shared flavor, $(call flavor_get,GFLAGS) will expand to
+# when building the shared flavor, $(call flavor_get,CFLAGS) will expand to
 # shared_CFLAGS if it's set or to CFLAGS otherwise; pay attention to not adding
 # superflous spaces when for the arguments of $(call ); only some vars can
 # be expanded in this way though
@@ -148,22 +129,40 @@ endif
 
 shared_configure_flags := $(configure_flags) \
 			--with-xinput=yes \
+			--with-libjasper \
 			--enable-shared \
-			--disable-static \
-			--with-libjasper
-opt_configure_flags := $(shared_configure_flags)
+			--disable-static
 static_configure_flags := $(configure_flags) \
 			--with-xinput=yes \
 			--with-included-loaders=yes \
+			--with-libjasper \
 			--disable-modules \
 			--disable-shared \
-			--enable-static --with-libjasper
+			--enable-static
 directfb_configure_flags := $(configure_flags) \
 			--with-xinput=no \
+			--with-libjasper \
 			--enable-shared \
 			--disable-static \
 			--enable-explicit-deps=yes \
 			--with-gdktarget=directfb
+
+# optional optimized flavor for some arches
+OPTLIBDIR :=
+# sample code
+#ifneq ($(filter $(DEB_HOST_ARCH), armel),)
+#FLAVORS += opt
+#OPTLIBDIR := $(LIBDIR)/vfp
+#opt_CFLAGS += $(CFLAGS) -mfpu=vfp -mfloat-abi=softfp
+#opt_configure_flags := $(or $(shared_configure_flags),$(configure_flags))
+#endif
+
+# list of flavors to run the test suite on
+CHECK_FLAVORS := $(filter directfb opt shared static, $(FLAVORS))
+# don't run the directfb testsuite on kfreebsd as it hangs; see #431477
+ifeq ($(DEB_HOST_ARCH_OS), kfreebsd)
+CHECK_FLAVORS := $(filter-out directfb, $(CHECK_FLAVORS))
+endif
 
 DH_INSTALLDOCS_FILES := NEWS README ChangeLog
 
@@ -220,14 +219,14 @@ $(STAMP_DIR)/check-stamp-%: $(STAMP_DIR)/build-stamp-%
 	# future, but doesn't seem necessary right now
 	#LD_LIBRARY_PATH=$(builddir)/gdk-pixbuf/.libs:$(builddir)/gtk/.libs:$(builddir)/gdk/.libs:$(LD_LIBRARY_PATH)
 	# testsuite failures are ignored
-	-$(MAKE) $(PARALLEL_FLAGS) -C $(builddir) check
+	-$(MAKE) -C $(builddir) check
 	touch $@
 
 check: $(addprefix $(STAMP_DIR)/check-stamp-, $(CHECK_FLAVORS))
 
 $(STAMP_DIR)/install-stamp-%: $(STAMP_DIR)/build-stamp-%
 	mkdir -p $(installdir)
-	$(MAKE) $(PARALLEL_FLAGS) -C $(builddir) install \
+	$(MAKE) -C $(builddir) install \
 		DESTDIR=$(installdir)
 	touch $@
 
@@ -263,7 +262,7 @@ debian/%: debian/%.in
 		-e "s#@GNOME_TEAM@#$(UPLOADERS)#g" \
 		-e "s#@GTK_BINARY_VERSION@#$(GTK_BINARY_VERSION)#g" \
 		-e "s#@LIBDIR@#$(LIBDIR)#g" \
-		-e "s#@OPTLIBDIR@#$(OPTLIBDIR)#g" \
+		-e 's#@OPTLIBDIR@#$(OPTLIBDIR)#g' \
 		-e "s#@MODULES_BASE_PATH@#$(MODULES_BASE_PATH)#g" \
 		$@.in \
 		$(wildcard $(if $(filter opt,$(FLAVORS)),$@.opt)) \
@@ -316,7 +315,7 @@ binary-arch: build $(maybe_check) install $(call dh_subst_files,$(BINARY_ARCH_PK
 	dh_testroot
 	dh_install -s
 	# empty the dependency_libs in the *.la files
-	sed -i "/dependency_libs/ s/'.*'/''/" debian/$(DEV_PKG)/$(LIBDIR)/*.la
+	sed -i "/dependency_libs/ s/'.*'/''/" debian/*/$(LIBDIR)/*.la
 	# we don't need the rpath in the udeb
 	chrpath -d debian/$(UDEB_PKG)/$(LIBDIR)/*directfb*.so.*
 	# fix permissions of binaries below /$(LIBDIR)/$(SHARED_PKG)
@@ -361,14 +360,17 @@ binary-arch: build $(maybe_check) install $(call dh_subst_files,$(BINARY_ARCH_PK
 	dh_makeshlibs -p$(SHARED_PKG) \
 		-X$(MODULES_BASE_PATH) \
 		-V"$(SHARED_PKG) (>= $(SHVER))" \
-		--add-udeb=$(UDEB_PKG)
+		--add-udeb=$(UDEB_PKG) \
+		-- -c4
 	dh_makeshlibs -p$(DIRECTFB_PKG) \
 		-X$(MODULES_BASE_PATH) \
 		-V"$(DIRECTFB_PKG) (>= $(SHVER))" \
-		--add-udeb=$(UDEB_PKG)
+		--add-udeb=$(UDEB_PKG) \
+		-- -c4
 	dh_makeshlibs -plibgail18 \
 		-X$(MODULES_BASE_PATH) \
-		-V"libgail18 (>= $(SHVER)), libgail-common (>= $(SHVER))"
+		-V"libgail18 (>= $(SHVER)), libgail-common (>= $(SHVER))" \
+		-- -c4
 	dh_installdeb -s
 	# override shlibs for libraries from this source before computing
 	# dependencies of packages generated from this source; we already have

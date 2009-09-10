@@ -1,49 +1,6 @@
-Index: gtk+-2.17.11/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/Makefile.in	2009-09-07 13:01:12.000000000 +1000
-@@ -109,7 +109,8 @@
- 	distdir dist dist-all distcheck
- ETAGS = etags
- CTAGS = ctags
--DIST_SUBDIRS = $(SUBDIRS)
-+DIST_SUBDIRS = po po-properties gdk-pixbuf gdk gtk modules demos tests \
-+	perf contrib docs m4macros
- DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
- distdir = $(PACKAGE)-$(VERSION)
- top_distdir = $(distdir)
-@@ -219,6 +220,7 @@
- GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
- GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
- GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
-+GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
- GDK_WLIBS = @GDK_WLIBS@
- GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
- GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -294,6 +296,7 @@
- PACKAGE_NAME = @PACKAGE_NAME@
- PACKAGE_STRING = @PACKAGE_STRING@
- PACKAGE_TARNAME = @PACKAGE_TARNAME@
-+PACKAGE_URL = @PACKAGE_URL@
- PACKAGE_VERSION = @PACKAGE_VERSION@
- PANGO_PREFIX = @PANGO_PREFIX@
- PATH_SEPARATOR = @PATH_SEPARATOR@
-@@ -464,7 +467,10 @@
- 	|| { echo "Gtk+Tests:ERROR: Failed to start Xvfb environment for X11 target tests."; exit 1; } \
- 	&& DISPLAY=:$$XID && export DISPLAY
- 
--SRC_SUBDIRS = gdk-pixbuf gdk gtk modules demos tests perf contrib
-+
-+# don't build perf measurement tools in static builds
-+@ENABLE_STATIC_FALSE@MAYBE_PERF = perf
-+SRC_SUBDIRS = gdk-pixbuf gdk gtk modules demos tests $(MAYBE_PERF) contrib
- SUBDIRS = po po-properties $(SRC_SUBDIRS) docs m4macros
- 
- # require automake 1.4
-Index: gtk+-2.17.11/aclocal.m4
-===================================================================
---- gtk+-2.17.11.orig/aclocal.m4	2009-09-07 13:00:29.000000000 +1000
-+++ gtk+-2.17.11/aclocal.m4	2009-09-07 13:00:52.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/aclocal.m4 gtk+2.0-2.17.11/aclocal.m4
+--- gtk+2.0-2.17.11.old/aclocal.m4	2009-09-05 04:54:12.000000000 +0200
++++ gtk+2.0-2.17.11/aclocal.m4	2009-09-05 07:25:17.000000000 +0200
 @@ -13,8 +13,8 @@
  
  m4_ifndef([AC_AUTOCONF_VERSION],
@@ -190,10 +147,9 @@ Index: gtk+-2.17.11/aclocal.m4
          fi
  	# Put the nasty error message in config.log where it belongs
  	echo "$$1[]_PKG_ERRORS" >&AS_MESSAGE_LOG_FD
-Index: gtk+-2.17.11/config.h.in
-===================================================================
---- gtk+-2.17.11.orig/config.h.in	2009-09-07 13:00:29.000000000 +1000
-+++ gtk+-2.17.11/config.h.in	2009-09-07 13:00:59.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/config.h.in gtk+2.0-2.17.11/config.h.in
+--- gtk+2.0-2.17.11.old/config.h.in	2009-09-05 04:54:16.000000000 +0200
++++ gtk+2.0-2.17.11/config.h.in	2009-09-05 07:25:19.000000000 +0200
 @@ -235,6 +235,9 @@
  /* Define to the one symbol short name of this package. */
  #undef PACKAGE_TARNAME
@@ -204,10 +160,9 @@ Index: gtk+-2.17.11/config.h.in
  /* Define to the version of this package. */
  #undef PACKAGE_VERSION
  
-Index: gtk+-2.17.11/configure
-===================================================================
---- gtk+-2.17.11.orig/configure	2009-09-07 13:00:29.000000000 +1000
-+++ gtk+-2.17.11/configure	2009-09-07 13:00:56.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/configure gtk+2.0-2.17.11/configure
+--- gtk+2.0-2.17.11.old/configure	2009-09-05 04:54:28.000000000 +0200
++++ gtk+2.0-2.17.11/configure	2009-09-05 07:25:18.000000000 +0200
 @@ -1,20 +1,22 @@
  #! /bin/sh
  # Guess values for system-dependent variables and create Makefiles.
@@ -24855,23 +24810,27 @@ Index: gtk+-2.17.11/configure
 -	 $as_test_x conftest$ac_exeext
 -       }; then
 -  ac_cv_func_XShmAttach=yes
--else
++if ac_fn_c_try_link "$LINENO"; then :
++  ac_cv_lib_ipc_shmat=yes
+ else
 -  $as_echo "$as_me: failed program was:" >&5
 -sed 's/^/| /' conftest.$ac_ext >&5
 -
 -	ac_cv_func_XShmAttach=no
-+if ac_fn_c_try_link "$LINENO"; then :
-+  ac_cv_lib_ipc_shmat=yes
-+else
 +  ac_cv_lib_ipc_shmat=no
++fi
++rm -f core conftest.err conftest.$ac_objext \
++    conftest$ac_exeext conftest.$ac_ext
++LIBS=$ac_check_lib_save_LIBS
  fi
 -
 -rm -rf conftest.dSYM
 -rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
 -      conftest$ac_exeext conftest.$ac_ext
-+rm -f core conftest.err conftest.$ac_objext \
-+    conftest$ac_exeext conftest.$ac_ext
-+LIBS=$ac_check_lib_save_LIBS
++{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_ipc_shmat" >&5
++$as_echo "$ac_cv_lib_ipc_shmat" >&6; }
++if test "x$ac_cv_lib_ipc_shmat" = x""yes; then :
++  X_EXTRA_LIBS="$X_EXTRA_LIBS -lipc"
  fi
 -{ $as_echo "$as_me:$LINENO: result: $ac_cv_func_XShmAttach" >&5
 -$as_echo "$ac_cv_func_XShmAttach" >&6; }
@@ -24882,11 +24841,6 @@ Index: gtk+-2.17.11/configure
 -	{ $as_echo "$as_me:$LINENO: checking for XShmAttach in -lXextSam" >&5
 -$as_echo_n "checking for XShmAttach in -lXextSam... " >&6; }
 -if test "${ac_cv_lib_XextSam_XShmAttach+set}" = set; then
-+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_ipc_shmat" >&5
-+$as_echo "$ac_cv_lib_ipc_shmat" >&6; }
-+if test "x$ac_cv_lib_ipc_shmat" = x""yes; then :
-+  X_EXTRA_LIBS="$X_EXTRA_LIBS -lipc"
-+fi
 +
 +    fi
 +  fi
@@ -25263,18 +25217,23 @@ Index: gtk+-2.17.11/configure
 +        { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: XKB support explicitly disabled" >&5
 +$as_echo "$as_me: WARNING: XKB support explicitly disabled" >&2;}
 +  fi
- 
-+  # Check for shaped window extension
 +
++  # Check for shaped window extension
+ 
 +  ac_fn_c_check_func "$LINENO" "XShapeCombineMask" "ac_cv_func_XShapeCombineMask"
 +if test "x$ac_cv_func_XShapeCombineMask" = x""yes; then :
 +  :
  else
 -  no_sys_ipc=yes
 +  as_fn_error "Shape extension not found, check your development headers" "$LINENO" 5
-+fi
-+
-+
+ fi
+ 
+ 
+-    if test "${ac_cv_header_sys_shm_h+set}" = set; then
+-  { $as_echo "$as_me:$LINENO: checking for sys/shm.h" >&5
+-$as_echo_n "checking for sys/shm.h... " >&6; }
+-if test "${ac_cv_header_sys_shm_h+set}" = set; then
+-  $as_echo_n "(cached) " >&6
 +  # X SYNC check
 +  gtk_save_CFLAGS="$CFLAGS"
 +  CFLAGS="$CFLAGS $x_cflags"
@@ -25290,16 +25249,11 @@ Index: gtk+-2.17.11/configure
 +else
 +  :
  fi
- 
- 
--    if test "${ac_cv_header_sys_shm_h+set}" = set; then
--  { $as_echo "$as_me:$LINENO: checking for sys/shm.h" >&5
--$as_echo_n "checking for sys/shm.h... " >&6; }
--if test "${ac_cv_header_sys_shm_h+set}" = set; then
--  $as_echo_n "(cached) " >&6
- fi
 -{ $as_echo "$as_me:$LINENO: result: $ac_cv_header_sys_shm_h" >&5
 -$as_echo "$ac_cv_header_sys_shm_h" >&6; }
++
++
++fi
 +
 +
 +  CFLAGS="$gtk_save_CFLAGS"
@@ -26119,13 +26073,13 @@ Index: gtk+-2.17.11/configure
  $as_echo "$PANGO_CFLAGS $PANGO_LIBS" >&6; }
  else
 -        { { $as_echo "$as_me:$LINENO: error:
+-*** Pango not found. Pango built with Cairo support is required
+-*** to build GTK+. See http://www.pango.org for Pango information.
+-" >&5
+-$as_echo "$as_me: error:
 +        as_fn_error "
  *** Pango not found. Pango built with Cairo support is required
  *** to build GTK+. See http://www.pango.org for Pango information.
--" >&5
--$as_echo "$as_me: error:
--*** Pango not found. Pango built with Cairo support is required
--*** to build GTK+. See http://www.pango.org for Pango information.
 -" >&2;}
 -   { (exit 1); exit 1; }; }
 +" "$LINENO" 5
@@ -26145,10 +26099,12 @@ Index: gtk+-2.17.11/configure
  /* end confdefs.h.  */
  
  /* Override any GCC internal prototype to avoid an error.
-@@ -32146,62 +24277,35 @@
+@@ -32144,64 +24275,37 @@
+ main ()
+ {
  return pango_context_new ();
-   ;
-   return 0;
+-  ;
+-  return 0;
 -}
 -_ACEOF
 -rm -f conftest.$ac_objext conftest$ac_exeext
@@ -26172,6 +26128,8 @@ Index: gtk+-2.17.11/configure
 -	 test "$cross_compiling" = yes ||
 -	 $as_test_x conftest$ac_exeext
 -       }; then
++  ;
++  return 0;
 +}
 +_ACEOF
 +if ac_fn_c_try_link "$LINENO"; then :
@@ -26217,7 +26175,7 @@ Index: gtk+-2.17.11/configure
 -  GDK_PACKAGES="$PANGO_PACKAGES"
    GDK_EXTRA_LIBS=
 +else
-+  GDK_PACKAGES="$PANGO_PACKAGES"
++  GDK_PACKAGES="$GDK_PACKAGES $GDK_PRIVATE_PACKAGES"
  fi
  
  
@@ -29531,30 +29489,18 @@ Index: gtk+-2.17.11/configure
  $as_echo "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
  fi
  
-Index: gtk+-2.17.11/contrib/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/contrib/Makefile.in	2009-09-07 13:00:29.000000000 +1000
-+++ gtk+-2.17.11/contrib/Makefile.in	2009-09-07 13:01:00.000000000 +1000
-@@ -170,6 +170,7 @@
- GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
- GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
- GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
-+GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
- GDK_WLIBS = @GDK_WLIBS@
- GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
- GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -245,6 +246,7 @@
- PACKAGE_NAME = @PACKAGE_NAME@
- PACKAGE_STRING = @PACKAGE_STRING@
- PACKAGE_TARNAME = @PACKAGE_TARNAME@
-+PACKAGE_URL = @PACKAGE_URL@
- PACKAGE_VERSION = @PACKAGE_VERSION@
- PANGO_PREFIX = @PANGO_PREFIX@
- PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/contrib/gdk-pixbuf-xlib/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/contrib/gdk-pixbuf-xlib/Makefile.in	2009-09-07 13:00:29.000000000 +1000
-+++ gtk+-2.17.11/contrib/gdk-pixbuf-xlib/Makefile.in	2009-09-07 13:01:00.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/contrib/gdk-pixbuf-xlib/Makefile.in gtk+2.0-2.17.11/contrib/gdk-pixbuf-xlib/Makefile.in
+--- gtk+2.0-2.17.11.old/contrib/gdk-pixbuf-xlib/Makefile.in	2009-09-05 04:54:19.000000000 +0200
++++ gtk+2.0-2.17.11/contrib/gdk-pixbuf-xlib/Makefile.in	2009-09-05 07:25:20.000000000 +0200
+@@ -48,7 +48,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES = gdk-pixbuf-xlib-2.0.pc
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -197,6 +197,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -29571,11 +29517,19 @@ Index: gtk+-2.17.11/contrib/gdk-pixbuf-xlib/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/demos/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/demos/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/demos/Makefile.in	2009-09-07 13:01:00.000000000 +1000
-@@ -220,6 +220,7 @@
+diff -Naur gtk+2.0-2.17.11.old/contrib/Makefile.in gtk+2.0-2.17.11/contrib/Makefile.in
+--- gtk+2.0-2.17.11.old/contrib/Makefile.in	2009-09-05 04:54:19.000000000 +0200
++++ gtk+2.0-2.17.11/contrib/Makefile.in	2009-09-05 07:25:20.000000000 +0200
+@@ -44,7 +44,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
+@@ -170,6 +170,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
  GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
@@ -29583,7 +29537,7 @@ Index: gtk+-2.17.11/demos/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -295,6 +296,7 @@
+@@ -245,6 +246,7 @@
  PACKAGE_NAME = @PACKAGE_NAME@
  PACKAGE_STRING = @PACKAGE_STRING@
  PACKAGE_TARNAME = @PACKAGE_TARNAME@
@@ -29591,10 +29545,18 @@ Index: gtk+-2.17.11/demos/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/demos/gtk-demo/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/demos/gtk-demo/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/demos/gtk-demo/Makefile.in	2009-09-07 13:01:01.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/demos/gtk-demo/Makefile.in gtk+2.0-2.17.11/demos/gtk-demo/Makefile.in
+--- gtk+2.0-2.17.11.old/demos/gtk-demo/Makefile.in	2009-09-05 04:54:20.000000000 +0200
++++ gtk+2.0-2.17.11/demos/gtk-demo/Makefile.in	2009-09-05 07:25:21.000000000 +0200
+@@ -46,7 +46,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES = geninclude.pl
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -201,6 +201,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -29611,11 +29573,19 @@ Index: gtk+-2.17.11/demos/gtk-demo/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/docs/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/docs/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/docs/Makefile.in	2009-09-07 13:01:01.000000000 +1000
-@@ -169,6 +169,7 @@
+diff -Naur gtk+2.0-2.17.11.old/demos/Makefile.in gtk+2.0-2.17.11/demos/Makefile.in
+--- gtk+2.0-2.17.11.old/demos/Makefile.in	2009-09-05 04:54:20.000000000 +0200
++++ gtk+2.0-2.17.11/demos/Makefile.in	2009-09-05 07:25:20.000000000 +0200
+@@ -50,7 +50,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
+@@ -220,6 +220,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
  GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
@@ -29623,7 +29593,7 @@ Index: gtk+-2.17.11/docs/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -244,6 +245,7 @@
+@@ -295,6 +296,7 @@
  PACKAGE_NAME = @PACKAGE_NAME@
  PACKAGE_STRING = @PACKAGE_STRING@
  PACKAGE_TARNAME = @PACKAGE_TARNAME@
@@ -29631,10 +29601,18 @@ Index: gtk+-2.17.11/docs/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/docs/faq/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/docs/faq/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/docs/faq/Makefile.in	2009-09-07 13:01:01.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/docs/faq/Makefile.in gtk+2.0-2.17.11/docs/faq/Makefile.in
+--- gtk+2.0-2.17.11.old/docs/faq/Makefile.in	2009-09-05 04:54:20.000000000 +0200
++++ gtk+2.0-2.17.11/docs/faq/Makefile.in	2009-09-05 07:25:21.000000000 +0200
+@@ -43,7 +43,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -129,6 +129,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -29651,10 +29629,18 @@ Index: gtk+-2.17.11/docs/faq/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/docs/reference/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/docs/reference/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/docs/reference/Makefile.in	2009-09-07 13:01:01.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/docs/Makefile.in gtk+2.0-2.17.11/docs/Makefile.in
+--- gtk+2.0-2.17.11.old/docs/Makefile.in	2009-09-05 04:54:20.000000000 +0200
++++ gtk+2.0-2.17.11/docs/Makefile.in	2009-09-05 07:25:21.000000000 +0200
+@@ -43,7 +43,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -169,6 +169,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -29671,41 +29657,18 @@ Index: gtk+-2.17.11/docs/reference/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/docs/reference/gdk-pixbuf/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/docs/reference/gdk-pixbuf/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/docs/reference/gdk-pixbuf/Makefile.in	2009-09-07 13:01:01.000000000 +1000
-@@ -161,6 +161,7 @@
- GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
- GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
- GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
-+GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
- GDK_WLIBS = @GDK_WLIBS@
- GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
- GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -236,6 +237,7 @@
- PACKAGE_NAME = @PACKAGE_NAME@
- PACKAGE_STRING = @PACKAGE_STRING@
- PACKAGE_TARNAME = @PACKAGE_TARNAME@
-+PACKAGE_URL = @PACKAGE_URL@
- PACKAGE_VERSION = @PACKAGE_VERSION@
- PANGO_PREFIX = @PANGO_PREFIX@
- PATH_SEPARATOR = @PATH_SEPARATOR@
-@@ -452,8 +454,8 @@
- CLEANFILES = $(SCANOBJ_FILES) $(REPORT_FILES) $(DOC_STAMPS)
- 
- ########################################################################
--@ENABLE_MAN_TRUE@man_MANS = gdk-pixbuf-csource.1 gdk-pixbuf-query-loaders.1 
--@ENABLE_MAN_TRUE@BUILT_EXTRA_DIST = $(man_MANS)
-+man_MANS = gdk-pixbuf-csource.1 gdk-pixbuf-query-loaders.1 
-+BUILT_EXTRA_DIST = $(man_MANS)
- all: all-am
- 
- .SUFFIXES:
-Index: gtk+-2.17.11/docs/reference/gdk/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/docs/reference/gdk/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/docs/reference/gdk/Makefile.in	2009-09-07 13:01:02.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/docs/reference/gdk/Makefile.in gtk+2.0-2.17.11/docs/reference/gdk/Makefile.in
+--- gtk+2.0-2.17.11.old/docs/reference/gdk/Makefile.in	2009-09-05 04:54:20.000000000 +0200
++++ gtk+2.0-2.17.11/docs/reference/gdk/Makefile.in	2009-09-05 07:25:21.000000000 +0200
+@@ -50,7 +50,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES = version.xml
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -136,6 +136,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -29722,10 +29685,18 @@ Index: gtk+-2.17.11/docs/reference/gdk/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/docs/reference/gtk/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/docs/reference/gtk/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/docs/reference/gtk/Makefile.in	2009-09-07 13:01:02.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/docs/reference/gdk-pixbuf/Makefile.in gtk+2.0-2.17.11/docs/reference/gdk-pixbuf/Makefile.in
+--- gtk+2.0-2.17.11.old/docs/reference/gdk-pixbuf/Makefile.in	2009-09-05 04:54:20.000000000 +0200
++++ gtk+2.0-2.17.11/docs/reference/gdk-pixbuf/Makefile.in	2009-09-05 07:25:21.000000000 +0200
+@@ -50,7 +50,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES = version.xml
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -161,6 +161,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -29742,21 +29713,46 @@ Index: gtk+-2.17.11/docs/reference/gtk/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-@@ -742,8 +744,8 @@
- CLEANFILES = $(SCANOBJ_FILES) $(REPORT_FILES) $(DOC_STAMPS)
- 
- ########################################################################
--@ENABLE_MAN_TRUE@man_MANS = gtk-query-immodules-2.0.1 gtk-update-icon-cache.1 gtk-builder-convert.1
--@ENABLE_MAN_TRUE@BUILT_EXTRA_DIST = $(man_MANS)
-+man_MANS = gtk-query-immodules-2.0.1 gtk-update-icon-cache.1 gtk-builder-convert.1
-+BUILT_EXTRA_DIST = $(man_MANS)
- all: all-am
- 
- .SUFFIXES:
-Index: gtk+-2.17.11/docs/reference/libgail-util/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/docs/reference/libgail-util/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/docs/reference/libgail-util/Makefile.in	2009-09-07 13:01:02.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/docs/reference/gtk/Makefile.in gtk+2.0-2.17.11/docs/reference/gtk/Makefile.in
+--- gtk+2.0-2.17.11.old/docs/reference/gtk/Makefile.in	2009-09-05 04:54:20.000000000 +0200
++++ gtk+2.0-2.17.11/docs/reference/gtk/Makefile.in	2009-09-05 07:25:21.000000000 +0200
+@@ -50,7 +50,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES = version.xml
+ CONFIG_CLEAN_VPATH_FILES =
+@@ -161,6 +161,7 @@
+ GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
+ GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
+ GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
++GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
+ GDK_WLIBS = @GDK_WLIBS@
+ GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
+ GLIB_CFLAGS = @GLIB_CFLAGS@
+@@ -236,6 +237,7 @@
+ PACKAGE_NAME = @PACKAGE_NAME@
+ PACKAGE_STRING = @PACKAGE_STRING@
+ PACKAGE_TARNAME = @PACKAGE_TARNAME@
++PACKAGE_URL = @PACKAGE_URL@
+ PACKAGE_VERSION = @PACKAGE_VERSION@
+ PANGO_PREFIX = @PANGO_PREFIX@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+diff -Naur gtk+2.0-2.17.11.old/docs/reference/libgail-util/Makefile.in gtk+2.0-2.17.11/docs/reference/libgail-util/Makefile.in
+--- gtk+2.0-2.17.11.old/docs/reference/libgail-util/Makefile.in	2009-09-05 04:54:21.000000000 +0200
++++ gtk+2.0-2.17.11/docs/reference/libgail-util/Makefile.in	2009-09-05 07:25:22.000000000 +0200
+@@ -49,7 +49,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -135,6 +135,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -29773,10 +29769,46 @@ Index: gtk+-2.17.11/docs/reference/libgail-util/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/docs/tools/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/docs/tools/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/docs/tools/Makefile.in	2009-09-07 13:01:02.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/docs/reference/Makefile.in gtk+2.0-2.17.11/docs/reference/Makefile.in
+--- gtk+2.0-2.17.11.old/docs/reference/Makefile.in	2009-09-05 04:54:20.000000000 +0200
++++ gtk+2.0-2.17.11/docs/reference/Makefile.in	2009-09-05 07:25:21.000000000 +0200
+@@ -43,7 +43,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
+@@ -169,6 +169,7 @@
+ GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
+ GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
+ GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
++GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
+ GDK_WLIBS = @GDK_WLIBS@
+ GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
+ GLIB_CFLAGS = @GLIB_CFLAGS@
+@@ -244,6 +245,7 @@
+ PACKAGE_NAME = @PACKAGE_NAME@
+ PACKAGE_STRING = @PACKAGE_STRING@
+ PACKAGE_TARNAME = @PACKAGE_TARNAME@
++PACKAGE_URL = @PACKAGE_URL@
+ PACKAGE_VERSION = @PACKAGE_VERSION@
+ PANGO_PREFIX = @PANGO_PREFIX@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+diff -Naur gtk+2.0-2.17.11.old/docs/tools/Makefile.in gtk+2.0-2.17.11/docs/tools/Makefile.in
+--- gtk+2.0-2.17.11.old/docs/tools/Makefile.in	2009-09-05 04:54:21.000000000 +0200
++++ gtk+2.0-2.17.11/docs/tools/Makefile.in	2009-09-05 07:25:22.000000000 +0200
+@@ -45,7 +45,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -164,6 +164,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -29793,10 +29825,18 @@ Index: gtk+-2.17.11/docs/tools/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/docs/tutorial/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/docs/tutorial/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/docs/tutorial/Makefile.in	2009-09-07 13:01:02.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/docs/tutorial/Makefile.in gtk+2.0-2.17.11/docs/tutorial/Makefile.in
+--- gtk+2.0-2.17.11.old/docs/tutorial/Makefile.in	2009-09-05 04:54:21.000000000 +0200
++++ gtk+2.0-2.17.11/docs/tutorial/Makefile.in	2009-09-05 07:25:22.000000000 +0200
+@@ -43,7 +43,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -129,6 +129,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -29813,10 +29853,214 @@ Index: gtk+-2.17.11/docs/tutorial/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/gdk-pixbuf/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/gdk-pixbuf/Makefile.in	2009-09-07 13:00:31.000000000 +1000
-+++ gtk+-2.17.11/gdk-pixbuf/Makefile.in	2009-09-07 13:01:03.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/gdk/directfb/Makefile.in gtk+2.0-2.17.11/gdk/directfb/Makefile.in
+--- gtk+2.0-2.17.11.old/gdk/directfb/Makefile.in	2009-09-05 04:54:22.000000000 +0200
++++ gtk+2.0-2.17.11/gdk/directfb/Makefile.in	2009-09-05 07:25:23.000000000 +0200
+@@ -45,7 +45,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
+@@ -193,6 +193,7 @@
+ GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
+ GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
+ GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
++GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
+ GDK_WLIBS = @GDK_WLIBS@
+ GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
+ GLIB_CFLAGS = @GLIB_CFLAGS@
+@@ -268,6 +269,7 @@
+ PACKAGE_NAME = @PACKAGE_NAME@
+ PACKAGE_STRING = @PACKAGE_STRING@
+ PACKAGE_TARNAME = @PACKAGE_TARNAME@
++PACKAGE_URL = @PACKAGE_URL@
+ PACKAGE_VERSION = @PACKAGE_VERSION@
+ PANGO_PREFIX = @PANGO_PREFIX@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+diff -Naur gtk+2.0-2.17.11.old/gdk/Makefile.in gtk+2.0-2.17.11/gdk/Makefile.in
+--- gtk+2.0-2.17.11.old/gdk/Makefile.in	2009-09-05 04:54:22.000000000 +0200
++++ gtk+2.0-2.17.11/gdk/Makefile.in	2009-09-05 07:25:22.000000000 +0200
+@@ -46,7 +46,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
+@@ -315,6 +315,7 @@
+ GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
+ GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
+ GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
++GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
+ GDK_WLIBS = @GDK_WLIBS@
+ GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
+ GLIB_CFLAGS = @GLIB_CFLAGS@
+@@ -390,6 +391,7 @@
+ PACKAGE_NAME = @PACKAGE_NAME@
+ PACKAGE_STRING = @PACKAGE_STRING@
+ PACKAGE_TARNAME = @PACKAGE_TARNAME@
++PACKAGE_URL = @PACKAGE_URL@
+ PACKAGE_VERSION = @PACKAGE_VERSION@
+ PANGO_PREFIX = @PANGO_PREFIX@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+diff -Naur gtk+2.0-2.17.11.old/gdk/quartz/Makefile.in gtk+2.0-2.17.11/gdk/quartz/Makefile.in
+--- gtk+2.0-2.17.11.old/gdk/quartz/Makefile.in	2009-09-05 04:54:22.000000000 +0200
++++ gtk+2.0-2.17.11/gdk/quartz/Makefile.in	2009-09-05 07:25:23.000000000 +0200
+@@ -45,7 +45,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
+@@ -192,6 +192,7 @@
+ GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
+ GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
+ GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
++GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
+ GDK_WLIBS = @GDK_WLIBS@
+ GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
+ GLIB_CFLAGS = @GLIB_CFLAGS@
+@@ -267,6 +268,7 @@
+ PACKAGE_NAME = @PACKAGE_NAME@
+ PACKAGE_STRING = @PACKAGE_STRING@
+ PACKAGE_TARNAME = @PACKAGE_TARNAME@
++PACKAGE_URL = @PACKAGE_URL@
+ PACKAGE_VERSION = @PACKAGE_VERSION@
+ PANGO_PREFIX = @PANGO_PREFIX@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+diff -Naur gtk+2.0-2.17.11.old/gdk/tests/Makefile.in gtk+2.0-2.17.11/gdk/tests/Makefile.in
+--- gtk+2.0-2.17.11.old/gdk/tests/Makefile.in	2009-09-05 04:54:22.000000000 +0200
++++ gtk+2.0-2.17.11/gdk/tests/Makefile.in	2009-09-05 07:25:23.000000000 +0200
+@@ -45,7 +45,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
+@@ -134,6 +134,7 @@
+ GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
+ GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
+ GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
++GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
+ GDK_WLIBS = @GDK_WLIBS@
+ GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
+ GLIB_CFLAGS = @GLIB_CFLAGS@
+@@ -209,6 +210,7 @@
+ PACKAGE_NAME = @PACKAGE_NAME@
+ PACKAGE_STRING = @PACKAGE_STRING@
+ PACKAGE_TARNAME = @PACKAGE_TARNAME@
++PACKAGE_URL = @PACKAGE_URL@
+ PACKAGE_VERSION = @PACKAGE_VERSION@
+ PANGO_PREFIX = @PANGO_PREFIX@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+diff -Naur gtk+2.0-2.17.11.old/gdk/win32/Makefile.in gtk+2.0-2.17.11/gdk/win32/Makefile.in
+--- gtk+2.0-2.17.11.old/gdk/win32/Makefile.in	2009-09-05 04:54:22.000000000 +0200
++++ gtk+2.0-2.17.11/gdk/win32/Makefile.in	2009-09-05 07:25:23.000000000 +0200
+@@ -45,7 +45,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
+@@ -230,6 +230,7 @@
+ GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
+ GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
+ GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
++GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
+ GDK_WLIBS = @GDK_WLIBS@
+ GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
+ GLIB_CFLAGS = @GLIB_CFLAGS@
+@@ -305,6 +306,7 @@
+ PACKAGE_NAME = @PACKAGE_NAME@
+ PACKAGE_STRING = @PACKAGE_STRING@
+ PACKAGE_TARNAME = @PACKAGE_TARNAME@
++PACKAGE_URL = @PACKAGE_URL@
+ PACKAGE_VERSION = @PACKAGE_VERSION@
+ PANGO_PREFIX = @PANGO_PREFIX@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+diff -Naur gtk+2.0-2.17.11.old/gdk/win32/rc/Makefile.in gtk+2.0-2.17.11/gdk/win32/rc/Makefile.in
+--- gtk+2.0-2.17.11.old/gdk/win32/rc/Makefile.in	2009-09-05 04:54:22.000000000 +0200
++++ gtk+2.0-2.17.11/gdk/win32/rc/Makefile.in	2009-09-05 07:25:23.000000000 +0200
+@@ -44,7 +44,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES = gdk.rc
+ CONFIG_CLEAN_VPATH_FILES =
+@@ -131,6 +131,7 @@
+ GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
+ GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
+ GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
++GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
+ GDK_WLIBS = @GDK_WLIBS@
+ GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
+ GLIB_CFLAGS = @GLIB_CFLAGS@
+@@ -206,6 +207,7 @@
+ PACKAGE_NAME = @PACKAGE_NAME@
+ PACKAGE_STRING = @PACKAGE_STRING@
+ PACKAGE_TARNAME = @PACKAGE_TARNAME@
++PACKAGE_URL = @PACKAGE_URL@
+ PACKAGE_VERSION = @PACKAGE_VERSION@
+ PANGO_PREFIX = @PANGO_PREFIX@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+diff -Naur gtk+2.0-2.17.11.old/gdk/x11/Makefile.in gtk+2.0-2.17.11/gdk/x11/Makefile.in
+--- gtk+2.0-2.17.11.old/gdk/x11/Makefile.in	2009-09-05 04:54:22.000000000 +0200
++++ gtk+2.0-2.17.11/gdk/x11/Makefile.in	2009-09-05 07:25:24.000000000 +0200
+@@ -50,7 +50,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
+@@ -222,6 +222,7 @@
+ GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
+ GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
+ GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
++GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
+ GDK_WLIBS = @GDK_WLIBS@
+ GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
+ GLIB_CFLAGS = @GLIB_CFLAGS@
+@@ -297,6 +298,7 @@
+ PACKAGE_NAME = @PACKAGE_NAME@
+ PACKAGE_STRING = @PACKAGE_STRING@
+ PACKAGE_TARNAME = @PACKAGE_TARNAME@
++PACKAGE_URL = @PACKAGE_URL@
+ PACKAGE_VERSION = @PACKAGE_VERSION@
+ PANGO_PREFIX = @PANGO_PREFIX@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+diff -Naur gtk+2.0-2.17.11.old/gdk-pixbuf/Makefile.in gtk+2.0-2.17.11/gdk-pixbuf/Makefile.in
+--- gtk+2.0-2.17.11.old/gdk-pixbuf/Makefile.in	2009-09-05 04:54:21.000000000 +0200
++++ gtk+2.0-2.17.11/gdk-pixbuf/Makefile.in	2009-09-05 07:25:22.000000000 +0200
+@@ -52,7 +52,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES = gdk_pixbuf.rc gdk-pixbuf-features.h
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -752,6 +752,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -29850,10 +30094,18 @@ Index: gtk+-2.17.11/gdk-pixbuf/Makefile.in
  LDADDS = libgdk_pixbuf-$(GTK_API_VERSION).la $(GDK_PIXBUF_DEP_LIBS)
  test_gdk_pixbuf_LDADD = $(LDADDS)
  gdk_pixbuf_csource_SOURCES = gdk-pixbuf-csource.c
-Index: gtk+-2.17.11/gdk-pixbuf/pixops/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/gdk-pixbuf/pixops/Makefile.in	2009-09-07 13:00:31.000000000 +1000
-+++ gtk+-2.17.11/gdk-pixbuf/pixops/Makefile.in	2009-09-07 13:01:03.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/gdk-pixbuf/pixops/Makefile.in gtk+2.0-2.17.11/gdk-pixbuf/pixops/Makefile.in
+--- gtk+2.0-2.17.11.old/gdk-pixbuf/pixops/Makefile.in	2009-09-05 04:54:21.000000000 +0200
++++ gtk+2.0-2.17.11/gdk-pixbuf/pixops/Makefile.in	2009-09-05 07:25:22.000000000 +0200
+@@ -46,7 +46,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -182,6 +182,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -29870,150 +30122,18 @@ Index: gtk+-2.17.11/gdk-pixbuf/pixops/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/gdk/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/gdk/Makefile.in	2009-09-07 13:00:31.000000000 +1000
-+++ gtk+-2.17.11/gdk/Makefile.in	2009-09-07 13:01:03.000000000 +1000
-@@ -315,6 +315,7 @@
- GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
- GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
- GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
-+GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
- GDK_WLIBS = @GDK_WLIBS@
- GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
- GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -390,6 +391,7 @@
- PACKAGE_NAME = @PACKAGE_NAME@
- PACKAGE_STRING = @PACKAGE_STRING@
- PACKAGE_TARNAME = @PACKAGE_TARNAME@
-+PACKAGE_URL = @PACKAGE_URL@
- PACKAGE_VERSION = @PACKAGE_VERSION@
- PANGO_PREFIX = @PANGO_PREFIX@
- PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/gdk/directfb/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/gdk/directfb/Makefile.in	2009-09-07 13:00:31.000000000 +1000
-+++ gtk+-2.17.11/gdk/directfb/Makefile.in	2009-09-07 13:01:04.000000000 +1000
-@@ -193,6 +193,7 @@
- GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
- GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
- GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
-+GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
- GDK_WLIBS = @GDK_WLIBS@
- GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
- GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -268,6 +269,7 @@
- PACKAGE_NAME = @PACKAGE_NAME@
- PACKAGE_STRING = @PACKAGE_STRING@
- PACKAGE_TARNAME = @PACKAGE_TARNAME@
-+PACKAGE_URL = @PACKAGE_URL@
- PACKAGE_VERSION = @PACKAGE_VERSION@
- PANGO_PREFIX = @PANGO_PREFIX@
- PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/gdk/quartz/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/gdk/quartz/Makefile.in	2009-09-07 13:00:31.000000000 +1000
-+++ gtk+-2.17.11/gdk/quartz/Makefile.in	2009-09-07 13:01:04.000000000 +1000
-@@ -192,6 +192,7 @@
- GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
- GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
- GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
-+GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
- GDK_WLIBS = @GDK_WLIBS@
- GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
- GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -267,6 +268,7 @@
- PACKAGE_NAME = @PACKAGE_NAME@
- PACKAGE_STRING = @PACKAGE_STRING@
- PACKAGE_TARNAME = @PACKAGE_TARNAME@
-+PACKAGE_URL = @PACKAGE_URL@
- PACKAGE_VERSION = @PACKAGE_VERSION@
- PANGO_PREFIX = @PANGO_PREFIX@
- PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/gdk/tests/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/gdk/tests/Makefile.in	2009-09-07 13:00:31.000000000 +1000
-+++ gtk+-2.17.11/gdk/tests/Makefile.in	2009-09-07 13:01:04.000000000 +1000
-@@ -134,6 +134,7 @@
- GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
- GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
- GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
-+GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
- GDK_WLIBS = @GDK_WLIBS@
- GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
- GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -209,6 +210,7 @@
- PACKAGE_NAME = @PACKAGE_NAME@
- PACKAGE_STRING = @PACKAGE_STRING@
- PACKAGE_TARNAME = @PACKAGE_TARNAME@
-+PACKAGE_URL = @PACKAGE_URL@
- PACKAGE_VERSION = @PACKAGE_VERSION@
- PANGO_PREFIX = @PANGO_PREFIX@
- PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/gdk/win32/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/gdk/win32/Makefile.in	2009-09-07 13:00:31.000000000 +1000
-+++ gtk+-2.17.11/gdk/win32/Makefile.in	2009-09-07 13:01:04.000000000 +1000
-@@ -230,6 +230,7 @@
- GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
- GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
- GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
-+GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
- GDK_WLIBS = @GDK_WLIBS@
- GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
- GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -305,6 +306,7 @@
- PACKAGE_NAME = @PACKAGE_NAME@
- PACKAGE_STRING = @PACKAGE_STRING@
- PACKAGE_TARNAME = @PACKAGE_TARNAME@
-+PACKAGE_URL = @PACKAGE_URL@
- PACKAGE_VERSION = @PACKAGE_VERSION@
- PANGO_PREFIX = @PANGO_PREFIX@
- PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/gdk/win32/rc/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/gdk/win32/rc/Makefile.in	2009-09-07 13:00:31.000000000 +1000
-+++ gtk+-2.17.11/gdk/win32/rc/Makefile.in	2009-09-07 13:01:04.000000000 +1000
-@@ -131,6 +131,7 @@
- GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
- GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
- GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
-+GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
- GDK_WLIBS = @GDK_WLIBS@
- GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
- GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -206,6 +207,7 @@
- PACKAGE_NAME = @PACKAGE_NAME@
- PACKAGE_STRING = @PACKAGE_STRING@
- PACKAGE_TARNAME = @PACKAGE_TARNAME@
-+PACKAGE_URL = @PACKAGE_URL@
- PACKAGE_VERSION = @PACKAGE_VERSION@
- PANGO_PREFIX = @PANGO_PREFIX@
- PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/gdk/x11/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/gdk/x11/Makefile.in	2009-09-07 13:00:31.000000000 +1000
-+++ gtk+-2.17.11/gdk/x11/Makefile.in	2009-09-07 13:01:04.000000000 +1000
-@@ -222,6 +222,7 @@
- GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
- GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
- GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
-+GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
- GDK_WLIBS = @GDK_WLIBS@
- GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
- GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -297,6 +298,7 @@
- PACKAGE_NAME = @PACKAGE_NAME@
- PACKAGE_STRING = @PACKAGE_STRING@
- PACKAGE_TARNAME = @PACKAGE_TARNAME@
-+PACKAGE_URL = @PACKAGE_URL@
- PACKAGE_VERSION = @PACKAGE_VERSION@
- PANGO_PREFIX = @PANGO_PREFIX@
- PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/gtk/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/gtk/Makefile.in	2009-09-07 13:00:29.000000000 +1000
-+++ gtk+-2.17.11/gtk/Makefile.in	2009-09-07 13:01:05.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/gtk/Makefile.in gtk+2.0-2.17.11/gtk/Makefile.in
+--- gtk+2.0-2.17.11.old/gtk/Makefile.in	2009-09-05 04:54:23.000000000 +0200
++++ gtk+2.0-2.17.11/gtk/Makefile.in	2009-09-05 07:25:25.000000000 +0200
+@@ -76,7 +76,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES = makefile.msc gtkversion.h gtk-win32.rc
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -724,6 +724,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -30069,10 +30189,18 @@ Index: gtk+-2.17.11/gtk/Makefile.in
  	gtkmnemonichash.h gtkmountoperationprivate.h gtkpathbar.h \
  	gtkplugprivate.h gtkprintoperation-private.h gtkprintutils.h \
  	gtkrbtree.h gtkrecentchooserdefault.h \
-Index: gtk+-2.17.11/gtk/tests/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/gtk/tests/Makefile.in	2009-09-07 13:00:29.000000000 +1000
-+++ gtk+-2.17.11/gtk/tests/Makefile.in	2009-09-07 13:01:05.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/gtk/tests/Makefile.in gtk+2.0-2.17.11/gtk/tests/Makefile.in
+--- gtk+2.0-2.17.11.old/gtk/tests/Makefile.in	2009-09-05 04:54:23.000000000 +0200
++++ gtk+2.0-2.17.11/gtk/tests/Makefile.in	2009-09-05 07:25:25.000000000 +0200
+@@ -46,7 +46,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -207,6 +207,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -30089,10 +30217,18 @@ Index: gtk+-2.17.11/gtk/tests/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/gtk/theme-bits/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/gtk/theme-bits/Makefile.in	2009-09-07 13:00:29.000000000 +1000
-+++ gtk+-2.17.11/gtk/theme-bits/Makefile.in	2009-09-07 13:01:05.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/gtk/theme-bits/Makefile.in gtk+2.0-2.17.11/gtk/theme-bits/Makefile.in
+--- gtk+2.0-2.17.11.old/gtk/theme-bits/Makefile.in	2009-09-05 04:54:23.000000000 +0200
++++ gtk+2.0-2.17.11/gtk/theme-bits/Makefile.in	2009-09-05 07:25:25.000000000 +0200
+@@ -45,7 +45,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -160,6 +160,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -30109,10 +30245,99 @@ Index: gtk+-2.17.11/gtk/theme-bits/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/m4macros/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/m4macros/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/m4macros/Makefile.in	2009-09-07 13:01:06.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/ltmain.sh gtk+2.0-2.17.11/ltmain.sh
+--- gtk+2.0-2.17.11.old/ltmain.sh	2009-07-27 00:39:21.000000000 +0200
++++ gtk+2.0-2.17.11/ltmain.sh	2009-09-05 07:25:10.000000000 +0200
+@@ -65,7 +65,7 @@
+ #       compiler:		$LTCC
+ #       compiler flags:		$LTCFLAGS
+ #       linker:		$LD (gnu? $with_gnu_ld)
+-#       $progname:		(GNU libtool) 2.2.6
++#       $progname:		(GNU libtool) 2.2.6 Debian-2.2.6a-4
+ #       automake:		$automake_version
+ #       autoconf:		$autoconf_version
+ #
+@@ -73,7 +73,7 @@
+ 
+ PROGRAM=ltmain.sh
+ PACKAGE=libtool
+-VERSION=2.2.6
++VERSION="2.2.6 Debian-2.2.6a-4"
+ TIMESTAMP=""
+ package_revision=1.3012
+ 
+@@ -5033,7 +5033,10 @@
+ 	case $pass in
+ 	dlopen) libs="$dlfiles" ;;
+ 	dlpreopen) libs="$dlprefiles" ;;
+-	link) libs="$deplibs %DEPLIBS% $dependency_libs" ;;
++	link)
++	  libs="$deplibs %DEPLIBS%"
++	  test "X$link_all_deplibs" != Xno && libs="$libs $dependency_libs"
++	  ;;
+ 	esac
+       fi
+       if test "$linkmode,$pass" = "lib,dlpreopen"; then
+@@ -5344,19 +5347,19 @@
+ 	    # It is a libtool convenience library, so add in its objects.
+ 	    convenience="$convenience $ladir/$objdir/$old_library"
+ 	    old_convenience="$old_convenience $ladir/$objdir/$old_library"
++	    tmp_libs=
++	    for deplib in $dependency_libs; do
++	      deplibs="$deplib $deplibs"
++	      if $opt_duplicate_deps ; then
++		case "$tmp_libs " in
++		*" $deplib "*) specialdeplibs="$specialdeplibs $deplib" ;;
++		esac
++	      fi
++	      tmp_libs="$tmp_libs $deplib"
++	    done
+ 	  elif test "$linkmode" != prog && test "$linkmode" != lib; then
+ 	    func_fatal_error "\`$lib' is not a convenience library"
+ 	  fi
+-	  tmp_libs=
+-	  for deplib in $dependency_libs; do
+-	    deplibs="$deplib $deplibs"
+-	    if $opt_duplicate_deps ; then
+-	      case "$tmp_libs " in
+-	      *" $deplib "*) specialdeplibs="$specialdeplibs $deplib" ;;
+-	      esac
+-	    fi
+-	    tmp_libs="$tmp_libs $deplib"
+-	  done
+ 	  continue
+ 	fi # $pass = conv
+ 
+@@ -5893,6 +5896,7 @@
+ 	  if test "$link_all_deplibs" != no; then
+ 	    # Add the search paths of all dependency libraries
+ 	    for deplib in $dependency_libs; do
++	      path=
+ 	      case $deplib in
+ 	      -L*) path="$deplib" ;;
+ 	      *.la)
+@@ -6206,6 +6210,9 @@
+ 	    revision="$number_minor"
+ 	    lt_irix_increment=no
+ 	    ;;
++	  *)
++	    func_fatal_configuration "$modename: unknown library version type \`$version_type'"
++	    ;;
+ 	  esac
+ 	  ;;
+ 	no)
+diff -Naur gtk+2.0-2.17.11.old/m4macros/Makefile.in gtk+2.0-2.17.11/m4macros/Makefile.in
+--- gtk+2.0-2.17.11.old/m4macros/Makefile.in	2009-09-05 04:54:23.000000000 +0200
++++ gtk+2.0-2.17.11/m4macros/Makefile.in	2009-09-05 07:25:26.000000000 +0200
+@@ -44,7 +44,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -153,6 +153,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -30129,11 +30354,38 @@ Index: gtk+-2.17.11/m4macros/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/modules/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/modules/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/modules/Makefile.in	2009-09-07 13:01:06.000000000 +1000
-@@ -170,6 +170,7 @@
+diff -Naur gtk+2.0-2.17.11.old/Makefile.in gtk+2.0-2.17.11/Makefile.in
+--- gtk+2.0-2.17.11.old/Makefile.in	2009-09-05 04:54:26.000000000 +0200
++++ gtk+2.0-2.17.11/Makefile.in	2009-09-05 07:25:31.000000000 +0200
+@@ -47,7 +47,7 @@
+ 	$(srcdir)/gtk+-unix-print-2.0.pc.in $(srcdir)/gtk-zip.sh.in \
+ 	$(top_srcdir)/Makefile.decl $(top_srcdir)/configure AUTHORS \
+ 	COPYING ChangeLog INSTALL NEWS compile config.guess config.sub \
+-	depcomp install-sh ltmain.sh missing
++	depcomp install-sh ltmain.sh missing mkinstalldirs
+ @OS_UNIX_TRUE@am__append_1 = gtk+-unix-print-2.0.pc
+ subdir = .
+ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
+@@ -57,7 +57,7 @@
+ 	$(ACLOCAL_M4)
+ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
+  configure.lineno config.status.lineno
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = config.h
+ CONFIG_CLEAN_FILES = config.h.win32 gtk-zip.sh gdk-pixbuf-2.0.pc \
+ 	gdk-2.0.pc gtk+-2.0.pc gtk+-unix-print-2.0.pc gail.pc \
+@@ -109,7 +109,8 @@
+ 	distdir dist dist-all distcheck
+ ETAGS = etags
+ CTAGS = ctags
+-DIST_SUBDIRS = $(SUBDIRS)
++DIST_SUBDIRS = po po-properties gdk-pixbuf gdk gtk modules demos tests \
++	perf contrib docs m4macros
+ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+ distdir = $(PACKAGE)-$(VERSION)
+ top_distdir = $(distdir)
+@@ -219,6 +220,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
  GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
@@ -30141,7 +30393,7 @@ Index: gtk+-2.17.11/modules/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -245,6 +246,7 @@
+@@ -294,6 +296,7 @@
  PACKAGE_NAME = @PACKAGE_NAME@
  PACKAGE_STRING = @PACKAGE_STRING@
  PACKAGE_TARNAME = @PACKAGE_TARNAME@
@@ -30149,10 +30401,196 @@ Index: gtk+-2.17.11/modules/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/modules/engines/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/modules/engines/Makefile.in	2009-09-07 13:00:31.000000000 +1000
-+++ gtk+-2.17.11/modules/engines/Makefile.in	2009-09-07 13:01:06.000000000 +1000
+@@ -464,7 +467,10 @@
+ 	|| { echo "Gtk+Tests:ERROR: Failed to start Xvfb environment for X11 target tests."; exit 1; } \
+ 	&& DISPLAY=:$$XID && export DISPLAY
+ 
+-SRC_SUBDIRS = gdk-pixbuf gdk gtk modules demos tests perf contrib
++
++# don't build perf measurement tools in static builds
++@ENABLE_STATIC_FALSE@MAYBE_PERF = perf
++SRC_SUBDIRS = gdk-pixbuf gdk gtk modules demos tests $(MAYBE_PERF) contrib
+ SUBDIRS = po po-properties $(SRC_SUBDIRS) docs m4macros
+ 
+ # require automake 1.4
+diff -Naur gtk+2.0-2.17.11.old/mkinstalldirs gtk+2.0-2.17.11/mkinstalldirs
+--- gtk+2.0-2.17.11.old/mkinstalldirs	1970-01-01 01:00:00.000000000 +0100
++++ gtk+2.0-2.17.11/mkinstalldirs	2009-09-05 07:25:31.000000000 +0200
+@@ -0,0 +1,162 @@
++#! /bin/sh
++# mkinstalldirs --- make directory hierarchy
++
++scriptversion=2009-04-28.21; # UTC
++
++# Original author: Noah Friedman <friedman@prep.ai.mit.edu>
++# Created: 1993-05-16
++# Public domain.
++#
++# This file is maintained in Automake, please report
++# bugs to <bug-automake@gnu.org> or send patches to
++# <automake-patches@gnu.org>.
++
++nl='
++'
++IFS=" ""	$nl"
++errstatus=0
++dirmode=
++
++usage="\
++Usage: mkinstalldirs [-h] [--help] [--version] [-m MODE] DIR ...
++
++Create each directory DIR (with mode MODE, if specified), including all
++leading file name components.
++
++Report bugs to <bug-automake@gnu.org>."
++
++# process command line arguments
++while test $# -gt 0 ; do
++  case $1 in
++    -h | --help | --h*)         # -h for help
++      echo "$usage"
++      exit $?
++      ;;
++    -m)                         # -m PERM arg
++      shift
++      test $# -eq 0 && { echo "$usage" 1>&2; exit 1; }
++      dirmode=$1
++      shift
++      ;;
++    --version)
++      echo "$0 $scriptversion"
++      exit $?
++      ;;
++    --)                         # stop option processing
++      shift
++      break
++      ;;
++    -*)                         # unknown option
++      echo "$usage" 1>&2
++      exit 1
++      ;;
++    *)                          # first non-opt arg
++      break
++      ;;
++  esac
++done
++
++for file
++do
++  if test -d "$file"; then
++    shift
++  else
++    break
++  fi
++done
++
++case $# in
++  0) exit 0 ;;
++esac
++
++# Solaris 8's mkdir -p isn't thread-safe.  If you mkdir -p a/b and
++# mkdir -p a/c at the same time, both will detect that a is missing,
++# one will create a, then the other will try to create a and die with
++# a "File exists" error.  This is a problem when calling mkinstalldirs
++# from a parallel make.  We use --version in the probe to restrict
++# ourselves to GNU mkdir, which is thread-safe.
++case $dirmode in
++  '')
++    if mkdir -p --version . >/dev/null 2>&1 && test ! -d ./--version; then
++      echo "mkdir -p -- $*"
++      exec mkdir -p -- "$@"
++    else
++      # On NextStep and OpenStep, the `mkdir' command does not
++      # recognize any option.  It will interpret all options as
++      # directories to create, and then abort because `.' already
++      # exists.
++      test -d ./-p && rmdir ./-p
++      test -d ./--version && rmdir ./--version
++    fi
++    ;;
++  *)
++    if mkdir -m "$dirmode" -p --version . >/dev/null 2>&1 &&
++       test ! -d ./--version; then
++      echo "mkdir -m $dirmode -p -- $*"
++      exec mkdir -m "$dirmode" -p -- "$@"
++    else
++      # Clean up after NextStep and OpenStep mkdir.
++      for d in ./-m ./-p ./--version "./$dirmode";
++      do
++        test -d $d && rmdir $d
++      done
++    fi
++    ;;
++esac
++
++for file
++do
++  case $file in
++    /*) pathcomp=/ ;;
++    *)  pathcomp= ;;
++  esac
++  oIFS=$IFS
++  IFS=/
++  set fnord $file
++  shift
++  IFS=$oIFS
++
++  for d
++  do
++    test "x$d" = x && continue
++
++    pathcomp=$pathcomp$d
++    case $pathcomp in
++      -*) pathcomp=./$pathcomp ;;
++    esac
++
++    if test ! -d "$pathcomp"; then
++      echo "mkdir $pathcomp"
++
++      mkdir "$pathcomp" || lasterr=$?
++
++      if test ! -d "$pathcomp"; then
++	errstatus=$lasterr
++      else
++	if test ! -z "$dirmode"; then
++	  echo "chmod $dirmode $pathcomp"
++	  lasterr=
++	  chmod "$dirmode" "$pathcomp" || lasterr=$?
++
++	  if test ! -z "$lasterr"; then
++	    errstatus=$lasterr
++	  fi
++	fi
++      fi
++    fi
++
++    pathcomp=$pathcomp/
++  done
++done
++
++exit $errstatus
++
++# Local Variables:
++# mode: shell-script
++# sh-indentation: 2
++# eval: (add-hook 'write-file-hooks 'time-stamp)
++# time-stamp-start: "scriptversion="
++# time-stamp-format: "%:y-%02m-%02d.%02H"
++# time-stamp-time-zone: "UTC"
++# time-stamp-end: "; # UTC"
++# End:
+diff -Naur gtk+2.0-2.17.11.old/modules/engines/Makefile.in gtk+2.0-2.17.11/modules/engines/Makefile.in
+--- gtk+2.0-2.17.11.old/modules/engines/Makefile.in	2009-09-05 04:54:23.000000000 +0200
++++ gtk+2.0-2.17.11/modules/engines/Makefile.in	2009-09-05 07:25:26.000000000 +0200
+@@ -43,7 +43,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -169,6 +169,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -30169,10 +30607,18 @@ Index: gtk+-2.17.11/modules/engines/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/modules/engines/ms-windows/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/modules/engines/ms-windows/Makefile.in	2009-09-07 13:00:31.000000000 +1000
-+++ gtk+-2.17.11/modules/engines/ms-windows/Makefile.in	2009-09-07 13:01:06.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/modules/engines/ms-windows/Makefile.in gtk+2.0-2.17.11/modules/engines/ms-windows/Makefile.in
+--- gtk+2.0-2.17.11.old/modules/engines/ms-windows/Makefile.in	2009-09-05 04:54:23.000000000 +0200
++++ gtk+2.0-2.17.11/modules/engines/ms-windows/Makefile.in	2009-09-05 07:25:26.000000000 +0200
+@@ -44,7 +44,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -227,6 +227,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -30189,30 +30635,18 @@ Index: gtk+-2.17.11/modules/engines/ms-windows/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/modules/engines/ms-windows/Theme/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/modules/engines/ms-windows/Theme/Makefile.in	2009-09-07 13:00:31.000000000 +1000
-+++ gtk+-2.17.11/modules/engines/ms-windows/Theme/Makefile.in	2009-09-07 13:01:06.000000000 +1000
-@@ -169,6 +169,7 @@
- GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
- GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
- GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
-+GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
- GDK_WLIBS = @GDK_WLIBS@
- GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
- GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -244,6 +245,7 @@
- PACKAGE_NAME = @PACKAGE_NAME@
- PACKAGE_STRING = @PACKAGE_STRING@
- PACKAGE_TARNAME = @PACKAGE_TARNAME@
-+PACKAGE_URL = @PACKAGE_URL@
- PACKAGE_VERSION = @PACKAGE_VERSION@
- PANGO_PREFIX = @PANGO_PREFIX@
- PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2009-09-07 13:00:31.000000000 +1000
-+++ gtk+-2.17.11/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2009-09-07 13:01:06.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in gtk+2.0-2.17.11/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in
+--- gtk+2.0-2.17.11.old/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2009-09-05 04:54:24.000000000 +0200
++++ gtk+2.0-2.17.11/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2009-09-05 07:25:27.000000000 +0200
+@@ -44,7 +44,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -153,6 +153,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -30229,10 +30663,46 @@ Index: gtk+-2.17.11/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/modules/engines/pixbuf/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/modules/engines/pixbuf/Makefile.in	2009-09-07 13:00:31.000000000 +1000
-+++ gtk+-2.17.11/modules/engines/pixbuf/Makefile.in	2009-09-07 13:01:06.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/modules/engines/ms-windows/Theme/Makefile.in gtk+2.0-2.17.11/modules/engines/ms-windows/Theme/Makefile.in
+--- gtk+2.0-2.17.11.old/modules/engines/ms-windows/Theme/Makefile.in	2009-09-05 04:54:24.000000000 +0200
++++ gtk+2.0-2.17.11/modules/engines/ms-windows/Theme/Makefile.in	2009-09-05 07:25:26.000000000 +0200
+@@ -43,7 +43,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
+@@ -169,6 +169,7 @@
+ GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
+ GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
+ GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
++GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
+ GDK_WLIBS = @GDK_WLIBS@
+ GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
+ GLIB_CFLAGS = @GLIB_CFLAGS@
+@@ -244,6 +245,7 @@
+ PACKAGE_NAME = @PACKAGE_NAME@
+ PACKAGE_STRING = @PACKAGE_STRING@
+ PACKAGE_TARNAME = @PACKAGE_TARNAME@
++PACKAGE_URL = @PACKAGE_URL@
+ PACKAGE_VERSION = @PACKAGE_VERSION@
+ PANGO_PREFIX = @PANGO_PREFIX@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+diff -Naur gtk+2.0-2.17.11.old/modules/engines/pixbuf/Makefile.in gtk+2.0-2.17.11/modules/engines/pixbuf/Makefile.in
+--- gtk+2.0-2.17.11.old/modules/engines/pixbuf/Makefile.in	2009-09-05 04:54:24.000000000 +0200
++++ gtk+2.0-2.17.11/modules/engines/pixbuf/Makefile.in	2009-09-05 07:25:27.000000000 +0200
+@@ -44,7 +44,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -190,6 +190,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -30249,10 +30719,18 @@ Index: gtk+-2.17.11/modules/engines/pixbuf/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/modules/input/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/modules/input/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/modules/input/Makefile.in	2009-09-07 13:01:07.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/modules/input/Makefile.in gtk+2.0-2.17.11/modules/input/Makefile.in
+--- gtk+2.0-2.17.11.old/modules/input/Makefile.in	2009-09-05 04:54:24.000000000 +0200
++++ gtk+2.0-2.17.11/modules/input/Makefile.in	2009-09-05 07:25:28.000000000 +0200
+@@ -45,7 +45,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -391,6 +391,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -30299,11 +30777,19 @@ Index: gtk+-2.17.11/modules/input/Makefile.in
  
  @CROSS_COMPILING_FALSE@all-local: gtk.immodules
  
-Index: gtk+-2.17.11/modules/other/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/modules/other/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/modules/other/Makefile.in	2009-09-07 13:01:07.000000000 +1000
-@@ -169,6 +169,7 @@
+diff -Naur gtk+2.0-2.17.11.old/modules/Makefile.in gtk+2.0-2.17.11/modules/Makefile.in
+--- gtk+2.0-2.17.11.old/modules/Makefile.in	2009-09-05 04:54:23.000000000 +0200
++++ gtk+2.0-2.17.11/modules/Makefile.in	2009-09-05 07:25:26.000000000 +0200
+@@ -44,7 +44,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
+@@ -170,6 +170,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
  GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
@@ -30311,7 +30797,7 @@ Index: gtk+-2.17.11/modules/other/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -244,6 +245,7 @@
+@@ -245,6 +246,7 @@
  PACKAGE_NAME = @PACKAGE_NAME@
  PACKAGE_STRING = @PACKAGE_STRING@
  PACKAGE_TARNAME = @PACKAGE_TARNAME@
@@ -30319,30 +30805,18 @@ Index: gtk+-2.17.11/modules/other/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/modules/other/gail/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/modules/other/gail/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/modules/other/gail/Makefile.in	2009-09-07 13:01:08.000000000 +1000
-@@ -261,6 +261,7 @@
- GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
- GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
- GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
-+GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
- GDK_WLIBS = @GDK_WLIBS@
- GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
- GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -336,6 +337,7 @@
- PACKAGE_NAME = @PACKAGE_NAME@
- PACKAGE_STRING = @PACKAGE_STRING@
- PACKAGE_TARNAME = @PACKAGE_TARNAME@
-+PACKAGE_URL = @PACKAGE_URL@
- PACKAGE_VERSION = @PACKAGE_VERSION@
- PANGO_PREFIX = @PANGO_PREFIX@
- PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/modules/other/gail/libgail-util/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/modules/other/gail/libgail-util/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/modules/other/gail/libgail-util/Makefile.in	2009-09-07 13:01:08.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/modules/other/gail/libgail-util/Makefile.in gtk+2.0-2.17.11/modules/other/gail/libgail-util/Makefile.in
+--- gtk+2.0-2.17.11.old/modules/other/gail/libgail-util/Makefile.in	2009-09-05 04:54:25.000000000 +0200
++++ gtk+2.0-2.17.11/modules/other/gail/libgail-util/Makefile.in	2009-09-05 07:25:29.000000000 +0200
+@@ -46,7 +46,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -194,6 +194,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -30359,10 +30833,46 @@ Index: gtk+-2.17.11/modules/other/gail/libgail-util/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/modules/other/gail/tests/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/modules/other/gail/tests/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/modules/other/gail/tests/Makefile.in	2009-09-07 13:01:09.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/modules/other/gail/Makefile.in gtk+2.0-2.17.11/modules/other/gail/Makefile.in
+--- gtk+2.0-2.17.11.old/modules/other/gail/Makefile.in	2009-09-05 04:54:25.000000000 +0200
++++ gtk+2.0-2.17.11/modules/other/gail/Makefile.in	2009-09-05 07:25:29.000000000 +0200
+@@ -45,7 +45,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
+@@ -261,6 +261,7 @@
+ GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
+ GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
+ GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
++GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
+ GDK_WLIBS = @GDK_WLIBS@
+ GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
+ GLIB_CFLAGS = @GLIB_CFLAGS@
+@@ -336,6 +337,7 @@
+ PACKAGE_NAME = @PACKAGE_NAME@
+ PACKAGE_STRING = @PACKAGE_STRING@
+ PACKAGE_TARNAME = @PACKAGE_TARNAME@
++PACKAGE_URL = @PACKAGE_URL@
+ PACKAGE_VERSION = @PACKAGE_VERSION@
+ PANGO_PREFIX = @PANGO_PREFIX@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+diff -Naur gtk+2.0-2.17.11.old/modules/other/gail/tests/Makefile.in gtk+2.0-2.17.11/modules/other/gail/tests/Makefile.in
+--- gtk+2.0-2.17.11.old/modules/other/gail/tests/Makefile.in	2009-09-05 04:54:25.000000000 +0200
++++ gtk+2.0-2.17.11/modules/other/gail/tests/Makefile.in	2009-09-05 07:25:29.000000000 +0200
+@@ -44,7 +44,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -333,6 +333,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -30379,11 +30889,19 @@ Index: gtk+-2.17.11/modules/other/gail/tests/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/modules/printbackends/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/modules/printbackends/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/modules/printbackends/Makefile.in	2009-09-07 13:01:09.000000000 +1000
-@@ -171,6 +171,7 @@
+diff -Naur gtk+2.0-2.17.11.old/modules/other/Makefile.in gtk+2.0-2.17.11/modules/other/Makefile.in
+--- gtk+2.0-2.17.11.old/modules/other/Makefile.in	2009-09-05 04:54:24.000000000 +0200
++++ gtk+2.0-2.17.11/modules/other/Makefile.in	2009-09-05 07:25:28.000000000 +0200
+@@ -43,7 +43,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
+@@ -169,6 +169,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
  GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
@@ -30391,7 +30909,7 @@ Index: gtk+-2.17.11/modules/printbackends/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -246,6 +247,7 @@
+@@ -244,6 +245,7 @@
  PACKAGE_NAME = @PACKAGE_NAME@
  PACKAGE_STRING = @PACKAGE_STRING@
  PACKAGE_TARNAME = @PACKAGE_TARNAME@
@@ -30399,10 +30917,18 @@ Index: gtk+-2.17.11/modules/printbackends/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/modules/printbackends/cups/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/modules/printbackends/cups/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/modules/printbackends/cups/Makefile.in	2009-09-07 13:01:09.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/modules/printbackends/cups/Makefile.in gtk+2.0-2.17.11/modules/printbackends/cups/Makefile.in
+--- gtk+2.0-2.17.11.old/modules/printbackends/cups/Makefile.in	2009-09-05 04:54:25.000000000 +0200
++++ gtk+2.0-2.17.11/modules/printbackends/cups/Makefile.in	2009-09-05 07:25:29.000000000 +0200
+@@ -45,7 +45,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -193,6 +193,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -30419,10 +30945,18 @@ Index: gtk+-2.17.11/modules/printbackends/cups/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/modules/printbackends/file/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/modules/printbackends/file/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/modules/printbackends/file/Makefile.in	2009-09-07 13:01:10.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/modules/printbackends/file/Makefile.in gtk+2.0-2.17.11/modules/printbackends/file/Makefile.in
+--- gtk+2.0-2.17.11.old/modules/printbackends/file/Makefile.in	2009-09-05 04:54:25.000000000 +0200
++++ gtk+2.0-2.17.11/modules/printbackends/file/Makefile.in	2009-09-05 07:25:30.000000000 +0200
+@@ -45,7 +45,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -192,6 +192,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -30439,10 +30973,18 @@ Index: gtk+-2.17.11/modules/printbackends/file/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/modules/printbackends/lpr/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/modules/printbackends/lpr/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/modules/printbackends/lpr/Makefile.in	2009-09-07 13:01:10.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/modules/printbackends/lpr/Makefile.in gtk+2.0-2.17.11/modules/printbackends/lpr/Makefile.in
+--- gtk+2.0-2.17.11.old/modules/printbackends/lpr/Makefile.in	2009-09-05 04:54:25.000000000 +0200
++++ gtk+2.0-2.17.11/modules/printbackends/lpr/Makefile.in	2009-09-05 07:25:30.000000000 +0200
+@@ -45,7 +45,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -190,6 +190,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -30459,10 +31001,46 @@ Index: gtk+-2.17.11/modules/printbackends/lpr/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/modules/printbackends/papi/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/modules/printbackends/papi/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/modules/printbackends/papi/Makefile.in	2009-09-07 13:01:10.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/modules/printbackends/Makefile.in gtk+2.0-2.17.11/modules/printbackends/Makefile.in
+--- gtk+2.0-2.17.11.old/modules/printbackends/Makefile.in	2009-09-05 04:54:25.000000000 +0200
++++ gtk+2.0-2.17.11/modules/printbackends/Makefile.in	2009-09-05 07:25:29.000000000 +0200
+@@ -46,7 +46,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
+@@ -171,6 +171,7 @@
+ GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
+ GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
+ GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
++GDK_PRIVATE_PACKAGES = @GDK_PRIVATE_PACKAGES@
+ GDK_WLIBS = @GDK_WLIBS@
+ GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
+ GLIB_CFLAGS = @GLIB_CFLAGS@
+@@ -246,6 +247,7 @@
+ PACKAGE_NAME = @PACKAGE_NAME@
+ PACKAGE_STRING = @PACKAGE_STRING@
+ PACKAGE_TARNAME = @PACKAGE_TARNAME@
++PACKAGE_URL = @PACKAGE_URL@
+ PACKAGE_VERSION = @PACKAGE_VERSION@
+ PANGO_PREFIX = @PANGO_PREFIX@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+diff -Naur gtk+2.0-2.17.11.old/modules/printbackends/papi/Makefile.in gtk+2.0-2.17.11/modules/printbackends/papi/Makefile.in
+--- gtk+2.0-2.17.11.old/modules/printbackends/papi/Makefile.in	2009-09-05 04:54:26.000000000 +0200
++++ gtk+2.0-2.17.11/modules/printbackends/papi/Makefile.in	2009-09-05 07:25:30.000000000 +0200
+@@ -43,7 +43,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -190,6 +190,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -30479,10 +31057,18 @@ Index: gtk+-2.17.11/modules/printbackends/papi/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/modules/printbackends/test/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/modules/printbackends/test/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/modules/printbackends/test/Makefile.in	2009-09-07 13:01:11.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/modules/printbackends/test/Makefile.in gtk+2.0-2.17.11/modules/printbackends/test/Makefile.in
+--- gtk+2.0-2.17.11.old/modules/printbackends/test/Makefile.in	2009-09-05 04:54:26.000000000 +0200
++++ gtk+2.0-2.17.11/modules/printbackends/test/Makefile.in	2009-09-05 07:25:30.000000000 +0200
+@@ -45,7 +45,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -191,6 +191,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -30499,10 +31085,18 @@ Index: gtk+-2.17.11/modules/printbackends/test/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/perf/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/perf/Makefile.in	2009-09-07 13:00:30.000000000 +1000
-+++ gtk+-2.17.11/perf/Makefile.in	2009-09-07 13:01:11.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/perf/Makefile.in gtk+2.0-2.17.11/perf/Makefile.in
+--- gtk+2.0-2.17.11.old/perf/Makefile.in	2009-09-05 04:54:26.000000000 +0200
++++ gtk+2.0-2.17.11/perf/Makefile.in	2009-09-05 07:25:30.000000000 +0200
+@@ -45,7 +45,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -161,6 +161,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -30519,10 +31113,130 @@ Index: gtk+-2.17.11/perf/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-Index: gtk+-2.17.11/tests/Makefile.in
-===================================================================
---- gtk+-2.17.11.orig/tests/Makefile.in	2009-09-07 13:00:29.000000000 +1000
-+++ gtk+-2.17.11/tests/Makefile.in	2009-09-07 13:01:12.000000000 +1000
+diff -Naur gtk+2.0-2.17.11.old/po/Makefile.in.in gtk+2.0-2.17.11/po/Makefile.in.in
+--- gtk+2.0-2.17.11.old/po/Makefile.in.in	2009-09-05 06:05:23.000000000 +0200
++++ gtk+2.0-2.17.11/po/Makefile.in.in	2009-09-05 07:25:11.000000000 +0200
+@@ -25,22 +25,23 @@
+ 
+ prefix = @prefix@
+ exec_prefix = @exec_prefix@
++datarootdir = @datarootdir@
+ datadir = @datadir@
+ libdir = @libdir@
+ localedir = $(libdir)/locale
+ gnulocaledir = $(datadir)/locale
+ gettextsrcdir = $(datadir)/glib-2.0/gettext/po
+ subdir = po
+-install_sh = @install_sh@
+-mkdir_p = $(install_sh) -d
+ 
+ INSTALL = @INSTALL@
+ INSTALL_DATA = @INSTALL_DATA@
++MKINSTALLDIRS = $(top_srcdir)/@MKINSTALLDIRS@
+ 
+ CC = @CC@
+ GENCAT = @GENCAT@
+ GMSGFMT = @GMSGFMT@
+ MSGFMT = @MSGFMT@
++MSGFMT_OPTS = @MSGFMT_OPTS@
+ XGETTEXT = @XGETTEXT@
+ MSGMERGE = msgmerge
+ 
+@@ -55,7 +56,7 @@
+ SOURCES = 
+ POFILES = @POFILES@
+ GMOFILES = @GMOFILES@
+-DISTFILES = LINGUAS ChangeLog Makefile.in.in POTFILES.in POTFILES.skip $(GETTEXT_PACKAGE).pot \
++DISTFILES = LINGUAS ChangeLog Makefile.in.in POTFILES.in $(GETTEXT_PACKAGE).pot \
+ $(POFILES) $(GMOFILES) $(SOURCES)
+ 
+ POTFILES = \
+@@ -79,7 +80,7 @@
+ 
+ .po.gmo:
+ 	file=$(srcdir)/`echo $* | sed 's,.*/,,'`.gmo \
+-	  && rm -f $$file && $(GMSGFMT) -c -o $$file $<
++	  && rm -f $$file && $(GMSGFMT) $(MSGFMT_OPTS) -o $$file $<
+ 
+ .po.cat:
+ 	sed -f ../intl/po2msg.sed < $< > $*.msg \
+@@ -93,8 +94,13 @@
+ 
+ $(srcdir)/$(GETTEXT_PACKAGE).pot: $(POTFILES)
+ 	$(XGETTEXT) --default-domain=$(GETTEXT_PACKAGE) --directory=$(top_srcdir) \
+-	  --add-comments --keyword=_ --keyword=N_ --keyword=C_:1c,2 --keyword=NC_:1c,2 \
++	  --add-comments --keyword=_ --keyword=N_ \
++	  --keyword=C_:1c,2 \
++	  --keyword=NC_:1c,2 \
+ 	  --keyword=g_dngettext:2,3 \
++	  --flag=N_:1:pass-c-format \
++	  --flag=C_:2:pass-c-format \
++	  --flag=NC_:2:pass-c-format \
+ 	  --flag=g_dngettext:2:pass-c-format \
+           --flag=g_strdup_printf:1:c-format \
+           --flag=g_string_printf:2:c-format \
+@@ -111,10 +117,6 @@
+           --flag=g_snprintf:3:c-format \
+           --flag=g_scanner_error:2:c-format \
+           --flag=g_scanner_warn:2:c-format \
+-          --flag=gtk_message_dialog_format_secondary_markup:2:c-format \
+-          --flag=gtk_message_dialog_format_secondary_text:2:c-format \
+-          --flag=gtk_message_dialog_new:5:c-format \
+-          --flag=gtk_message_dialog_new_with_markup:5:c-format \
+ 	  --files-from=$(srcdir)/POTFILES.in \
+ 	&& test ! -f $(GETTEXT_PACKAGE).po \
+ 	   || ( rm -f $(srcdir)/$(GETTEXT_PACKAGE).pot \
+@@ -125,7 +127,11 @@
+ install-data: install-data-@USE_NLS@
+ install-data-no: all
+ install-data-yes: all
+-	$(mkdir_p) $(DESTDIR)$(datadir); \
++	if test -r "$(MKINSTALLDIRS)"; then \
++	  $(MKINSTALLDIRS) $(DESTDIR)$(datadir); \
++	else \
++	  $(SHELL) $(top_srcdir)/mkinstalldirs $(DESTDIR)$(datadir); \
++	fi
+ 	@catalogs='$(CATALOGS)'; \
+ 	for cat in $$catalogs; do \
+ 	  cat=`basename $$cat`; \
+@@ -135,7 +141,11 @@
+ 	  esac; \
+ 	  lang=`echo $$cat | sed 's/\$(CATOBJEXT)$$//'`; \
+ 	  dir=$(DESTDIR)$$destdir/$$lang/LC_MESSAGES; \
+-	  $(mkdir_p) $$dir; \
++	  if test -r "$(MKINSTALLDIRS)"; then \
++	    $(MKINSTALLDIRS) $$dir; \
++	  else \
++	    $(SHELL) $(top_srcdir)/mkinstalldirs $$dir; \
++	  fi; \
+ 	  if test -r $$cat; then \
+ 	    $(INSTALL_DATA) $$cat $$dir/$(GETTEXT_PACKAGE)$(INSTOBJEXT); \
+ 	    echo "installing $$cat as $$dir/$(GETTEXT_PACKAGE)$(INSTOBJEXT)"; \
+@@ -159,7 +169,11 @@
+ 	  fi; \
+ 	done
+ 	if test "$(PACKAGE)" = "glib"; then \
+-	  $(mkdir_p) $(DESTDIR)$(gettextsrcdir); \
++	  if test -r "$(MKINSTALLDIRS)"; then \
++	    $(MKINSTALLDIRS) $(DESTDIR)$(gettextsrcdir); \
++	  else \
++	    $(SHELL) $(top_srcdir)/mkinstalldirs $(DESTDIR)$(gettextsrcdir); \
++	  fi; \
+ 	  $(INSTALL_DATA) $(srcdir)/Makefile.in.in \
+ 			  $(DESTDIR)$(gettextsrcdir)/Makefile.in.in; \
+ 	else \
+diff -Naur gtk+2.0-2.17.11.old/tests/Makefile.in gtk+2.0-2.17.11/tests/Makefile.in
+--- gtk+2.0-2.17.11.old/tests/Makefile.in	2009-09-05 04:54:26.000000000 +0200
++++ gtk+2.0-2.17.11/tests/Makefile.in	2009-09-05 07:25:31.000000000 +0200
+@@ -79,7 +79,7 @@
+ 	$(top_srcdir)/configure.in
+ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+ 	$(ACLOCAL_M4)
+-mkinstalldirs = $(install_sh) -d
++mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+ CONFIG_CLEAN_VPATH_FILES =
 @@ -427,6 +427,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@

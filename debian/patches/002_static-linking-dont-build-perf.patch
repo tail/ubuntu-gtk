@@ -1,7 +1,10 @@
-Index: gtk+2.0-2.17.3/Makefile.am
+Description: don't build perf measurement tools in static builds
+Bug: http://bugzilla.gnome.org/show_bug.cgi?id=346559
+
+Index: gtk+-2.14.7/Makefile.am
 ===================================================================
---- gtk+2.0-2.17.3.orig/Makefile.am	2009-07-02 01:02:21.000000000 +0200
-+++ gtk+2.0-2.17.3/Makefile.am	2009-07-09 17:41:19.000000000 +0200
+--- gtk+-2.14.7.orig/Makefile.am	2009-01-07 17:33:57.000000000 +0100
++++ gtk+-2.14.7/Makefile.am	2009-02-17 23:07:14.895082593 +0100
 @@ -1,7 +1,12 @@
  ## Makefile.am for GTK+
  include $(top_srcdir)/Makefile.decl

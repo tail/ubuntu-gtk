@@ -17,8 +17,9 @@ B<dh_gtkmodules> [S<I<debhelper options>>]
 =head1 DESCRIPTION
 
 B<dh_gtkmodules> is a debhelper program that handles correctly
-generating Gtk module files for GdkPixbuf loaders and IM modules
-that it finds in the standard module directory.
+generating a dependency on the versionned Gtk+ module ABI and
+indexes for GdkPixbuf loaders and IM modules that it finds in the
+Gtk+ module directories.
 
 This command automatically adds a "<package>.loaders" file to the
 current package with the package name or "<package>.immodules" if it
@@ -193,7 +194,7 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
     find_modules(\@loaders_modules, $tmp, $loaders_modules_path);
     find_modules(\@im_modules, $tmp, $im_modules_path);
 
-    warning("Package $package has " + @loaders_modules + " GdkPixbuf loaders and " + @im_modules + " Gtk IM modules.");
+    warning("Package $package has " . @loaders_modules . " GdkPixbuf loaders and " . @im_modules . " Gtk IM modules.");
 
     # if no modules of these types were found, we're done
     if (0 == @loaders_modules + @im_modules) {
