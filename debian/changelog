@@ -1,3 +1,13 @@
+gtk+2.0 (2.18.0-0ubuntu1) UNRELEASED; urgency=low
+
+  * New upstream release (LP: #435053)
+  * debian/libgtk2.0-0.symbols:
+    - New symbol gdk_window_flush
+  * debian/patches/005_gdk_directfb_window_new.patch:
+    - Applied upstream
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Wed, 23 Sep 2009 16:09:41 +1000
+
 gtk+2.0 (2.17.11-1ubuntu1) karmic; urgency=low
 
   * debian/rules:

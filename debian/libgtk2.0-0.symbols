@@ -547,6 +547,7 @@ libgdk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gdk_window_enable_synchronized_configure@Base 2.8.0
  gdk_window_end_paint@Base 2.8.0
  gdk_window_ensure_native@Base 2.17.11
+ gdk_window_flush@Base 2.18.0
  gdk_window_focus@Base 2.8.0
  gdk_window_foreign_new@Base 2.8.0
  gdk_window_foreign_new_for_display@Base 2.8.0
