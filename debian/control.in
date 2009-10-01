@@ -1,8 +1,7 @@
 Source: gtk+@APIVER@
 Section: libs
 Priority: optional
-Maintainer: Ubuntu Desktop Team <ubuntu-desktop@lists.ubuntu.com>
-XSBC-Original-Maintainer: Sebastien Bacher <seb128@debian.org>
+Maintainer: Sebastien Bacher <seb128@debian.org>
 Uploaders: @GNOME_TEAM@
 Build-Depends: debhelper (>= 5.0.22),
                gettext,

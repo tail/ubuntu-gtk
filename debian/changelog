@@ -1,40 +1,13 @@
-gtk+2.0 (2.18.0-1ubuntu1) karmic; urgency=low
+gtk+2.0 (2.18.1-1) unstable; urgency=low
 
-  * Rebase on the current debian version
-  * New version changes:
-    - Add GtkTreeModelFilter testsuite and fix multiple bugs
-    - Client-side windows:
-      - Fix issues around recursion and gdk_window_process_updates
-      - Fix issues with grabs and cursors 
-      - Handle window hierarchy and geometry changes in expose handlers
-      - New function, gdk_window_flush, that may be needed in certain situations
-      - Automatically flush windows when doing non-double-buffered exposes
-    - Quartz backend:
-      - Fix various 'stuck UI' issues
-      - Fix the size of the root window
-    - Bugs fixed:
-    588455 run application broken when setting background color...(lp: #398826)
-    346800 Rework sort/filter models to use indices to parents
-    593678 select "Manage Custom Sizes" from print dialog hangs gedit
-    594652 gtk printer dialog does not understand boolean printer options
-    594668 Add new Xorg keysyms
-    591583 Padre (a wxPerl+Gtk IDE) hangs when editing Perl code...
-    594600 Windows only allows 64-character system-tray tooltips
-    594679 Fix warning in testwindows.c
-    594880 Drawing issues in ExoIconView
-    593507 AbiWord's main drawing area not exposed properly
-    594913 is_composited race ...
-    594738 Windows often do not respond to events on dual-head
-    503776 crash when trying to print to non-existent lpr printer
-    595599 Don't focus unmapped radio buttons
-    595790 Segfault in gtkiconfactory.c on NULL GError
-    588649 extended input events sent to widgets that didn't...
-    550939 GtkFileChooser listbox does not refresh selection
-    - New deprecation:
-    gdk_event_get_graphics_exposes has been deprecated
-    - Updated translations
+  * New upstream bugfix release:
+    + debian/patches/070_mandatory-relibtoolize.patch:
+      - Updated for the new version.
+    + 090_directfb-backend-compilation-fix.patch:
+      - Fix compilation of the DirectFB backend, see
+        https://bugzilla.gnome.org/show_bug.cgi?id=596959
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 23 Sep 2009 09:50:04 +0200
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 01 Oct 2009 07:20:43 +0200
 
 gtk+2.0 (2.18.0-1) unstable; urgency=low
 
@@ -48,24 +21,6 @@ gtk+2.0 (2.18.0-1) unstable; urgency=low
       - Updated for the new version.
 
  -- Sebastian Dröge <slomo@debian.org>  Wed, 23 Sep 2009 06:36:41 +0200
-
-gtk+2.0 (2.18.0-0ubuntu1) karmic; urgency=low
-
-  * New upstream release (LP: #435053)
-  * debian/libgtk2.0-0.symbols:
-    - New symbol gdk_window_flush
-  * debian/patches/005_gdk_directfb_window_new.patch:
-    - Applied upstream
-
- -- Robert Ancell <robert.ancell@canonical.com>  Wed, 23 Sep 2009 16:09:41 +1000
-
-gtk+2.0 (2.17.11-1ubuntu1) karmic; urgency=low
-
-  * debian/rules:
-    - enable arm optimization, dropped by mistake in the previous upload
-  * debian/watch: list all versions
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 10 Sep 2009 17:07:55 +0200
 
 gtk+2.0 (2.17.11-1) experimental; urgency=low
 
