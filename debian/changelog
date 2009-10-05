@@ -1,3 +1,11 @@
+gtk+2.0 (2.18.1-1ubuntu1) karmic; urgency=low
+
+  * debian/patches/091_git_change_fix_coordinates_issue.patch:
+    - git change fixing coordinate issues leading to multiple clicks on a button
+      not working until moving the cursors (lp: #441905) 
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 05 Oct 2009 15:08:51 +0200
+
 gtk+2.0 (2.18.1-1) unstable; urgency=low
 
   * New upstream bugfix release:

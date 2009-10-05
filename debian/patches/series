@@ -15,3 +15,4 @@
 061_use_pdf_as_default_printing_standard.patch
 070_mandatory-relibtoolize.patch
 090_directfb-backend-compilation-fix.patch
+091_git_change_fix_coordinates_issue.patch
