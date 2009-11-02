@@ -14,5 +14,6 @@
 060_ignore-random-icons.patch
 061_use_pdf_as_default_printing_standard.patch
 070_mandatory-relibtoolize.patch
-090_directfb-backend-compilation-fix.patch
-091_git_change_fix_coordinates_issue.patch
+091_dont-omit-gtk-icon-size-dialog.patch
+092_gtk-image-size-allocation.patch
+093_git_change_fix_gtkiconview_rendering_issue.patch
