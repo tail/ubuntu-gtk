@@ -1,3 +1,10 @@
+gtk+2.0 (2.19.3-1ubuntu1) lucid; urgency=low
+
+  * debian/patches/091_git_change_fix_bad_drawable_errors.patch:
+    - git change to fix bad drawable errors leading to gnome-panel crashes
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 15 Jan 2010 16:36:04 +0100
+
 gtk+2.0 (2.19.3-1) experimental; urgency=low
 
   * New upstream development release:
