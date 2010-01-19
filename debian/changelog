@@ -1,3 +1,11 @@
+gtk+2.0 (2.19.3-1ubuntu2) lucid; urgency=low
+
+  * debian/patches/092_git_change_fix_double_click_issue.patch:
+    - git change to fix double click not working on selected row
+      (lp: #503684, #509086)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 19 Jan 2010 12:42:07 +0100
+
 gtk+2.0 (2.19.3-1ubuntu1) lucid; urgency=low
 
   * debian/patches/091_git_change_fix_bad_drawable_errors.patch:
