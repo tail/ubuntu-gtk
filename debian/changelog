@@ -1,3 +1,11 @@
+gtk+2.0 (2.19.3-1ubuntu3) lucid; urgency=low
+
+  * debian/patches/093_git_change_fix_rectangle_intersection_error.patch:
+    - git change to fix a rectangle intersection overflow issue which leads
+      to a f-spot crash when using the new wave theme for example (lp: #411941)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 22 Jan 2010 12:32:47 +0100
+
 gtk+2.0 (2.19.3-1ubuntu2) lucid; urgency=low
 
   * debian/patches/092_git_change_fix_double_click_issue.patch:
