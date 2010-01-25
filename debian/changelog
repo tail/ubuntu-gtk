@@ -1,3 +1,11 @@
+gtk+2.0 (2.19.3-1ubuntu4) lucid; urgency=low
+
+  * debian/patches/071_no_offscreen_widgets_grabbing.patch:
+    - change by Cody Russell to not let offscreen widgets do grabbing
+      (Lp: #512427)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 25 Jan 2010 23:13:51 +0100
+
 gtk+2.0 (2.19.3-1ubuntu3) lucid; urgency=low
 
   * debian/patches/093_git_change_fix_rectangle_intersection_error.patch:
