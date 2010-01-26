@@ -16,7 +16,3 @@
 070_mandatory-relibtoolize.patch
 071_no_offscreen_widgets_grabbing.patch
 090_directfb-map-virtual-modifiers.patch
-091_git_change_fix_bad_drawable_errors.patch
-092_git_change_fix_double_click_issue.patch
-093_git_change_fix_rectangle_intersection_error.patch
-

@@ -1,33 +1,22 @@
-gtk+2.0 (2.19.3-1ubuntu4) lucid; urgency=low
+gtk+2.0 (2.19.4-1ubuntu1) lucid; urgency=low
 
+  * Resync on Debian
   * debian/patches/071_no_offscreen_widgets_grabbing.patch:
     - change by Cody Russell to not let offscreen widgets do grabbing
-      (Lp: #512427)
+    
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 26 Jan 2010 13:11:41 +0100
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 25 Jan 2010 23:13:51 +0100
+gtk+2.0 (2.19.4-1) experimental; urgency=low
 
-gtk+2.0 (2.19.3-1ubuntu3) lucid; urgency=low
+  * New upstream development release:
+    + debian/patches/070_mandatory-relibtoolize.patch:
+      - Regenerated for the new version.
+    + debian/rules,
+      debian/libgtk-directfb-2.0-0.symbols,
+      debian/libgtk2.0-0.symbols:
+      - Update SHVER to 2.19.3 for the new API and add new symbols.
 
-  * debian/patches/093_git_change_fix_rectangle_intersection_error.patch:
-    - git change to fix a rectangle intersection overflow issue which leads
-      to a f-spot crash when using the new wave theme for example (lp: #411941)
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 22 Jan 2010 12:32:47 +0100
-
-gtk+2.0 (2.19.3-1ubuntu2) lucid; urgency=low
-
-  * debian/patches/092_git_change_fix_double_click_issue.patch:
-    - git change to fix double click not working on selected row
-      (lp: #503684, #509086)
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 19 Jan 2010 12:42:07 +0100
-
-gtk+2.0 (2.19.3-1ubuntu1) lucid; urgency=low
-
-  * debian/patches/091_git_change_fix_bad_drawable_errors.patch:
-    - git change to fix bad drawable errors leading to gnome-panel crashes
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 15 Jan 2010 16:36:04 +0100
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 26 Jan 2010 08:25:41 +0100
 
 gtk+2.0 (2.19.3-1) experimental; urgency=low
 
