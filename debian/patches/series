@@ -14,5 +14,6 @@
 060_ignore-random-icons.patch
 061_use_pdf_as_default_printing_standard.patch
 070_mandatory-relibtoolize.patch
+072_dnd-remove-existing-connections.patch
 071_no_offscreen_widgets_grabbing.patch
 090_directfb-map-virtual-modifiers.patch

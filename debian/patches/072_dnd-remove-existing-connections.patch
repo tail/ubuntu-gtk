@@ -1,0 +1,40 @@
+From 2147e57f46c43ef3fd3c145735329f8f2a558c4f Mon Sep 17 00:00:00 2001
+From: Cody Russell <bratsche@gnome.org>
+Date: Fri, 29 Jan 2010 11:09:13 -0600
+Subject: [PATCH] Remove existing signal connections in gtk_drag_dest_unset().
+
+Fixes https://bugzilla.gnome.org/show_bug.cgi?id=608370
+---
+ gtk/gtkdnd.c |   14 ++++++++++++++
+ 1 files changed, 14 insertions(+), 0 deletions(-)
+
+diff --git a/gtk/gtkdnd.c b/gtk/gtkdnd.c
+index bdd3ab9..1ebc284 100644
+--- a/gtk/gtkdnd.c
++++ b/gtk/gtkdnd.c
+@@ -1341,8 +1341,22 @@ gtk_drag_dest_set_proxy (GtkWidget      *widget,
+ void 
+ gtk_drag_dest_unset (GtkWidget *widget)
+ {
++  GtkDragDestSite *old_site;
++
+   g_return_if_fail (GTK_IS_WIDGET (widget));
+ 
++  old_site = g_object_get_data (G_OBJECT (widget),
++                                "gtk-drag-dest");
++  if (old_site)
++    {
++      g_signal_handlers_disconnect_by_func (widget,
++                                            gtk_drag_dest_realized,
++                                            old_site);
++      g_signal_handlers_disconnect_by_func (widget,
++                                            gtk_drag_dest_hierarchy_changed,
++                                            old_site);
++    }
++
+   g_object_set_data (G_OBJECT (widget), I_("gtk-drag-dest"), NULL);
+ }
+ 
+-- 
+1.6.5
+

@@ -1,3 +1,11 @@
+gtk+2.0 (2.19.4-1ubuntu2) lucid; urgency=low
+
+  * Nez patch, 072_dnd-remove-existing-connections, cherry-picked from
+    upstream 2147e57f46c43ef3fd3c145735329f8f2a558c4f; GNOME #608370; remove
+    signal handlers properly in dnd operations; LP: #514473.
+
+ -- Loïc Minier <loic.minier@ubuntu.com>  Fri, 29 Jan 2010 22:47:08 +0100
+
 gtk+2.0 (2.19.4-1ubuntu1) lucid; urgency=low
 
   * Resync on Debian
