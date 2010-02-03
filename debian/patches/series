@@ -17,3 +17,5 @@
 072_dnd-remove-existing-connections.patch
 071_no_offscreen_widgets_grabbing.patch
 090_directfb-map-virtual-modifiers.patch
+091_bugzilla_tooltip_refresh.patch
+

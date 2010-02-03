@@ -1,3 +1,11 @@
+gtk+2.0 (2.19.4-1ubuntu3) lucid; urgency=low
+
+  * debian/patches/091_bugzilla_tooltip_refresh.patch:
+    - upstream bugzilla change to have better looking tooltips
+      the gtk theme need to set "new-tooltip-style" to use those (lp: #487208)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 02 Feb 2010 17:28:34 -0800
+
 gtk+2.0 (2.19.4-1ubuntu2) lucid; urgency=low
 
   * Nez patch, 072_dnd-remove-existing-connections, cherry-picked from
