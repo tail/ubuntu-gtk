@@ -1,26 +1,25 @@
-gtk+2.0 (2.19.4-1ubuntu3) lucid; urgency=low
-
-  * debian/patches/091_bugzilla_tooltip_refresh.patch:
-    - upstream bugzilla change to have better looking tooltips
-      the gtk theme need to set "new-tooltip-style" to use those (lp: #487208)
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 02 Feb 2010 17:28:34 -0800
-
-gtk+2.0 (2.19.4-1ubuntu2) lucid; urgency=low
-
-  * Nez patch, 072_dnd-remove-existing-connections, cherry-picked from
-    upstream 2147e57f46c43ef3fd3c145735329f8f2a558c4f; GNOME #608370; remove
-    signal handlers properly in dnd operations; LP: #514473.
-
- -- Loïc Minier <loic.minier@ubuntu.com>  Fri, 29 Jan 2010 22:47:08 +0100
-
-gtk+2.0 (2.19.4-1ubuntu1) lucid; urgency=low
+gtk+2.0 (2.19.5-1ubuntu1) lucid; urgency=low
 
   * Resync on Debian
   * debian/patches/071_no_offscreen_widgets_grabbing.patch:
     - change by Cody Russell to not let offscreen widgets do grabbing
-    
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 26 Jan 2010 13:11:41 +0100
+  * debian/patches/091_bugzilla_tooltip_refresh.patch:
+    - upstream bugzilla change to have better looking tooltips
+      the gtk theme need to set "new-tooltip-style" to use those 
+      
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 10 Feb 2010 12:11:06 +0100
+
+gtk+2.0 (2.19.5-1) experimental; urgency=low
+
+  * New upstream development release:
+    + debian/patches/070_mandatory-relibtoolize.patch:
+      - Regenerated for the new version.
+    + debian/rules,
+      debian/libgtk-directfb-2.0-0.symbols,
+      debian/libgtk2.0-0.symbols:
+      - Update SHVER to 2.19.5 for the new API and add new symbols.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 10 Feb 2010 09:38:52 +0100
 
 gtk+2.0 (2.19.4-1) experimental; urgency=low
 
@@ -30,7 +29,7 @@ gtk+2.0 (2.19.4-1) experimental; urgency=low
     + debian/rules,
       debian/libgtk-directfb-2.0-0.symbols,
       debian/libgtk2.0-0.symbols:
-      - Update SHVER to 2.19.3 for the new API and add new symbols.
+      - Update SHVER to 2.19.4 for the new API and add new symbols.
 
  -- Sebastian Dröge <slomo@debian.org>  Tue, 26 Jan 2010 08:25:41 +0100
 
