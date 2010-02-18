@@ -1,6 +1,7 @@
-diff -Naur gtk+2.0-2.19.5.old/aclocal.m4 gtk+2.0-2.19.5/aclocal.m4
---- gtk+2.0-2.19.5.old/aclocal.m4	2010-02-09 20:18:26.000000000 +0100
-+++ gtk+2.0-2.19.5/aclocal.m4	2010-02-10 09:46:47.593502560 +0100
+Index: gtk+2.0-2.19.5/aclocal.m4
+===================================================================
+--- gtk+2.0-2.19.5.orig/aclocal.m4	2010-02-09 20:18:26.000000000 +0100
++++ gtk+2.0-2.19.5/aclocal.m4	2010-02-18 11:27:56.000000000 +0100
 @@ -13,8 +13,8 @@
  
  m4_ifndef([AC_AUTOCONF_VERSION],
@@ -8079,9 +8080,10 @@ diff -Naur gtk+2.0-2.19.5.old/aclocal.m4 gtk+2.0-2.19.5/aclocal.m4
 +m4_include([m4/ltversion.m4])
 +m4_include([m4/lt~obsolete.m4])
  m4_include([acinclude.m4])
-diff -Naur gtk+2.0-2.19.5.old/config.h.in gtk+2.0-2.19.5/config.h.in
---- gtk+2.0-2.19.5.old/config.h.in	2010-02-09 20:18:31.000000000 +0100
-+++ gtk+2.0-2.19.5/config.h.in	2010-02-10 09:46:49.610500389 +0100
+Index: gtk+2.0-2.19.5/config.h.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/config.h.in	2010-02-09 20:18:31.000000000 +0100
++++ gtk+2.0-2.19.5/config.h.in	2010-02-18 11:27:49.000000000 +0100
 @@ -126,6 +126,9 @@
  /* Define to 1 if you have the <string.h> header file. */
  #undef HAVE_STRING_H
@@ -8102,9 +8104,10 @@ diff -Naur gtk+2.0-2.19.5.old/config.h.in gtk+2.0-2.19.5/config.h.in
  /* Define to the version of this package. */
  #undef PACKAGE_VERSION
  
-diff -Naur gtk+2.0-2.19.5.old/configure gtk+2.0-2.19.5/configure
---- gtk+2.0-2.19.5.old/configure	2010-02-09 20:18:49.000000000 +0100
-+++ gtk+2.0-2.19.5/configure	2010-02-10 09:46:49.177499406 +0100
+Index: gtk+2.0-2.19.5/configure
+===================================================================
+--- gtk+2.0-2.19.5.orig/configure	2010-02-09 20:18:49.000000000 +0100
++++ gtk+2.0-2.19.5/configure	2010-02-18 11:28:01.000000000 +0100
 @@ -1,20 +1,24 @@
  #! /bin/sh
  # Guess values for system-dependent variables and create Makefiles.
@@ -37802,9 +37805,10 @@ diff -Naur gtk+2.0-2.19.5.old/configure gtk+2.0-2.19.5/configure
  $as_echo "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
  fi
  
-diff -Naur gtk+2.0-2.19.5.old/contrib/gdk-pixbuf-xlib/Makefile.in gtk+2.0-2.19.5/contrib/gdk-pixbuf-xlib/Makefile.in
---- gtk+2.0-2.19.5.old/contrib/gdk-pixbuf-xlib/Makefile.in	2010-02-09 20:18:36.000000000 +0100
-+++ gtk+2.0-2.19.5/contrib/gdk-pixbuf-xlib/Makefile.in	2010-02-10 09:46:50.713499514 +0100
+Index: gtk+2.0-2.19.5/contrib/gdk-pixbuf-xlib/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/contrib/gdk-pixbuf-xlib/Makefile.in	2010-02-09 20:18:36.000000000 +0100
++++ gtk+2.0-2.19.5/contrib/gdk-pixbuf-xlib/Makefile.in	2010-02-18 11:28:02.000000000 +0100
 @@ -44,11 +44,14 @@
  	$(top_srcdir)/Makefile.decl ChangeLog
  subdir = contrib/gdk-pixbuf-xlib
@@ -37838,9 +37842,10 @@ diff -Naur gtk+2.0-2.19.5.old/contrib/gdk-pixbuf-xlib/Makefile.in gtk+2.0-2.19.5
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/contrib/Makefile.in gtk+2.0-2.19.5/contrib/Makefile.in
---- gtk+2.0-2.19.5.old/contrib/Makefile.in	2010-02-09 20:18:36.000000000 +0100
-+++ gtk+2.0-2.19.5/contrib/Makefile.in	2010-02-10 09:46:50.589498840 +0100
+Index: gtk+2.0-2.19.5/contrib/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/contrib/Makefile.in	2010-02-09 20:18:36.000000000 +0100
++++ gtk+2.0-2.19.5/contrib/Makefile.in	2010-02-18 11:28:02.000000000 +0100
 @@ -40,11 +40,14 @@
  @USE_X11_TRUE@am__append_1 = gdk-pixbuf-xlib
  subdir = contrib
@@ -37874,9 +37879,10 @@ diff -Naur gtk+2.0-2.19.5.old/contrib/Makefile.in gtk+2.0-2.19.5/contrib/Makefil
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/demos/gtk-demo/Makefile.in gtk+2.0-2.19.5/demos/gtk-demo/Makefile.in
---- gtk+2.0-2.19.5.old/demos/gtk-demo/Makefile.in	2010-02-09 20:18:37.000000000 +0100
-+++ gtk+2.0-2.19.5/demos/gtk-demo/Makefile.in	2010-02-10 09:46:50.929499323 +0100
+Index: gtk+2.0-2.19.5/demos/gtk-demo/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/demos/gtk-demo/Makefile.in	2010-02-09 20:18:37.000000000 +0100
++++ gtk+2.0-2.19.5/demos/gtk-demo/Makefile.in	2010-02-18 11:28:02.000000000 +0100
 @@ -42,11 +42,14 @@
  bin_PROGRAMS = gtk-demo$(EXEEXT)
  subdir = demos/gtk-demo
@@ -37910,9 +37916,10 @@ diff -Naur gtk+2.0-2.19.5.old/demos/gtk-demo/Makefile.in gtk+2.0-2.19.5/demos/gt
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/demos/Makefile.in gtk+2.0-2.19.5/demos/Makefile.in
---- gtk+2.0-2.19.5.old/demos/Makefile.in	2010-02-09 20:18:36.000000000 +0100
-+++ gtk+2.0-2.19.5/demos/Makefile.in	2010-02-10 09:46:50.825499226 +0100
+Index: gtk+2.0-2.19.5/demos/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/demos/Makefile.in	2010-02-09 20:18:36.000000000 +0100
++++ gtk+2.0-2.19.5/demos/Makefile.in	2010-02-18 11:28:02.000000000 +0100
 @@ -46,11 +46,14 @@
  @HAVE_PNG_TRUE@am__append_1 = testpixbuf
  subdir = demos
@@ -37946,9 +37953,10 @@ diff -Naur gtk+2.0-2.19.5.old/demos/Makefile.in gtk+2.0-2.19.5/demos/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/docs/faq/Makefile.in gtk+2.0-2.19.5/docs/faq/Makefile.in
---- gtk+2.0-2.19.5.old/docs/faq/Makefile.in	2010-02-09 20:18:37.000000000 +0100
-+++ gtk+2.0-2.19.5/docs/faq/Makefile.in	2010-02-10 09:46:51.081499570 +0100
+Index: gtk+2.0-2.19.5/docs/faq/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/docs/faq/Makefile.in	2010-02-09 20:18:37.000000000 +0100
++++ gtk+2.0-2.19.5/docs/faq/Makefile.in	2010-02-18 11:28:02.000000000 +0100
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = docs/faq
@@ -37982,9 +37990,10 @@ diff -Naur gtk+2.0-2.19.5.old/docs/faq/Makefile.in gtk+2.0-2.19.5/docs/faq/Makef
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/docs/Makefile.in gtk+2.0-2.19.5/docs/Makefile.in
---- gtk+2.0-2.19.5.old/docs/Makefile.in	2010-02-09 20:18:37.000000000 +0100
-+++ gtk+2.0-2.19.5/docs/Makefile.in	2010-02-10 09:46:51.005500183 +0100
+Index: gtk+2.0-2.19.5/docs/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/docs/Makefile.in	2010-02-09 20:18:37.000000000 +0100
++++ gtk+2.0-2.19.5/docs/Makefile.in	2010-02-18 11:28:02.000000000 +0100
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = docs
@@ -38018,9 +38027,10 @@ diff -Naur gtk+2.0-2.19.5.old/docs/Makefile.in gtk+2.0-2.19.5/docs/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/docs/reference/gdk/Makefile.in gtk+2.0-2.19.5/docs/reference/gdk/Makefile.in
---- gtk+2.0-2.19.5.old/docs/reference/gdk/Makefile.in	2010-02-09 20:18:38.000000000 +0100
-+++ gtk+2.0-2.19.5/docs/reference/gdk/Makefile.in	2010-02-10 09:46:51.337499565 +0100
+Index: gtk+2.0-2.19.5/docs/reference/gdk/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/docs/reference/gdk/Makefile.in	2010-02-09 20:18:38.000000000 +0100
++++ gtk+2.0-2.19.5/docs/reference/gdk/Makefile.in	2010-02-18 11:28:02.000000000 +0100
 @@ -46,11 +46,14 @@
  	$(top_srcdir)/gtk-doc.make
  subdir = docs/reference/gdk
@@ -38054,9 +38064,10 @@ diff -Naur gtk+2.0-2.19.5.old/docs/reference/gdk/Makefile.in gtk+2.0-2.19.5/docs
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/docs/reference/gdk-pixbuf/Makefile.in gtk+2.0-2.19.5/docs/reference/gdk-pixbuf/Makefile.in
---- gtk+2.0-2.19.5.old/docs/reference/gdk-pixbuf/Makefile.in	2010-02-09 20:18:38.000000000 +0100
-+++ gtk+2.0-2.19.5/docs/reference/gdk-pixbuf/Makefile.in	2010-02-10 09:46:51.249499063 +0100
+Index: gtk+2.0-2.19.5/docs/reference/gdk-pixbuf/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/docs/reference/gdk-pixbuf/Makefile.in	2010-02-09 20:18:38.000000000 +0100
++++ gtk+2.0-2.19.5/docs/reference/gdk-pixbuf/Makefile.in	2010-02-18 11:28:02.000000000 +0100
 @@ -46,11 +46,14 @@
  	$(top_srcdir)/gtk-doc.make
  subdir = docs/reference/gdk-pixbuf
@@ -38090,9 +38101,10 @@ diff -Naur gtk+2.0-2.19.5.old/docs/reference/gdk-pixbuf/Makefile.in gtk+2.0-2.19
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/docs/reference/gtk/Makefile.in gtk+2.0-2.19.5/docs/reference/gtk/Makefile.in
---- gtk+2.0-2.19.5.old/docs/reference/gtk/Makefile.in	2010-02-09 20:18:38.000000000 +0100
-+++ gtk+2.0-2.19.5/docs/reference/gtk/Makefile.in	2010-02-10 09:46:51.433498994 +0100
+Index: gtk+2.0-2.19.5/docs/reference/gtk/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/docs/reference/gtk/Makefile.in	2010-02-09 20:18:38.000000000 +0100
++++ gtk+2.0-2.19.5/docs/reference/gtk/Makefile.in	2010-02-18 11:28:02.000000000 +0100
 @@ -46,11 +46,14 @@
  	$(top_srcdir)/gtk-doc.make
  subdir = docs/reference/gtk
@@ -38126,9 +38138,10 @@ diff -Naur gtk+2.0-2.19.5.old/docs/reference/gtk/Makefile.in gtk+2.0-2.19.5/docs
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/docs/reference/libgail-util/Makefile.in gtk+2.0-2.19.5/docs/reference/libgail-util/Makefile.in
---- gtk+2.0-2.19.5.old/docs/reference/libgail-util/Makefile.in	2010-02-09 20:18:38.000000000 +0100
-+++ gtk+2.0-2.19.5/docs/reference/libgail-util/Makefile.in	2010-02-10 09:46:51.521499213 +0100
+Index: gtk+2.0-2.19.5/docs/reference/libgail-util/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/docs/reference/libgail-util/Makefile.in	2010-02-09 20:18:38.000000000 +0100
++++ gtk+2.0-2.19.5/docs/reference/libgail-util/Makefile.in	2010-02-18 11:28:03.000000000 +0100
 @@ -45,11 +45,14 @@
  	$(top_srcdir)/Makefile.decl $(top_srcdir)/gtk-doc.make
  subdir = docs/reference/libgail-util
@@ -38162,9 +38175,10 @@ diff -Naur gtk+2.0-2.19.5.old/docs/reference/libgail-util/Makefile.in gtk+2.0-2.
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/docs/reference/Makefile.in gtk+2.0-2.19.5/docs/reference/Makefile.in
---- gtk+2.0-2.19.5.old/docs/reference/Makefile.in	2010-02-09 20:18:37.000000000 +0100
-+++ gtk+2.0-2.19.5/docs/reference/Makefile.in	2010-02-10 09:46:51.157498889 +0100
+Index: gtk+2.0-2.19.5/docs/reference/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/docs/reference/Makefile.in	2010-02-09 20:18:37.000000000 +0100
++++ gtk+2.0-2.19.5/docs/reference/Makefile.in	2010-02-18 11:28:02.000000000 +0100
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl AUTHORS COPYING ChangeLog
  subdir = docs/reference
@@ -38198,9 +38212,10 @@ diff -Naur gtk+2.0-2.19.5.old/docs/reference/Makefile.in gtk+2.0-2.19.5/docs/ref
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/docs/tools/Makefile.in gtk+2.0-2.19.5/docs/tools/Makefile.in
---- gtk+2.0-2.19.5.old/docs/tools/Makefile.in	2010-02-09 20:18:38.000000000 +0100
-+++ gtk+2.0-2.19.5/docs/tools/Makefile.in	2010-02-10 09:46:51.613499234 +0100
+Index: gtk+2.0-2.19.5/docs/tools/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/docs/tools/Makefile.in	2010-02-09 20:18:38.000000000 +0100
++++ gtk+2.0-2.19.5/docs/tools/Makefile.in	2010-02-18 11:28:03.000000000 +0100
 @@ -41,11 +41,14 @@
  @USE_X11_TRUE@noinst_PROGRAMS = doc-shooter$(EXEEXT)
  subdir = docs/tools
@@ -38234,9 +38249,10 @@ diff -Naur gtk+2.0-2.19.5.old/docs/tools/Makefile.in gtk+2.0-2.19.5/docs/tools/M
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/docs/tutorial/Makefile.in gtk+2.0-2.19.5/docs/tutorial/Makefile.in
---- gtk+2.0-2.19.5.old/docs/tutorial/Makefile.in	2010-02-09 20:18:38.000000000 +0100
-+++ gtk+2.0-2.19.5/docs/tutorial/Makefile.in	2010-02-10 09:46:51.689499116 +0100
+Index: gtk+2.0-2.19.5/docs/tutorial/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/docs/tutorial/Makefile.in	2010-02-09 20:18:38.000000000 +0100
++++ gtk+2.0-2.19.5/docs/tutorial/Makefile.in	2010-02-18 11:28:03.000000000 +0100
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = docs/tutorial
@@ -38270,9 +38286,10 @@ diff -Naur gtk+2.0-2.19.5.old/docs/tutorial/Makefile.in gtk+2.0-2.19.5/docs/tuto
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/gdk/directfb/Makefile.in gtk+2.0-2.19.5/gdk/directfb/Makefile.in
---- gtk+2.0-2.19.5.old/gdk/directfb/Makefile.in	2010-02-09 20:18:40.000000000 +0100
-+++ gtk+2.0-2.19.5/gdk/directfb/Makefile.in	2010-02-10 09:46:52.354499353 +0100
+Index: gtk+2.0-2.19.5/gdk/directfb/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/gdk/directfb/Makefile.in	2010-02-09 20:18:40.000000000 +0100
++++ gtk+2.0-2.19.5/gdk/directfb/Makefile.in	2010-02-18 11:28:03.000000000 +0100
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl AUTHORS TODO
  subdir = gdk/directfb
@@ -38306,9 +38323,10 @@ diff -Naur gtk+2.0-2.19.5.old/gdk/directfb/Makefile.in gtk+2.0-2.19.5/gdk/direct
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/gdk/Makefile.in gtk+2.0-2.19.5/gdk/Makefile.in
---- gtk+2.0-2.19.5.old/gdk/Makefile.in	2010-02-09 20:18:39.000000000 +0100
-+++ gtk+2.0-2.19.5/gdk/Makefile.in	2010-02-10 09:46:52.254499559 +0100
+Index: gtk+2.0-2.19.5/gdk/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/gdk/Makefile.in	2010-02-09 20:18:39.000000000 +0100
++++ gtk+2.0-2.19.5/gdk/Makefile.in	2010-02-18 11:28:03.000000000 +0100
 @@ -45,11 +45,14 @@
  @HAVE_INTROSPECTION_TRUE@am__append_2 = $(dist_gir_DATA) $(typelibs_DATA)
  subdir = gdk
@@ -38342,9 +38360,10 @@ diff -Naur gtk+2.0-2.19.5.old/gdk/Makefile.in gtk+2.0-2.19.5/gdk/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/gdk/quartz/Makefile.in gtk+2.0-2.19.5/gdk/quartz/Makefile.in
---- gtk+2.0-2.19.5.old/gdk/quartz/Makefile.in	2010-02-09 20:18:40.000000000 +0100
-+++ gtk+2.0-2.19.5/gdk/quartz/Makefile.in	2010-02-10 09:46:52.458498540 +0100
+Index: gtk+2.0-2.19.5/gdk/quartz/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/gdk/quartz/Makefile.in	2010-02-09 20:18:40.000000000 +0100
++++ gtk+2.0-2.19.5/gdk/quartz/Makefile.in	2010-02-18 11:28:03.000000000 +0100
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = gdk/quartz
@@ -38378,9 +38397,10 @@ diff -Naur gtk+2.0-2.19.5.old/gdk/quartz/Makefile.in gtk+2.0-2.19.5/gdk/quartz/M
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/gdk/tests/Makefile.in gtk+2.0-2.19.5/gdk/tests/Makefile.in
---- gtk+2.0-2.19.5.old/gdk/tests/Makefile.in	2010-02-09 20:18:40.000000000 +0100
-+++ gtk+2.0-2.19.5/gdk/tests/Makefile.in	2010-02-10 09:46:52.538499138 +0100
+Index: gtk+2.0-2.19.5/gdk/tests/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/gdk/tests/Makefile.in	2010-02-09 20:18:40.000000000 +0100
++++ gtk+2.0-2.19.5/gdk/tests/Makefile.in	2010-02-18 11:28:03.000000000 +0100
 @@ -41,11 +41,14 @@
  TESTS = $(am__EXEEXT_1)
  subdir = gdk/tests
@@ -38414,9 +38434,10 @@ diff -Naur gtk+2.0-2.19.5.old/gdk/tests/Makefile.in gtk+2.0-2.19.5/gdk/tests/Mak
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/gdk/win32/Makefile.in gtk+2.0-2.19.5/gdk/win32/Makefile.in
---- gtk+2.0-2.19.5.old/gdk/win32/Makefile.in	2010-02-09 20:18:40.000000000 +0100
-+++ gtk+2.0-2.19.5/gdk/win32/Makefile.in	2010-02-10 09:46:52.642499706 +0100
+Index: gtk+2.0-2.19.5/gdk/win32/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/gdk/win32/Makefile.in	2010-02-09 20:18:40.000000000 +0100
++++ gtk+2.0-2.19.5/gdk/win32/Makefile.in	2010-02-18 11:28:04.000000000 +0100
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = gdk/win32
@@ -38450,9 +38471,10 @@ diff -Naur gtk+2.0-2.19.5.old/gdk/win32/Makefile.in gtk+2.0-2.19.5/gdk/win32/Mak
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/gdk/win32/rc/Makefile.in gtk+2.0-2.19.5/gdk/win32/rc/Makefile.in
---- gtk+2.0-2.19.5.old/gdk/win32/rc/Makefile.in	2010-02-09 20:18:40.000000000 +0100
-+++ gtk+2.0-2.19.5/gdk/win32/rc/Makefile.in	2010-02-10 09:46:52.722499332 +0100
+Index: gtk+2.0-2.19.5/gdk/win32/rc/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/gdk/win32/rc/Makefile.in	2010-02-09 20:18:40.000000000 +0100
++++ gtk+2.0-2.19.5/gdk/win32/rc/Makefile.in	2010-02-18 11:28:04.000000000 +0100
 @@ -40,11 +40,14 @@
  	$(srcdir)/gdk.rc.in $(top_srcdir)/Makefile.decl
  subdir = gdk/win32/rc
@@ -38486,9 +38508,10 @@ diff -Naur gtk+2.0-2.19.5.old/gdk/win32/rc/Makefile.in gtk+2.0-2.19.5/gdk/win32/
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/gdk/x11/Makefile.in gtk+2.0-2.19.5/gdk/x11/Makefile.in
---- gtk+2.0-2.19.5.old/gdk/x11/Makefile.in	2010-02-09 20:18:40.000000000 +0100
-+++ gtk+2.0-2.19.5/gdk/x11/Makefile.in	2010-02-10 09:46:52.830499513 +0100
+Index: gtk+2.0-2.19.5/gdk/x11/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/gdk/x11/Makefile.in	2010-02-09 20:18:40.000000000 +0100
++++ gtk+2.0-2.19.5/gdk/x11/Makefile.in	2010-02-18 11:28:04.000000000 +0100
 @@ -46,11 +46,14 @@
  TESTS = checksettings$(EXEEXT)
  subdir = gdk/x11
@@ -38522,9 +38545,10 @@ diff -Naur gtk+2.0-2.19.5.old/gdk/x11/Makefile.in gtk+2.0-2.19.5/gdk/x11/Makefil
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/gdk-pixbuf/Makefile.in gtk+2.0-2.19.5/gdk-pixbuf/Makefile.in
---- gtk+2.0-2.19.5.old/gdk-pixbuf/Makefile.in	2010-02-09 20:18:39.000000000 +0100
-+++ gtk+2.0-2.19.5/gdk-pixbuf/Makefile.in	2010-02-10 09:46:51.969499729 +0100
+Index: gtk+2.0-2.19.5/gdk-pixbuf/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/gdk-pixbuf/Makefile.in	2010-02-09 20:18:39.000000000 +0100
++++ gtk+2.0-2.19.5/gdk-pixbuf/Makefile.in	2010-02-18 11:28:03.000000000 +0100
 @@ -51,11 +51,14 @@
  @HAVE_INTROSPECTION_TRUE@am__append_2 = $(dist_gir_DATA) $(typelibs_DATA)
  subdir = gdk-pixbuf
@@ -38575,9 +38599,10 @@ diff -Naur gtk+2.0-2.19.5.old/gdk-pixbuf/Makefile.in gtk+2.0-2.19.5/gdk-pixbuf/M
  LDADDS = libgdk_pixbuf-$(GTK_API_VERSION).la $(GDK_PIXBUF_DEP_LIBS)
  test_gdk_pixbuf_LDADD = $(LDADDS)
  gdk_pixbuf_csource_SOURCES = gdk-pixbuf-csource.c
-diff -Naur gtk+2.0-2.19.5.old/gdk-pixbuf/pixops/Makefile.in gtk+2.0-2.19.5/gdk-pixbuf/pixops/Makefile.in
---- gtk+2.0-2.19.5.old/gdk-pixbuf/pixops/Makefile.in	2010-02-09 20:18:39.000000000 +0100
-+++ gtk+2.0-2.19.5/gdk-pixbuf/pixops/Makefile.in	2010-02-10 09:46:52.081500199 +0100
+Index: gtk+2.0-2.19.5/gdk-pixbuf/pixops/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/gdk-pixbuf/pixops/Makefile.in	2010-02-09 20:18:39.000000000 +0100
++++ gtk+2.0-2.19.5/gdk-pixbuf/pixops/Makefile.in	2010-02-18 11:28:03.000000000 +0100
 @@ -42,11 +42,14 @@
  noinst_PROGRAMS = timescale$(EXEEXT)
  subdir = gdk-pixbuf/pixops
@@ -38611,9 +38636,10 @@ diff -Naur gtk+2.0-2.19.5.old/gdk-pixbuf/pixops/Makefile.in gtk+2.0-2.19.5/gdk-p
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/gtk/Makefile.in gtk+2.0-2.19.5/gtk/Makefile.in
---- gtk+2.0-2.19.5.old/gtk/Makefile.in	2010-02-09 20:18:41.000000000 +0100
-+++ gtk+2.0-2.19.5/gtk/Makefile.in	2010-02-10 09:46:53.189499745 +0100
+Index: gtk+2.0-2.19.5/gtk/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/gtk/Makefile.in	2010-02-09 20:18:41.000000000 +0100
++++ gtk+2.0-2.19.5/gtk/Makefile.in	2010-02-18 11:28:04.000000000 +0100
 @@ -77,11 +77,14 @@
  
  subdir = gtk
@@ -38631,6 +38657,111 @@ diff -Naur gtk+2.0-2.19.5.old/gtk/Makefile.in gtk+2.0-2.19.5/gtk/Makefile.in
  CONFIG_HEADER = $(top_builddir)/config.h
  CONFIG_CLEAN_FILES = makefile.msc gtkversion.h gtk-win32.rc
  CONFIG_CLEAN_VPATH_FILES =
+@@ -181,13 +184,13 @@
+ 	gtktypeutils.c gtkuimanager.c gtkvbbox.c gtkvbox.c \
+ 	gtkvolumebutton.c gtkviewport.c gtkvpaned.c gtkvruler.c \
+ 	gtkvscale.c gtkvscrollbar.c gtkvseparator.c gtkwidget.c \
+-	gtkwindow-decorate.c gtkwindow.c gtkclipboard.c gtkdnd.c \
+-	gtkclipboard-quartz.c gtkdnd-quartz.c gtkquartz.c gtktext.c \
+-	gtktree.c gtktreeitem.c gtkclist.c gtkcombo.c gtkctree.c \
+-	gtkcurve.c gtkfilesel.c gtkgamma.c gtkitemfactory.c gtklist.c \
+-	gtklistitem.c gtkoldeditable.c gtkoptionmenu.c gtkpixmap.c \
+-	gtkpreview.c gtkprogress.c gtksignal.c gtktipsquery.c \
+-	gtktooltips.c gtkcustompaperunixdialog.c \
++	gtkwindow.c gtkclipboard.c gtkdnd.c gtkclipboard-quartz.c \
++	gtkdnd-quartz.c gtkquartz.c gtktext.c gtktree.c gtktreeitem.c \
++	gtkclist.c gtkcombo.c gtkctree.c gtkcurve.c gtkfilesel.c \
++	gtkgamma.c gtkitemfactory.c gtklist.c gtklistitem.c \
++	gtkoldeditable.c gtkoptionmenu.c gtkpixmap.c gtkpreview.c \
++	gtkprogress.c gtksignal.c gtktipsquery.c gtktooltips.c \
++	gtkwindow-decorate.c gtkcustompaperunixdialog.c \
+ 	gtkpagesetupunixdialog.c gtkprinter.c gtkprinteroption.c \
+ 	gtkprinteroptionset.c gtkprinteroptionwidget.c gtkprintjob.c \
+ 	gtkprintoperation-unix.c gtkprintunixdialog.c \
+@@ -268,13 +271,13 @@
+ 	gtktreeviewcolumn.lo gtktypebuiltins.lo gtktypeutils.lo \
+ 	gtkuimanager.lo gtkvbbox.lo gtkvbox.lo gtkvolumebutton.lo \
+ 	gtkviewport.lo gtkvpaned.lo gtkvruler.lo gtkvscale.lo \
+-	gtkvscrollbar.lo gtkvseparator.lo gtkwidget.lo \
+-	gtkwindow-decorate.lo gtkwindow.lo $(am__objects_1) gtktext.lo \
+-	gtktree.lo gtktreeitem.lo gtkclist.lo gtkcombo.lo gtkctree.lo \
+-	gtkcurve.lo gtkfilesel.lo gtkgamma.lo gtkitemfactory.lo \
+-	gtklist.lo gtklistitem.lo gtkoldeditable.lo gtkoptionmenu.lo \
+-	gtkpixmap.lo gtkpreview.lo gtkprogress.lo gtksignal.lo \
+-	gtktipsquery.lo gtktooltips.lo
++	gtkvscrollbar.lo gtkvseparator.lo gtkwidget.lo gtkwindow.lo \
++	$(am__objects_1) gtktext.lo gtktree.lo gtktreeitem.lo \
++	gtkclist.lo gtkcombo.lo gtkctree.lo gtkcurve.lo gtkfilesel.lo \
++	gtkgamma.lo gtkitemfactory.lo gtklist.lo gtklistitem.lo \
++	gtkoldeditable.lo gtkoptionmenu.lo gtkpixmap.lo gtkpreview.lo \
++	gtkprogress.lo gtksignal.lo gtktipsquery.lo gtktooltips.lo \
++	gtkwindow-decorate.lo
+ am__objects_3 = gtkcustompaperunixdialog.lo gtkpagesetupunixdialog.lo \
+ 	gtkprinter.lo gtkprinteroption.lo gtkprinteroptionset.lo \
+ 	gtkprinteroptionwidget.lo gtkprintjob.lo \
+@@ -372,13 +375,13 @@
+ 	gtktypeutils.c gtkuimanager.c gtkvbbox.c gtkvbox.c \
+ 	gtkvolumebutton.c gtkviewport.c gtkvpaned.c gtkvruler.c \
+ 	gtkvscale.c gtkvscrollbar.c gtkvseparator.c gtkwidget.c \
+-	gtkwindow-decorate.c gtkwindow.c gtkclipboard.c gtkdnd.c \
+-	gtkclipboard-quartz.c gtkdnd-quartz.c gtkquartz.c gtktext.c \
+-	gtktree.c gtktreeitem.c gtkclist.c gtkcombo.c gtkctree.c \
+-	gtkcurve.c gtkfilesel.c gtkgamma.c gtkitemfactory.c gtklist.c \
+-	gtklistitem.c gtkoldeditable.c gtkoptionmenu.c gtkpixmap.c \
+-	gtkpreview.c gtkprogress.c gtksignal.c gtktipsquery.c \
+-	gtktooltips.c gtkcustompaperunixdialog.c \
++	gtkwindow.c gtkclipboard.c gtkdnd.c gtkclipboard-quartz.c \
++	gtkdnd-quartz.c gtkquartz.c gtktext.c gtktree.c gtktreeitem.c \
++	gtkclist.c gtkcombo.c gtkctree.c gtkcurve.c gtkfilesel.c \
++	gtkgamma.c gtkitemfactory.c gtklist.c gtklistitem.c \
++	gtkoldeditable.c gtkoptionmenu.c gtkpixmap.c gtkpreview.c \
++	gtkprogress.c gtksignal.c gtktipsquery.c gtktooltips.c \
++	gtkwindow-decorate.c gtkcustompaperunixdialog.c \
+ 	gtkpagesetupunixdialog.c gtkprinter.c gtkprinteroption.c \
+ 	gtkprinteroptionset.c gtkprinteroptionwidget.c gtkprintjob.c \
+ 	gtkprintoperation-unix.c gtkprintunixdialog.c \
+@@ -459,13 +462,13 @@
+ 	gtktypeutils.c gtkuimanager.c gtkvbbox.c gtkvbox.c \
+ 	gtkvolumebutton.c gtkviewport.c gtkvpaned.c gtkvruler.c \
+ 	gtkvscale.c gtkvscrollbar.c gtkvseparator.c gtkwidget.c \
+-	gtkwindow-decorate.c gtkwindow.c gtkclipboard.c gtkdnd.c \
+-	gtkclipboard-quartz.c gtkdnd-quartz.c gtkquartz.c gtktext.c \
+-	gtktree.c gtktreeitem.c gtkclist.c gtkcombo.c gtkctree.c \
+-	gtkcurve.c gtkfilesel.c gtkgamma.c gtkitemfactory.c gtklist.c \
+-	gtklistitem.c gtkoldeditable.c gtkoptionmenu.c gtkpixmap.c \
+-	gtkpreview.c gtkprogress.c gtksignal.c gtktipsquery.c \
+-	gtktooltips.c gtkcustompaperunixdialog.c \
++	gtkwindow.c gtkclipboard.c gtkdnd.c gtkclipboard-quartz.c \
++	gtkdnd-quartz.c gtkquartz.c gtktext.c gtktree.c gtktreeitem.c \
++	gtkclist.c gtkcombo.c gtkctree.c gtkcurve.c gtkfilesel.c \
++	gtkgamma.c gtkitemfactory.c gtklist.c gtklistitem.c \
++	gtkoldeditable.c gtkoptionmenu.c gtkpixmap.c gtkpreview.c \
++	gtkprogress.c gtksignal.c gtktipsquery.c gtktooltips.c \
++	gtkwindow-decorate.c gtkcustompaperunixdialog.c \
+ 	gtkpagesetupunixdialog.c gtkprinter.c gtkprinteroption.c \
+ 	gtkprinteroptionset.c gtkprinteroptionwidget.c gtkprintjob.c \
+ 	gtkprintoperation-unix.c gtkprintunixdialog.c \
+@@ -546,13 +549,13 @@
+ 	gtktypeutils.c gtkuimanager.c gtkvbbox.c gtkvbox.c \
+ 	gtkvolumebutton.c gtkviewport.c gtkvpaned.c gtkvruler.c \
+ 	gtkvscale.c gtkvscrollbar.c gtkvseparator.c gtkwidget.c \
+-	gtkwindow-decorate.c gtkwindow.c gtkclipboard.c gtkdnd.c \
+-	gtkclipboard-quartz.c gtkdnd-quartz.c gtkquartz.c gtktext.c \
+-	gtktree.c gtktreeitem.c gtkclist.c gtkcombo.c gtkctree.c \
+-	gtkcurve.c gtkfilesel.c gtkgamma.c gtkitemfactory.c gtklist.c \
+-	gtklistitem.c gtkoldeditable.c gtkoptionmenu.c gtkpixmap.c \
+-	gtkpreview.c gtkprogress.c gtksignal.c gtktipsquery.c \
+-	gtktooltips.c gtkcustompaperunixdialog.c \
++	gtkwindow.c gtkclipboard.c gtkdnd.c gtkclipboard-quartz.c \
++	gtkdnd-quartz.c gtkquartz.c gtktext.c gtktree.c gtktreeitem.c \
++	gtkclist.c gtkcombo.c gtkctree.c gtkcurve.c gtkfilesel.c \
++	gtkgamma.c gtkitemfactory.c gtklist.c gtklistitem.c \
++	gtkoldeditable.c gtkoptionmenu.c gtkpixmap.c gtkpreview.c \
++	gtkprogress.c gtksignal.c gtktipsquery.c gtktooltips.c \
++	gtkwindow-decorate.c gtkcustompaperunixdialog.c \
+ 	gtkpagesetupunixdialog.c gtkprinter.c gtkprinteroption.c \
+ 	gtkprinteroptionset.c gtkprinteroptionwidget.c gtkprintjob.c \
+ 	gtkprintoperation-unix.c gtkprintunixdialog.c \
 @@ -739,6 +742,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -38656,6 +38787,15 @@ diff -Naur gtk+2.0-2.19.5.old/gtk/Makefile.in gtk+2.0-2.19.5/gtk/Makefile.in
  	-DGTK_DISABLE_DEPRECATED			\
  	-DGTK_FILE_SYSTEM_ENABLE_UNSUPPORTED		\
  	-DGTK_PRINT_BACKEND_ENABLE_UNSUPPORTED		\
+@@ -1088,7 +1095,7 @@
+ 	gtkgamma.h gtkinputdialog.h gtkitemfactory.h gtklist.h \
+ 	gtklistitem.h gtkoldeditable.h gtkoptionmenu.h gtkpixmap.h \
+ 	gtkpreview.h gtkprogress.h gtksignal.h gtktipsquery.h \
+-	gtktooltips.h
++	gtktooltips.h gtkwindow-decorate.h
+ @OS_UNIX_TRUE@gtk_unix_print_public_h_sources = \
+ @OS_UNIX_TRUE@	gtkpagesetupunixdialog.h	\
+ @OS_UNIX_TRUE@	gtkprintunixdialog.h		\
 @@ -1100,17 +1107,21 @@
  # Installed header files without compatibility guarantees
  # that are not included in gtk/gtk.h
@@ -38686,9 +38826,35 @@ diff -Naur gtk+2.0-2.19.5.old/gtk/Makefile.in gtk+2.0-2.19.5/gtk/Makefile.in
  	gtkmnemonichash.h gtkmountoperationprivate.h gtkpathbar.h \
  	gtkplugprivate.h gtkprintoperation-private.h gtkprintutils.h \
  	gtkrbtree.h gtkrecentchooserdefault.h \
-diff -Naur gtk+2.0-2.19.5.old/gtk/tests/Makefile.in gtk+2.0-2.19.5/gtk/tests/Makefile.in
---- gtk+2.0-2.19.5.old/gtk/tests/Makefile.in	2010-02-09 20:18:41.000000000 +0100
-+++ gtk+2.0-2.19.5/gtk/tests/Makefile.in	2010-02-10 09:46:53.313499237 +0100
+@@ -1120,7 +1131,7 @@
+ 	gtktextmarkprivate.h gtktextsegment.h gtktexttagprivate.h \
+ 	gtktexttypes.h gtktextutil.h gtkthemes.h \
+ 	gtktoggleactionprivate.h gtktoolpaletteprivate.h \
+-	gtktreedatalist.h gtktreeprivate.h gtkwindow-decorate.h \
++	gtktreedatalist.h gtktreeprivate.h \
+ 	$(gtk_clipboard_dnd_h_sources) $(am__append_4) $(am__append_6) \
+ 	$(am__append_8) $(am__append_10) $(am__append_12)
+ 
+@@ -1189,13 +1200,12 @@
+ 	gtktypeutils.c gtkuimanager.c gtkvbbox.c gtkvbox.c \
+ 	gtkvolumebutton.c gtkviewport.c gtkvpaned.c gtkvruler.c \
+ 	gtkvscale.c gtkvscrollbar.c gtkvseparator.c gtkwidget.c \
+-	gtkwindow-decorate.c gtkwindow.c \
+-	$(gtk_clipboard_dnd_c_sources) gtktext.c gtktree.c \
++	gtkwindow.c $(gtk_clipboard_dnd_c_sources) gtktext.c gtktree.c \
+ 	gtktreeitem.c gtkclist.c gtkcombo.c gtkctree.c gtkcurve.c \
+ 	gtkfilesel.c gtkgamma.c gtkitemfactory.c gtklist.c \
+ 	gtklistitem.c gtkoldeditable.c gtkoptionmenu.c gtkpixmap.c \
+ 	gtkpreview.c gtkprogress.c gtksignal.c gtktipsquery.c \
+-	gtktooltips.c
++	gtktooltips.c gtkwindow-decorate.c
+ gtk_c_sources = $(gtk_base_c_sources) $(am__append_5) $(am__append_7) \
+ 	$(am__append_9) $(am__append_11) $(am__append_13) \
+ 	$(am__append_14)
+Index: gtk+2.0-2.19.5/gtk/tests/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/gtk/tests/Makefile.in	2010-02-09 20:18:41.000000000 +0100
++++ gtk+2.0-2.19.5/gtk/tests/Makefile.in	2010-02-18 11:28:04.000000000 +0100
 @@ -42,11 +42,14 @@
  @OS_UNIX_TRUE@am__append_1 = defaultvalue
  subdir = gtk/tests
@@ -38722,9 +38888,10 @@ diff -Naur gtk+2.0-2.19.5.old/gtk/tests/Makefile.in gtk+2.0-2.19.5/gtk/tests/Mak
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/gtk/theme-bits/Makefile.in gtk+2.0-2.19.5/gtk/theme-bits/Makefile.in
---- gtk+2.0-2.19.5.old/gtk/theme-bits/Makefile.in	2010-02-09 20:18:42.000000000 +0100
-+++ gtk+2.0-2.19.5/gtk/theme-bits/Makefile.in	2010-02-10 09:46:53.409500692 +0100
+Index: gtk+2.0-2.19.5/gtk/theme-bits/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/gtk/theme-bits/Makefile.in	2010-02-09 20:18:42.000000000 +0100
++++ gtk+2.0-2.19.5/gtk/theme-bits/Makefile.in	2010-02-18 11:28:04.000000000 +0100
 @@ -41,11 +41,14 @@
  noinst_PROGRAMS = decompose-bits$(EXEEXT)
  subdir = gtk/theme-bits
@@ -38758,9 +38925,10 @@ diff -Naur gtk+2.0-2.19.5.old/gtk/theme-bits/Makefile.in gtk+2.0-2.19.5/gtk/them
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/ltmain.sh gtk+2.0-2.19.5/ltmain.sh
---- gtk+2.0-2.19.5.old/ltmain.sh	2010-01-22 17:05:36.000000000 +0100
-+++ gtk+2.0-2.19.5/ltmain.sh	2010-02-10 09:46:42.005501998 +0100
+Index: gtk+2.0-2.19.5/ltmain.sh
+===================================================================
+--- gtk+2.0-2.19.5.orig/ltmain.sh	2010-01-22 17:05:36.000000000 +0100
++++ gtk+2.0-2.19.5/ltmain.sh	2010-02-18 11:27:49.000000000 +0100
 @@ -65,7 +65,7 @@
  #       compiler:		$LTCC
  #       compiler flags:		$LTCFLAGS
@@ -38839,9 +39007,10 @@ diff -Naur gtk+2.0-2.19.5.old/ltmain.sh gtk+2.0-2.19.5/ltmain.sh
  	  esac
  	  ;;
  	no)
-diff -Naur gtk+2.0-2.19.5.old/m4/gtk-doc.m4 gtk+2.0-2.19.5/m4/gtk-doc.m4
---- gtk+2.0-2.19.5.old/m4/gtk-doc.m4	1970-01-01 01:00:00.000000000 +0100
-+++ gtk+2.0-2.19.5/m4/gtk-doc.m4	2010-02-10 09:46:43.013609104 +0100
+Index: gtk+2.0-2.19.5/m4/gtk-doc.m4
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gtk+2.0-2.19.5/m4/gtk-doc.m4	2010-02-18 11:27:49.000000000 +0100
 @@ -0,0 +1,61 @@
 +dnl -*- mode: autoconf -*-
 +
@@ -38904,9 +39073,10 @@ diff -Naur gtk+2.0-2.19.5.old/m4/gtk-doc.m4 gtk+2.0-2.19.5/m4/gtk-doc.m4
 +  AM_CONDITIONAL([GTK_DOC_USE_LIBTOOL], [test -n "$LIBTOOL"])
 +  AM_CONDITIONAL([GTK_DOC_USE_REBASE], [test -n "$GTKDOC_REBASE"])
 +])
-diff -Naur gtk+2.0-2.19.5.old/m4/libtool.m4 gtk+2.0-2.19.5/m4/libtool.m4
---- gtk+2.0-2.19.5.old/m4/libtool.m4	1970-01-01 01:00:00.000000000 +0100
-+++ gtk+2.0-2.19.5/m4/libtool.m4	2010-02-10 09:46:42.085502313 +0100
+Index: gtk+2.0-2.19.5/m4/libtool.m4
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gtk+2.0-2.19.5/m4/libtool.m4	2010-02-18 11:27:49.000000000 +0100
 @@ -0,0 +1,7377 @@
 +# libtool.m4 - Configure libtool for the host system. -*-Autoconf-*-
 +#
@@ -46285,9 +46455,10 @@ diff -Naur gtk+2.0-2.19.5.old/m4/libtool.m4 gtk+2.0-2.19.5/m4/libtool.m4
 +    ;;
 +  esac
 +])
-diff -Naur gtk+2.0-2.19.5.old/m4/lt~obsolete.m4 gtk+2.0-2.19.5/m4/lt~obsolete.m4
---- gtk+2.0-2.19.5.old/m4/lt~obsolete.m4	1970-01-01 01:00:00.000000000 +0100
-+++ gtk+2.0-2.19.5/m4/lt~obsolete.m4	2010-02-10 09:46:42.809502640 +0100
+Index: gtk+2.0-2.19.5/m4/lt~obsolete.m4
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gtk+2.0-2.19.5/m4/lt~obsolete.m4	2010-02-18 11:27:49.000000000 +0100
 @@ -0,0 +1,92 @@
 +# lt~obsolete.m4 -- aclocal satisfying obsolete definitions.    -*-Autoconf-*-
 +#
@@ -46381,9 +46552,10 @@ diff -Naur gtk+2.0-2.19.5.old/m4/lt~obsolete.m4 gtk+2.0-2.19.5/m4/lt~obsolete.m4
 +m4_ifndef([_LT_AC_LANG_RC_CONFIG],	[AC_DEFUN([_LT_AC_LANG_RC_CONFIG])])
 +m4_ifndef([AC_LIBTOOL_CONFIG],		[AC_DEFUN([AC_LIBTOOL_CONFIG])])
 +m4_ifndef([_LT_AC_FILE_LTDLL_C],	[AC_DEFUN([_LT_AC_FILE_LTDLL_C])])
-diff -Naur gtk+2.0-2.19.5.old/m4/ltoptions.m4 gtk+2.0-2.19.5/m4/ltoptions.m4
---- gtk+2.0-2.19.5.old/m4/ltoptions.m4	1970-01-01 01:00:00.000000000 +0100
-+++ gtk+2.0-2.19.5/m4/ltoptions.m4	2010-02-10 09:46:42.249505558 +0100
+Index: gtk+2.0-2.19.5/m4/ltoptions.m4
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gtk+2.0-2.19.5/m4/ltoptions.m4	2010-02-18 11:27:49.000000000 +0100
 @@ -0,0 +1,368 @@
 +# Helper functions for option handling.                    -*- Autoconf -*-
 +#
@@ -46753,9 +46925,10 @@ diff -Naur gtk+2.0-2.19.5.old/m4/ltoptions.m4 gtk+2.0-2.19.5/m4/ltoptions.m4
 +		 [m4_define([_LTDL_TYPE], [installable])])
 +LT_OPTION_DEFINE([LTDL_INIT], [convenience],
 +		 [m4_define([_LTDL_TYPE], [convenience])])
-diff -Naur gtk+2.0-2.19.5.old/m4/ltsugar.m4 gtk+2.0-2.19.5/m4/ltsugar.m4
---- gtk+2.0-2.19.5.old/m4/ltsugar.m4	1970-01-01 01:00:00.000000000 +0100
-+++ gtk+2.0-2.19.5/m4/ltsugar.m4	2010-02-10 09:46:42.553529259 +0100
+Index: gtk+2.0-2.19.5/m4/ltsugar.m4
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gtk+2.0-2.19.5/m4/ltsugar.m4	2010-02-18 11:27:49.000000000 +0100
 @@ -0,0 +1,123 @@
 +# ltsugar.m4 -- libtool m4 base layer.                         -*-Autoconf-*-
 +#
@@ -46880,9 +47053,10 @@ diff -Naur gtk+2.0-2.19.5.old/m4/ltsugar.m4 gtk+2.0-2.19.5/m4/ltsugar.m4
 +           lt_unquote(m4_split(m4_normalize(m4_foreach(_Lt_key, lt_car([m4_shiftn(4, $@)]),
 +		      [lt_if_dict_fetch([$1], _Lt_key, [$2], [$3], [_Lt_key ])])))))])[]dnl
 +])
-diff -Naur gtk+2.0-2.19.5.old/m4/ltversion.m4 gtk+2.0-2.19.5/m4/ltversion.m4
---- gtk+2.0-2.19.5.old/m4/ltversion.m4	1970-01-01 01:00:00.000000000 +0100
-+++ gtk+2.0-2.19.5/m4/ltversion.m4	2010-02-10 09:46:42.689502329 +0100
+Index: gtk+2.0-2.19.5/m4/ltversion.m4
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gtk+2.0-2.19.5/m4/ltversion.m4	2010-02-18 11:27:49.000000000 +0100
 @@ -0,0 +1,23 @@
 +# ltversion.m4 -- version numbers			-*- Autoconf -*-
 +#
@@ -46907,9 +47081,10 @@ diff -Naur gtk+2.0-2.19.5.old/m4/ltversion.m4 gtk+2.0-2.19.5/m4/ltversion.m4
 +_LT_DECL(, macro_version, 0, [Which release of libtool.m4 was used?])
 +_LT_DECL(, macro_revision, 0)
 +])
-diff -Naur gtk+2.0-2.19.5.old/m4macros/Makefile.in gtk+2.0-2.19.5/m4macros/Makefile.in
---- gtk+2.0-2.19.5.old/m4macros/Makefile.in	2010-02-09 20:18:42.000000000 +0100
-+++ gtk+2.0-2.19.5/m4macros/Makefile.in	2010-02-10 09:46:53.489499826 +0100
+Index: gtk+2.0-2.19.5/m4macros/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/m4macros/Makefile.in	2010-02-09 20:18:42.000000000 +0100
++++ gtk+2.0-2.19.5/m4macros/Makefile.in	2010-02-18 11:28:04.000000000 +0100
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = m4macros
@@ -46943,9 +47118,10 @@ diff -Naur gtk+2.0-2.19.5.old/m4macros/Makefile.in gtk+2.0-2.19.5/m4macros/Makef
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/Makefile.in gtk+2.0-2.19.5/Makefile.in
---- gtk+2.0-2.19.5.old/Makefile.in	2010-02-09 20:18:47.000000000 +0100
-+++ gtk+2.0-2.19.5/Makefile.in	2010-02-10 09:46:56.085499450 +0100
+Index: gtk+2.0-2.19.5/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/Makefile.in	2010-02-09 20:18:47.000000000 +0100
++++ gtk+2.0-2.19.5/Makefile.in	2010-02-18 11:28:06.000000000 +0100
 @@ -47,17 +47,20 @@
  	$(srcdir)/gtk+-unix-print-2.0.pc.in $(srcdir)/gtk-zip.sh.in \
  	$(top_srcdir)/Makefile.decl $(top_srcdir)/configure AUTHORS \
@@ -47008,9 +47184,10 @@ diff -Naur gtk+2.0-2.19.5.old/Makefile.in gtk+2.0-2.19.5/Makefile.in
  SUBDIRS = po po-properties $(SRC_SUBDIRS) docs m4macros
  
  # require automake 1.4
-diff -Naur gtk+2.0-2.19.5.old/mkinstalldirs gtk+2.0-2.19.5/mkinstalldirs
---- gtk+2.0-2.19.5.old/mkinstalldirs	1970-01-01 01:00:00.000000000 +0100
-+++ gtk+2.0-2.19.5/mkinstalldirs	2010-02-10 09:46:56.025499651 +0100
+Index: gtk+2.0-2.19.5/mkinstalldirs
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gtk+2.0-2.19.5/mkinstalldirs	2010-02-18 11:27:49.000000000 +0100
 @@ -0,0 +1,162 @@
 +#! /bin/sh
 +# mkinstalldirs --- make directory hierarchy
@@ -47174,9 +47351,10 @@ diff -Naur gtk+2.0-2.19.5.old/mkinstalldirs gtk+2.0-2.19.5/mkinstalldirs
 +# time-stamp-time-zone: "UTC"
 +# time-stamp-end: "; # UTC"
 +# End:
-diff -Naur gtk+2.0-2.19.5.old/modules/engines/Makefile.in gtk+2.0-2.19.5/modules/engines/Makefile.in
---- gtk+2.0-2.19.5.old/modules/engines/Makefile.in	2010-02-09 20:18:42.000000000 +0100
-+++ gtk+2.0-2.19.5/modules/engines/Makefile.in	2010-02-10 09:46:53.649500246 +0100
+Index: gtk+2.0-2.19.5/modules/engines/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/modules/engines/Makefile.in	2010-02-09 20:18:42.000000000 +0100
++++ gtk+2.0-2.19.5/modules/engines/Makefile.in	2010-02-18 11:28:04.000000000 +0100
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/engines
@@ -47210,9 +47388,10 @@ diff -Naur gtk+2.0-2.19.5.old/modules/engines/Makefile.in gtk+2.0-2.19.5/modules
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/modules/engines/ms-windows/Makefile.in gtk+2.0-2.19.5/modules/engines/ms-windows/Makefile.in
---- gtk+2.0-2.19.5.old/modules/engines/ms-windows/Makefile.in	2010-02-09 20:18:43.000000000 +0100
-+++ gtk+2.0-2.19.5/modules/engines/ms-windows/Makefile.in	2010-02-10 09:46:53.749499342 +0100
+Index: gtk+2.0-2.19.5/modules/engines/ms-windows/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/modules/engines/ms-windows/Makefile.in	2010-02-09 20:18:43.000000000 +0100
++++ gtk+2.0-2.19.5/modules/engines/ms-windows/Makefile.in	2010-02-18 11:28:05.000000000 +0100
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/engines/ms-windows
@@ -47246,9 +47425,10 @@ diff -Naur gtk+2.0-2.19.5.old/modules/engines/ms-windows/Makefile.in gtk+2.0-2.1
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in gtk+2.0-2.19.5/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in
---- gtk+2.0-2.19.5.old/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-02-09 20:18:43.000000000 +0100
-+++ gtk+2.0-2.19.5/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-02-10 09:46:53.937499083 +0100
+Index: gtk+2.0-2.19.5/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-02-09 20:18:43.000000000 +0100
++++ gtk+2.0-2.19.5/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-02-18 11:28:05.000000000 +0100
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/engines/ms-windows/Theme/gtk-2.0
@@ -47282,9 +47462,10 @@ diff -Naur gtk+2.0-2.19.5.old/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/modules/engines/ms-windows/Theme/Makefile.in gtk+2.0-2.19.5/modules/engines/ms-windows/Theme/Makefile.in
---- gtk+2.0-2.19.5.old/modules/engines/ms-windows/Theme/Makefile.in	2010-02-09 20:18:43.000000000 +0100
-+++ gtk+2.0-2.19.5/modules/engines/ms-windows/Theme/Makefile.in	2010-02-10 09:46:53.837500054 +0100
+Index: gtk+2.0-2.19.5/modules/engines/ms-windows/Theme/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/modules/engines/ms-windows/Theme/Makefile.in	2010-02-09 20:18:43.000000000 +0100
++++ gtk+2.0-2.19.5/modules/engines/ms-windows/Theme/Makefile.in	2010-02-18 11:28:05.000000000 +0100
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/engines/ms-windows/Theme
@@ -47318,9 +47499,10 @@ diff -Naur gtk+2.0-2.19.5.old/modules/engines/ms-windows/Theme/Makefile.in gtk+2
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/modules/engines/pixbuf/Makefile.in gtk+2.0-2.19.5/modules/engines/pixbuf/Makefile.in
---- gtk+2.0-2.19.5.old/modules/engines/pixbuf/Makefile.in	2010-02-09 20:18:43.000000000 +0100
-+++ gtk+2.0-2.19.5/modules/engines/pixbuf/Makefile.in	2010-02-10 09:46:54.037499779 +0100
+Index: gtk+2.0-2.19.5/modules/engines/pixbuf/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/modules/engines/pixbuf/Makefile.in	2010-02-09 20:18:43.000000000 +0100
++++ gtk+2.0-2.19.5/modules/engines/pixbuf/Makefile.in	2010-02-18 11:28:05.000000000 +0100
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl ChangeLog
  subdir = modules/engines/pixbuf
@@ -47354,9 +47536,10 @@ diff -Naur gtk+2.0-2.19.5.old/modules/engines/pixbuf/Makefile.in gtk+2.0-2.19.5/
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/modules/input/Makefile.in gtk+2.0-2.19.5/modules/input/Makefile.in
---- gtk+2.0-2.19.5.old/modules/input/Makefile.in	2010-02-09 20:18:44.000000000 +0100
-+++ gtk+2.0-2.19.5/modules/input/Makefile.in	2010-02-10 09:46:54.225499224 +0100
+Index: gtk+2.0-2.19.5/modules/input/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/modules/input/Makefile.in	2010-02-09 20:18:44.000000000 +0100
++++ gtk+2.0-2.19.5/modules/input/Makefile.in	2010-02-18 11:28:05.000000000 +0100
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/input
@@ -47420,9 +47603,10 @@ diff -Naur gtk+2.0-2.19.5.old/modules/input/Makefile.in gtk+2.0-2.19.5/modules/i
  
  @CROSS_COMPILING_FALSE@all-local: gtk.immodules
  
-diff -Naur gtk+2.0-2.19.5.old/modules/Makefile.in gtk+2.0-2.19.5/modules/Makefile.in
---- gtk+2.0-2.19.5.old/modules/Makefile.in	2010-02-09 20:18:42.000000000 +0100
-+++ gtk+2.0-2.19.5/modules/Makefile.in	2010-02-10 09:46:53.569499094 +0100
+Index: gtk+2.0-2.19.5/modules/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/modules/Makefile.in	2010-02-09 20:18:42.000000000 +0100
++++ gtk+2.0-2.19.5/modules/Makefile.in	2010-02-18 11:28:04.000000000 +0100
 @@ -40,11 +40,14 @@
  @OS_UNIX_TRUE@am__append_1 = printbackends
  subdir = modules
@@ -47456,9 +47640,10 @@ diff -Naur gtk+2.0-2.19.5.old/modules/Makefile.in gtk+2.0-2.19.5/modules/Makefil
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/modules/other/gail/libgail-util/Makefile.in gtk+2.0-2.19.5/modules/other/gail/libgail-util/Makefile.in
---- gtk+2.0-2.19.5.old/modules/other/gail/libgail-util/Makefile.in	2010-02-09 20:18:45.000000000 +0100
-+++ gtk+2.0-2.19.5/modules/other/gail/libgail-util/Makefile.in	2010-02-10 09:46:54.797500207 +0100
+Index: gtk+2.0-2.19.5/modules/other/gail/libgail-util/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/modules/other/gail/libgail-util/Makefile.in	2010-02-09 20:18:45.000000000 +0100
++++ gtk+2.0-2.19.5/modules/other/gail/libgail-util/Makefile.in	2010-02-18 11:28:05.000000000 +0100
 @@ -42,11 +42,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/other/gail/libgail-util
@@ -47492,9 +47677,10 @@ diff -Naur gtk+2.0-2.19.5.old/modules/other/gail/libgail-util/Makefile.in gtk+2.
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/modules/other/gail/Makefile.in gtk+2.0-2.19.5/modules/other/gail/Makefile.in
---- gtk+2.0-2.19.5.old/modules/other/gail/Makefile.in	2010-02-09 20:18:44.000000000 +0100
-+++ gtk+2.0-2.19.5/modules/other/gail/Makefile.in	2010-02-10 09:46:54.653501523 +0100
+Index: gtk+2.0-2.19.5/modules/other/gail/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/modules/other/gail/Makefile.in	2010-02-09 20:18:44.000000000 +0100
++++ gtk+2.0-2.19.5/modules/other/gail/Makefile.in	2010-02-18 11:28:05.000000000 +0100
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl ChangeLog
  subdir = modules/other/gail
@@ -47528,9 +47714,10 @@ diff -Naur gtk+2.0-2.19.5.old/modules/other/gail/Makefile.in gtk+2.0-2.19.5/modu
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/modules/other/gail/tests/Makefile.in gtk+2.0-2.19.5/modules/other/gail/tests/Makefile.in
---- gtk+2.0-2.19.5.old/modules/other/gail/tests/Makefile.in	2010-02-09 20:18:45.000000000 +0100
-+++ gtk+2.0-2.19.5/modules/other/gail/tests/Makefile.in	2010-02-10 09:46:54.949500120 +0100
+Index: gtk+2.0-2.19.5/modules/other/gail/tests/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/modules/other/gail/tests/Makefile.in	2010-02-09 20:18:45.000000000 +0100
++++ gtk+2.0-2.19.5/modules/other/gail/tests/Makefile.in	2010-02-18 11:28:05.000000000 +0100
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/other/gail/tests
@@ -47564,9 +47751,10 @@ diff -Naur gtk+2.0-2.19.5.old/modules/other/gail/tests/Makefile.in gtk+2.0-2.19.
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/modules/other/Makefile.in gtk+2.0-2.19.5/modules/other/Makefile.in
---- gtk+2.0-2.19.5.old/modules/other/Makefile.in	2010-02-09 20:18:44.000000000 +0100
-+++ gtk+2.0-2.19.5/modules/other/Makefile.in	2010-02-10 09:46:54.309500195 +0100
+Index: gtk+2.0-2.19.5/modules/other/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/modules/other/Makefile.in	2010-02-09 20:18:44.000000000 +0100
++++ gtk+2.0-2.19.5/modules/other/Makefile.in	2010-02-18 11:28:05.000000000 +0100
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/other
@@ -47600,9 +47788,10 @@ diff -Naur gtk+2.0-2.19.5.old/modules/other/Makefile.in gtk+2.0-2.19.5/modules/o
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/modules/printbackends/cups/Makefile.in gtk+2.0-2.19.5/modules/printbackends/cups/Makefile.in
---- gtk+2.0-2.19.5.old/modules/printbackends/cups/Makefile.in	2010-02-09 20:18:45.000000000 +0100
-+++ gtk+2.0-2.19.5/modules/printbackends/cups/Makefile.in	2010-02-10 09:46:55.157499867 +0100
+Index: gtk+2.0-2.19.5/modules/printbackends/cups/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/modules/printbackends/cups/Makefile.in	2010-02-09 20:18:45.000000000 +0100
++++ gtk+2.0-2.19.5/modules/printbackends/cups/Makefile.in	2010-02-18 11:28:06.000000000 +0100
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/printbackends/cups
@@ -47636,9 +47825,10 @@ diff -Naur gtk+2.0-2.19.5.old/modules/printbackends/cups/Makefile.in gtk+2.0-2.1
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/modules/printbackends/file/Makefile.in gtk+2.0-2.19.5/modules/printbackends/file/Makefile.in
---- gtk+2.0-2.19.5.old/modules/printbackends/file/Makefile.in	2010-02-09 20:18:45.000000000 +0100
-+++ gtk+2.0-2.19.5/modules/printbackends/file/Makefile.in	2010-02-10 09:46:55.261500449 +0100
+Index: gtk+2.0-2.19.5/modules/printbackends/file/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/modules/printbackends/file/Makefile.in	2010-02-09 20:18:45.000000000 +0100
++++ gtk+2.0-2.19.5/modules/printbackends/file/Makefile.in	2010-02-18 11:28:06.000000000 +0100
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/printbackends/file
@@ -47672,9 +47862,10 @@ diff -Naur gtk+2.0-2.19.5.old/modules/printbackends/file/Makefile.in gtk+2.0-2.1
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/modules/printbackends/lpr/Makefile.in gtk+2.0-2.19.5/modules/printbackends/lpr/Makefile.in
---- gtk+2.0-2.19.5.old/modules/printbackends/lpr/Makefile.in	2010-02-09 20:18:46.000000000 +0100
-+++ gtk+2.0-2.19.5/modules/printbackends/lpr/Makefile.in	2010-02-10 09:46:55.365498867 +0100
+Index: gtk+2.0-2.19.5/modules/printbackends/lpr/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/modules/printbackends/lpr/Makefile.in	2010-02-09 20:18:46.000000000 +0100
++++ gtk+2.0-2.19.5/modules/printbackends/lpr/Makefile.in	2010-02-18 11:28:06.000000000 +0100
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/printbackends/lpr
@@ -47708,9 +47899,10 @@ diff -Naur gtk+2.0-2.19.5.old/modules/printbackends/lpr/Makefile.in gtk+2.0-2.19
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/modules/printbackends/Makefile.in gtk+2.0-2.19.5/modules/printbackends/Makefile.in
---- gtk+2.0-2.19.5.old/modules/printbackends/Makefile.in	2010-02-09 20:18:45.000000000 +0100
-+++ gtk+2.0-2.19.5/modules/printbackends/Makefile.in	2010-02-10 09:46:55.033499131 +0100
+Index: gtk+2.0-2.19.5/modules/printbackends/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/modules/printbackends/Makefile.in	2010-02-09 20:18:45.000000000 +0100
++++ gtk+2.0-2.19.5/modules/printbackends/Makefile.in	2010-02-18 11:28:06.000000000 +0100
 @@ -42,11 +42,14 @@
  @HAVE_PAPI_TRUE@am__append_3 = papi
  subdir = modules/printbackends
@@ -47744,9 +47936,10 @@ diff -Naur gtk+2.0-2.19.5.old/modules/printbackends/Makefile.in gtk+2.0-2.19.5/m
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/modules/printbackends/papi/Makefile.in gtk+2.0-2.19.5/modules/printbackends/papi/Makefile.in
---- gtk+2.0-2.19.5.old/modules/printbackends/papi/Makefile.in	2010-02-09 20:18:46.000000000 +0100
-+++ gtk+2.0-2.19.5/modules/printbackends/papi/Makefile.in	2010-02-10 09:46:55.461500319 +0100
+Index: gtk+2.0-2.19.5/modules/printbackends/papi/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/modules/printbackends/papi/Makefile.in	2010-02-09 20:18:46.000000000 +0100
++++ gtk+2.0-2.19.5/modules/printbackends/papi/Makefile.in	2010-02-18 11:28:06.000000000 +0100
 @@ -39,11 +39,14 @@
  DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
  	$(srcdir)/Makefile.in
@@ -47780,9 +47973,10 @@ diff -Naur gtk+2.0-2.19.5.old/modules/printbackends/papi/Makefile.in gtk+2.0-2.1
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/modules/printbackends/test/Makefile.in gtk+2.0-2.19.5/modules/printbackends/test/Makefile.in
---- gtk+2.0-2.19.5.old/modules/printbackends/test/Makefile.in	2010-02-09 20:18:46.000000000 +0100
-+++ gtk+2.0-2.19.5/modules/printbackends/test/Makefile.in	2010-02-10 09:46:55.565499494 +0100
+Index: gtk+2.0-2.19.5/modules/printbackends/test/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/modules/printbackends/test/Makefile.in	2010-02-09 20:18:46.000000000 +0100
++++ gtk+2.0-2.19.5/modules/printbackends/test/Makefile.in	2010-02-18 11:28:06.000000000 +0100
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/printbackends/test
@@ -47816,9 +48010,10 @@ diff -Naur gtk+2.0-2.19.5.old/modules/printbackends/test/Makefile.in gtk+2.0-2.1
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/perf/Makefile.in gtk+2.0-2.19.5/perf/Makefile.in
---- gtk+2.0-2.19.5.old/perf/Makefile.in	2010-02-09 20:18:46.000000000 +0100
-+++ gtk+2.0-2.19.5/perf/Makefile.in	2010-02-10 09:46:55.669499367 +0100
+Index: gtk+2.0-2.19.5/perf/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/perf/Makefile.in	2010-02-09 20:18:46.000000000 +0100
++++ gtk+2.0-2.19.5/perf/Makefile.in	2010-02-18 11:28:06.000000000 +0100
 @@ -41,11 +41,14 @@
  noinst_PROGRAMS = testperf$(EXEEXT)
  subdir = perf
@@ -47852,9 +48047,10 @@ diff -Naur gtk+2.0-2.19.5.old/perf/Makefile.in gtk+2.0-2.19.5/perf/Makefile.in
  PACKAGE_VERSION = @PACKAGE_VERSION@
  PANGO_PREFIX = @PANGO_PREFIX@
  PATH_SEPARATOR = @PATH_SEPARATOR@
-diff -Naur gtk+2.0-2.19.5.old/po/Makefile.in.in gtk+2.0-2.19.5/po/Makefile.in.in
---- gtk+2.0-2.19.5.old/po/Makefile.in.in	2009-12-19 03:54:51.000000000 +0100
-+++ gtk+2.0-2.19.5/po/Makefile.in.in	2010-02-10 09:46:42.961603684 +0100
+Index: gtk+2.0-2.19.5/po/Makefile.in.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/po/Makefile.in.in	2009-12-19 03:54:51.000000000 +0100
++++ gtk+2.0-2.19.5/po/Makefile.in.in	2010-02-18 11:27:49.000000000 +0100
 @@ -25,22 +25,23 @@
  
  prefix = @prefix@
@@ -47966,9 +48162,10 @@ diff -Naur gtk+2.0-2.19.5.old/po/Makefile.in.in gtk+2.0-2.19.5/po/Makefile.in.in
  	  $(INSTALL_DATA) $(srcdir)/Makefile.in.in \
  			  $(DESTDIR)$(gettextsrcdir)/Makefile.in.in; \
  	else \
-diff -Naur gtk+2.0-2.19.5.old/tests/Makefile.in gtk+2.0-2.19.5/tests/Makefile.in
---- gtk+2.0-2.19.5.old/tests/Makefile.in	2010-02-09 20:18:47.000000000 +0100
-+++ gtk+2.0-2.19.5/tests/Makefile.in	2010-02-10 09:46:55.933499692 +0100
+Index: gtk+2.0-2.19.5/tests/Makefile.in
+===================================================================
+--- gtk+2.0-2.19.5.orig/tests/Makefile.in	2010-02-09 20:18:47.000000000 +0100
++++ gtk+2.0-2.19.5/tests/Makefile.in	2010-02-18 11:28:06.000000000 +0100
 @@ -75,11 +75,14 @@
  @HAVE_CXX_TRUE@@HAVE_OBJC_TRUE@am__append_2 = -DHAVE_OBJC=1 -x objective-c++
  subdir = tests

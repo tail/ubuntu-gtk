@@ -13,6 +13,7 @@
 042_treeview_single-focus.patch
 060_ignore-random-icons.patch
 061_use_pdf_as_default_printing_standard.patch
+062_client_side_decoration.patch
 070_mandatory-relibtoolize.patch
 071_no_offscreen_widgets_grabbing.patch
 090_directfb-map-virtual-modifiers.patch
