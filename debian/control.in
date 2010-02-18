@@ -44,6 +44,7 @@ Build-Depends-Indep: gtk-doc-tools (>= 1.8),
                      libpango1.0-doc,
                      libcairo2-doc
 Standards-Version: 3.8.3
+Vcs-Bzr: https://code.launchpad.net/~ubuntu-desktop/gtk/ubuntu
 
 Package: @SHARED_PKG@
 Architecture: any

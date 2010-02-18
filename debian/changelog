@@ -1,10 +1,22 @@
-gtk+2.0 (2.19.5-1ubuntu2) lucid; urgency=low
+gtk+2.0 (2.19.5-1ubuntu3) lucid; urgency=low
 
+  * debian/control.in:
+    - set vcs url
   * debian/patches/062_client_side_decoration.patch:
     - upload the work from Cody Russell on client side decoration to lucid
-  * debian/patches/070_mandatory-relibtoolize.patch: refreshed
+  * debian/patches/070_mandatory-relibtoolize.patch: 
+    - refreshed
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 18 Feb 2010 11:24:57 +0100
+
+gtk+2.0 (2.19.5-1ubuntu2) lucid; urgency=low
+
+  * New patch, 092_duplicate-gtk-widget-defs, cherry-pick
+    f9a3ce06cc990c8ae3a9d6cee514d0c5f5f05fd8, "Remove duplicate definitions of
+    gtk_widget_set/get_realized/mapped"; fixes duplicate definitions of some
+    functions in gtk/gtkwidget.h breaking the cdebconf build; LP: #521135.
+
+ -- Loïc Minier <loic.minier@ubuntu.com>  Fri, 12 Feb 2010 21:14:23 +0100
 
 gtk+2.0 (2.19.5-1ubuntu1) lucid; urgency=low
 
