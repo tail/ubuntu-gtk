@@ -1,3 +1,11 @@
+gtk+2.0 (2.19.5-1ubuntu4) lucid; urgency=low
+
+  * debian/patches/062_client_side_decoration.patch:
+    - update by Cody Russell to fix excessive cpu usage issues 
+      (lp: #523949)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 22 Feb 2010 10:13:06 +0100
+
 gtk+2.0 (2.19.5-1ubuntu3) lucid; urgency=low
 
   * debian/control.in:
