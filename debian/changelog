@@ -1,3 +1,11 @@
+gtk+2.0 (2.19.5-1ubuntu6) lucid; urgency=low
+
+  * debian/patches/062_client_side_decoration.patch:
+    - update by Cody Russell to fix an issue with applications which turn their
+      decorations off as chromium is doing
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 23 Feb 2010 13:34:52 +0100
+
 gtk+2.0 (2.19.5-1ubuntu5) lucid; urgency=low
 
   * debian/patches/062_client_side_decoration.patch:
