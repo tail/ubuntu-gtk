@@ -1,57 +1,31 @@
-gtk+2.0 (2.19.5-1ubuntu6) lucid; urgency=low
-
-  * debian/patches/062_client_side_decoration.patch:
-    - update by Cody Russell to fix an issue with applications which turn their
-      decorations off as chromium is doing
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 23 Feb 2010 13:34:52 +0100
-
-gtk+2.0 (2.19.5-1ubuntu5) lucid; urgency=low
-
-  * debian/patches/062_client_side_decoration.patch:
-    - update by Cody Russell to really fix excessive cpu usage issues 
-      (lp: #523949, #524304)
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 23 Feb 2010 00:49:15 +0100
-
-gtk+2.0 (2.19.5-1ubuntu4) lucid; urgency=low
-
-  * debian/patches/062_client_side_decoration.patch:
-    - update by Cody Russell to fix excessive cpu usage issues 
-      (lp: #523949)
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 22 Feb 2010 10:13:06 +0100
-
-gtk+2.0 (2.19.5-1ubuntu3) lucid; urgency=low
-
-  * debian/control.in:
-    - set vcs url
-  * debian/patches/062_client_side_decoration.patch:
-    - upload the work from Cody Russell on client side decoration to lucid
-  * debian/patches/070_mandatory-relibtoolize.patch: 
-    - refreshed
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 18 Feb 2010 11:24:57 +0100
-
-gtk+2.0 (2.19.5-1ubuntu2) lucid; urgency=low
-
-  * New patch, 092_duplicate-gtk-widget-defs, cherry-pick
-    f9a3ce06cc990c8ae3a9d6cee514d0c5f5f05fd8, "Remove duplicate definitions of
-    gtk_widget_set/get_realized/mapped"; fixes duplicate definitions of some
-    functions in gtk/gtkwidget.h breaking the cdebconf build; LP: #521135.
-
- -- Loïc Minier <loic.minier@ubuntu.com>  Fri, 12 Feb 2010 21:14:23 +0100
-
-gtk+2.0 (2.19.5-1ubuntu1) lucid; urgency=low
+gtk+2.0 (2.19.6-1ubuntu1) lucid; urgency=low
 
   * Resync on Debian
+  * debian/patches/062_client_side_decoration.patch:
+    - updated gtk client side decoration thanks to Cody Russell (lp: #524869)
+  * debian/patches/070_mandatory-relibtoolize.patch:
+    - refreshed due to the client side change
   * debian/patches/071_no_offscreen_widgets_grabbing.patch:
     - change by Cody Russell to not let offscreen widgets do grabbing
   * debian/patches/091_bugzilla_tooltip_refresh.patch:
     - upstream bugzilla change to have better looking tooltips
       the gtk theme need to set "new-tooltip-style" to use those 
-      
- -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 10 Feb 2010 12:11:06 +0100
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 25 Feb 2010 23:46:16 +0100
+
+gtk+2.0 (2.19.6-1) experimental; urgency=low
+
+  * New upstream development release:
+    + debian/patches/070_mandatory-relibtoolize.patch:
+      - Regenerated for the new version.
+    + debian/rules,
+      debian/libgtk-directfb-2.0-0.symbols,
+      debian/libgtk2.0-0.symbols:
+      - Update SHVER to 2.19.6 for the new API and add new symbols.
+  * debian/patches/090_directfb-map-virtual-modifiers.patch:
+    + Update to add just another stub to fix the build.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 24 Feb 2010 10:01:31 +0100
 
 gtk+2.0 (2.19.5-1) experimental; urgency=low
 
