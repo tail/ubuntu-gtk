@@ -1,3 +1,18 @@
+gtk+2.0 (2.19.6-1ubuntu2) lucid; urgency=low
+
+  * debian/patches/062_client_side_decoration.patch:
+    - update by Cody Russell to fix some issues
+    - "[CSD] Dragging in some apps (xchat-gnome, Evolution, Gwibber) behaves
+       strangely." (lp: #528623)
+    - "[CSD] No restore states on max win deco button" (lp: #528612)
+    - "[CSD] Cannot click and move window from menubar" (lp: #528617)
+    - "[CSD] Going fullscreen doesn't turn off decorations" (lp: #529106)
+    - "Whole gnome-terminal window flashes whenever the window title changes"
+      (lp: #524532)
+    - "[CSD] Entire desktop has a window frame " (lp: #529996)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 01 Mar 2010 15:50:32 +0100
+
 gtk+2.0 (2.19.6-1ubuntu1) lucid; urgency=low
 
   * Resync on Debian
