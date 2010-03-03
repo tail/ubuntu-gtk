@@ -1,3 +1,15 @@
+gtk+2.0 (2.19.6-1ubuntu3) lucid; urgency=low
+
+  * debian/patches/062_client_side_decoration.patch:
+    - update by Cody Russell to fix some issues
+    - "[CSD] Buttons sometimes have no icons" (lp: #530608)
+    - "[CSD] software-properties get an extra line when opened
+       through update-manager" (lp: #530619)
+    - "[CSD] black line at terminal bottom border" (lp: #530571)
+    - "[CSD] Black corners on windows." (lp: #528619)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 03 Mar 2010 10:51:10 +0100
+
 gtk+2.0 (2.19.6-1ubuntu2) lucid; urgency=low
 
   * debian/patches/062_client_side_decoration.patch:
