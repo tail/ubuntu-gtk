@@ -1,3 +1,15 @@
+gtk+2.0 (2.19.6-1ubuntu4) lucid; urgency=low
+
+  * debian/patches/062_client_side_decoration.patch:
+    - don't use csd for lucid it was good to test but not ready yet
+      (lp: #529996, #530575)
+  * debian/patches/062_dnd_menubar.patch:
+    - change by Cody Russell to allow click on menubars for dnd
+  * debian/patches/070_mandatory-relibtoolize.patch:
+    - refreshed due to the client side change
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 05 Mar 2010 11:06:57 +0100
+
 gtk+2.0 (2.19.6-1ubuntu3) lucid; urgency=low
 
   * debian/patches/062_client_side_decoration.patch:
