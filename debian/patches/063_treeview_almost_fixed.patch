@@ -2,8 +2,8 @@
 # Ubuntu: https://bugs.launchpad.net/ubuntu/+source/gtk+2.0/+bug/514879
 # Upstream: https://bugzilla.gnome.org/607447
 === modified file 'gtk/gtktreeprivate.h'
---- gtk/gtktreeprivate.h	2010-03-19 08:48:31 +0000
-+++ gtk/gtktreeprivate.h	2010-03-19 09:03:35 +0000
+--- gtk+-2.19.7/gtk/gtktreeprivate.h	2010-03-19 08:48:31 +0000
++++ gtk+-2.19.7/gtk/gtktreeprivate.h	2010-03-19 09:03:35 +0000
 @@ -263,6 +263,7 @@
  
    guint fixed_height_mode : 1;
@@ -14,8 +14,8 @@
    guint header_has_focus : 1;
 
 === modified file 'gtk/gtktreeview.c'
---- gtk/gtktreeview.c	2010-03-19 08:48:31 +0000
-+++ gtk/gtktreeview.c	2010-03-19 09:00:54 +0000
+--- gtk+-2.19.7/gtk/gtktreeview.c	2010-03-19 08:48:31 +0000
++++ gtk+-2.19.7/gtk/gtktreeview.c	2010-03-19 09:00:54 +0000
 @@ -137,6 +137,7 @@
    PROP_ENABLE_SEARCH,
    PROP_SEARCH_COLUMN,
@@ -75,14 +75,4 @@
        && tree_view->priv->fixed_height >= 0)
      {
        _gtk_rbtree_node_set_height (tree, node, tree_view->priv->fixed_height);
-@@ -9570,7 +9592,8 @@
- 
-       if (cursor_path)
- 	{
--	  if (tree_view->priv->selection->type == GTK_SELECTION_MULTIPLE)
-+	  if (tree_view->priv->selection->type == GTK_SELECTION_MULTIPLE ||
-+	      tree_view->priv->selection->type == GTK_SELECTION_SINGLE)
- 	    gtk_tree_view_real_set_cursor (tree_view, cursor_path, FALSE, FALSE);
- 	  else
- 	    gtk_tree_view_real_set_cursor (tree_view, cursor_path, TRUE, FALSE);
 
