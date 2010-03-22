@@ -1,3 +1,14 @@
+gtk+2.0 (2.19.7-0ubuntu2) lucid; urgency=low
+
+  * debian/patches/063_treeview_almost_fixed.patch:
+    - change by Michael Vogt to add an ubuntu-almost-fixed-height-mode property,
+      the change is required for software-center, adding as an ubuntu specific
+      change for now until somebody comment on the upstream bug (lp: #514879)
+  * debian/patches/064_initial_fileselector_select.patch:
+    - change by Cody Russell to fix filselector directory selection issue 
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 22 Mar 2010 14:23:46 +0100
+
 gtk+2.0 (2.19.7-0ubuntu1) lucid; urgency=low
 
   * New upstream version
