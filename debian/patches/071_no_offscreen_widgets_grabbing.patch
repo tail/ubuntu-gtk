@@ -19,7 +19,7 @@ index b150bf3..76914f1 100644
 +  if (toplevel && gdk_window_get_window_type (toplevel->window) == GDK_WINDOW_OFFSCREEN)
 +    return;
 +
-   if (!gtk_widget_has_grab (widget) && GTK_WIDGET_IS_SENSITIVE (widget))
+   if (!gtk_widget_has_grab (widget) && gtk_widget_is_sensitive (widget))
      {
        GTK_WIDGET_SET_FLAGS (widget, GTK_HAS_GRAB);
 

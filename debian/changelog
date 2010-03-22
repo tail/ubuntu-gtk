@@ -1,3 +1,34 @@
+gtk+2.0 (2.19.7-0ubuntu1) lucid; urgency=low
+
+  * New upstream version
+    - Bug fixes:
+    611707 Move documentation from templates to inline comments
+    69872 GTK_WIDGET_SET_FLAGS should be deprecated
+    612066 empathy hangs when clicked on information about contact...
+           (lp: #532947)
+    557420 Some compose sequences don't work anymore...
+    569042 gailbooleancell does not seem to attend to changes...
+    600992 File chooser reference counting issues
+    610905 gtk_drag_source_set need instrospection hint
+    611051 Search Entry Clear Icon not accessible
+    611217 Incorrect translator comment
+    611317 Document targets in drag and drop
+    611319 gtk_window_set_transient_for undocumented NULL value for parent
+    611658 Update documentation for gtkvscrollbar
+    611662 Update documentation for gtkvseparator
+    611686 focus_in/focus_out in gailtreeview.c should return FALSE...
+    611831 Move documentation to inline comments: GtkVBox
+    612119 Do not scroll when middle pasting
+    - Translation updates
+  * debian/patches/071_no_offscreen_widgets_grabbing.patch,
+    debian/patches/091_bugzilla_tooltip_refresh.patch:
+    - new version update
+    - increased the alpha value for tooltips to 85%
+  * debian/rules:
+    - updated the shlibs
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 11 Mar 2010 18:28:01 +0100
+
 gtk+2.0 (2.19.6-1ubuntu4) lucid; urgency=low
 
   * debian/patches/062_client_side_decoration.patch:

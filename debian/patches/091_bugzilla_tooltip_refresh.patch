@@ -165,7 +165,7 @@ diff -up gtk+-2.19.1/gtk/gtktooltip.c.fresh-tooltips gtk+-2.19.1/gtk/gtktooltip.
 +  gdouble  background_alpha;
 +
 +  if (gdk_screen_is_composited (gtk_widget_get_screen (widget)))
-+    background_alpha = 0.65;
++    background_alpha = 0.85;
 +  else
 +    background_alpha = 1.0;
 +
@@ -231,7 +231,7 @@ diff -up gtk+-2.19.1/gtk/gtktooltip.c.fresh-tooltips gtk+-2.19.1/gtk/gtktooltip.
 +      /* This is a hack to keep the Metacity compositor from slapping a
 +       * non-shaped shadow around the shaped tooltip
 +       */
-+      if (!GTK_WIDGET_MAPPED (tooltip->window))
++      if (!gtk_widget_get_mapped (tooltip->window))
 +        {
 +          wm = gdk_x11_screen_get_window_manager_name (screen);
 +          if (g_strcmp0 (wm, "Metacity") == 0)
