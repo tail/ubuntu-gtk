@@ -123,7 +123,7 @@ configure_flags := \
 			--infodir=\$${prefix}/share/info \
 			--sysconfdir=/etc \
 			--enable-test-print-backend \
-			--enable-introspection=yes \
+			--enable-introspection=no \
 			--build=$(DEB_BUILD_GNU_TYPE)
 ifneq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
 	configure_flags += --host=$(DEB_HOST_GNU_TYPE)
@@ -133,6 +133,7 @@ shared_configure_flags := $(configure_flags) \
 			--with-xinput=yes \
 			--with-libjasper \
 			--enable-shared \
+			--enable-introspection=yes \
 			--disable-static
 static_configure_flags := $(configure_flags) \
 			--with-xinput=yes \

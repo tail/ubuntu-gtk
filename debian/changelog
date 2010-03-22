@@ -1,7 +1,16 @@
-gtk+2.0 (2.19.7-0ubuntu2) UNRELEASED; urgency=low
+gtk+2.0 (2.19.7-0ubuntu3) UNRELEASED; urgency=low
 
   * add introspection:
     - debian/rules: toogle configure option
+    - debian/control.in:
+      - add gobject-introspection build-dep
+      - add gir packages (gir1.0-gtk-2.0)
+    - debian/libgtk2.0-dev.install.in: add gir file
+    - add debian/gir1.0-gtk-2.0.install
+    - add debian/patches/063_build_introspection_file.patch from bgo #613597
+      to add gir targets and proper .la wait
+  * debian/patches/070_mandatory-relibtoolize.patch:
+    - refreshed
 
  -- Didier Roche <didrocks@ubuntu.com>  Mon, 22 Mar 2010 14:29:26 +0100
 
@@ -17,14 +26,6 @@ gtk+2.0 (2.19.7-0ubuntu2) lucid; urgency=low
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 22 Mar 2010 14:23:46 +0100
 
-gtk+2.0 (2.19.7-0ubuntu2) UNRELEASED; urgency=low
-
-  * add introspection:
-    - debian/rules: toogle configure option
-
- -- Didier Roche <didrocks@ubuntu.com>  Mon, 22 Mar 2010 14:29:26 +0100
-
->>>>>>> MERGE-SOURCE
 gtk+2.0 (2.19.7-0ubuntu1) lucid; urgency=low
 
   * New upstream version
