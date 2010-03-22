@@ -14,6 +14,8 @@
 060_ignore-random-icons.patch
 061_use_pdf_as_default_printing_standard.patch
 062_dnd_menubar.patch
+063_treeview_almost_fixed.patch
+064_initial_fileselector_select.patch
 070_mandatory-relibtoolize.patch
 071_no_offscreen_widgets_grabbing.patch
 090_directfb-map-virtual-modifiers.patch

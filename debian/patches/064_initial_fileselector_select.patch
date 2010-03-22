@@ -1,0 +1,19 @@
+# Description: let initial directory selection work correctly
+# Ubuntu: 
+# Upstream: https://bugzilla.gnome.org/557689
+diff --git a/gtk/gtkfilechooserdefault.c b/gtk/gtkfilechooserdefault.c
+index eefe49c..23d4d06 100644
+--- a/gtk/gtkfilechooserdefault.c
++++ b/gtk/gtkfilechooserdefault.c
+@@ -8591,7 +8591,10 @@ gtk_file_chooser_default_should_respond (GtkFileChooserEmbed *chooser_embed)
+       entry = GTK_FILE_CHOOSER_ENTRY (impl->location_entry);
+       check_save_entry (impl, &file, &is_well_formed, &is_empty, &is_file_part_empty, &is_folder);
+ 
+-      if (is_empty || !is_well_formed)
++      if (is_empty)
++        goto file_list;
++
++      if (!is_well_formed)
+ 	return FALSE;
+ 
+       g_assert (file != NULL);
