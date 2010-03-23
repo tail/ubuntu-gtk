@@ -1,7 +1,7 @@
 Index: gtk+2.0-2.19.7/gdk-pixbuf/Makefile.am
 ===================================================================
---- gtk+2.0-2.19.7.orig/gdk-pixbuf/Makefile.am	2010-03-22 17:21:12.362950828 +0100
-+++ gtk+2.0-2.19.7/gdk-pixbuf/Makefile.am	2010-03-22 17:21:12.502966952 +0100
+--- gtk+2.0-2.19.7.orig/gdk-pixbuf/Makefile.am	2010-03-22 18:09:08.170952836 +0100
++++ gtk+2.0-2.19.7/gdk-pixbuf/Makefile.am	2010-03-22 18:09:08.462967452 +0100
 @@ -692,6 +692,7 @@
  
  if HAVE_INTROSPECTION
@@ -12,11 +12,14 @@ Index: gtk+2.0-2.19.7/gdk-pixbuf/Makefile.am
  GdkPixbuf_2_0_gir_LIBS = libgdk_pixbuf-2.0.la
 Index: gtk+2.0-2.19.7/gdk/Makefile.am
 ===================================================================
---- gtk+2.0-2.19.7.orig/gdk/Makefile.am	2010-03-22 17:21:30.003951852 +0100
-+++ gtk+2.0-2.19.7/gdk/Makefile.am	2010-03-22 17:22:13.358952833 +0100
-@@ -201,6 +201,7 @@
+--- gtk+2.0-2.19.7.orig/gdk/Makefile.am	2010-02-23 16:24:55.000000000 +0100
++++ gtk+2.0-2.19.7/gdk/Makefile.am	2010-03-22 18:11:21.711985143 +0100
+@@ -199,8 +199,9 @@
+ 		$(gdk_c_sources) \
+         gdkenumtypes.c \
          gdkenumtypes.h \
-         $(srcdir)/x11/*.c
+-        $(srcdir)/x11/*.c
++        x11/*.c
  
 +Gdk-2.0.gir: $(gdktargetlib) Makefile
  Gdk_2_0_gir_SCANNERFLAGS = --strip-prefix=Gdk --add-include-path=../gdk-pixbuf

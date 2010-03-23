@@ -1,7 +1,7 @@
 Index: gtk+2.0-2.19.7/aclocal.m4
 ===================================================================
 --- gtk+2.0-2.19.7.orig/aclocal.m4	2010-03-09 16:22:42.000000000 +0100
-+++ gtk+2.0-2.19.7/aclocal.m4	2010-03-22 17:22:27.179951185 +0100
++++ gtk+2.0-2.19.7/aclocal.m4	2010-03-22 18:11:53.014952412 +0100
 @@ -664,8017 +664,6 @@
  fi])
  
@@ -8072,7 +8072,7 @@ Index: gtk+2.0-2.19.7/aclocal.m4
 Index: gtk+2.0-2.19.7/configure
 ===================================================================
 --- gtk+2.0-2.19.7.orig/configure	2010-03-09 16:23:02.000000000 +0100
-+++ gtk+2.0-2.19.7/configure	2010-03-22 17:22:27.194952743 +0100
++++ gtk+2.0-2.19.7/configure	2010-03-22 18:11:58.695950914 +0100
 @@ -816,6 +816,7 @@
  GDK_DEP_LIBS
  GDK_EXTRA_CFLAGS
@@ -8697,7 +8697,7 @@ Index: gtk+2.0-2.19.7/configure
 Index: gtk+2.0-2.19.7/contrib/gdk-pixbuf-xlib/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/contrib/gdk-pixbuf-xlib/Makefile.in	2010-03-09 16:22:52.000000000 +0100
-+++ gtk+2.0-2.19.7/contrib/gdk-pixbuf-xlib/Makefile.in	2010-03-22 17:22:27.198967429 +0100
++++ gtk+2.0-2.19.7/contrib/gdk-pixbuf-xlib/Makefile.in	2010-03-22 18:12:00.187950874 +0100
 @@ -44,11 +44,14 @@
  	$(top_srcdir)/Makefile.decl ChangeLog
  subdir = contrib/gdk-pixbuf-xlib
@@ -8726,7 +8726,7 @@ Index: gtk+2.0-2.19.7/contrib/gdk-pixbuf-xlib/Makefile.in
 Index: gtk+2.0-2.19.7/contrib/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/contrib/Makefile.in	2010-03-09 16:22:51.000000000 +0100
-+++ gtk+2.0-2.19.7/contrib/Makefile.in	2010-03-22 17:22:27.198967429 +0100
++++ gtk+2.0-2.19.7/contrib/Makefile.in	2010-03-22 18:11:59.999952321 +0100
 @@ -40,11 +40,14 @@
  @USE_X11_TRUE@am__append_1 = gdk-pixbuf-xlib
  subdir = contrib
@@ -8755,7 +8755,7 @@ Index: gtk+2.0-2.19.7/contrib/Makefile.in
 Index: gtk+2.0-2.19.7/demos/gtk-demo/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/demos/gtk-demo/Makefile.in	2010-03-09 16:22:52.000000000 +0100
-+++ gtk+2.0-2.19.7/demos/gtk-demo/Makefile.in	2010-03-22 17:22:27.202966051 +0100
++++ gtk+2.0-2.19.7/demos/gtk-demo/Makefile.in	2010-03-22 18:12:00.451950830 +0100
 @@ -42,11 +42,14 @@
  bin_PROGRAMS = gtk-demo$(EXEEXT)
  subdir = demos/gtk-demo
@@ -8784,7 +8784,7 @@ Index: gtk+2.0-2.19.7/demos/gtk-demo/Makefile.in
 Index: gtk+2.0-2.19.7/demos/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/demos/Makefile.in	2010-03-09 16:22:52.000000000 +0100
-+++ gtk+2.0-2.19.7/demos/Makefile.in	2010-03-22 17:22:27.202966051 +0100
++++ gtk+2.0-2.19.7/demos/Makefile.in	2010-03-22 18:12:00.331950800 +0100
 @@ -46,11 +46,14 @@
  @HAVE_PNG_TRUE@am__append_1 = testpixbuf
  subdir = demos
@@ -8813,7 +8813,7 @@ Index: gtk+2.0-2.19.7/demos/Makefile.in
 Index: gtk+2.0-2.19.7/docs/faq/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/docs/faq/Makefile.in	2010-03-09 16:22:52.000000000 +0100
-+++ gtk+2.0-2.19.7/docs/faq/Makefile.in	2010-03-22 17:22:27.202966051 +0100
++++ gtk+2.0-2.19.7/docs/faq/Makefile.in	2010-03-22 18:12:00.635952507 +0100
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = docs/faq
@@ -8842,7 +8842,7 @@ Index: gtk+2.0-2.19.7/docs/faq/Makefile.in
 Index: gtk+2.0-2.19.7/docs/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/docs/Makefile.in	2010-03-09 16:22:52.000000000 +0100
-+++ gtk+2.0-2.19.7/docs/Makefile.in	2010-03-22 17:22:27.206961951 +0100
++++ gtk+2.0-2.19.7/docs/Makefile.in	2010-03-22 18:12:00.543952259 +0100
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = docs
@@ -8871,7 +8871,7 @@ Index: gtk+2.0-2.19.7/docs/Makefile.in
 Index: gtk+2.0-2.19.7/docs/reference/gdk/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/docs/reference/gdk/Makefile.in	2010-03-09 16:22:53.000000000 +0100
-+++ gtk+2.0-2.19.7/docs/reference/gdk/Makefile.in	2010-03-22 17:22:27.206961951 +0100
++++ gtk+2.0-2.19.7/docs/reference/gdk/Makefile.in	2010-03-22 18:12:00.967952514 +0100
 @@ -46,11 +46,14 @@
  	$(top_srcdir)/gtk-doc.make
  subdir = docs/reference/gdk
@@ -8900,7 +8900,7 @@ Index: gtk+2.0-2.19.7/docs/reference/gdk/Makefile.in
 Index: gtk+2.0-2.19.7/docs/reference/gdk-pixbuf/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/docs/reference/gdk-pixbuf/Makefile.in	2010-03-09 16:22:53.000000000 +0100
-+++ gtk+2.0-2.19.7/docs/reference/gdk-pixbuf/Makefile.in	2010-03-22 17:22:27.210952541 +0100
++++ gtk+2.0-2.19.7/docs/reference/gdk-pixbuf/Makefile.in	2010-03-22 18:12:00.855952663 +0100
 @@ -46,11 +46,14 @@
  	$(top_srcdir)/gtk-doc.make
  subdir = docs/reference/gdk-pixbuf
@@ -8929,7 +8929,7 @@ Index: gtk+2.0-2.19.7/docs/reference/gdk-pixbuf/Makefile.in
 Index: gtk+2.0-2.19.7/docs/reference/gtk/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/docs/reference/gtk/Makefile.in	2010-03-09 16:22:53.000000000 +0100
-+++ gtk+2.0-2.19.7/docs/reference/gtk/Makefile.in	2010-03-22 17:22:27.210952541 +0100
++++ gtk+2.0-2.19.7/docs/reference/gtk/Makefile.in	2010-03-22 18:12:01.091951660 +0100
 @@ -46,11 +46,14 @@
  	$(top_srcdir)/gtk-doc.make
  subdir = docs/reference/gtk
@@ -8958,7 +8958,7 @@ Index: gtk+2.0-2.19.7/docs/reference/gtk/Makefile.in
 Index: gtk+2.0-2.19.7/docs/reference/libgail-util/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/docs/reference/libgail-util/Makefile.in	2010-03-09 16:22:53.000000000 +0100
-+++ gtk+2.0-2.19.7/docs/reference/libgail-util/Makefile.in	2010-03-22 17:22:27.210952541 +0100
++++ gtk+2.0-2.19.7/docs/reference/libgail-util/Makefile.in	2010-03-22 18:12:01.199951144 +0100
 @@ -45,11 +45,14 @@
  	$(top_srcdir)/Makefile.decl $(top_srcdir)/gtk-doc.make
  subdir = docs/reference/libgail-util
@@ -8987,7 +8987,7 @@ Index: gtk+2.0-2.19.7/docs/reference/libgail-util/Makefile.in
 Index: gtk+2.0-2.19.7/docs/reference/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/docs/reference/Makefile.in	2010-03-09 16:22:52.000000000 +0100
-+++ gtk+2.0-2.19.7/docs/reference/Makefile.in	2010-03-22 17:22:27.214966249 +0100
++++ gtk+2.0-2.19.7/docs/reference/Makefile.in	2010-03-22 18:12:00.731951998 +0100
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl AUTHORS COPYING ChangeLog
  subdir = docs/reference
@@ -9016,7 +9016,7 @@ Index: gtk+2.0-2.19.7/docs/reference/Makefile.in
 Index: gtk+2.0-2.19.7/docs/tools/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/docs/tools/Makefile.in	2010-03-09 16:22:53.000000000 +0100
-+++ gtk+2.0-2.19.7/docs/tools/Makefile.in	2010-03-22 17:22:27.214966249 +0100
++++ gtk+2.0-2.19.7/docs/tools/Makefile.in	2010-03-22 18:12:01.311951264 +0100
 @@ -41,11 +41,14 @@
  @USE_X11_TRUE@noinst_PROGRAMS = doc-shooter$(EXEEXT)
  subdir = docs/tools
@@ -9045,7 +9045,7 @@ Index: gtk+2.0-2.19.7/docs/tools/Makefile.in
 Index: gtk+2.0-2.19.7/docs/tutorial/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/docs/tutorial/Makefile.in	2010-03-09 16:22:54.000000000 +0100
-+++ gtk+2.0-2.19.7/docs/tutorial/Makefile.in	2010-03-22 17:22:27.214966249 +0100
++++ gtk+2.0-2.19.7/docs/tutorial/Makefile.in	2010-03-22 18:12:01.410955252 +0100
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = docs/tutorial
@@ -9074,7 +9074,7 @@ Index: gtk+2.0-2.19.7/docs/tutorial/Makefile.in
 Index: gtk+2.0-2.19.7/gdk/directfb/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/gdk/directfb/Makefile.in	2010-03-09 16:22:54.000000000 +0100
-+++ gtk+2.0-2.19.7/gdk/directfb/Makefile.in	2010-03-22 17:22:27.218951812 +0100
++++ gtk+2.0-2.19.7/gdk/directfb/Makefile.in	2010-03-22 18:12:02.247951027 +0100
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl AUTHORS TODO
  subdir = gdk/directfb
@@ -9103,7 +9103,7 @@ Index: gtk+2.0-2.19.7/gdk/directfb/Makefile.in
 Index: gtk+2.0-2.19.7/gdk/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/gdk/Makefile.in	2010-03-09 16:22:54.000000000 +0100
-+++ gtk+2.0-2.19.7/gdk/Makefile.in	2010-03-22 17:22:27.218951812 +0100
++++ gtk+2.0-2.19.7/gdk/Makefile.in	2010-03-22 18:12:02.131951089 +0100
 @@ -45,11 +45,14 @@
  @HAVE_INTROSPECTION_TRUE@am__append_2 = $(dist_gir_DATA) $(typelibs_DATA)
  subdir = gdk
@@ -9129,10 +9129,28 @@ Index: gtk+2.0-2.19.7/gdk/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
+@@ -698,7 +702,7 @@
+ @HAVE_INTROSPECTION_TRUE@		$(gdk_c_sources) \
+ @HAVE_INTROSPECTION_TRUE@        gdkenumtypes.c \
+ @HAVE_INTROSPECTION_TRUE@        gdkenumtypes.h \
+-@HAVE_INTROSPECTION_TRUE@        $(srcdir)/x11/*.c
++@HAVE_INTROSPECTION_TRUE@        x11/*.c
+ 
+ @HAVE_INTROSPECTION_TRUE@Gdk_2_0_gir_SCANNERFLAGS = --strip-prefix=Gdk --add-include-path=../gdk-pixbuf
+ @HAVE_INTROSPECTION_TRUE@Gdk_2_0_gir_INCLUDES = Gio-2.0 GdkPixbuf-2.0 Pango-1.0
+@@ -1413,6 +1417,8 @@
+ check-local: test
+ -include $(INTROSPECTION_MAKEFILE)
+ 
++@HAVE_INTROSPECTION_TRUE@Gdk-2.0.gir: $(gdktargetlib) Makefile
++
+ @OS_WIN32_TRUE@install-def-file: gdk.def
+ @OS_WIN32_TRUE@	$(INSTALL) $(srcdir)/gdk.def $(DESTDIR)$(libdir)/gdk-win32-2.0.def
+ @OS_WIN32_TRUE@uninstall-def-file:
 Index: gtk+2.0-2.19.7/gdk/quartz/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/gdk/quartz/Makefile.in	2010-03-09 16:22:55.000000000 +0100
-+++ gtk+2.0-2.19.7/gdk/quartz/Makefile.in	2010-03-22 17:22:27.222951901 +0100
++++ gtk+2.0-2.19.7/gdk/quartz/Makefile.in	2010-03-22 18:12:02.363951304 +0100
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = gdk/quartz
@@ -9161,7 +9179,7 @@ Index: gtk+2.0-2.19.7/gdk/quartz/Makefile.in
 Index: gtk+2.0-2.19.7/gdk/tests/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/gdk/tests/Makefile.in	2010-03-09 16:22:55.000000000 +0100
-+++ gtk+2.0-2.19.7/gdk/tests/Makefile.in	2010-03-22 17:22:27.222951901 +0100
++++ gtk+2.0-2.19.7/gdk/tests/Makefile.in	2010-03-22 18:12:02.459951845 +0100
 @@ -41,11 +41,14 @@
  TESTS = $(am__EXEEXT_1)
  subdir = gdk/tests
@@ -9190,7 +9208,7 @@ Index: gtk+2.0-2.19.7/gdk/tests/Makefile.in
 Index: gtk+2.0-2.19.7/gdk/win32/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/gdk/win32/Makefile.in	2010-03-09 16:22:55.000000000 +0100
-+++ gtk+2.0-2.19.7/gdk/win32/Makefile.in	2010-03-22 17:22:27.222951901 +0100
++++ gtk+2.0-2.19.7/gdk/win32/Makefile.in	2010-03-22 18:12:02.583951270 +0100
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = gdk/win32
@@ -9219,7 +9237,7 @@ Index: gtk+2.0-2.19.7/gdk/win32/Makefile.in
 Index: gtk+2.0-2.19.7/gdk/win32/rc/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/gdk/win32/rc/Makefile.in	2010-03-09 16:22:56.000000000 +0100
-+++ gtk+2.0-2.19.7/gdk/win32/rc/Makefile.in	2010-03-22 17:22:27.222951901 +0100
++++ gtk+2.0-2.19.7/gdk/win32/rc/Makefile.in	2010-03-22 18:12:02.675951445 +0100
 @@ -40,11 +40,14 @@
  	$(srcdir)/gdk.rc.in $(top_srcdir)/Makefile.decl
  subdir = gdk/win32/rc
@@ -9248,7 +9266,7 @@ Index: gtk+2.0-2.19.7/gdk/win32/rc/Makefile.in
 Index: gtk+2.0-2.19.7/gdk/x11/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/gdk/x11/Makefile.in	2010-03-09 16:22:56.000000000 +0100
-+++ gtk+2.0-2.19.7/gdk/x11/Makefile.in	2010-03-22 17:22:27.226966168 +0100
++++ gtk+2.0-2.19.7/gdk/x11/Makefile.in	2010-03-22 18:12:02.803951714 +0100
 @@ -46,11 +46,14 @@
  TESTS = checksettings$(EXEEXT)
  subdir = gdk/x11
@@ -9277,7 +9295,7 @@ Index: gtk+2.0-2.19.7/gdk/x11/Makefile.in
 Index: gtk+2.0-2.19.7/gdk-pixbuf/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/gdk-pixbuf/Makefile.in	2010-03-09 16:22:54.000000000 +0100
-+++ gtk+2.0-2.19.7/gdk-pixbuf/Makefile.in	2010-03-22 17:22:27.226966168 +0100
++++ gtk+2.0-2.19.7/gdk-pixbuf/Makefile.in	2010-03-22 18:12:01.791951377 +0100
 @@ -51,11 +51,14 @@
  @HAVE_INTROSPECTION_TRUE@am__append_2 = $(dist_gir_DATA) $(typelibs_DATA)
  subdir = gdk-pixbuf
@@ -9320,10 +9338,19 @@ Index: gtk+2.0-2.19.7/gdk-pixbuf/Makefile.in
  LDADDS = libgdk_pixbuf-$(GTK_API_VERSION).la $(GDK_PIXBUF_DEP_LIBS)
  test_gdk_pixbuf_LDADD = $(LDADDS)
  gdk_pixbuf_csource_SOURCES = gdk-pixbuf-csource.c
+@@ -2436,6 +2441,8 @@
+ 	  rm -f $(MAINTAINERCLEANFILES); \
+ 	fi
+ 
++@HAVE_INTROSPECTION_TRUE@GdkPixbuf-2.0.gir: libgdk_pixbuf-2.0.la Makefile
++
+ # Running this if cross compiling or if DESTDIR is set is going to
+ # not work at all, so skip it
+ # We use install-data-hook here to workaround a bug in automake and/or libtool
 Index: gtk+2.0-2.19.7/gdk-pixbuf/pixops/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/gdk-pixbuf/pixops/Makefile.in	2010-03-09 16:22:54.000000000 +0100
-+++ gtk+2.0-2.19.7/gdk-pixbuf/pixops/Makefile.in	2010-03-22 17:22:27.230957736 +0100
++++ gtk+2.0-2.19.7/gdk-pixbuf/pixops/Makefile.in	2010-03-22 18:12:01.939952165 +0100
 @@ -42,11 +42,14 @@
  noinst_PROGRAMS = timescale$(EXEEXT)
  subdir = gdk-pixbuf/pixops
@@ -9352,7 +9379,7 @@ Index: gtk+2.0-2.19.7/gdk-pixbuf/pixops/Makefile.in
 Index: gtk+2.0-2.19.7/gtk/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/gtk/Makefile.in	2010-03-09 16:22:56.000000000 +0100
-+++ gtk+2.0-2.19.7/gtk/Makefile.in	2010-03-22 17:22:27.234951540 +0100
++++ gtk+2.0-2.19.7/gtk/Makefile.in	2010-03-22 18:12:03.227950930 +0100
 @@ -77,11 +77,14 @@
  
  subdir = gtk
@@ -9420,7 +9447,7 @@ Index: gtk+2.0-2.19.7/gtk/Makefile.in
 Index: gtk+2.0-2.19.7/gtk/tests/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/gtk/tests/Makefile.in	2010-03-09 16:22:56.000000000 +0100
-+++ gtk+2.0-2.19.7/gtk/tests/Makefile.in	2010-03-22 17:22:27.234951540 +0100
++++ gtk+2.0-2.19.7/gtk/tests/Makefile.in	2010-03-22 18:12:03.371950853 +0100
 @@ -42,11 +42,14 @@
  @OS_UNIX_TRUE@am__append_1 = defaultvalue
  subdir = gtk/tests
@@ -9449,7 +9476,7 @@ Index: gtk+2.0-2.19.7/gtk/tests/Makefile.in
 Index: gtk+2.0-2.19.7/gtk/theme-bits/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/gtk/theme-bits/Makefile.in	2010-03-09 16:22:57.000000000 +0100
-+++ gtk+2.0-2.19.7/gtk/theme-bits/Makefile.in	2010-03-22 17:22:27.238951978 +0100
++++ gtk+2.0-2.19.7/gtk/theme-bits/Makefile.in	2010-03-22 18:12:03.487951843 +0100
 @@ -41,11 +41,14 @@
  noinst_PROGRAMS = decompose-bits$(EXEEXT)
  subdir = gtk/theme-bits
@@ -9478,7 +9505,7 @@ Index: gtk+2.0-2.19.7/gtk/theme-bits/Makefile.in
 Index: gtk+2.0-2.19.7/ltmain.sh
 ===================================================================
 --- gtk+2.0-2.19.7.orig/ltmain.sh	2010-01-21 22:11:50.000000000 +0100
-+++ gtk+2.0-2.19.7/ltmain.sh	2010-03-22 17:22:27.242952416 +0100
++++ gtk+2.0-2.19.7/ltmain.sh	2010-03-22 18:11:40.958968060 +0100
 @@ -65,7 +65,7 @@
  #       compiler:		$LTCC
  #       compiler flags:		$LTCFLAGS
@@ -9560,7 +9587,7 @@ Index: gtk+2.0-2.19.7/ltmain.sh
 Index: gtk+2.0-2.19.7/m4/gtk-doc.m4
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.19.7/m4/gtk-doc.m4	2010-03-22 17:22:27.246951598 +0100
++++ gtk+2.0-2.19.7/m4/gtk-doc.m4	2010-03-22 18:11:40.958968060 +0100
 @@ -0,0 +1,61 @@
 +dnl -*- mode: autoconf -*-
 +
@@ -9626,7 +9653,7 @@ Index: gtk+2.0-2.19.7/m4/gtk-doc.m4
 Index: gtk+2.0-2.19.7/m4/libtool.m4
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.19.7/m4/libtool.m4	2010-03-22 17:22:27.258951027 +0100
++++ gtk+2.0-2.19.7/m4/libtool.m4	2010-03-22 18:11:40.979951664 +0100
 @@ -0,0 +1,7377 @@
 +# libtool.m4 - Configure libtool for the host system. -*-Autoconf-*-
 +#
@@ -17008,7 +17035,7 @@ Index: gtk+2.0-2.19.7/m4/libtool.m4
 Index: gtk+2.0-2.19.7/m4/lt~obsolete.m4
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.19.7/m4/lt~obsolete.m4	2010-03-22 17:22:27.262965992 +0100
++++ gtk+2.0-2.19.7/m4/lt~obsolete.m4	2010-03-22 18:11:40.983951125 +0100
 @@ -0,0 +1,92 @@
 +# lt~obsolete.m4 -- aclocal satisfying obsolete definitions.    -*-Autoconf-*-
 +#
@@ -17105,7 +17132,7 @@ Index: gtk+2.0-2.19.7/m4/lt~obsolete.m4
 Index: gtk+2.0-2.19.7/m4/ltoptions.m4
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.19.7/m4/ltoptions.m4	2010-03-22 17:22:27.262965992 +0100
++++ gtk+2.0-2.19.7/m4/ltoptions.m4	2010-03-22 18:11:40.983951125 +0100
 @@ -0,0 +1,368 @@
 +# Helper functions for option handling.                    -*- Autoconf -*-
 +#
@@ -17478,7 +17505,7 @@ Index: gtk+2.0-2.19.7/m4/ltoptions.m4
 Index: gtk+2.0-2.19.7/m4/ltsugar.m4
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.19.7/m4/ltsugar.m4	2010-03-22 17:22:27.266965313 +0100
++++ gtk+2.0-2.19.7/m4/ltsugar.m4	2010-03-22 18:11:40.983951125 +0100
 @@ -0,0 +1,123 @@
 +# ltsugar.m4 -- libtool m4 base layer.                         -*-Autoconf-*-
 +#
@@ -17606,7 +17633,7 @@ Index: gtk+2.0-2.19.7/m4/ltsugar.m4
 Index: gtk+2.0-2.19.7/m4/ltversion.m4
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.19.7/m4/ltversion.m4	2010-03-22 17:22:27.266965313 +0100
++++ gtk+2.0-2.19.7/m4/ltversion.m4	2010-03-22 18:11:40.983951125 +0100
 @@ -0,0 +1,23 @@
 +# ltversion.m4 -- version numbers			-*- Autoconf -*-
 +#
@@ -17634,7 +17661,7 @@ Index: gtk+2.0-2.19.7/m4/ltversion.m4
 Index: gtk+2.0-2.19.7/m4macros/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/m4macros/Makefile.in	2010-03-09 16:22:57.000000000 +0100
-+++ gtk+2.0-2.19.7/m4macros/Makefile.in	2010-03-22 17:22:27.266965313 +0100
++++ gtk+2.0-2.19.7/m4macros/Makefile.in	2010-03-22 18:12:03.579951460 +0100
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = m4macros
@@ -17663,7 +17690,7 @@ Index: gtk+2.0-2.19.7/m4macros/Makefile.in
 Index: gtk+2.0-2.19.7/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/Makefile.in	2010-03-09 16:23:01.000000000 +0100
-+++ gtk+2.0-2.19.7/Makefile.in	2010-03-22 17:22:27.266965313 +0100
++++ gtk+2.0-2.19.7/Makefile.in	2010-03-22 18:12:06.403951708 +0100
 @@ -47,17 +47,20 @@
  	$(srcdir)/gtk+-unix-print-2.0.pc.in $(srcdir)/gtk-zip.sh.in \
  	$(top_srcdir)/Makefile.decl $(top_srcdir)/configure AUTHORS \
@@ -17721,7 +17748,7 @@ Index: gtk+2.0-2.19.7/Makefile.in
 Index: gtk+2.0-2.19.7/mkinstalldirs
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.19.7/mkinstalldirs	2010-03-22 17:22:27.270957859 +0100
++++ gtk+2.0-2.19.7/mkinstalldirs	2010-03-22 18:11:40.987963995 +0100
 @@ -0,0 +1,162 @@
 +#! /bin/sh
 +# mkinstalldirs --- make directory hierarchy
@@ -17888,7 +17915,7 @@ Index: gtk+2.0-2.19.7/mkinstalldirs
 Index: gtk+2.0-2.19.7/modules/engines/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/modules/engines/Makefile.in	2010-03-09 16:22:58.000000000 +0100
-+++ gtk+2.0-2.19.7/modules/engines/Makefile.in	2010-03-22 17:22:27.270957859 +0100
++++ gtk+2.0-2.19.7/modules/engines/Makefile.in	2010-03-22 18:12:03.767953358 +0100
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/engines
@@ -17917,7 +17944,7 @@ Index: gtk+2.0-2.19.7/modules/engines/Makefile.in
 Index: gtk+2.0-2.19.7/modules/engines/ms-windows/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/modules/engines/ms-windows/Makefile.in	2010-03-09 16:22:58.000000000 +0100
-+++ gtk+2.0-2.19.7/modules/engines/ms-windows/Makefile.in	2010-03-22 17:22:27.270957859 +0100
++++ gtk+2.0-2.19.7/modules/engines/ms-windows/Makefile.in	2010-03-22 18:12:03.883951819 +0100
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/engines/ms-windows
@@ -17946,7 +17973,7 @@ Index: gtk+2.0-2.19.7/modules/engines/ms-windows/Makefile.in
 Index: gtk+2.0-2.19.7/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-03-09 16:22:58.000000000 +0100
-+++ gtk+2.0-2.19.7/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-03-22 17:22:27.274951942 +0100
++++ gtk+2.0-2.19.7/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-03-22 18:12:04.071951350 +0100
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/engines/ms-windows/Theme/gtk-2.0
@@ -17975,7 +18002,7 @@ Index: gtk+2.0-2.19.7/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in
 Index: gtk+2.0-2.19.7/modules/engines/ms-windows/Theme/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/modules/engines/ms-windows/Theme/Makefile.in	2010-03-09 16:22:58.000000000 +0100
-+++ gtk+2.0-2.19.7/modules/engines/ms-windows/Theme/Makefile.in	2010-03-22 17:22:27.274951942 +0100
++++ gtk+2.0-2.19.7/modules/engines/ms-windows/Theme/Makefile.in	2010-03-22 18:12:03.975950946 +0100
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/engines/ms-windows/Theme
@@ -18004,7 +18031,7 @@ Index: gtk+2.0-2.19.7/modules/engines/ms-windows/Theme/Makefile.in
 Index: gtk+2.0-2.19.7/modules/engines/pixbuf/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/modules/engines/pixbuf/Makefile.in	2010-03-09 16:22:58.000000000 +0100
-+++ gtk+2.0-2.19.7/modules/engines/pixbuf/Makefile.in	2010-03-22 17:22:27.274951942 +0100
++++ gtk+2.0-2.19.7/modules/engines/pixbuf/Makefile.in	2010-03-22 18:12:04.183951344 +0100
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl ChangeLog
  subdir = modules/engines/pixbuf
@@ -18033,7 +18060,7 @@ Index: gtk+2.0-2.19.7/modules/engines/pixbuf/Makefile.in
 Index: gtk+2.0-2.19.7/modules/input/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/modules/input/Makefile.in	2010-03-09 16:22:58.000000000 +0100
-+++ gtk+2.0-2.19.7/modules/input/Makefile.in	2010-03-22 17:22:27.278961948 +0100
++++ gtk+2.0-2.19.7/modules/input/Makefile.in	2010-03-22 18:12:04.415951418 +0100
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/input
@@ -18092,7 +18119,7 @@ Index: gtk+2.0-2.19.7/modules/input/Makefile.in
 Index: gtk+2.0-2.19.7/modules/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/modules/Makefile.in	2010-03-09 16:22:57.000000000 +0100
-+++ gtk+2.0-2.19.7/modules/Makefile.in	2010-03-22 17:22:27.278961948 +0100
++++ gtk+2.0-2.19.7/modules/Makefile.in	2010-03-22 18:12:03.671950727 +0100
 @@ -40,11 +40,14 @@
  @OS_UNIX_TRUE@am__append_1 = printbackends
  subdir = modules
@@ -18121,7 +18148,7 @@ Index: gtk+2.0-2.19.7/modules/Makefile.in
 Index: gtk+2.0-2.19.7/modules/other/gail/libgail-util/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/modules/other/gail/libgail-util/Makefile.in	2010-03-09 16:22:59.000000000 +0100
-+++ gtk+2.0-2.19.7/modules/other/gail/libgail-util/Makefile.in	2010-03-22 17:22:27.278961948 +0100
++++ gtk+2.0-2.19.7/modules/other/gail/libgail-util/Makefile.in	2010-03-22 18:12:05.003950873 +0100
 @@ -42,11 +42,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/other/gail/libgail-util
@@ -18150,7 +18177,7 @@ Index: gtk+2.0-2.19.7/modules/other/gail/libgail-util/Makefile.in
 Index: gtk+2.0-2.19.7/modules/other/gail/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/modules/other/gail/Makefile.in	2010-03-09 16:22:59.000000000 +0100
-+++ gtk+2.0-2.19.7/modules/other/gail/Makefile.in	2010-03-22 17:22:27.282962316 +0100
++++ gtk+2.0-2.19.7/modules/other/gail/Makefile.in	2010-03-22 18:12:04.875950942 +0100
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl ChangeLog
  subdir = modules/other/gail
@@ -18179,7 +18206,7 @@ Index: gtk+2.0-2.19.7/modules/other/gail/Makefile.in
 Index: gtk+2.0-2.19.7/modules/other/gail/tests/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/modules/other/gail/tests/Makefile.in	2010-03-09 16:22:59.000000000 +0100
-+++ gtk+2.0-2.19.7/modules/other/gail/tests/Makefile.in	2010-03-22 17:22:27.282962316 +0100
++++ gtk+2.0-2.19.7/modules/other/gail/tests/Makefile.in	2010-03-22 18:12:05.183950646 +0100
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/other/gail/tests
@@ -18208,7 +18235,7 @@ Index: gtk+2.0-2.19.7/modules/other/gail/tests/Makefile.in
 Index: gtk+2.0-2.19.7/modules/other/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/modules/other/Makefile.in	2010-03-09 16:22:58.000000000 +0100
-+++ gtk+2.0-2.19.7/modules/other/Makefile.in	2010-03-22 17:22:27.286961707 +0100
++++ gtk+2.0-2.19.7/modules/other/Makefile.in	2010-03-22 18:12:04.511951541 +0100
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/other
@@ -18237,7 +18264,7 @@ Index: gtk+2.0-2.19.7/modules/other/Makefile.in
 Index: gtk+2.0-2.19.7/modules/printbackends/cups/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/modules/printbackends/cups/Makefile.in	2010-03-09 16:22:59.000000000 +0100
-+++ gtk+2.0-2.19.7/modules/printbackends/cups/Makefile.in	2010-03-22 17:22:27.286961707 +0100
++++ gtk+2.0-2.19.7/modules/printbackends/cups/Makefile.in	2010-03-22 18:12:05.391950950 +0100
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/printbackends/cups
@@ -18266,7 +18293,7 @@ Index: gtk+2.0-2.19.7/modules/printbackends/cups/Makefile.in
 Index: gtk+2.0-2.19.7/modules/printbackends/file/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/modules/printbackends/file/Makefile.in	2010-03-09 16:23:00.000000000 +0100
-+++ gtk+2.0-2.19.7/modules/printbackends/file/Makefile.in	2010-03-22 17:22:27.286961707 +0100
++++ gtk+2.0-2.19.7/modules/printbackends/file/Makefile.in	2010-03-22 18:12:05.511950773 +0100
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/printbackends/file
@@ -18295,7 +18322,7 @@ Index: gtk+2.0-2.19.7/modules/printbackends/file/Makefile.in
 Index: gtk+2.0-2.19.7/modules/printbackends/lpr/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/modules/printbackends/lpr/Makefile.in	2010-03-09 16:23:00.000000000 +0100
-+++ gtk+2.0-2.19.7/modules/printbackends/lpr/Makefile.in	2010-03-22 17:22:27.290961796 +0100
++++ gtk+2.0-2.19.7/modules/printbackends/lpr/Makefile.in	2010-03-22 18:12:05.623950770 +0100
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/printbackends/lpr
@@ -18324,7 +18351,7 @@ Index: gtk+2.0-2.19.7/modules/printbackends/lpr/Makefile.in
 Index: gtk+2.0-2.19.7/modules/printbackends/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/modules/printbackends/Makefile.in	2010-03-09 16:22:59.000000000 +0100
-+++ gtk+2.0-2.19.7/modules/printbackends/Makefile.in	2010-03-22 17:22:27.290961796 +0100
++++ gtk+2.0-2.19.7/modules/printbackends/Makefile.in	2010-03-22 18:12:05.279951040 +0100
 @@ -42,11 +42,14 @@
  @HAVE_PAPI_TRUE@am__append_3 = papi
  subdir = modules/printbackends
@@ -18353,7 +18380,7 @@ Index: gtk+2.0-2.19.7/modules/printbackends/Makefile.in
 Index: gtk+2.0-2.19.7/modules/printbackends/papi/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/modules/printbackends/papi/Makefile.in	2010-03-09 16:23:00.000000000 +0100
-+++ gtk+2.0-2.19.7/modules/printbackends/papi/Makefile.in	2010-03-22 17:22:27.290961796 +0100
++++ gtk+2.0-2.19.7/modules/printbackends/papi/Makefile.in	2010-03-22 18:12:05.731951787 +0100
 @@ -39,11 +39,14 @@
  DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
  	$(srcdir)/Makefile.in
@@ -18382,7 +18409,7 @@ Index: gtk+2.0-2.19.7/modules/printbackends/papi/Makefile.in
 Index: gtk+2.0-2.19.7/modules/printbackends/test/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/modules/printbackends/test/Makefile.in	2010-03-09 16:23:00.000000000 +0100
-+++ gtk+2.0-2.19.7/modules/printbackends/test/Makefile.in	2010-03-22 17:22:27.290961796 +0100
++++ gtk+2.0-2.19.7/modules/printbackends/test/Makefile.in	2010-03-22 18:12:05.851950617 +0100
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/printbackends/test
@@ -18411,7 +18438,7 @@ Index: gtk+2.0-2.19.7/modules/printbackends/test/Makefile.in
 Index: gtk+2.0-2.19.7/perf/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/perf/Makefile.in	2010-03-09 16:23:00.000000000 +0100
-+++ gtk+2.0-2.19.7/perf/Makefile.in	2010-03-22 17:22:27.294971314 +0100
++++ gtk+2.0-2.19.7/perf/Makefile.in	2010-03-22 18:12:05.963954169 +0100
 @@ -41,11 +41,14 @@
  noinst_PROGRAMS = testperf$(EXEEXT)
  subdir = perf
@@ -18440,7 +18467,7 @@ Index: gtk+2.0-2.19.7/perf/Makefile.in
 Index: gtk+2.0-2.19.7/po/Makefile.in.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/po/Makefile.in.in	2009-12-19 03:54:51.000000000 +0100
-+++ gtk+2.0-2.19.7/po/Makefile.in.in	2010-03-22 17:22:27.294971314 +0100
++++ gtk+2.0-2.19.7/po/Makefile.in.in	2010-03-22 18:11:41.011962995 +0100
 @@ -25,22 +25,23 @@
  
  prefix = @prefix@
@@ -18555,7 +18582,7 @@ Index: gtk+2.0-2.19.7/po/Makefile.in.in
 Index: gtk+2.0-2.19.7/tests/Makefile.in
 ===================================================================
 --- gtk+2.0-2.19.7.orig/tests/Makefile.in	2010-03-09 16:23:00.000000000 +0100
-+++ gtk+2.0-2.19.7/tests/Makefile.in	2010-03-22 17:22:27.298951917 +0100
++++ gtk+2.0-2.19.7/tests/Makefile.in	2010-03-22 18:12:06.275950742 +0100
 @@ -75,11 +75,14 @@
  @HAVE_CXX_TRUE@@HAVE_OBJC_TRUE@am__append_2 = -DHAVE_OBJC=1 -x objective-c++
  subdir = tests

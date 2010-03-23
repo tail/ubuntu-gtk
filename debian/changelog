@@ -1,7 +1,10 @@
 gtk+2.0 (2.19.7-0ubuntu3) UNRELEASED; urgency=low
 
   * add introspection:
-    - debian/rules: toogle configure option
+    - debian/rules:
+      - toogle configure option
+      - add new package to BINARY_ARCH_PKGS
+      - add dh_girepository call
     - debian/control.in:
       - add gobject-introspection build-dep
       - add gir package (gir1.0-gtk-2.0)
