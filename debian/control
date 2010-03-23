@@ -40,6 +40,8 @@ Build-Depends: debhelper (>= 5.0.22),
                gir-repository-dev,
                libgirepository1.0-dev,
                gir1.0-glib-2.0,
+               gir1.0-atk-1.0,
+               gir1.0-pango-1.0,
                quilt,
                gawk
 Build-Depends-Indep: gtk-doc-tools (>= 1.8),
