@@ -1,27 +1,13 @@
-Index: gtk+2.0-2.19.7/gdk-pixbuf/Makefile.am
+Index: gtk+2.0-2.20.0/gdk/Makefile.am
 ===================================================================
---- gtk+2.0-2.19.7.orig/gdk-pixbuf/Makefile.am	2010-03-22 18:09:08.170952836 +0100
-+++ gtk+2.0-2.19.7/gdk-pixbuf/Makefile.am	2010-03-22 18:09:08.462967452 +0100
-@@ -692,6 +692,7 @@
- 
- if HAVE_INTROSPECTION
- 
-+GdkPixbuf-2.0.gir: libgdk_pixbuf-2.0.la Makefile
- GdkPixbuf_2_0_gir_SCANNERFLAGS = --strip-prefix=Gdk
- GdkPixbuf_2_0_gir_INCLUDES = GModule-2.0 Gio-2.0
- GdkPixbuf_2_0_gir_LIBS = libgdk_pixbuf-2.0.la
-Index: gtk+2.0-2.19.7/gdk/Makefile.am
-===================================================================
---- gtk+2.0-2.19.7.orig/gdk/Makefile.am	2010-02-23 16:24:55.000000000 +0100
-+++ gtk+2.0-2.19.7/gdk/Makefile.am	2010-03-22 18:11:21.711985143 +0100
-@@ -199,8 +199,9 @@
+--- gtk+2.0-2.20.0.orig/gdk/Makefile.am	2010-03-22 17:52:46.000000000 +0100
++++ gtk+2.0-2.20.0/gdk/Makefile.am	2010-03-24 11:32:30.145645086 +0100
+@@ -199,7 +199,7 @@
  		$(gdk_c_sources) \
          gdkenumtypes.c \
          gdkenumtypes.h \
 -        $(srcdir)/x11/*.c
 +        x11/*.c
  
-+Gdk-2.0.gir: $(gdktargetlib) Makefile
+ Gdk-2.0.gir: $(gdktargetlib) Makefile
  Gdk_2_0_gir_SCANNERFLAGS = --strip-prefix=Gdk --add-include-path=../gdk-pixbuf
- Gdk_2_0_gir_INCLUDES = Gio-2.0 GdkPixbuf-2.0 Pango-1.0
- Gdk_2_0_gir_LIBS = $(gdktargetlib)
