@@ -1,4 +1,4 @@
-gtk+2.0 (2.20.0-0ubuntu2~ppa1) lucid; urgency=low
+gtk+2.0 (2.20.0-0ubuntu2) UNRELEASED; urgency=low
 
   * add introspection:
     - debian/rules:
@@ -11,7 +11,7 @@ gtk+2.0 (2.20.0-0ubuntu2~ppa1) lucid; urgency=low
       - add gir package (gir1.0-gtk-2.0)
     - debian/libgtk2.0-dev.install.in: add gir files
     - add debian/gir1.0-gtk-2.0.install
-    - add debian/patches/063_build_introspection_file.patch to get proper
+    - add debian/patches/065_build_introspection_file.patch to get proper
       source dir (build dir != src dir for debian/ubuntu)
   * debian/patches/070_mandatory-relibtoolize.patch:
     - refreshed
