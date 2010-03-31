@@ -1,3 +1,11 @@
+gtk+2.0 (2.20.0-0ubuntu3) lucid; urgency=low
+
+  * debian/control.in:
+    - gir1.0-gtk-2.0 needs to conflicts on gobject-introspection-repository
+      (lp: #551307) 
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 31 Mar 2010 18:35:20 +0200
+
 gtk+2.0 (2.20.0-0ubuntu2) lucid; urgency=low
 
   * add introspection:
