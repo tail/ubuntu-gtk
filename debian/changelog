@@ -1,3 +1,12 @@
+gtk+2.0 (2.20.0-0ubuntu4) lucid; urgency=low
+
+  * debian/patches/064_initial_fileselector_select.patch:
+    - replaced by the version commited upstream, thank Cody Russell,
+      the update solves f-spot hanging when saving an image without entering
+      the name to use in the selector (lp: #551384)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 06 Apr 2010 16:11:28 +0200
+
 gtk+2.0 (2.20.0-0ubuntu3) lucid; urgency=low
 
   * debian/control.in:
