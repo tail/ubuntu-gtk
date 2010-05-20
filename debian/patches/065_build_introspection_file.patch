@@ -1,3 +1,5 @@
+# Description: Fix FTBFS with introspection enabled
+# Upstream: https://bugzilla.gnome.org/show_bug.cgi?id=613788
 Index: gtk+2.0-2.20.0/gdk/Makefile.am
 ===================================================================
 --- gtk+2.0-2.20.0.orig/gdk/Makefile.am	2010-03-22 17:52:46.000000000 +0100

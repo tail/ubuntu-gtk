@@ -1,11 +1,11 @@
 # Comment: let click on menubar to do dnd
 # Upstream: https://bugzilla.gnome.org/show_bug.cgi?id=611313
 #
-diff --git a/gtk/gtkmenushell.c b/gtk/gtkmenushell.c
-index c9b8949..60d1055 100644
---- a/gtk/gtkmenushell.c
-+++ b/gtk/gtkmenushell.c
-@@ -377,6 +377,14 @@ gtk_menu_shell_class_init (GtkMenuShellClass *klass)
+Index: gtk+-2.21.0/gtk/gtkmenushell.c
+===================================================================
+--- gtk+-2.21.0.orig/gtk/gtkmenushell.c	2010-04-10 12:20:02.000000000 +1000
++++ gtk+-2.21.0/gtk/gtkmenushell.c	2010-05-20 10:06:37.625209216 +1000
+@@ -381,6 +381,14 @@
  							 TRUE,
  							 GTK_PARAM_READWRITE));
  
@@ -20,7 +20,7 @@ index c9b8949..60d1055 100644
    g_type_class_add_private (object_class, sizeof (GtkMenuShellPrivate));
  }
  
-@@ -585,18 +593,45 @@ gtk_menu_shell_button_press (GtkWidget      *widget,
+@@ -589,18 +597,45 @@
  
    if (!menu_shell->active || !menu_shell->button)
      {
@@ -33,14 +33,11 @@ index c9b8949..60d1055 100644
 -	  menu_item->parent == widget &&
 -          menu_item != menu_shell->active_menu_item)
 +      if (menu_item)
-         {
--          if (GTK_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement == GTK_TOP_BOTTOM)
++        {
 +          if (_gtk_menu_item_is_selectable (menu_item) &&
 +              menu_item->parent == widget &&
 +              menu_item != menu_shell->active_menu_item)
-             {
--              menu_shell->activate_time = event->time;
--              gtk_menu_shell_select_item (menu_shell, menu_item);
++            {
 +              _gtk_menu_shell_activate (menu_shell);
 +              menu_shell->button = event->button;
 +
@@ -52,9 +49,12 @@ index c9b8949..60d1055 100644
 +            }
 +        }
 +      else
-+        {
+         {
+-          if (GTK_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement == GTK_TOP_BOTTOM)
 +          if (!initially_active)
-+            {
+             {
+-              menu_shell->activate_time = event->time;
+-              gtk_menu_shell_select_item (menu_shell, menu_item);
 +              gboolean window_drag = FALSE;
 +
 +              gtk_widget_style_get (widget,

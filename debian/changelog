@@ -1,159 +1,173 @@
-gtk+2.0 (2.20.0-0ubuntu3) lucid; urgency=low
+gtk+2.0 (2.21.0-1ubuntu1) maverick; urgency=low
 
+  * Resync on Debian experimental, Ubuntu changes:
+  * debian/rules:
+    - Build with --enable-introspection
+    - Add gir1.0-gtk-2.0 package to BINARY_ARCH_PKGS
+    - Add dh_girepository call
   * debian/control.in:
-    - gir1.0-gtk-2.0 needs to conflicts on gobject-introspection-repository
-      (lp: #551307) 
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 31 Mar 2010 18:35:20 +0200
-
-gtk+2.0 (2.20.0-0ubuntu2) lucid; urgency=low
-
-  * add introspection:
-    - debian/rules:
-      - toogle configure option
-      - add new package to BINARY_ARCH_PKGS
-      - add dh_girepository call
-    - debian/control.in:
-      - add gobject-introspection, libgirepository1.0-dev, gir1.0-atk-1.0,
-        gir1.0-pango-1.0, gir1.0-glib-2.0 and gir1.0-freedesktop build-dep
-      - add gir package (gir1.0-gtk-2.0)
-    - debian/libgtk2.0-dev.install.in: add gir files
-    - add debian/gir1.0-gtk-2.0.install
-    - add debian/patches/065_build_introspection_file.patch to get proper
-      source dir (build dir != src dir for debian/ubuntu)
+    - Add introspection build-depends
+    - Add gir1.0-gtk-2.0 package
+    - libgtk2.0-dev replaces gir-repository-dev
+  * debian/libgtk2.0-dev.install.in:
+    - Add gir files
+  * debian/gir1.0-gtk-2.0.install
+    - Make introspection package
+  * debian/patches/062_dnd_menubar.patch:
+    - Allow click on menubars for dnd
+  * debian/patches/063_treeview_almost_fixed.patch:
+    - Add an ubuntu-almost-fixed-height-mode property, (required for
+      software-center)
+  * debian/patches/065_build_introspection_file.patch:
+    - Use proper source dir (build dir != src dir for debian/ubuntu)
+  * debian/patches/071_no_offscreen_widgets_grabbing.patch:
+    - Don't let offscreen widgets do grabbing
+  * debian/patches/091_bugzilla_tooltip_refresh.patch:
+    - Upstream bugzilla change to have better looking tooltips the gtk theme
+      need to set "new-tooltip-style" to use those 
+  * debian/patches/009_gtk-export-filechooser.patch:
+  * debian/patches/010_gdkpixbuf_-lm.patch:
+  * debian/patches/021_loader-files-d.patch:
   * debian/patches/070_mandatory-relibtoolize.patch:
-    - refreshed
+    - Refreshed
+  * debian/watch:
+    - Watch for unstable versions
 
- -- Didier Roche <didrocks@ubuntu.com>  Thu, 25 Mar 2010 10:44:46 +0100
+ -- Robert Ancell <robert.ancell@canonical.com>  Tue, 18 May 2010 12:35:39 +1000
 
-gtk+2.0 (2.20.0-0ubuntu1) lucid; urgency=low
+gtk+2.0 (2.21.0-1) experimental; urgency=low
 
-  * New upstream version:
-    - Support the tracker 0.8 api in the file chooser search code
-    - Bug fixes:
-      609929 Dragging between two windows cause the menu widget...
-      613241 entry sends extra notify::text with "" on destroy
-      610946 error during gtk+ build + nonsense error messages
-      610176 Some cups1.2 feature use not shielded by API version-check
-      612574 GtkMenuItem does not emit notify::label when label...
-      612505 Entry layout not updated when underlying buffer changes
-      612346 gdk_window_set_icon_name doesn't work
-      612308 GTK+ Build error: redefinition of 'struct IPrintDialogCallback'
-      611118 Set APPLICATION_ID when launching desktop app
-      612768 DND cause crash in VNC environment
-      612575 Improve docs of gtk_notebook_set_tab_label_packing
-      605333 Confusing error in documentation
-      613028 Do not get a GtkSettings for size lookup if...
-    - Translation updates
-  * debian/control.in:
-    - updated glib requirement
-  * Resynced some changes on Debian
+  * New upstream development release:
+    + debian/rules,
+      debian/libgtk2.0-0.symbols:
+      - Update for new API symbols.
+    + debian/patches/002_static-linking-dont-build-perf.patch:
+      - Refreshed.
     + debian/patches/070_mandatory-relibtoolize.patch:
       - Regenerated for the new version.
-    + debian/rules, debian/libgtk2.0-0.symbols:
+
+ -- Sebastian Dröge <slomo@debian.org>  Sat, 08 May 2010 08:20:19 +0200
+
+gtk+2.0 (2.20.1-1) unstable; urgency=low
+
+  * New upstream bugfix release:
+    + debian/patches/006_support-for-tracker-0.8-stable-releases.patch:
+      - Dropped, merged upstream.
+    + debian/patches/003_gdk.pc_privates.patch:
+      - Updated to apply cleanly again.
+    + debian/patches/070_mandatory-relibtoolize.patch:
+      - Regenerated for the new version.
+
+ -- Sebastian Dröge <slomo@debian.org>  Mon, 03 May 2010 07:26:14 +0200
+
+gtk+2.0 (2.20.0-3) unstable; urgency=low
+
+  * debian/control.in
+    - Add Vcs-* fields.
+    - Add Homepage field.
+  * debian/patches/006_support-for-tracker-0.8-stable-releases.patch
+    - Add support for tracker 0.8 stable and future 0.9 releases. Also add
+      support for loading the search engines on demand until they are actually
+      needed. Patch is backported from upstream Git branch "tracker-0.8".
+  * Refresh patches to apply cleanly.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 14 Apr 2010 20:39:28 +0200
+
+gtk+2.0 (2.20.0-2) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 31 Mar 2010 09:16:00 +0200
+
+gtk+2.0 (2.20.0-1) experimental; urgency=low
+
+  [ Emilio Pozuelo Monfort ]
+  * debian/rules,
+    debian/control.in,
+    debian/libgtk-directfb-2.0-0.*,
+    debian/libgtk-directfb-2.0-dev.*,
+    debian/patches/090_directfb-map-virtual-modifiers.patch,
+    debian/patches/series:
+    - Drop the DirectFB enabled GTK+ packages. They were needed for the
+      graphical installer but it's now switching to X11 so we don't need
+      them anymore.
+  * debian/rules:
+    - Move --with-xinput=yes and --with-libjasper to configure_flags
+      since they are common to all of our flavours.
+
+  [ Sebastian Dröge ]
+  * New upstream stable release:
+    + debian/patches/070_mandatory-relibtoolize.patch:
+      - Regenerated for the new version.
+    + debian/rules,
+      debian/libgtk2.0-0.symbols:
       - Update SHVER to 2.20.0 for the new API to force dependencies
         on the stable version.
+    + debian/control.in:
+      - Update GLib build dependency and tighten some -dev package dependencies.
     + debian/patches/003_gdk.pc_privates.patch:
       - Updated to apply cleanly again.
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 23 Mar 2010 23:49:39 +0100
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 23 Mar 2010 15:55:56 +0100
 
-gtk+2.0 (2.19.7-0ubuntu2) lucid; urgency=low
+gtk+2.0 (2.19.7-3) experimental; urgency=low
 
-  * debian/patches/063_treeview_almost_fixed.patch:
-    - change by Michael Vogt to add an ubuntu-almost-fixed-height-mode property,
-      the change is required for software-center, adding as an ubuntu specific
-      change for now until somebody comment on the upstream bug (lp: #514879)
-  * debian/patches/064_initial_fileselector_select.patch:
-    - change by Cody Russell to fix the default action not working in the
-      gtkfileselector until you selected a directory (lp: #80755, #181788)
+  * debian/control.in:
+    - Build depend on xsltproc, needed to generate the mime cache.
+      It was brought indirectly by gtk-doc-tools, but that's on
+      Build-Depends-Indep which isn't enough.
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 22 Mar 2010 14:23:46 +0100
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Tue, 16 Mar 2010 15:30:32 +0100
 
-gtk+2.0 (2.19.7-0ubuntu1) lucid; urgency=low
+gtk+2.0 (2.19.7-2) experimental; urgency=low
 
-  * New upstream version
-    - Bug fixes:
-    611707 Move documentation from templates to inline comments
-    69872 GTK_WIDGET_SET_FLAGS should be deprecated
-    612066 empathy hangs when clicked on information about contact...
-           (lp: #532947)
-    557420 Some compose sequences don't work anymore...
-    569042 gailbooleancell does not seem to attend to changes...
-    600992 File chooser reference counting issues
-    610905 gtk_drag_source_set need instrospection hint
-    611051 Search Entry Clear Icon not accessible
-    611217 Incorrect translator comment
-    611317 Document targets in drag and drop
-    611319 gtk_window_set_transient_for undocumented NULL value for parent
-    611658 Update documentation for gtkvscrollbar
-    611662 Update documentation for gtkvseparator
-    611686 focus_in/focus_out in gailtreeview.c should return FALSE...
-    611831 Move documentation to inline comments: GtkVBox
-    612119 Do not scroll when middle pasting
-    - Translation updates
-  * debian/patches/071_no_offscreen_widgets_grabbing.patch,
-    debian/patches/091_bugzilla_tooltip_refresh.patch:
-    - new version update
-    - increased the alpha value for tooltips to 85%
-  * debian/rules:
-    - updated the shlibs
+  [ Cyril Brulebois ]
+  * Switch udeb from DirectFB to Xlib to prepare the move to an X11-based
+    graphical installer. Closes: #573872.
+     - Replace libgtk-directfb-2.0-0-udeb with libgtk-x11-udeb in control
+       file.
+     - Update description accordingly.
+     - Update .install.in accordingly, using the “shared_udeb” flavour,
+       based on the “shared” one, but with a few X11 extensions disabled.
+     - Update package name and file paths accordingly in rules file.
+  * Version/Bump some B-D to make sure the udeb gets proper dependencies
+    on the recently reworked/added udebs:
+     - libx11-dev
+     - libxcursor-dev
+     - libxext-dev
+     - libxi-dev
+     - libxinerama-dev
+     - libxrender-dev
+  * Add one patch to make it possible to disable X11 extensions, and
+    refresh the other one accordingly:
+     - 005_support_disabling_x11_extensions.patch
+     - 070_mandatory-relibtoolize.patch
+  * Ship a minimal MIME database in the udeb, since the loaders mechanism
+    isn’t sufficient to get proper PNG support:
+     - Add shared-mime-info to Build-Depends to ensure that the
+       update-mime-database tool is available at build-time, as well as
+       the source freedesktop.org.xml file.
+     - Add debian/keep-png-only.xsl to only keep the mime-type matching
+       type="image/png". Matching with namespaces is tricky, see the
+       comments in the XSL file for the details.
+     - Build a MIME cache, and only ship the resulting mime.cache file
+       under /usr/share/mime in the udeb.
+     - While this is dirty, that should do the trick until it is needed
+       for shared-mime-info to ship its own udeb.
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 11 Mar 2010 18:28:01 +0100
+  [ Emilio Pozuelo Monfort ]
+  * Rename the udeb to libgtk2.0-0-udeb.
+  * Standards-Version is 3.8.4, no changes needed.
 
-gtk+2.0 (2.19.6-1ubuntu4) lucid; urgency=low
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Tue, 16 Mar 2010 01:01:48 +0100
 
-  * debian/patches/062_client_side_decoration.patch:
-    - don't use csd for lucid it was good to test but not ready yet
-      (lp: #529996, #530575)
-  * debian/patches/062_dnd_menubar.patch:
-    - change by Cody Russell to allow click on menubars for dnd
-  * debian/patches/070_mandatory-relibtoolize.patch:
-    - refreshed due to the client side change
+gtk+2.0 (2.19.7-1) experimental; urgency=low
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 05 Mar 2010 11:06:57 +0100
+  * New upstream development release:
+    + debian/patches/070_mandatory-relibtoolize.patch:
+      - Regenerated for the new version.
 
-gtk+2.0 (2.19.6-1ubuntu3) lucid; urgency=low
-
-  * debian/patches/062_client_side_decoration.patch:
-    - update by Cody Russell to fix some issues
-    - "[CSD] Buttons sometimes have no icons" (lp: #530608)
-    - "[CSD] software-properties get an extra line when opened
-       through update-manager" (lp: #530619)
-    - "[CSD] black line at terminal bottom border" (lp: #530571)
-    - "[CSD] Black corners on windows." (lp: #528619)
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 03 Mar 2010 10:51:10 +0100
-
-gtk+2.0 (2.19.6-1ubuntu2) lucid; urgency=low
-
-  * debian/patches/062_client_side_decoration.patch:
-    - update by Cody Russell to fix some issues
-    - "[CSD] Dragging in some apps (xchat-gnome, Evolution, Gwibber) behaves
-       strangely." (lp: #528623)
-    - "[CSD] No restore states on max win deco button" (lp: #528612)
-    - "[CSD] Cannot click and move window from menubar" (lp: #528617)
-    - "[CSD] Going fullscreen doesn't turn off decorations" (lp: #529106)
-    - "Whole gnome-terminal window flashes whenever the window title changes"
-      (lp: #524532)
-    - "[CSD] Entire desktop has a window frame " (lp: #529996)
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 01 Mar 2010 15:50:32 +0100
-
-gtk+2.0 (2.19.6-1ubuntu1) lucid; urgency=low
-
-  * Resync on Debian
-  * debian/patches/062_client_side_decoration.patch:
-    - updated gtk client side decoration thanks to Cody Russell (lp: #524869)
-  * debian/patches/070_mandatory-relibtoolize.patch:
-    - refreshed due to the client side change
-  * debian/patches/071_no_offscreen_widgets_grabbing.patch:
-    - change by Cody Russell to not let offscreen widgets do grabbing
-  * debian/patches/091_bugzilla_tooltip_refresh.patch:
-    - upstream bugzilla change to have better looking tooltips
-      the gtk theme need to set "new-tooltip-style" to use those 
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 25 Feb 2010 23:46:16 +0100
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 12 Mar 2010 15:59:27 +0100
 
 gtk+2.0 (2.19.6-1) experimental; urgency=low
 
