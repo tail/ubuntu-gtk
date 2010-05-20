@@ -24,7 +24,9 @@ gtk+2.0 (2.21.0-1ubuntu1) maverick; urgency=low
     - Don't let offscreen widgets do grabbing
   * debian/patches/091_bugzilla_tooltip_refresh.patch:
     - Upstream bugzilla change to have better looking tooltips the gtk theme
-      need to set "new-tooltip-style" to use those 
+      need to set "new-tooltip-style" to use those
+  * debian/patches/092_git_change_no_gtkmisc_warning.patch:
+    - Make toolbutton not call functions on non-GtkMisc
   * debian/patches/009_gtk-export-filechooser.patch:
   * debian/patches/010_gdkpixbuf_-lm.patch:
   * debian/patches/021_loader-files-d.patch:
