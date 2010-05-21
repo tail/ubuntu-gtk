@@ -1,3 +1,12 @@
+gtk+2.0 (2.21.0-1ubuntu2) maverick; urgency=low
+
+  * debian/patches/064_client_side_decoration.patch:
+    - enable client side decoration again now, thank Cody Russell
+  * debian/patches/070_mandatory-relibtoolize.patch:
+    - updated
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 21 May 2010 14:19:13 +0200
+
 gtk+2.0 (2.21.0-1ubuntu1) maverick; urgency=low
 
   * Resync on Debian experimental, Ubuntu changes:
