@@ -1,8 +1,8 @@
-Index: gtk+2.0-2.21.0/aclocal.m4
+Index: gtk+2.0-2.21.1/aclocal.m4
 ===================================================================
---- gtk+2.0-2.21.0.orig/aclocal.m4	2010-05-07 22:12:42.000000000 +0200
-+++ gtk+2.0-2.21.0/aclocal.m4	2010-05-21 14:16:56.000000000 +0200
-@@ -664,8017 +664,6 @@
+--- gtk+2.0-2.21.1.orig/aclocal.m4	2010-05-30 23:46:12.000000000 +0200
++++ gtk+2.0-2.21.1/aclocal.m4	2010-06-02 16:10:58.000000000 +0200
+@@ -664,8019 +664,7 @@
  fi])
  
  
@@ -8018,9 +8018,54 @@ Index: gtk+2.0-2.21.0/aclocal.m4
 -m4_ifndef([_LT_AC_FILE_LTDLL_C],	[AC_DEFUN([_LT_AC_FILE_LTDLL_C])])
 -
  # pkg.m4 - Macros to locate and utilise pkg-config.            -*- Autoconf -*-
+-# serial 1 (pkg-config-0.24)
  # 
  # Copyright © 2004 Scott James Remnant <scott@netsplit.com>.
-@@ -8743,14 +732,16 @@
+ #
+@@ -8704,10 +692,7 @@
+ AC_DEFUN([PKG_PROG_PKG_CONFIG],
+ [m4_pattern_forbid([^_?PKG_[A-Z_]+$])
+ m4_pattern_allow([^PKG_CONFIG(_PATH)?$])
+-AC_ARG_VAR([PKG_CONFIG], [path to pkg-config utility])
+-AC_ARG_VAR([PKG_CONFIG_PATH], [directories to add to pkg-config's search path])
+-AC_ARG_VAR([PKG_CONFIG_LIBDIR], [path overriding pkg-config's built-in search path])
+-
++AC_ARG_VAR([PKG_CONFIG], [path to pkg-config utility])dnl
+ if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+ 	AC_PATH_TOOL([PKG_CONFIG], [pkg-config])
+ fi
+@@ -8720,6 +705,7 @@
+ 		AC_MSG_RESULT([no])
+ 		PKG_CONFIG=""
+ 	fi
++		
+ fi[]dnl
+ ])# PKG_PROG_PKG_CONFIG
+ 
+@@ -8728,31 +714,34 @@
+ # Check to see whether a particular set of modules exists.  Similar
+ # to PKG_CHECK_MODULES(), but does not set variables or print errors.
+ #
+-# Please remember that m4 expands AC_REQUIRE([PKG_PROG_PKG_CONFIG])
+-# only at the first occurence in configure.ac, so if the first place
+-# it's called might be skipped (such as if it is within an "if", you
+-# have to call PKG_CHECK_EXISTS manually
++#
++# Similar to PKG_CHECK_MODULES, make sure that the first instance of
++# this or PKG_CHECK_MODULES is called, or make sure to call
++# PKG_CHECK_EXISTS manually
+ # --------------------------------------------------------------
+ AC_DEFUN([PKG_CHECK_EXISTS],
+ [AC_REQUIRE([PKG_PROG_PKG_CONFIG])dnl
+ if test -n "$PKG_CONFIG" && \
+     AC_RUN_LOG([$PKG_CONFIG --exists --print-errors "$1"]); then
+-  m4_default([$2], [:])
++  m4_ifval([$2], [$2], [:])
+ m4_ifvaln([$3], [else
+   $3])dnl
+ fi])
+ 
++
  # _PKG_CONFIG([VARIABLE], [COMMAND], [MODULES])
  # ---------------------------------------------
  m4_define([_PKG_CONFIG],
@@ -8045,8 +8090,11 @@ Index: gtk+2.0-2.21.0/aclocal.m4
  fi[]dnl
  ])# _PKG_CONFIG
  
-@@ -8794,9 +785,9 @@
+@@ -8794,17 +783,16 @@
+ See the pkg-config man page for more details.])
+ 
  if test $pkg_failed = yes; then
+-   	AC_MSG_RESULT([no])
          _PKG_SHORT_ERRORS_SUPPORTED
          if test $_pkg_short_errors_supported = yes; then
 -	        $1[]_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "$2" 2>&1`
@@ -8057,7 +8105,46 @@ Index: gtk+2.0-2.21.0/aclocal.m4
          fi
  	# Put the nasty error message in config.log where it belongs
  	echo "$$1[]_PKG_ERRORS" >&AS_MESSAGE_LOG_FD
-@@ -9920,5 +1911,11 @@
+ 
+-	m4_default([$4], [AC_MSG_ERROR(
++	ifelse([$4], , [AC_MSG_ERROR(dnl
+ [Package requirements ($2) were not met:
+ 
+ $$1_PKG_ERRORS
+@@ -8812,24 +800,25 @@
+ Consider adjusting the PKG_CONFIG_PATH environment variable if you
+ installed software in a non-standard prefix.
+ 
+-_PKG_TEXT])dnl
+-        ])
++_PKG_TEXT
++])],
++		[AC_MSG_RESULT([no])
++                $4])
+ elif test $pkg_failed = untried; then
+-     	AC_MSG_RESULT([no])
+-	m4_default([$4], [AC_MSG_FAILURE(
++	ifelse([$4], , [AC_MSG_FAILURE(dnl
+ [The pkg-config script could not be found or is too old.  Make sure it
+ is in your PATH or set the PKG_CONFIG environment variable to the full
+ path to pkg-config.
+ 
+ _PKG_TEXT
+ 
+-To get pkg-config, see <http://pkg-config.freedesktop.org/>.])dnl
+-        ])
++To get pkg-config, see <http://pkg-config.freedesktop.org/>.])],
++		[$4])
+ else
+ 	$1[]_CFLAGS=$pkg_cv_[]$1[]_CFLAGS
+ 	$1[]_LIBS=$pkg_cv_[]$1[]_LIBS
+         AC_MSG_RESULT([yes])
+-	$3
++	ifelse([$3], , :, [$3])
+ fi[]dnl
+ ])# PKG_CHECK_MODULES
+ 
+@@ -9922,5 +1911,11 @@
  AC_SUBST([am__untar])
  ]) # _AM_PROG_TAR
  
@@ -8069,10 +8156,10 @@ Index: gtk+2.0-2.21.0/aclocal.m4
 +m4_include([m4/ltversion.m4])
 +m4_include([m4/lt~obsolete.m4])
  m4_include([acinclude.m4])
-Index: gtk+2.0-2.21.0/build/Makefile.in
+Index: gtk+2.0-2.21.1/build/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/build/Makefile.in	2010-05-07 22:12:46.000000000 +0200
-+++ gtk+2.0-2.21.0/build/Makefile.in	2010-05-21 14:17:02.000000000 +0200
+--- gtk+2.0-2.21.1.orig/build/Makefile.in	2010-05-30 23:46:16.000000000 +0200
++++ gtk+2.0-2.21.1/build/Makefile.in	2010-06-02 16:11:03.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = build
@@ -8098,10 +8185,19 @@ Index: gtk+2.0-2.21.0/build/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/build/win32/Makefile.in
+@@ -262,8 +266,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/build/win32/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/build/win32/Makefile.in	2010-05-07 22:12:46.000000000 +0200
-+++ gtk+2.0-2.21.0/build/win32/Makefile.in	2010-05-21 14:17:02.000000000 +0200
+--- gtk+2.0-2.21.1.orig/build/win32/Makefile.in	2010-05-30 23:46:17.000000000 +0200
++++ gtk+2.0-2.21.1/build/win32/Makefile.in	2010-06-02 16:11:03.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = build/win32
@@ -8127,10 +8223,19 @@ Index: gtk+2.0-2.21.0/build/win32/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/build/win32/vs9/Makefile.in
+@@ -262,8 +266,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/build/win32/vs9/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/build/win32/vs9/Makefile.in	2010-05-07 22:12:46.000000000 +0200
-+++ gtk+2.0-2.21.0/build/win32/vs9/Makefile.in	2010-05-21 14:17:02.000000000 +0200
+--- gtk+2.0-2.21.1.orig/build/win32/vs9/Makefile.in	2010-05-30 23:46:17.000000000 +0200
++++ gtk+2.0-2.21.1/build/win32/vs9/Makefile.in	2010-06-02 16:11:03.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = build/win32/vs9
@@ -8156,10 +8261,19 @@ Index: gtk+2.0-2.21.0/build/win32/vs9/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/configure
+@@ -222,8 +226,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/configure
 ===================================================================
---- gtk+2.0-2.21.0.orig/configure	2010-05-07 22:12:54.000000000 +0200
-+++ gtk+2.0-2.21.0/configure	2010-05-21 14:17:01.000000000 +0200
+--- gtk+2.0-2.21.1.orig/configure	2010-05-30 23:46:24.000000000 +0200
++++ gtk+2.0-2.21.1/configure	2010-06-02 16:11:02.000000000 +0200
 @@ -816,6 +816,7 @@
  GDK_DEP_LIBS
  GDK_EXTRA_CFLAGS
@@ -8168,7 +8282,16 @@ Index: gtk+2.0-2.21.0/configure
  GDK_PACKAGES
  USE_DIRECTFB_FALSE
  USE_DIRECTFB_TRUE
-@@ -1024,6 +1025,8 @@
+@@ -967,8 +968,6 @@
+ CAIRO_BACKEND_CFLAGS
+ BASE_DEPENDENCIES_LIBS
+ BASE_DEPENDENCIES_CFLAGS
+-PKG_CONFIG_LIBDIR
+-PKG_CONFIG_PATH
+ PKG_CONFIG
+ gtktargetlib
+ gdktargetlib
+@@ -1026,6 +1025,8 @@
  CXXFLAGS
  ac_ct_CXX
  CXX
@@ -8177,7 +8300,7 @@ Index: gtk+2.0-2.21.0/configure
  am__fastdepCC_FALSE
  am__fastdepCC_TRUE
  CCDEPMODE
-@@ -1147,6 +1150,10 @@
+@@ -1149,6 +1150,10 @@
  enable_shm
  enable_xkb
  enable_xinerama
@@ -8188,7 +8311,16 @@ Index: gtk+2.0-2.21.0/configure
  enable_rebuilds
  enable_visibility
  with_xinput
-@@ -1837,6 +1844,12 @@
+@@ -1191,8 +1196,6 @@
+ CCAS
+ CCASFLAGS
+ PKG_CONFIG
+-PKG_CONFIG_PATH
+-PKG_CONFIG_LIBDIR
+ BASE_DEPENDENCIES_CFLAGS
+ BASE_DEPENDENCIES_LIBS
+ CAIRO_BACKEND_CFLAGS
+@@ -1841,6 +1844,12 @@
    --enable-xkb            support XKB [default=maybe]
    --enable-xinerama       support xinerama extension if available
                            [default=yes]
@@ -8201,7 +8333,18 @@ Index: gtk+2.0-2.21.0/configure
    --disable-rebuilds      disable all source autogeneration rules
    --disable-visibility    don't use ELF visibility attributes
    --enable-explicit-deps=[yes/no/auto]
-@@ -4586,6 +4599,14 @@
+@@ -1901,10 +1910,6 @@
+   CCAS        assembler compiler command (defaults to CC)
+   CCASFLAGS   assembler compiler flags (defaults to CFLAGS)
+   PKG_CONFIG  path to pkg-config utility
+-  PKG_CONFIG_PATH
+-              directories to add to pkg-config's search path
+-  PKG_CONFIG_LIBDIR
+-              path overriding pkg-config's built-in search path
+   BASE_DEPENDENCIES_CFLAGS
+               C compiler flags for BASE_DEPENDENCIES, overriding pkg-config
+   BASE_DEPENDENCIES_LIBS
+@@ -4594,6 +4599,14 @@
  
  
  
@@ -8216,24 +8359,24 @@ Index: gtk+2.0-2.21.0/configure
  
  if test -n "$ac_tool_prefix"; then
    for ac_prog in $CCC c++ g++ gcc CC cxx cc++ cl
-@@ -6066,13 +6087,13 @@
+@@ -6074,13 +6087,13 @@
  else
    lt_cv_nm_interface="BSD nm"
    echo "int some_variable = 0;" > conftest.$ac_ext
--  (eval echo "\"\$as_me:6069: $ac_compile\"" >&5)
+-  (eval echo "\"\$as_me:6077: $ac_compile\"" >&5)
 +  (eval echo "\"\$as_me:6090: $ac_compile\"" >&5)
    (eval "$ac_compile" 2>conftest.err)
    cat conftest.err >&5
--  (eval echo "\"\$as_me:6072: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
+-  (eval echo "\"\$as_me:6080: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
 +  (eval echo "\"\$as_me:6093: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
    (eval "$NM \"conftest.$ac_objext\"" 2>conftest.err > conftest.out)
    cat conftest.err >&5
--  (eval echo "\"\$as_me:6075: output\"" >&5)
+-  (eval echo "\"\$as_me:6083: output\"" >&5)
 +  (eval echo "\"\$as_me:6096: output\"" >&5)
    cat conftest.out >&5
    if $GREP 'External.*some_variable' conftest.out > /dev/null; then
      lt_cv_nm_interface="MS dumpbin"
-@@ -6535,11 +6556,11 @@
+@@ -6543,11 +6556,11 @@
    ;;
  
  # This must be Linux ELF.
@@ -8247,16 +8390,16 @@ Index: gtk+2.0-2.21.0/configure
    if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
      lt_cv_deplibs_check_method='match_pattern /lib[^/]+(\.so\.[0-9]+\.[0-9]+|_pic\.a)$'
    else
-@@ -7275,7 +7296,7 @@
+@@ -7283,7 +7296,7 @@
    ;;
  *-*-irix6*)
    # Find out which ABI we are using.
--  echo '#line 7278 "configure"' > conftest.$ac_ext
+-  echo '#line 7286 "configure"' > conftest.$ac_ext
 +  echo '#line 7299 "configure"' > conftest.$ac_ext
    if { { eval echo "\"\$as_me\":${as_lineno-$LINENO}: \"$ac_compile\""; } >&5
    (eval $ac_compile) 2>&5
    ac_status=$?
-@@ -9270,6 +9291,10 @@
+@@ -9278,6 +9291,10 @@
  $RM -r conftest*
  
  
@@ -8267,21 +8410,21 @@ Index: gtk+2.0-2.21.0/configure
  if test -n "$compiler"; then
  
  lt_prog_compiler_no_builtin_flag=
-@@ -9295,11 +9320,11 @@
+@@ -9303,11 +9320,11 @@
     -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
     -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
     -e 's:$: $lt_compiler_flag:'`
--   (eval echo "\"\$as_me:9298: $lt_compile\"" >&5)
+-   (eval echo "\"\$as_me:9306: $lt_compile\"" >&5)
 +   (eval echo "\"\$as_me:9323: $lt_compile\"" >&5)
     (eval "$lt_compile" 2>conftest.err)
     ac_status=$?
     cat conftest.err >&5
--   echo "$as_me:9302: \$? = $ac_status" >&5
+-   echo "$as_me:9310: \$? = $ac_status" >&5
 +   echo "$as_me:9327: \$? = $ac_status" >&5
     if (exit $ac_status) && test -s "$ac_outfile"; then
       # The compiler can only warn and ignore the option if not recognized
       # So say no if there are warnings other than the usual output.
-@@ -9464,7 +9489,7 @@
+@@ -9472,7 +9489,7 @@
        lt_prog_compiler_static='-non_shared'
        ;;
  
@@ -8290,49 +8433,49 @@ Index: gtk+2.0-2.21.0/configure
        case $cc_basename in
        # old Intel for x86_64 which still supported -KPIC.
        ecc*)
-@@ -9634,11 +9659,11 @@
+@@ -9642,11 +9659,11 @@
     -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
     -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
     -e 's:$: $lt_compiler_flag:'`
--   (eval echo "\"\$as_me:9637: $lt_compile\"" >&5)
+-   (eval echo "\"\$as_me:9645: $lt_compile\"" >&5)
 +   (eval echo "\"\$as_me:9662: $lt_compile\"" >&5)
     (eval "$lt_compile" 2>conftest.err)
     ac_status=$?
     cat conftest.err >&5
--   echo "$as_me:9641: \$? = $ac_status" >&5
+-   echo "$as_me:9649: \$? = $ac_status" >&5
 +   echo "$as_me:9666: \$? = $ac_status" >&5
     if (exit $ac_status) && test -s "$ac_outfile"; then
       # The compiler can only warn and ignore the option if not recognized
       # So say no if there are warnings other than the usual output.
-@@ -9739,11 +9764,11 @@
+@@ -9747,11 +9764,11 @@
     -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
     -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
     -e 's:$: $lt_compiler_flag:'`
--   (eval echo "\"\$as_me:9742: $lt_compile\"" >&5)
+-   (eval echo "\"\$as_me:9750: $lt_compile\"" >&5)
 +   (eval echo "\"\$as_me:9767: $lt_compile\"" >&5)
     (eval "$lt_compile" 2>out/conftest.err)
     ac_status=$?
     cat out/conftest.err >&5
--   echo "$as_me:9746: \$? = $ac_status" >&5
+-   echo "$as_me:9754: \$? = $ac_status" >&5
 +   echo "$as_me:9771: \$? = $ac_status" >&5
     if (exit $ac_status) && test -s out/conftest2.$ac_objext
     then
       # The compiler can only warn and ignore the option if not recognized
-@@ -9794,11 +9819,11 @@
+@@ -9802,11 +9819,11 @@
     -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
     -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
     -e 's:$: $lt_compiler_flag:'`
--   (eval echo "\"\$as_me:9797: $lt_compile\"" >&5)
+-   (eval echo "\"\$as_me:9805: $lt_compile\"" >&5)
 +   (eval echo "\"\$as_me:9822: $lt_compile\"" >&5)
     (eval "$lt_compile" 2>out/conftest.err)
     ac_status=$?
     cat out/conftest.err >&5
--   echo "$as_me:9801: \$? = $ac_status" >&5
+-   echo "$as_me:9809: \$? = $ac_status" >&5
 +   echo "$as_me:9826: \$? = $ac_status" >&5
     if (exit $ac_status) && test -s out/conftest2.$ac_objext
     then
       # The compiler can only warn and ignore the option if not recognized
-@@ -9913,6 +9938,9 @@
+@@ -9921,6 +9938,9 @@
    openbsd*)
      with_gnu_ld=no
      ;;
@@ -8342,7 +8485,7 @@ Index: gtk+2.0-2.21.0/configure
    esac
  
    ld_shlibs=yes
-@@ -9934,6 +9962,7 @@
+@@ -9942,6 +9962,7 @@
      fi
      supports_anon_versioning=no
      case `$LD -v 2>&1` in
@@ -8350,7 +8493,7 @@ Index: gtk+2.0-2.21.0/configure
        *\ [01].* | *\ 2.[0-9].* | *\ 2.10.*) ;; # catch versions < 2.11
        *\ 2.11.93.0.2\ *) supports_anon_versioning=yes ;; # RH7.3 ...
        *\ 2.11.92.0.12\ *) supports_anon_versioning=yes ;; # Mandrake 8.2 ...
-@@ -10025,7 +10054,7 @@
+@@ -10033,7 +10054,7 @@
        archive_expsym_cmds='sed "s,^,_," $export_symbols >$output_objdir/$soname.expsym~$CC -shared $pic_flag $libobjs $deplibs $compiler_flags ${wl}-h,$soname ${wl}--retain-symbols-file,$output_objdir/$soname.expsym ${wl}--image-base,`expr ${RANDOM-$$} % 4096 / 2 \* 262144 + 1342177280` -o $lib'
        ;;
  
@@ -8359,7 +8502,7 @@ Index: gtk+2.0-2.21.0/configure
        tmp_diet=no
        if test "$host_os" = linux-dietlibc; then
  	case $cc_basename in
-@@ -10095,7 +10124,7 @@
+@@ -10103,7 +10124,7 @@
        fi
        ;;
  
@@ -8368,7 +8511,7 @@ Index: gtk+2.0-2.21.0/configure
        if echo __ELF__ | $CC -E - | $GREP __ELF__ >/dev/null; then
  	archive_cmds='$LD -Bshareable $libobjs $deplibs $linker_flags -o $lib'
  	wlarc=
-@@ -10270,6 +10299,7 @@
+@@ -10278,6 +10299,7 @@
  	if test "$aix_use_runtimelinking" = yes; then
  	  shared_flag="$shared_flag "'${wl}-G'
  	fi
@@ -8376,7 +8519,7 @@ Index: gtk+2.0-2.21.0/configure
        else
  	# not using gcc
  	if test "$host_cpu" = ia64; then
-@@ -10596,7 +10626,7 @@
+@@ -10604,7 +10626,7 @@
        link_all_deplibs=yes
        ;;
  
@@ -8385,7 +8528,7 @@ Index: gtk+2.0-2.21.0/configure
        if echo __ELF__ | $CC -E - | $GREP __ELF__ >/dev/null; then
  	archive_cmds='$LD -Bshareable -o $lib $libobjs $deplibs $linker_flags'  # a.out
        else
-@@ -11486,7 +11516,7 @@
+@@ -11494,7 +11516,7 @@
    ;;
  
  # This must be Linux ELF.
@@ -8394,7 +8537,7 @@ Index: gtk+2.0-2.21.0/configure
    version_type=linux
    need_lib_prefix=no
    need_version=no
-@@ -11526,13 +11556,10 @@
+@@ -11534,13 +11556,10 @@
    # before this can be enabled.
    hardcode_into_libs=yes
  
@@ -8409,7 +8552,7 @@ Index: gtk+2.0-2.21.0/configure
    fi
  
    # We used to test for /lib/ld.so.1 and disable shared libraries on
-@@ -11544,6 +11571,18 @@
+@@ -11552,6 +11571,18 @@
    dynamic_linker='GNU/Linux ld.so'
    ;;
  
@@ -8428,25 +8571,25 @@ Index: gtk+2.0-2.21.0/configure
  netbsd*)
    version_type=sunos
    need_lib_prefix=no
-@@ -12164,7 +12203,7 @@
+@@ -12172,7 +12203,7 @@
    lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
    lt_status=$lt_dlunknown
    cat > conftest.$ac_ext <<_LT_EOF
--#line 12167 "configure"
+-#line 12175 "configure"
 +#line 12206 "configure"
  #include "confdefs.h"
  
  #if HAVE_DLFCN_H
-@@ -12260,7 +12299,7 @@
+@@ -12268,7 +12299,7 @@
    lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
    lt_status=$lt_dlunknown
    cat > conftest.$ac_ext <<_LT_EOF
--#line 12263 "configure"
+-#line 12271 "configure"
 +#line 12302 "configure"
  #include "confdefs.h"
  
  #if HAVE_DLFCN_H
-@@ -13200,7 +13239,7 @@
+@@ -13208,7 +13239,7 @@
          inherit_rpath_CXX=yes
          ;;
  
@@ -8455,7 +8598,7 @@ Index: gtk+2.0-2.21.0/configure
          case $cc_basename in
            KCC*)
  	    # Kuck and Associates, Inc. (KAI) C++ Compiler
-@@ -14028,7 +14067,7 @@
+@@ -14036,7 +14067,7 @@
  	    ;;
  	esac
  	;;
@@ -8464,7 +8607,7 @@ Index: gtk+2.0-2.21.0/configure
  	case $cc_basename in
  	  KCC*)
  	    # KAI C++ Compiler
-@@ -14092,7 +14131,7 @@
+@@ -14100,7 +14131,7 @@
  	    ;;
  	esac
  	;;
@@ -8473,49 +8616,49 @@ Index: gtk+2.0-2.21.0/configure
  	;;
        *qnx* | *nto*)
          # QNX uses GNU C++, but need to define -shared option too, otherwise
-@@ -14216,11 +14255,11 @@
+@@ -14224,11 +14255,11 @@
     -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
     -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
     -e 's:$: $lt_compiler_flag:'`
--   (eval echo "\"\$as_me:14219: $lt_compile\"" >&5)
+-   (eval echo "\"\$as_me:14227: $lt_compile\"" >&5)
 +   (eval echo "\"\$as_me:14258: $lt_compile\"" >&5)
     (eval "$lt_compile" 2>conftest.err)
     ac_status=$?
     cat conftest.err >&5
--   echo "$as_me:14223: \$? = $ac_status" >&5
+-   echo "$as_me:14231: \$? = $ac_status" >&5
 +   echo "$as_me:14262: \$? = $ac_status" >&5
     if (exit $ac_status) && test -s "$ac_outfile"; then
       # The compiler can only warn and ignore the option if not recognized
       # So say no if there are warnings other than the usual output.
-@@ -14315,11 +14354,11 @@
+@@ -14323,11 +14354,11 @@
     -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
     -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
     -e 's:$: $lt_compiler_flag:'`
--   (eval echo "\"\$as_me:14318: $lt_compile\"" >&5)
+-   (eval echo "\"\$as_me:14326: $lt_compile\"" >&5)
 +   (eval echo "\"\$as_me:14357: $lt_compile\"" >&5)
     (eval "$lt_compile" 2>out/conftest.err)
     ac_status=$?
     cat out/conftest.err >&5
--   echo "$as_me:14322: \$? = $ac_status" >&5
+-   echo "$as_me:14330: \$? = $ac_status" >&5
 +   echo "$as_me:14361: \$? = $ac_status" >&5
     if (exit $ac_status) && test -s out/conftest2.$ac_objext
     then
       # The compiler can only warn and ignore the option if not recognized
-@@ -14367,11 +14406,11 @@
+@@ -14375,11 +14406,11 @@
     -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
     -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
     -e 's:$: $lt_compiler_flag:'`
--   (eval echo "\"\$as_me:14370: $lt_compile\"" >&5)
+-   (eval echo "\"\$as_me:14378: $lt_compile\"" >&5)
 +   (eval echo "\"\$as_me:14409: $lt_compile\"" >&5)
     (eval "$lt_compile" 2>out/conftest.err)
     ac_status=$?
     cat out/conftest.err >&5
--   echo "$as_me:14374: \$? = $ac_status" >&5
+-   echo "$as_me:14382: \$? = $ac_status" >&5
 +   echo "$as_me:14413: \$? = $ac_status" >&5
     if (exit $ac_status) && test -s out/conftest2.$ac_objext
     then
       # The compiler can only warn and ignore the option if not recognized
-@@ -14443,6 +14482,9 @@
+@@ -14451,6 +14482,9 @@
    cygwin* | mingw* | cegcc*)
      export_symbols_cmds_CXX='$NM $libobjs $convenience | $global_symbol_pipe | $SED -e '\''/^[BCDGRS][ ]/s/.*[ ]\([^ ]*\)/\1 DATA/;/^.*[ ]__nm__/s/^.*[ ]__nm__\([^ ]*\)[ ][^ ]*/\1 DATA/;/^I[ ]/d;/^[AITW][ ]/s/.* //'\'' | sort | uniq > $export_symbols'
    ;;
@@ -8525,7 +8668,7 @@ Index: gtk+2.0-2.21.0/configure
    *)
      export_symbols_cmds_CXX='$NM $libobjs $convenience | $global_symbol_pipe | $SED '\''s/.* //'\'' | sort | uniq > $export_symbols'
    ;;
-@@ -14942,7 +14984,7 @@
+@@ -14950,7 +14984,7 @@
    ;;
  
  # This must be Linux ELF.
@@ -8534,7 +8677,7 @@ Index: gtk+2.0-2.21.0/configure
    version_type=linux
    need_lib_prefix=no
    need_version=no
-@@ -14982,13 +15024,10 @@
+@@ -14990,13 +15024,10 @@
    # before this can be enabled.
    hardcode_into_libs=yes
  
@@ -8549,7 +8692,7 @@ Index: gtk+2.0-2.21.0/configure
    fi
  
    # We used to test for /lib/ld.so.1 and disable shared libraries on
-@@ -15000,6 +15039,18 @@
+@@ -15008,6 +15039,18 @@
    dynamic_linker='GNU/Linux ld.so'
    ;;
  
@@ -8568,7 +8711,7 @@ Index: gtk+2.0-2.21.0/configure
  netbsd*)
    version_type=sunos
    need_lib_prefix=no
-@@ -17571,6 +17622,26 @@
+@@ -17579,6 +17622,26 @@
    enable_xinerama="yes"
  fi
  
@@ -8595,7 +8738,25 @@ Index: gtk+2.0-2.21.0/configure
  # Check whether --enable-rebuilds was given.
  if test "${enable_rebuilds+set}" = set; then :
    enableval=$enable_rebuilds;
-@@ -18772,10 +18843,11 @@
+@@ -18661,10 +18724,6 @@
+ ## annoying to construct
+ 
+ 
+-
+-
+-
+-
+ if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+ 	if test -n "$ac_tool_prefix"; then
+   # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
+@@ -18777,16 +18836,18 @@
+ $as_echo "no" >&6; }
+ 		PKG_CONFIG=""
+ 	fi
++
+ fi
+ 
+ pkg_failed=no
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for BASE_DEPENDENCIES" >&5
  $as_echo_n "checking for BASE_DEPENDENCIES... " >&6; }
  
@@ -8611,7 +8772,7 @@ Index: gtk+2.0-2.21.0/configure
      { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"glib-2.0 >= 2.23.6    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6\""; } >&5
    ($PKG_CONFIG --exists --print-errors "glib-2.0 >= 2.23.6    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6") 2>&5
    ac_status=$?
-@@ -18785,13 +18857,15 @@
+@@ -18796,13 +18857,15 @@
  else
    pkg_failed=yes
  fi
@@ -8633,7 +8794,7 @@ Index: gtk+2.0-2.21.0/configure
      { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"glib-2.0 >= 2.23.6    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6\""; } >&5
    ($PKG_CONFIG --exists --print-errors "glib-2.0 >= 2.23.6    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6") 2>&5
    ac_status=$?
-@@ -18801,8 +18875,9 @@
+@@ -18812,15 +18875,14 @@
  else
    pkg_failed=yes
  fi
@@ -8645,7 +8806,14 @@ Index: gtk+2.0-2.21.0/configure
  fi
  
  
-@@ -18815,9 +18890,9 @@
+ 
+ if test $pkg_failed = yes; then
+-   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
+ 
+ if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+         _pkg_short_errors_supported=yes
+@@ -18828,9 +18890,9 @@
          _pkg_short_errors_supported=no
  fi
          if test $_pkg_short_errors_supported = yes; then
@@ -8657,7 +8825,29 @@ Index: gtk+2.0-2.21.0/configure
          fi
  	# Put the nasty error message in config.log where it belongs
  	echo "$BASE_DEPENDENCIES_PKG_ERRORS" >&5
-@@ -18869,10 +18944,11 @@
+@@ -18844,10 +18906,9 @@
+ 
+ Alternatively, you may set the environment variables BASE_DEPENDENCIES_CFLAGS
+ and BASE_DEPENDENCIES_LIBS to avoid the need to call pkg-config.
+-See the pkg-config man page for more details." "$LINENO" 5
++See the pkg-config man page for more details.
++" "$LINENO" 5
+ elif test $pkg_failed = untried; then
+-     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
+ 	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+ as_fn_error "The pkg-config script could not be found or is too old.  Make sure it
+@@ -18865,7 +18926,7 @@
+ 	BASE_DEPENDENCIES_LIBS=$pkg_cv_BASE_DEPENDENCIES_LIBS
+         { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+ $as_echo "yes" >&6; }
+-
++	:
+ fi
+ 
+ ## In addition to checking that cairo is present, we also need to
+@@ -18883,10 +18944,11 @@
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for CAIRO_BACKEND" >&5
  $as_echo_n "checking for CAIRO_BACKEND... " >&6; }
  
@@ -8673,7 +8863,7 @@ Index: gtk+2.0-2.21.0/configure
      { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"cairo-\$cairo_backend >= 1.6\""; } >&5
    ($PKG_CONFIG --exists --print-errors "cairo-$cairo_backend >= 1.6") 2>&5
    ac_status=$?
-@@ -18882,13 +18958,15 @@
+@@ -18896,13 +18958,15 @@
  else
    pkg_failed=yes
  fi
@@ -8695,7 +8885,7 @@ Index: gtk+2.0-2.21.0/configure
      { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"cairo-\$cairo_backend >= 1.6\""; } >&5
    ($PKG_CONFIG --exists --print-errors "cairo-$cairo_backend >= 1.6") 2>&5
    ac_status=$?
-@@ -18898,8 +18976,9 @@
+@@ -18912,15 +18976,14 @@
  else
    pkg_failed=yes
  fi
@@ -8707,7 +8897,14 @@ Index: gtk+2.0-2.21.0/configure
  fi
  
  
-@@ -18912,9 +18991,9 @@
+ 
+ if test $pkg_failed = yes; then
+-   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
+ 
+ if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+         _pkg_short_errors_supported=yes
+@@ -18928,9 +18991,9 @@
          _pkg_short_errors_supported=no
  fi
          if test $_pkg_short_errors_supported = yes; then
@@ -8719,7 +8916,48 @@ Index: gtk+2.0-2.21.0/configure
          fi
  	# Put the nasty error message in config.log where it belongs
  	echo "$CAIRO_BACKEND_PKG_ERRORS" >&5
-@@ -24018,7 +24097,8 @@
+@@ -18944,10 +19007,9 @@
+ 
+ Alternatively, you may set the environment variables CAIRO_BACKEND_CFLAGS
+ and CAIRO_BACKEND_LIBS to avoid the need to call pkg-config.
+-See the pkg-config man page for more details." "$LINENO" 5
++See the pkg-config man page for more details.
++" "$LINENO" 5
+ elif test $pkg_failed = untried; then
+-     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
+ 	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+ as_fn_error "The pkg-config script could not be found or is too old.  Make sure it
+@@ -18965,7 +19027,7 @@
+ 	CAIRO_BACKEND_LIBS=$pkg_cv_CAIRO_BACKEND_LIBS
+         { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+ $as_echo "yes" >&6; }
+-
++	:
+ fi
+ 
+ if test "$os_win32" != yes; then
+@@ -20207,10 +20269,6 @@
+ 
+ 
+ 
+-
+-
+-
+-
+ if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+ 	if test -n "$ac_tool_prefix"; then
+   # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
+@@ -20323,6 +20381,7 @@
+ $as_echo "no" >&6; }
+ 		PKG_CONFIG=""
+ 	fi
++
+ fi
+ 
+   no_glib=""
+@@ -24038,7 +24097,8 @@
  
  
    # Check for the RANDR extension
@@ -8729,7 +8967,7 @@ Index: gtk+2.0-2.21.0/configure
  
  $as_echo "#define HAVE_RANDR 1" >>confdefs.h
  
-@@ -24038,7 +24118,8 @@
+@@ -24058,7 +24118,8 @@
  
    # Checks for XFixes extension
  
@@ -8739,7 +8977,7 @@ Index: gtk+2.0-2.21.0/configure
  
  $as_echo "#define HAVE_XFIXES 1" >>confdefs.h
  
-@@ -24049,7 +24130,8 @@
+@@ -24069,7 +24130,8 @@
  
    # Checks for Xcomposite extension
  
@@ -8749,7 +8987,7 @@ Index: gtk+2.0-2.21.0/configure
  
  $as_echo "#define HAVE_XCOMPOSITE 1" >>confdefs.h
  
-@@ -24060,7 +24142,7 @@
+@@ -24080,7 +24142,7 @@
  
    # Checks for Xdamage extension
  
@@ -8758,7 +8996,7 @@ Index: gtk+2.0-2.21.0/configure
  
  $as_echo "#define HAVE_XDAMAGE 1" >>confdefs.h
  
-@@ -24176,10 +24258,11 @@
+@@ -24196,10 +24258,11 @@
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for DIRECTFB" >&5
  $as_echo_n "checking for DIRECTFB... " >&6; }
  
@@ -8774,7 +9012,7 @@ Index: gtk+2.0-2.21.0/configure
      { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"directfb >= \$DIRECTFB_REQUIRED_VERSION\""; } >&5
    ($PKG_CONFIG --exists --print-errors "directfb >= $DIRECTFB_REQUIRED_VERSION") 2>&5
    ac_status=$?
-@@ -24189,13 +24272,15 @@
+@@ -24209,13 +24272,15 @@
  else
    pkg_failed=yes
  fi
@@ -8796,7 +9034,7 @@ Index: gtk+2.0-2.21.0/configure
      { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"directfb >= \$DIRECTFB_REQUIRED_VERSION\""; } >&5
    ($PKG_CONFIG --exists --print-errors "directfb >= $DIRECTFB_REQUIRED_VERSION") 2>&5
    ac_status=$?
-@@ -24205,8 +24290,9 @@
+@@ -24225,15 +24290,14 @@
  else
    pkg_failed=yes
  fi
@@ -8808,7 +9046,14 @@ Index: gtk+2.0-2.21.0/configure
  fi
  
  
-@@ -24219,9 +24305,9 @@
+ 
+ if test $pkg_failed = yes; then
+-   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
+ 
+ if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+         _pkg_short_errors_supported=yes
+@@ -24241,9 +24305,9 @@
          _pkg_short_errors_supported=no
  fi
          if test $_pkg_short_errors_supported = yes; then
@@ -8820,7 +9065,29 @@ Index: gtk+2.0-2.21.0/configure
          fi
  	# Put the nasty error message in config.log where it belongs
  	echo "$DIRECTFB_PKG_ERRORS" >&5
-@@ -24342,20 +24428,23 @@
+@@ -24257,10 +24321,9 @@
+ 
+ Alternatively, you may set the environment variables DIRECTFB_CFLAGS
+ and DIRECTFB_LIBS to avoid the need to call pkg-config.
+-See the pkg-config man page for more details." "$LINENO" 5
++See the pkg-config man page for more details.
++" "$LINENO" 5
+ elif test $pkg_failed = untried; then
+-     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
+ 	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+ $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+ as_fn_error "The pkg-config script could not be found or is too old.  Make sure it
+@@ -24278,7 +24341,7 @@
+ 	DIRECTFB_LIBS=$pkg_cv_DIRECTFB_LIBS
+         { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+ $as_echo "yes" >&6; }
+-
++	:
+ fi
+    if true; then
+   USE_DIRECTFB_TRUE=
+@@ -24365,20 +24428,23 @@
  
  # Pull in gio-unix for GDesktopAppInfo usage, see at least gdkapplaunchcontext-x11.c
  if test "x$gdktarget" = "xx11"; then
@@ -8849,7 +9116,7 @@ Index: gtk+2.0-2.21.0/configure
  fi
  
  
-@@ -24365,6 +24454,7 @@
+@@ -24388,6 +24454,7 @@
  
  
  
@@ -8857,7 +9124,7 @@ Index: gtk+2.0-2.21.0/configure
  ########################################
  # Check for Accessibility Toolkit flags
  ########################################
-@@ -24439,7 +24529,7 @@
+@@ -24462,7 +24529,7 @@
  CAIRO_PREFIX="`pkg-config --variable=prefix cairo`"
  
  if test $enable_explicit_deps != yes ; then
@@ -8866,7 +9133,7 @@ Index: gtk+2.0-2.21.0/configure
  fi
  
  
-@@ -25670,6 +25760,10 @@
+@@ -25693,6 +25760,10 @@
    as_fn_error "conditional \"am__fastdepCC\" was never defined.
  Usually this means the macro was only invoked conditionally." "$LINENO" 5
  fi
@@ -8877,10 +9144,10 @@ Index: gtk+2.0-2.21.0/configure
  if test -z "${am__fastdepCXX_TRUE}" && test -z "${am__fastdepCXX_FALSE}"; then
    as_fn_error "conditional \"am__fastdepCXX\" was never defined.
  Usually this means the macro was only invoked conditionally." "$LINENO" 5
-Index: gtk+2.0-2.21.0/contrib/gdk-pixbuf-xlib/Makefile.in
+Index: gtk+2.0-2.21.1/contrib/gdk-pixbuf-xlib/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/contrib/gdk-pixbuf-xlib/Makefile.in	2010-05-07 22:12:46.000000000 +0200
-+++ gtk+2.0-2.21.0/contrib/gdk-pixbuf-xlib/Makefile.in	2010-05-21 14:17:02.000000000 +0200
+--- gtk+2.0-2.21.1.orig/contrib/gdk-pixbuf-xlib/Makefile.in	2010-05-30 23:46:17.000000000 +0200
++++ gtk+2.0-2.21.1/contrib/gdk-pixbuf-xlib/Makefile.in	2010-06-02 16:11:04.000000000 +0200
 @@ -44,11 +44,14 @@
  	$(top_srcdir)/Makefile.decl ChangeLog
  subdir = contrib/gdk-pixbuf-xlib
@@ -8906,10 +9173,19 @@ Index: gtk+2.0-2.21.0/contrib/gdk-pixbuf-xlib/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/contrib/Makefile.in
+@@ -290,8 +294,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/contrib/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/contrib/Makefile.in	2010-05-07 22:12:46.000000000 +0200
-+++ gtk+2.0-2.21.0/contrib/Makefile.in	2010-05-21 14:17:02.000000000 +0200
+--- gtk+2.0-2.21.1.orig/contrib/Makefile.in	2010-05-30 23:46:17.000000000 +0200
++++ gtk+2.0-2.21.1/contrib/Makefile.in	2010-06-02 16:11:04.000000000 +0200
 @@ -40,11 +40,14 @@
  @USE_X11_TRUE@am__append_1 = gdk-pixbuf-xlib
  subdir = contrib
@@ -8935,10 +9211,19 @@ Index: gtk+2.0-2.21.0/contrib/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/demos/gtk-demo/Makefile.in
+@@ -263,8 +267,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/demos/gtk-demo/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/demos/gtk-demo/Makefile.in	2010-05-07 22:12:47.000000000 +0200
-+++ gtk+2.0-2.21.0/demos/gtk-demo/Makefile.in	2010-05-21 14:17:02.000000000 +0200
+--- gtk+2.0-2.21.1.orig/demos/gtk-demo/Makefile.in	2010-05-30 23:46:17.000000000 +0200
++++ gtk+2.0-2.21.1/demos/gtk-demo/Makefile.in	2010-06-02 16:11:04.000000000 +0200
 @@ -42,11 +42,14 @@
  bin_PROGRAMS = gtk-demo$(EXEEXT)
  subdir = demos/gtk-demo
@@ -8964,10 +9249,19 @@ Index: gtk+2.0-2.21.0/demos/gtk-demo/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/demos/Makefile.in
+@@ -299,8 +303,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/demos/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/demos/Makefile.in	2010-05-07 22:12:47.000000000 +0200
-+++ gtk+2.0-2.21.0/demos/Makefile.in	2010-05-21 14:17:02.000000000 +0200
+--- gtk+2.0-2.21.1.orig/demos/Makefile.in	2010-05-30 23:46:17.000000000 +0200
++++ gtk+2.0-2.21.1/demos/Makefile.in	2010-06-02 16:11:04.000000000 +0200
 @@ -46,11 +46,14 @@
  @HAVE_PNG_TRUE@am__append_1 = testpixbuf
  subdir = demos
@@ -8993,10 +9287,19 @@ Index: gtk+2.0-2.21.0/demos/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/docs/faq/Makefile.in
+@@ -322,8 +326,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/docs/faq/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/docs/faq/Makefile.in	2010-05-07 22:12:47.000000000 +0200
-+++ gtk+2.0-2.21.0/docs/faq/Makefile.in	2010-05-21 14:17:02.000000000 +0200
+--- gtk+2.0-2.21.1.orig/docs/faq/Makefile.in	2010-05-30 23:46:17.000000000 +0200
++++ gtk+2.0-2.21.1/docs/faq/Makefile.in	2010-06-02 16:11:04.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = docs/faq
@@ -9022,10 +9325,19 @@ Index: gtk+2.0-2.21.0/docs/faq/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/docs/Makefile.in
+@@ -222,8 +226,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/docs/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/docs/Makefile.in	2010-05-07 22:12:47.000000000 +0200
-+++ gtk+2.0-2.21.0/docs/Makefile.in	2010-05-21 14:17:02.000000000 +0200
+--- gtk+2.0-2.21.1.orig/docs/Makefile.in	2010-05-30 23:46:17.000000000 +0200
++++ gtk+2.0-2.21.1/docs/Makefile.in	2010-06-02 16:11:04.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = docs
@@ -9051,10 +9363,19 @@ Index: gtk+2.0-2.21.0/docs/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/docs/reference/gdk/Makefile.in
+@@ -262,8 +266,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/docs/reference/gdk/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/docs/reference/gdk/Makefile.in	2010-05-07 22:12:47.000000000 +0200
-+++ gtk+2.0-2.21.0/docs/reference/gdk/Makefile.in	2010-05-21 14:17:02.000000000 +0200
+--- gtk+2.0-2.21.1.orig/docs/reference/gdk/Makefile.in	2010-05-30 23:46:18.000000000 +0200
++++ gtk+2.0-2.21.1/docs/reference/gdk/Makefile.in	2010-06-02 16:11:04.000000000 +0200
 @@ -46,11 +46,14 @@
  	$(top_srcdir)/gtk-doc.make
  subdir = docs/reference/gdk
@@ -9080,10 +9401,19 @@ Index: gtk+2.0-2.21.0/docs/reference/gdk/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/docs/reference/gdk-pixbuf/Makefile.in
+@@ -229,8 +233,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/docs/reference/gdk-pixbuf/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/docs/reference/gdk-pixbuf/Makefile.in	2010-05-07 22:12:47.000000000 +0200
-+++ gtk+2.0-2.21.0/docs/reference/gdk-pixbuf/Makefile.in	2010-05-21 14:17:02.000000000 +0200
+--- gtk+2.0-2.21.1.orig/docs/reference/gdk-pixbuf/Makefile.in	2010-05-30 23:46:18.000000000 +0200
++++ gtk+2.0-2.21.1/docs/reference/gdk-pixbuf/Makefile.in	2010-06-02 16:11:04.000000000 +0200
 @@ -46,11 +46,14 @@
  	$(top_srcdir)/gtk-doc.make
  subdir = docs/reference/gdk-pixbuf
@@ -9109,10 +9439,19 @@ Index: gtk+2.0-2.21.0/docs/reference/gdk-pixbuf/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/docs/reference/gtk/Makefile.in
+@@ -254,8 +258,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/docs/reference/gtk/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/docs/reference/gtk/Makefile.in	2010-05-07 22:12:47.000000000 +0200
-+++ gtk+2.0-2.21.0/docs/reference/gtk/Makefile.in	2010-05-21 14:17:03.000000000 +0200
+--- gtk+2.0-2.21.1.orig/docs/reference/gtk/Makefile.in	2010-05-30 23:46:18.000000000 +0200
++++ gtk+2.0-2.21.1/docs/reference/gtk/Makefile.in	2010-06-02 16:11:04.000000000 +0200
 @@ -46,11 +46,14 @@
  	$(top_srcdir)/gtk-doc.make
  subdir = docs/reference/gtk
@@ -9138,10 +9477,19 @@ Index: gtk+2.0-2.21.0/docs/reference/gtk/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/docs/reference/libgail-util/Makefile.in
+@@ -254,8 +258,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/docs/reference/libgail-util/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/docs/reference/libgail-util/Makefile.in	2010-05-07 22:12:47.000000000 +0200
-+++ gtk+2.0-2.21.0/docs/reference/libgail-util/Makefile.in	2010-05-21 14:17:03.000000000 +0200
+--- gtk+2.0-2.21.1.orig/docs/reference/libgail-util/Makefile.in	2010-05-30 23:46:18.000000000 +0200
++++ gtk+2.0-2.21.1/docs/reference/libgail-util/Makefile.in	2010-06-02 16:11:04.000000000 +0200
 @@ -45,11 +45,14 @@
  	$(top_srcdir)/Makefile.decl $(top_srcdir)/gtk-doc.make
  subdir = docs/reference/libgail-util
@@ -9167,10 +9515,19 @@ Index: gtk+2.0-2.21.0/docs/reference/libgail-util/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/docs/reference/Makefile.in
+@@ -228,8 +232,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/docs/reference/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/docs/reference/Makefile.in	2010-05-07 22:12:47.000000000 +0200
-+++ gtk+2.0-2.21.0/docs/reference/Makefile.in	2010-05-21 14:17:02.000000000 +0200
+--- gtk+2.0-2.21.1.orig/docs/reference/Makefile.in	2010-05-30 23:46:17.000000000 +0200
++++ gtk+2.0-2.21.1/docs/reference/Makefile.in	2010-06-02 16:11:04.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl AUTHORS COPYING ChangeLog
  subdir = docs/reference
@@ -9196,10 +9553,19 @@ Index: gtk+2.0-2.21.0/docs/reference/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/docs/tools/Makefile.in
+@@ -262,8 +266,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/docs/tools/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/docs/tools/Makefile.in	2010-05-07 22:12:48.000000000 +0200
-+++ gtk+2.0-2.21.0/docs/tools/Makefile.in	2010-05-21 14:17:03.000000000 +0200
+--- gtk+2.0-2.21.1.orig/docs/tools/Makefile.in	2010-05-30 23:46:18.000000000 +0200
++++ gtk+2.0-2.21.1/docs/tools/Makefile.in	2010-06-02 16:11:04.000000000 +0200
 @@ -41,11 +41,14 @@
  @USE_X11_TRUE@noinst_PROGRAMS = doc-shooter$(EXEEXT)
  subdir = docs/tools
@@ -9225,10 +9591,19 @@ Index: gtk+2.0-2.21.0/docs/tools/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/docs/tutorial/Makefile.in
+@@ -258,8 +262,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/docs/tutorial/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/docs/tutorial/Makefile.in	2010-05-07 22:12:48.000000000 +0200
-+++ gtk+2.0-2.21.0/docs/tutorial/Makefile.in	2010-05-21 14:17:03.000000000 +0200
+--- gtk+2.0-2.21.1.orig/docs/tutorial/Makefile.in	2010-05-30 23:46:18.000000000 +0200
++++ gtk+2.0-2.21.1/docs/tutorial/Makefile.in	2010-06-02 16:11:05.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = docs/tutorial
@@ -9254,10 +9629,19 @@ Index: gtk+2.0-2.21.0/docs/tutorial/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/gdk/directfb/Makefile.in
+@@ -222,8 +226,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/gdk/directfb/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/gdk/directfb/Makefile.in	2010-05-07 22:12:48.000000000 +0200
-+++ gtk+2.0-2.21.0/gdk/directfb/Makefile.in	2010-05-21 14:17:03.000000000 +0200
+--- gtk+2.0-2.21.1.orig/gdk/directfb/Makefile.in	2010-05-30 23:46:19.000000000 +0200
++++ gtk+2.0-2.21.1/gdk/directfb/Makefile.in	2010-06-02 16:11:05.000000000 +0200
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl AUTHORS TODO
  subdir = gdk/directfb
@@ -9283,10 +9667,19 @@ Index: gtk+2.0-2.21.0/gdk/directfb/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/gdk/Makefile.in
+@@ -286,8 +290,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/gdk/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/gdk/Makefile.in	2010-05-07 22:12:48.000000000 +0200
-+++ gtk+2.0-2.21.0/gdk/Makefile.in	2010-05-21 14:17:03.000000000 +0200
+--- gtk+2.0-2.21.1.orig/gdk/Makefile.in	2010-05-30 23:46:19.000000000 +0200
++++ gtk+2.0-2.21.1/gdk/Makefile.in	2010-06-02 16:11:05.000000000 +0200
 @@ -45,11 +45,14 @@
  @HAVE_INTROSPECTION_TRUE@am__append_2 = $(dist_gir_DATA) $(typelibs_DATA)
  subdir = gdk
@@ -9312,7 +9705,16 @@ Index: gtk+2.0-2.21.0/gdk/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -698,7 +702,7 @@
+@@ -413,8 +417,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+@@ -700,7 +702,7 @@
  @HAVE_INTROSPECTION_TRUE@		$(gdk_c_sources) \
  @HAVE_INTROSPECTION_TRUE@        gdkenumtypes.c \
  @HAVE_INTROSPECTION_TRUE@        gdkenumtypes.h \
@@ -9321,10 +9723,10 @@ Index: gtk+2.0-2.21.0/gdk/Makefile.in
  
  @HAVE_INTROSPECTION_TRUE@Gdk_2_0_gir_SCANNERFLAGS = --strip-prefix=Gdk --add-include-path=../gdk-pixbuf
  @HAVE_INTROSPECTION_TRUE@Gdk_2_0_gir_INCLUDES = Gio-2.0 GdkPixbuf-2.0 Pango-1.0
-Index: gtk+2.0-2.21.0/gdk/quartz/Makefile.in
+Index: gtk+2.0-2.21.1/gdk/quartz/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/gdk/quartz/Makefile.in	2010-05-07 22:12:49.000000000 +0200
-+++ gtk+2.0-2.21.0/gdk/quartz/Makefile.in	2010-05-21 14:17:03.000000000 +0200
+--- gtk+2.0-2.21.1.orig/gdk/quartz/Makefile.in	2010-05-30 23:46:19.000000000 +0200
++++ gtk+2.0-2.21.1/gdk/quartz/Makefile.in	2010-06-02 16:11:05.000000000 +0200
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = gdk/quartz
@@ -9350,10 +9752,19 @@ Index: gtk+2.0-2.21.0/gdk/quartz/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/gdk/tests/Makefile.in
+@@ -285,8 +289,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/gdk/tests/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/gdk/tests/Makefile.in	2010-05-07 22:12:49.000000000 +0200
-+++ gtk+2.0-2.21.0/gdk/tests/Makefile.in	2010-05-21 14:17:04.000000000 +0200
+--- gtk+2.0-2.21.1.orig/gdk/tests/Makefile.in	2010-05-30 23:46:19.000000000 +0200
++++ gtk+2.0-2.21.1/gdk/tests/Makefile.in	2010-06-02 16:11:05.000000000 +0200
 @@ -41,11 +41,14 @@
  TESTS = $(am__EXEEXT_1)
  subdir = gdk/tests
@@ -9379,10 +9790,19 @@ Index: gtk+2.0-2.21.0/gdk/tests/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/gdk/win32/Makefile.in
+@@ -227,8 +231,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/gdk/win32/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/gdk/win32/Makefile.in	2010-05-07 22:12:49.000000000 +0200
-+++ gtk+2.0-2.21.0/gdk/win32/Makefile.in	2010-05-21 14:17:04.000000000 +0200
+--- gtk+2.0-2.21.1.orig/gdk/win32/Makefile.in	2010-05-30 23:46:19.000000000 +0200
++++ gtk+2.0-2.21.1/gdk/win32/Makefile.in	2010-06-02 16:11:05.000000000 +0200
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = gdk/win32
@@ -9408,10 +9828,19 @@ Index: gtk+2.0-2.21.0/gdk/win32/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/gdk/win32/rc/Makefile.in
+@@ -323,8 +327,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/gdk/win32/rc/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/gdk/win32/rc/Makefile.in	2010-05-07 22:12:49.000000000 +0200
-+++ gtk+2.0-2.21.0/gdk/win32/rc/Makefile.in	2010-05-21 14:17:04.000000000 +0200
+--- gtk+2.0-2.21.1.orig/gdk/win32/rc/Makefile.in	2010-05-30 23:46:19.000000000 +0200
++++ gtk+2.0-2.21.1/gdk/win32/rc/Makefile.in	2010-06-02 16:11:05.000000000 +0200
 @@ -40,11 +40,14 @@
  	$(srcdir)/gdk.rc.in $(top_srcdir)/Makefile.decl
  subdir = gdk/win32/rc
@@ -9437,10 +9866,19 @@ Index: gtk+2.0-2.21.0/gdk/win32/rc/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/gdk/x11/Makefile.in
+@@ -224,8 +228,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/gdk/x11/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/gdk/x11/Makefile.in	2010-05-07 22:12:49.000000000 +0200
-+++ gtk+2.0-2.21.0/gdk/x11/Makefile.in	2010-05-21 14:17:04.000000000 +0200
+--- gtk+2.0-2.21.1.orig/gdk/x11/Makefile.in	2010-05-30 23:46:19.000000000 +0200
++++ gtk+2.0-2.21.1/gdk/x11/Makefile.in	2010-06-02 16:11:06.000000000 +0200
 @@ -46,11 +46,14 @@
  TESTS = checksettings$(EXEEXT)
  subdir = gdk/x11
@@ -9466,10 +9904,19 @@ Index: gtk+2.0-2.21.0/gdk/x11/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/gdk-pixbuf/Makefile.in
+@@ -315,8 +319,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/gdk-pixbuf/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/gdk-pixbuf/Makefile.in	2010-05-07 22:12:48.000000000 +0200
-+++ gtk+2.0-2.21.0/gdk-pixbuf/Makefile.in	2010-05-21 14:17:03.000000000 +0200
+--- gtk+2.0-2.21.1.orig/gdk-pixbuf/Makefile.in	2010-05-30 23:46:18.000000000 +0200
++++ gtk+2.0-2.21.1/gdk-pixbuf/Makefile.in	2010-06-02 16:11:05.000000000 +0200
 @@ -51,11 +51,14 @@
  @HAVE_INTROSPECTION_TRUE@am__append_2 = $(dist_gir_DATA) $(typelibs_DATA)
  subdir = gdk-pixbuf
@@ -9495,7 +9942,16 @@ Index: gtk+2.0-2.21.0/gdk-pixbuf/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -999,6 +1003,7 @@
+@@ -871,8 +875,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+@@ -1001,6 +1003,7 @@
  	libgdk_pixbuf-2.0.la
  
  loaderdir = $(libdir)/gtk-2.0/$(GTK_BINARY_VERSION)/loaders
@@ -9503,7 +9959,7 @@ Index: gtk+2.0-2.21.0/gdk-pixbuf/Makefile.in
  module_libs = libgdk_pixbuf-$(GTK_API_VERSION).la $(GDK_PIXBUF_DEP_LIBS)
  
  #
-@@ -1356,7 +1361,7 @@
+@@ -1358,7 +1361,7 @@
  	$(GDK_PIXBUF_DEP_CFLAGS)		\
  	-DGDK_PIXBUF_ENABLE_BACKEND
  
@@ -9512,10 +9968,10 @@ Index: gtk+2.0-2.21.0/gdk-pixbuf/Makefile.in
  LDADDS = libgdk_pixbuf-$(GTK_API_VERSION).la $(GDK_PIXBUF_DEP_LIBS)
  test_gdk_pixbuf_LDADD = $(LDADDS)
  gdk_pixbuf_csource_SOURCES = gdk-pixbuf-csource.c
-Index: gtk+2.0-2.21.0/gdk-pixbuf/pixops/Makefile.in
+Index: gtk+2.0-2.21.1/gdk-pixbuf/pixops/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/gdk-pixbuf/pixops/Makefile.in	2010-05-07 22:12:48.000000000 +0200
-+++ gtk+2.0-2.21.0/gdk-pixbuf/pixops/Makefile.in	2010-05-21 14:17:03.000000000 +0200
+--- gtk+2.0-2.21.1.orig/gdk-pixbuf/pixops/Makefile.in	2010-05-30 23:46:19.000000000 +0200
++++ gtk+2.0-2.21.1/gdk-pixbuf/pixops/Makefile.in	2010-06-02 16:11:05.000000000 +0200
 @@ -42,11 +42,14 @@
  noinst_PROGRAMS = timescale$(EXEEXT)
  subdir = gdk-pixbuf/pixops
@@ -9541,10 +9997,19 @@ Index: gtk+2.0-2.21.0/gdk-pixbuf/pixops/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/gtk/Makefile.in
+@@ -275,8 +279,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/gtk/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/gtk/Makefile.in	2010-05-07 22:12:49.000000000 +0200
-+++ gtk+2.0-2.21.0/gtk/Makefile.in	2010-05-21 14:17:04.000000000 +0200
+--- gtk+2.0-2.21.1.orig/gtk/Makefile.in	2010-05-30 23:46:20.000000000 +0200
++++ gtk+2.0-2.21.1/gtk/Makefile.in	2010-06-02 16:11:06.000000000 +0200
 @@ -77,11 +77,14 @@
  
  subdir = gtk
@@ -9675,7 +10140,16 @@ Index: gtk+2.0-2.21.0/gtk/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -988,6 +992,8 @@
+@@ -831,8 +835,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+@@ -990,6 +992,8 @@
  	-I$(top_srcdir)/gdk				\
  	-I$(top_srcdir)/gdk-pixbuf -I../gdk-pixbuf	\
  	-DGDK_DISABLE_DEPRECATED			\
@@ -9684,7 +10158,7 @@ Index: gtk+2.0-2.21.0/gtk/Makefile.in
  	-DGTK_DISABLE_DEPRECATED			\
  	-DGTK_FILE_SYSTEM_ENABLE_UNSUPPORTED		\
  	-DGTK_PRINT_BACKEND_ENABLE_UNSUPPORTED		\
-@@ -1089,7 +1095,7 @@
+@@ -1091,7 +1095,7 @@
  	gtkgamma.h gtkinputdialog.h gtkitemfactory.h gtklist.h \
  	gtklistitem.h gtkoldeditable.h gtkoptionmenu.h gtkpixmap.h \
  	gtkpreview.h gtkprogress.h gtksignal.h gtktipsquery.h \
@@ -9693,7 +10167,7 @@ Index: gtk+2.0-2.21.0/gtk/Makefile.in
  @OS_UNIX_TRUE@gtk_unix_print_public_h_sources = \
  @OS_UNIX_TRUE@	gtkpagesetupunixdialog.h	\
  @OS_UNIX_TRUE@	gtkprintunixdialog.h		\
-@@ -1101,17 +1107,21 @@
+@@ -1103,17 +1107,21 @@
  # Installed header files without compatibility guarantees
  # that are not included in gtk/gtk.h
  gtk_semi_private_h_sources = \
@@ -9723,7 +10197,7 @@ Index: gtk+2.0-2.21.0/gtk/Makefile.in
  	gtkmnemonichash.h gtkmountoperationprivate.h gtkpathbar.h \
  	gtkplugprivate.h gtkprintoperation-private.h gtkprintutils.h \
  	gtkrbtree.h gtkrecentchooserdefault.h \
-@@ -1121,7 +1131,7 @@
+@@ -1123,7 +1131,7 @@
  	gtktextmarkprivate.h gtktextsegment.h gtktexttagprivate.h \
  	gtktexttypes.h gtktextutil.h gtkthemes.h \
  	gtktoggleactionprivate.h gtktoolpaletteprivate.h \
@@ -9732,7 +10206,7 @@ Index: gtk+2.0-2.21.0/gtk/Makefile.in
  	$(gtk_clipboard_dnd_h_sources) $(am__append_4) $(am__append_6) \
  	$(am__append_8) $(am__append_10) $(am__append_12)
  
-@@ -1190,13 +1200,12 @@
+@@ -1192,13 +1200,12 @@
  	gtktypeutils.c gtkuimanager.c gtkvbbox.c gtkvbox.c \
  	gtkvolumebutton.c gtkviewport.c gtkvpaned.c gtkvruler.c \
  	gtkvscale.c gtkvscrollbar.c gtkvseparator.c gtkwidget.c \
@@ -9748,10 +10222,10 @@ Index: gtk+2.0-2.21.0/gtk/Makefile.in
  gtk_c_sources = $(gtk_base_c_sources) $(am__append_5) $(am__append_7) \
  	$(am__append_9) $(am__append_11) $(am__append_13) \
  	$(am__append_14)
-Index: gtk+2.0-2.21.0/gtk/tests/Makefile.in
+Index: gtk+2.0-2.21.1/gtk/tests/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/gtk/tests/Makefile.in	2010-05-07 22:12:49.000000000 +0200
-+++ gtk+2.0-2.21.0/gtk/tests/Makefile.in	2010-05-21 14:17:04.000000000 +0200
+--- gtk+2.0-2.21.1.orig/gtk/tests/Makefile.in	2010-05-30 23:46:20.000000000 +0200
++++ gtk+2.0-2.21.1/gtk/tests/Makefile.in	2010-06-02 16:11:06.000000000 +0200
 @@ -42,11 +42,14 @@
  @OS_UNIX_TRUE@am__append_1 = defaultvalue
  subdir = gtk/tests
@@ -9777,10 +10251,19 @@ Index: gtk+2.0-2.21.0/gtk/tests/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/gtk/theme-bits/Makefile.in
+@@ -317,8 +321,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/gtk/theme-bits/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/gtk/theme-bits/Makefile.in	2010-05-07 22:12:50.000000000 +0200
-+++ gtk+2.0-2.21.0/gtk/theme-bits/Makefile.in	2010-05-21 14:17:04.000000000 +0200
+--- gtk+2.0-2.21.1.orig/gtk/theme-bits/Makefile.in	2010-05-30 23:46:20.000000000 +0200
++++ gtk+2.0-2.21.1/gtk/theme-bits/Makefile.in	2010-06-02 16:11:06.000000000 +0200
 @@ -41,11 +41,14 @@
  noinst_PROGRAMS = decompose-bits$(EXEEXT)
  subdir = gtk/theme-bits
@@ -9806,16 +10289,25 @@ Index: gtk+2.0-2.21.0/gtk/theme-bits/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/ltmain.sh
+@@ -255,8 +259,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/ltmain.sh
 ===================================================================
---- gtk+2.0-2.21.0.orig/ltmain.sh	2010-05-03 18:48:37.000000000 +0200
-+++ gtk+2.0-2.21.0/ltmain.sh	2010-05-21 14:16:50.000000000 +0200
+--- gtk+2.0-2.21.1.orig/ltmain.sh	2010-05-01 09:19:03.000000000 +0200
++++ gtk+2.0-2.21.1/ltmain.sh	2010-06-02 16:10:52.000000000 +0200
 @@ -65,7 +65,7 @@
  #       compiler:		$LTCC
  #       compiler flags:		$LTCFLAGS
  #       linker:		$LD (gnu? $with_gnu_ld)
 -#       $progname:		(GNU libtool) 2.2.6b
-+#       $progname:		(GNU libtool) 2.2.6b Debian-2.2.6b-2ubuntu1
++#       $progname:		(GNU libtool) 2.2.6b Debian-2.2.6b-2
  #       automake:		$automake_version
  #       autoconf:		$autoconf_version
  #
@@ -9824,7 +10316,7 @@ Index: gtk+2.0-2.21.0/ltmain.sh
  PROGRAM=ltmain.sh
  PACKAGE=libtool
 -VERSION=2.2.6b
-+VERSION="2.2.6b Debian-2.2.6b-2ubuntu1"
++VERSION="2.2.6b Debian-2.2.6b-2"
  TIMESTAMP=""
  package_revision=1.3017
  
@@ -9888,10 +10380,10 @@ Index: gtk+2.0-2.21.0/ltmain.sh
  	  esac
  	  ;;
  	no)
-Index: gtk+2.0-2.21.0/m4/gtk-doc.m4
+Index: gtk+2.0-2.21.1/m4/gtk-doc.m4
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.0/m4/gtk-doc.m4	2010-05-21 14:16:50.000000000 +0200
++++ gtk+2.0-2.21.1/m4/gtk-doc.m4	2010-06-02 16:10:52.000000000 +0200
 @@ -0,0 +1,61 @@
 +dnl -*- mode: autoconf -*-
 +
@@ -9954,10 +10446,10 @@ Index: gtk+2.0-2.21.0/m4/gtk-doc.m4
 +  AM_CONDITIONAL([GTK_DOC_USE_LIBTOOL], [test -n "$LIBTOOL"])
 +  AM_CONDITIONAL([GTK_DOC_USE_REBASE], [test -n "$GTKDOC_REBASE"])
 +])
-Index: gtk+2.0-2.21.0/m4/libtool.m4
+Index: gtk+2.0-2.21.1/m4/libtool.m4
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.0/m4/libtool.m4	2010-05-21 14:16:50.000000000 +0200
++++ gtk+2.0-2.21.1/m4/libtool.m4	2010-06-02 16:10:52.000000000 +0200
 @@ -0,0 +1,7377 @@
 +# libtool.m4 - Configure libtool for the host system. -*-Autoconf-*-
 +#
@@ -17336,10 +17828,10 @@ Index: gtk+2.0-2.21.0/m4/libtool.m4
 +    ;;
 +  esac
 +])
-Index: gtk+2.0-2.21.0/m4/lt~obsolete.m4
+Index: gtk+2.0-2.21.1/m4/lt~obsolete.m4
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.0/m4/lt~obsolete.m4	2010-05-21 14:16:50.000000000 +0200
++++ gtk+2.0-2.21.1/m4/lt~obsolete.m4	2010-06-02 16:10:52.000000000 +0200
 @@ -0,0 +1,92 @@
 +# lt~obsolete.m4 -- aclocal satisfying obsolete definitions.    -*-Autoconf-*-
 +#
@@ -17433,10 +17925,10 @@ Index: gtk+2.0-2.21.0/m4/lt~obsolete.m4
 +m4_ifndef([_LT_AC_LANG_RC_CONFIG],	[AC_DEFUN([_LT_AC_LANG_RC_CONFIG])])
 +m4_ifndef([AC_LIBTOOL_CONFIG],		[AC_DEFUN([AC_LIBTOOL_CONFIG])])
 +m4_ifndef([_LT_AC_FILE_LTDLL_C],	[AC_DEFUN([_LT_AC_FILE_LTDLL_C])])
-Index: gtk+2.0-2.21.0/m4/ltoptions.m4
+Index: gtk+2.0-2.21.1/m4/ltoptions.m4
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.0/m4/ltoptions.m4	2010-05-21 14:16:50.000000000 +0200
++++ gtk+2.0-2.21.1/m4/ltoptions.m4	2010-06-02 16:10:52.000000000 +0200
 @@ -0,0 +1,368 @@
 +# Helper functions for option handling.                    -*- Autoconf -*-
 +#
@@ -17806,10 +18298,10 @@ Index: gtk+2.0-2.21.0/m4/ltoptions.m4
 +		 [m4_define([_LTDL_TYPE], [installable])])
 +LT_OPTION_DEFINE([LTDL_INIT], [convenience],
 +		 [m4_define([_LTDL_TYPE], [convenience])])
-Index: gtk+2.0-2.21.0/m4/ltsugar.m4
+Index: gtk+2.0-2.21.1/m4/ltsugar.m4
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.0/m4/ltsugar.m4	2010-05-21 14:16:50.000000000 +0200
++++ gtk+2.0-2.21.1/m4/ltsugar.m4	2010-06-02 16:10:52.000000000 +0200
 @@ -0,0 +1,123 @@
 +# ltsugar.m4 -- libtool m4 base layer.                         -*-Autoconf-*-
 +#
@@ -17934,10 +18426,10 @@ Index: gtk+2.0-2.21.0/m4/ltsugar.m4
 +           lt_unquote(m4_split(m4_normalize(m4_foreach(_Lt_key, lt_car([m4_shiftn(4, $@)]),
 +		      [lt_if_dict_fetch([$1], _Lt_key, [$2], [$3], [_Lt_key ])])))))])[]dnl
 +])
-Index: gtk+2.0-2.21.0/m4/ltversion.m4
+Index: gtk+2.0-2.21.1/m4/ltversion.m4
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.0/m4/ltversion.m4	2010-05-21 14:16:50.000000000 +0200
++++ gtk+2.0-2.21.1/m4/ltversion.m4	2010-06-02 16:10:52.000000000 +0200
 @@ -0,0 +1,23 @@
 +# ltversion.m4 -- version numbers			-*- Autoconf -*-
 +#
@@ -17962,10 +18454,10 @@ Index: gtk+2.0-2.21.0/m4/ltversion.m4
 +_LT_DECL(, macro_version, 0, [Which release of libtool.m4 was used?])
 +_LT_DECL(, macro_revision, 0)
 +])
-Index: gtk+2.0-2.21.0/m4macros/Makefile.in
+Index: gtk+2.0-2.21.1/m4macros/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/m4macros/Makefile.in	2010-05-07 22:12:50.000000000 +0200
-+++ gtk+2.0-2.21.0/m4macros/Makefile.in	2010-05-21 14:17:04.000000000 +0200
+--- gtk+2.0-2.21.1.orig/m4macros/Makefile.in	2010-05-30 23:46:20.000000000 +0200
++++ gtk+2.0-2.21.1/m4macros/Makefile.in	2010-06-02 16:11:06.000000000 +0200
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = m4macros
@@ -17991,10 +18483,19 @@ Index: gtk+2.0-2.21.0/m4macros/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/Makefile.in
+@@ -246,8 +250,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/Makefile.in	2010-05-07 22:12:53.000000000 +0200
-+++ gtk+2.0-2.21.0/Makefile.in	2010-05-21 14:17:07.000000000 +0200
+--- gtk+2.0-2.21.1.orig/Makefile.in	2010-05-30 23:46:23.000000000 +0200
++++ gtk+2.0-2.21.1/Makefile.in	2010-06-02 16:11:08.000000000 +0200
 @@ -47,17 +47,20 @@
  	$(srcdir)/gtk+-unix-print-2.0.pc.in $(srcdir)/gtk-zip.sh.in \
  	$(top_srcdir)/Makefile.decl $(top_srcdir)/configure AUTHORS \
@@ -18037,7 +18538,16 @@ Index: gtk+2.0-2.21.0/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -477,7 +482,10 @@
+@@ -312,8 +317,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+@@ -479,7 +482,10 @@
  	|| { echo "Gtk+Tests:ERROR: Failed to start Xvfb environment for X11 target tests."; exit 1; } \
  	&& DISPLAY=:$$XID && export DISPLAY
  
@@ -18049,10 +18559,10 @@ Index: gtk+2.0-2.21.0/Makefile.in
  SUBDIRS = po po-properties $(SRC_SUBDIRS) docs m4macros build
  
  # require automake 1.4
-Index: gtk+2.0-2.21.0/mkinstalldirs
+Index: gtk+2.0-2.21.1/mkinstalldirs
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.0/mkinstalldirs	2010-05-21 14:16:50.000000000 +0200
++++ gtk+2.0-2.21.1/mkinstalldirs	2010-06-02 16:10:52.000000000 +0200
 @@ -0,0 +1,162 @@
 +#! /bin/sh
 +# mkinstalldirs --- make directory hierarchy
@@ -18216,10 +18726,10 @@ Index: gtk+2.0-2.21.0/mkinstalldirs
 +# time-stamp-time-zone: "UTC"
 +# time-stamp-end: "; # UTC"
 +# End:
-Index: gtk+2.0-2.21.0/modules/engines/Makefile.in
+Index: gtk+2.0-2.21.1/modules/engines/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/modules/engines/Makefile.in	2010-05-07 22:12:50.000000000 +0200
-+++ gtk+2.0-2.21.0/modules/engines/Makefile.in	2010-05-21 14:17:05.000000000 +0200
+--- gtk+2.0-2.21.1.orig/modules/engines/Makefile.in	2010-05-30 23:46:20.000000000 +0200
++++ gtk+2.0-2.21.1/modules/engines/Makefile.in	2010-06-02 16:11:06.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/engines
@@ -18245,10 +18755,19 @@ Index: gtk+2.0-2.21.0/modules/engines/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/modules/engines/ms-windows/Makefile.in
+@@ -262,8 +266,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/modules/engines/ms-windows/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/modules/engines/ms-windows/Makefile.in	2010-05-07 22:12:50.000000000 +0200
-+++ gtk+2.0-2.21.0/modules/engines/ms-windows/Makefile.in	2010-05-21 14:17:05.000000000 +0200
+--- gtk+2.0-2.21.1.orig/modules/engines/ms-windows/Makefile.in	2010-05-30 23:46:20.000000000 +0200
++++ gtk+2.0-2.21.1/modules/engines/ms-windows/Makefile.in	2010-06-02 16:11:06.000000000 +0200
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/engines/ms-windows
@@ -18274,10 +18793,19 @@ Index: gtk+2.0-2.21.0/modules/engines/ms-windows/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in
+@@ -320,8 +324,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-05-07 22:12:50.000000000 +0200
-+++ gtk+2.0-2.21.0/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-05-21 14:17:05.000000000 +0200
+--- gtk+2.0-2.21.1.orig/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-05-30 23:46:21.000000000 +0200
++++ gtk+2.0-2.21.1/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-06-02 16:11:06.000000000 +0200
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/engines/ms-windows/Theme/gtk-2.0
@@ -18303,10 +18831,19 @@ Index: gtk+2.0-2.21.0/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/modules/engines/ms-windows/Theme/Makefile.in
+@@ -246,8 +250,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/modules/engines/ms-windows/Theme/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/modules/engines/ms-windows/Theme/Makefile.in	2010-05-07 22:12:50.000000000 +0200
-+++ gtk+2.0-2.21.0/modules/engines/ms-windows/Theme/Makefile.in	2010-05-21 14:17:05.000000000 +0200
+--- gtk+2.0-2.21.1.orig/modules/engines/ms-windows/Theme/Makefile.in	2010-05-30 23:46:20.000000000 +0200
++++ gtk+2.0-2.21.1/modules/engines/ms-windows/Theme/Makefile.in	2010-06-02 16:11:06.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/engines/ms-windows/Theme
@@ -18332,10 +18869,19 @@ Index: gtk+2.0-2.21.0/modules/engines/ms-windows/Theme/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/modules/engines/pixbuf/Makefile.in
+@@ -262,8 +266,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/modules/engines/pixbuf/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/modules/engines/pixbuf/Makefile.in	2010-05-07 22:12:50.000000000 +0200
-+++ gtk+2.0-2.21.0/modules/engines/pixbuf/Makefile.in	2010-05-21 14:17:05.000000000 +0200
+--- gtk+2.0-2.21.1.orig/modules/engines/pixbuf/Makefile.in	2010-05-30 23:46:21.000000000 +0200
++++ gtk+2.0-2.21.1/modules/engines/pixbuf/Makefile.in	2010-06-02 16:11:07.000000000 +0200
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl ChangeLog
  subdir = modules/engines/pixbuf
@@ -18361,10 +18907,19 @@ Index: gtk+2.0-2.21.0/modules/engines/pixbuf/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/modules/input/Makefile.in
+@@ -283,8 +287,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/modules/input/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/modules/input/Makefile.in	2010-05-07 22:12:50.000000000 +0200
-+++ gtk+2.0-2.21.0/modules/input/Makefile.in	2010-05-21 14:17:05.000000000 +0200
+--- gtk+2.0-2.21.1.orig/modules/input/Makefile.in	2010-05-30 23:46:21.000000000 +0200
++++ gtk+2.0-2.21.1/modules/input/Makefile.in	2010-06-02 16:11:07.000000000 +0200
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/input
@@ -18390,7 +18945,16 @@ Index: gtk+2.0-2.21.0/modules/input/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -715,7 +719,8 @@
+@@ -484,8 +488,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+@@ -717,7 +719,8 @@
  @INCLUDE_IM_MULTIPRESS_FALSE@MULTIPRESS_MODULE = im-multipress.la
  imconffiledir = $(sysconfdir)/gtk-2.0
  dist_imconffile_DATA = im-multipress.conf
@@ -18400,7 +18964,7 @@ Index: gtk+2.0-2.21.0/modules/input/Makefile.in
  @CROSS_COMPILING_TRUE@RUN_QUERY_IMMODULES_TEST = false
  @BUILD_DYNAMIC_MODULES_TRUE@module_LTLIBRARIES = \
  @BUILD_DYNAMIC_MODULES_TRUE@	$(AM_ET_MODULE)			\
-@@ -1267,7 +1272,18 @@
+@@ -1269,7 +1272,18 @@
  included-modules: $(noinst_LTLIBRARIES)
  
  gtk.immodules: Makefile.am $(module_LTLIBRARIES)
@@ -18420,10 +18984,10 @@ Index: gtk+2.0-2.21.0/modules/input/Makefile.in
  
  @CROSS_COMPILING_FALSE@all-local: gtk.immodules
  
-Index: gtk+2.0-2.21.0/modules/Makefile.in
+Index: gtk+2.0-2.21.1/modules/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/modules/Makefile.in	2010-05-07 22:12:50.000000000 +0200
-+++ gtk+2.0-2.21.0/modules/Makefile.in	2010-05-21 14:17:04.000000000 +0200
+--- gtk+2.0-2.21.1.orig/modules/Makefile.in	2010-05-30 23:46:20.000000000 +0200
++++ gtk+2.0-2.21.1/modules/Makefile.in	2010-06-02 16:11:06.000000000 +0200
 @@ -40,11 +40,14 @@
  @OS_UNIX_TRUE@am__append_1 = printbackends
  subdir = modules
@@ -18449,10 +19013,19 @@ Index: gtk+2.0-2.21.0/modules/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/modules/other/gail/libgail-util/Makefile.in
+@@ -263,8 +267,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/modules/other/gail/libgail-util/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/modules/other/gail/libgail-util/Makefile.in	2010-05-07 22:12:51.000000000 +0200
-+++ gtk+2.0-2.21.0/modules/other/gail/libgail-util/Makefile.in	2010-05-21 14:17:05.000000000 +0200
+--- gtk+2.0-2.21.1.orig/modules/other/gail/libgail-util/Makefile.in	2010-05-30 23:46:21.000000000 +0200
++++ gtk+2.0-2.21.1/modules/other/gail/libgail-util/Makefile.in	2010-06-02 16:11:07.000000000 +0200
 @@ -42,11 +42,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/other/gail/libgail-util
@@ -18478,10 +19051,19 @@ Index: gtk+2.0-2.21.0/modules/other/gail/libgail-util/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/modules/other/gail/Makefile.in
+@@ -287,8 +291,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/modules/other/gail/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/modules/other/gail/Makefile.in	2010-05-07 22:12:51.000000000 +0200
-+++ gtk+2.0-2.21.0/modules/other/gail/Makefile.in	2010-05-21 14:17:05.000000000 +0200
+--- gtk+2.0-2.21.1.orig/modules/other/gail/Makefile.in	2010-05-30 23:46:21.000000000 +0200
++++ gtk+2.0-2.21.1/modules/other/gail/Makefile.in	2010-06-02 16:11:07.000000000 +0200
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl ChangeLog
  subdir = modules/other/gail
@@ -18507,10 +19089,19 @@ Index: gtk+2.0-2.21.0/modules/other/gail/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/modules/other/gail/tests/Makefile.in
+@@ -354,8 +358,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/modules/other/gail/tests/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/modules/other/gail/tests/Makefile.in	2010-05-07 22:12:51.000000000 +0200
-+++ gtk+2.0-2.21.0/modules/other/gail/tests/Makefile.in	2010-05-21 14:17:06.000000000 +0200
+--- gtk+2.0-2.21.1.orig/modules/other/gail/tests/Makefile.in	2010-05-30 23:46:22.000000000 +0200
++++ gtk+2.0-2.21.1/modules/other/gail/tests/Makefile.in	2010-06-02 16:11:07.000000000 +0200
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/other/gail/tests
@@ -18536,10 +19127,19 @@ Index: gtk+2.0-2.21.0/modules/other/gail/tests/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/modules/other/Makefile.in
+@@ -426,8 +430,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/modules/other/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/modules/other/Makefile.in	2010-05-07 22:12:51.000000000 +0200
-+++ gtk+2.0-2.21.0/modules/other/Makefile.in	2010-05-21 14:17:05.000000000 +0200
+--- gtk+2.0-2.21.1.orig/modules/other/Makefile.in	2010-05-30 23:46:21.000000000 +0200
++++ gtk+2.0-2.21.1/modules/other/Makefile.in	2010-06-02 16:11:07.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/other
@@ -18565,10 +19165,19 @@ Index: gtk+2.0-2.21.0/modules/other/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/modules/printbackends/cups/Makefile.in
+@@ -262,8 +266,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/modules/printbackends/cups/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/modules/printbackends/cups/Makefile.in	2010-05-07 22:12:51.000000000 +0200
-+++ gtk+2.0-2.21.0/modules/printbackends/cups/Makefile.in	2010-05-21 14:17:06.000000000 +0200
+--- gtk+2.0-2.21.1.orig/modules/printbackends/cups/Makefile.in	2010-05-30 23:46:22.000000000 +0200
++++ gtk+2.0-2.21.1/modules/printbackends/cups/Makefile.in	2010-06-02 16:11:07.000000000 +0200
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/printbackends/cups
@@ -18594,10 +19203,19 @@ Index: gtk+2.0-2.21.0/modules/printbackends/cups/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/modules/printbackends/file/Makefile.in
+@@ -286,8 +290,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/modules/printbackends/file/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/modules/printbackends/file/Makefile.in	2010-05-07 22:12:52.000000000 +0200
-+++ gtk+2.0-2.21.0/modules/printbackends/file/Makefile.in	2010-05-21 14:17:06.000000000 +0200
+--- gtk+2.0-2.21.1.orig/modules/printbackends/file/Makefile.in	2010-05-30 23:46:22.000000000 +0200
++++ gtk+2.0-2.21.1/modules/printbackends/file/Makefile.in	2010-06-02 16:11:08.000000000 +0200
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/printbackends/file
@@ -18623,10 +19241,19 @@ Index: gtk+2.0-2.21.0/modules/printbackends/file/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/modules/printbackends/lpr/Makefile.in
+@@ -285,8 +289,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/modules/printbackends/lpr/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/modules/printbackends/lpr/Makefile.in	2010-05-07 22:12:52.000000000 +0200
-+++ gtk+2.0-2.21.0/modules/printbackends/lpr/Makefile.in	2010-05-21 14:17:06.000000000 +0200
+--- gtk+2.0-2.21.1.orig/modules/printbackends/lpr/Makefile.in	2010-05-30 23:46:22.000000000 +0200
++++ gtk+2.0-2.21.1/modules/printbackends/lpr/Makefile.in	2010-06-02 16:11:08.000000000 +0200
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/printbackends/lpr
@@ -18652,10 +19279,19 @@ Index: gtk+2.0-2.21.0/modules/printbackends/lpr/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/modules/printbackends/Makefile.in
+@@ -283,8 +287,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/modules/printbackends/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/modules/printbackends/Makefile.in	2010-05-07 22:12:51.000000000 +0200
-+++ gtk+2.0-2.21.0/modules/printbackends/Makefile.in	2010-05-21 14:17:06.000000000 +0200
+--- gtk+2.0-2.21.1.orig/modules/printbackends/Makefile.in	2010-05-30 23:46:22.000000000 +0200
++++ gtk+2.0-2.21.1/modules/printbackends/Makefile.in	2010-06-02 16:11:07.000000000 +0200
 @@ -42,11 +42,14 @@
  @HAVE_PAPI_TRUE@am__append_3 = papi
  subdir = modules/printbackends
@@ -18681,10 +19317,19 @@ Index: gtk+2.0-2.21.0/modules/printbackends/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/modules/printbackends/papi/Makefile.in
+@@ -264,8 +268,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/modules/printbackends/papi/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/modules/printbackends/papi/Makefile.in	2010-05-07 22:12:52.000000000 +0200
-+++ gtk+2.0-2.21.0/modules/printbackends/papi/Makefile.in	2010-05-21 14:17:06.000000000 +0200
+--- gtk+2.0-2.21.1.orig/modules/printbackends/papi/Makefile.in	2010-05-30 23:46:22.000000000 +0200
++++ gtk+2.0-2.21.1/modules/printbackends/papi/Makefile.in	2010-06-02 16:11:08.000000000 +0200
 @@ -39,11 +39,14 @@
  DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
  	$(srcdir)/Makefile.in
@@ -18710,10 +19355,19 @@ Index: gtk+2.0-2.21.0/modules/printbackends/papi/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/modules/printbackends/test/Makefile.in
+@@ -283,8 +287,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/modules/printbackends/test/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/modules/printbackends/test/Makefile.in	2010-05-07 22:12:52.000000000 +0200
-+++ gtk+2.0-2.21.0/modules/printbackends/test/Makefile.in	2010-05-21 14:17:06.000000000 +0200
+--- gtk+2.0-2.21.1.orig/modules/printbackends/test/Makefile.in	2010-05-30 23:46:22.000000000 +0200
++++ gtk+2.0-2.21.1/modules/printbackends/test/Makefile.in	2010-06-02 16:11:08.000000000 +0200
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/printbackends/test
@@ -18739,10 +19393,19 @@ Index: gtk+2.0-2.21.0/modules/printbackends/test/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/perf/Makefile.in
+@@ -284,8 +288,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/perf/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/perf/Makefile.in	2010-05-07 22:12:52.000000000 +0200
-+++ gtk+2.0-2.21.0/perf/Makefile.in	2010-05-21 14:17:06.000000000 +0200
+--- gtk+2.0-2.21.1.orig/perf/Makefile.in	2010-05-30 23:46:22.000000000 +0200
++++ gtk+2.0-2.21.1/perf/Makefile.in	2010-06-02 16:11:08.000000000 +0200
 @@ -41,11 +41,14 @@
  noinst_PROGRAMS = testperf$(EXEEXT)
  subdir = perf
@@ -18768,10 +19431,19 @@ Index: gtk+2.0-2.21.0/perf/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-Index: gtk+2.0-2.21.0/po/Makefile.in.in
+@@ -258,8 +262,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+Index: gtk+2.0-2.21.1/po/Makefile.in.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/po/Makefile.in.in	2010-04-09 04:30:01.000000000 +0200
-+++ gtk+2.0-2.21.0/po/Makefile.in.in	2010-05-21 14:16:50.000000000 +0200
+--- gtk+2.0-2.21.1.orig/po/Makefile.in.in	2010-04-09 04:30:01.000000000 +0200
++++ gtk+2.0-2.21.1/po/Makefile.in.in	2010-06-02 16:10:52.000000000 +0200
 @@ -25,22 +25,23 @@
  
  prefix = @prefix@
@@ -18816,7 +19488,7 @@ Index: gtk+2.0-2.21.0/po/Makefile.in.in
  
  .po.cat:
  	sed -f ../intl/po2msg.sed < $< > $*.msg \
-@@ -93,8 +94,13 @@
+@@ -93,8 +94,15 @@
  
  $(srcdir)/$(GETTEXT_PACKAGE).pot: $(POTFILES)
  	$(XGETTEXT) --default-domain=$(GETTEXT_PACKAGE) --directory=$(top_srcdir) \
@@ -18824,14 +19496,16 @@ Index: gtk+2.0-2.21.0/po/Makefile.in.in
 +	  --add-comments --keyword=_ --keyword=N_ \
 +	  --keyword=C_:1c,2 \
 +	  --keyword=NC_:1c,2 \
++	  --keyword=g_dcgettext:2 \
  	  --keyword=g_dngettext:2,3 \
++	  --keyword=g_dpgettext2:2c,3 \
 +	  --flag=N_:1:pass-c-format \
 +	  --flag=C_:2:pass-c-format \
 +	  --flag=NC_:2:pass-c-format \
  	  --flag=g_dngettext:2:pass-c-format \
            --flag=g_strdup_printf:1:c-format \
            --flag=g_string_printf:2:c-format \
-@@ -111,10 +117,6 @@
+@@ -111,10 +119,6 @@
            --flag=g_snprintf:3:c-format \
            --flag=g_scanner_error:2:c-format \
            --flag=g_scanner_warn:2:c-format \
@@ -18842,7 +19516,7 @@ Index: gtk+2.0-2.21.0/po/Makefile.in.in
  	  --files-from=$(srcdir)/POTFILES.in \
  	&& test ! -f $(GETTEXT_PACKAGE).po \
  	   || ( rm -f $(srcdir)/$(GETTEXT_PACKAGE).pot \
-@@ -125,8 +127,12 @@
+@@ -125,8 +129,12 @@
  install-data: install-data-@USE_NLS@
  install-data-no: all
  install-data-yes: all
@@ -18857,7 +19531,7 @@ Index: gtk+2.0-2.21.0/po/Makefile.in.in
  	for cat in $$catalogs; do \
  	  cat=`basename $$cat`; \
  	  case "$$cat" in \
-@@ -135,7 +141,11 @@
+@@ -135,7 +143,11 @@
  	  esac; \
  	  lang=`echo $$cat | sed 's/\$(CATOBJEXT)$$//'`; \
  	  dir=$(DESTDIR)$$destdir/$$lang/LC_MESSAGES; \
@@ -18870,7 +19544,7 @@ Index: gtk+2.0-2.21.0/po/Makefile.in.in
  	  if test -r $$cat; then \
  	    $(INSTALL_DATA) $$cat $$dir/$(GETTEXT_PACKAGE)$(INSTOBJEXT); \
  	    echo "installing $$cat as $$dir/$(GETTEXT_PACKAGE)$(INSTOBJEXT)"; \
-@@ -159,7 +169,11 @@
+@@ -159,7 +171,11 @@
  	  fi; \
  	done
  	if test "$(PACKAGE)" = "glib"; then \
@@ -18883,11 +19557,11 @@ Index: gtk+2.0-2.21.0/po/Makefile.in.in
  	  $(INSTALL_DATA) $(srcdir)/Makefile.in.in \
  			  $(DESTDIR)$(gettextsrcdir)/Makefile.in.in; \
  	else \
-Index: gtk+2.0-2.21.0/tests/Makefile.in
+Index: gtk+2.0-2.21.1/tests/Makefile.in
 ===================================================================
---- gtk+2.0-2.21.0.orig/tests/Makefile.in	2010-05-07 22:12:52.000000000 +0200
-+++ gtk+2.0-2.21.0/tests/Makefile.in	2010-05-21 14:17:06.000000000 +0200
-@@ -75,11 +75,14 @@
+--- gtk+2.0-2.21.1.orig/tests/Makefile.in	2010-05-30 23:46:23.000000000 +0200
++++ gtk+2.0-2.21.1/tests/Makefile.in	2010-06-02 16:11:08.000000000 +0200
+@@ -76,11 +76,14 @@
  @HAVE_CXX_TRUE@@HAVE_OBJC_TRUE@am__append_2 = -DHAVE_OBJC=1 -x objective-c++
  subdir = tests
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -18904,7 +19578,7 @@ Index: gtk+2.0-2.21.0/tests/Makefile.in
  CONFIG_HEADER = $(top_builddir)/config.h
  CONFIG_CLEAN_FILES =
  CONFIG_CLEAN_VPATH_FILES =
-@@ -432,6 +435,7 @@
+@@ -437,6 +440,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
  GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
@@ -18912,3 +19586,12 @@ Index: gtk+2.0-2.21.0/tests/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
+@@ -529,8 +533,6 @@
+ PATH_SEPARATOR = @PATH_SEPARATOR@
+ PERL = @PERL@
+ PKG_CONFIG = @PKG_CONFIG@
+-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
+ POFILES = @POFILES@
+ POSUB = @POSUB@
+ PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@

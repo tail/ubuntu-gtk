@@ -20,5 +20,6 @@
 065_build_introspection_file.patch
 070_mandatory-relibtoolize.patch
 071_no_offscreen_widgets_grabbing.patch
+072_indicator_menu_update.patch
 091_bugzilla_tooltip_refresh.patch
 092_git_change_no_gtkmisc_warning.patch

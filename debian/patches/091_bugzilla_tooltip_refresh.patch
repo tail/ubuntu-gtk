@@ -323,15 +323,6 @@ Index: gtk+-2.21.0/gtk/gtktooltip.c
  
    return FALSE;
  }
-@@ -662,7 +902,7 @@
- 
- #ifdef DEBUG_TOOLTIP
-   g_print ("event window %p (belonging to %p (%s))  (%d, %d)\n",
--	   window, event_widget, gtk_widget_get_name (event_widget),
-+	   gindow, event_widget, gtk_widget_get_name (event_widget),
- 	   *x, *y);
- #endif
- 
 Index: gtk+-2.21.0/gtk/gtkwidget.c
 ===================================================================
 --- gtk+-2.21.0.orig/gtk/gtkwidget.c	2010-05-08 03:34:31.000000000 +1000
