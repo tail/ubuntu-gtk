@@ -1,7 +1,7 @@
 Index: gtk+2.0-2.21.1/aclocal.m4
 ===================================================================
 --- gtk+2.0-2.21.1.orig/aclocal.m4	2010-05-30 23:46:12.000000000 +0200
-+++ gtk+2.0-2.21.1/aclocal.m4	2010-06-02 16:10:58.000000000 +0200
++++ gtk+2.0-2.21.1/aclocal.m4	2010-06-10 18:31:48.000000000 +0200
 @@ -664,8019 +664,7 @@
  fi])
  
@@ -8159,7 +8159,7 @@ Index: gtk+2.0-2.21.1/aclocal.m4
 Index: gtk+2.0-2.21.1/build/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/build/Makefile.in	2010-05-30 23:46:16.000000000 +0200
-+++ gtk+2.0-2.21.1/build/Makefile.in	2010-06-02 16:11:03.000000000 +0200
++++ gtk+2.0-2.21.1/build/Makefile.in	2010-06-10 18:31:54.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = build
@@ -8197,7 +8197,7 @@ Index: gtk+2.0-2.21.1/build/Makefile.in
 Index: gtk+2.0-2.21.1/build/win32/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/build/win32/Makefile.in	2010-05-30 23:46:17.000000000 +0200
-+++ gtk+2.0-2.21.1/build/win32/Makefile.in	2010-06-02 16:11:03.000000000 +0200
++++ gtk+2.0-2.21.1/build/win32/Makefile.in	2010-06-10 18:31:54.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = build/win32
@@ -8235,7 +8235,7 @@ Index: gtk+2.0-2.21.1/build/win32/Makefile.in
 Index: gtk+2.0-2.21.1/build/win32/vs9/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/build/win32/vs9/Makefile.in	2010-05-30 23:46:17.000000000 +0200
-+++ gtk+2.0-2.21.1/build/win32/vs9/Makefile.in	2010-06-02 16:11:03.000000000 +0200
++++ gtk+2.0-2.21.1/build/win32/vs9/Makefile.in	2010-06-10 18:31:54.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = build/win32/vs9
@@ -8273,7 +8273,7 @@ Index: gtk+2.0-2.21.1/build/win32/vs9/Makefile.in
 Index: gtk+2.0-2.21.1/configure
 ===================================================================
 --- gtk+2.0-2.21.1.orig/configure	2010-05-30 23:46:24.000000000 +0200
-+++ gtk+2.0-2.21.1/configure	2010-06-02 16:11:02.000000000 +0200
++++ gtk+2.0-2.21.1/configure	2010-06-10 18:31:53.000000000 +0200
 @@ -816,6 +816,7 @@
  GDK_DEP_LIBS
  GDK_EXTRA_CFLAGS
@@ -9147,7 +9147,7 @@ Index: gtk+2.0-2.21.1/configure
 Index: gtk+2.0-2.21.1/contrib/gdk-pixbuf-xlib/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/contrib/gdk-pixbuf-xlib/Makefile.in	2010-05-30 23:46:17.000000000 +0200
-+++ gtk+2.0-2.21.1/contrib/gdk-pixbuf-xlib/Makefile.in	2010-06-02 16:11:04.000000000 +0200
++++ gtk+2.0-2.21.1/contrib/gdk-pixbuf-xlib/Makefile.in	2010-06-10 18:31:54.000000000 +0200
 @@ -44,11 +44,14 @@
  	$(top_srcdir)/Makefile.decl ChangeLog
  subdir = contrib/gdk-pixbuf-xlib
@@ -9185,7 +9185,7 @@ Index: gtk+2.0-2.21.1/contrib/gdk-pixbuf-xlib/Makefile.in
 Index: gtk+2.0-2.21.1/contrib/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/contrib/Makefile.in	2010-05-30 23:46:17.000000000 +0200
-+++ gtk+2.0-2.21.1/contrib/Makefile.in	2010-06-02 16:11:04.000000000 +0200
++++ gtk+2.0-2.21.1/contrib/Makefile.in	2010-06-10 18:31:54.000000000 +0200
 @@ -40,11 +40,14 @@
  @USE_X11_TRUE@am__append_1 = gdk-pixbuf-xlib
  subdir = contrib
@@ -9223,7 +9223,7 @@ Index: gtk+2.0-2.21.1/contrib/Makefile.in
 Index: gtk+2.0-2.21.1/demos/gtk-demo/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/demos/gtk-demo/Makefile.in	2010-05-30 23:46:17.000000000 +0200
-+++ gtk+2.0-2.21.1/demos/gtk-demo/Makefile.in	2010-06-02 16:11:04.000000000 +0200
++++ gtk+2.0-2.21.1/demos/gtk-demo/Makefile.in	2010-06-10 18:31:54.000000000 +0200
 @@ -42,11 +42,14 @@
  bin_PROGRAMS = gtk-demo$(EXEEXT)
  subdir = demos/gtk-demo
@@ -9261,7 +9261,7 @@ Index: gtk+2.0-2.21.1/demos/gtk-demo/Makefile.in
 Index: gtk+2.0-2.21.1/demos/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/demos/Makefile.in	2010-05-30 23:46:17.000000000 +0200
-+++ gtk+2.0-2.21.1/demos/Makefile.in	2010-06-02 16:11:04.000000000 +0200
++++ gtk+2.0-2.21.1/demos/Makefile.in	2010-06-10 18:31:54.000000000 +0200
 @@ -46,11 +46,14 @@
  @HAVE_PNG_TRUE@am__append_1 = testpixbuf
  subdir = demos
@@ -9299,7 +9299,7 @@ Index: gtk+2.0-2.21.1/demos/Makefile.in
 Index: gtk+2.0-2.21.1/docs/faq/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/docs/faq/Makefile.in	2010-05-30 23:46:17.000000000 +0200
-+++ gtk+2.0-2.21.1/docs/faq/Makefile.in	2010-06-02 16:11:04.000000000 +0200
++++ gtk+2.0-2.21.1/docs/faq/Makefile.in	2010-06-10 18:31:54.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = docs/faq
@@ -9337,7 +9337,7 @@ Index: gtk+2.0-2.21.1/docs/faq/Makefile.in
 Index: gtk+2.0-2.21.1/docs/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/docs/Makefile.in	2010-05-30 23:46:17.000000000 +0200
-+++ gtk+2.0-2.21.1/docs/Makefile.in	2010-06-02 16:11:04.000000000 +0200
++++ gtk+2.0-2.21.1/docs/Makefile.in	2010-06-10 18:31:54.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = docs
@@ -9375,7 +9375,7 @@ Index: gtk+2.0-2.21.1/docs/Makefile.in
 Index: gtk+2.0-2.21.1/docs/reference/gdk/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/docs/reference/gdk/Makefile.in	2010-05-30 23:46:18.000000000 +0200
-+++ gtk+2.0-2.21.1/docs/reference/gdk/Makefile.in	2010-06-02 16:11:04.000000000 +0200
++++ gtk+2.0-2.21.1/docs/reference/gdk/Makefile.in	2010-06-10 18:31:55.000000000 +0200
 @@ -46,11 +46,14 @@
  	$(top_srcdir)/gtk-doc.make
  subdir = docs/reference/gdk
@@ -9413,7 +9413,7 @@ Index: gtk+2.0-2.21.1/docs/reference/gdk/Makefile.in
 Index: gtk+2.0-2.21.1/docs/reference/gdk-pixbuf/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/docs/reference/gdk-pixbuf/Makefile.in	2010-05-30 23:46:18.000000000 +0200
-+++ gtk+2.0-2.21.1/docs/reference/gdk-pixbuf/Makefile.in	2010-06-02 16:11:04.000000000 +0200
++++ gtk+2.0-2.21.1/docs/reference/gdk-pixbuf/Makefile.in	2010-06-10 18:31:54.000000000 +0200
 @@ -46,11 +46,14 @@
  	$(top_srcdir)/gtk-doc.make
  subdir = docs/reference/gdk-pixbuf
@@ -9451,7 +9451,7 @@ Index: gtk+2.0-2.21.1/docs/reference/gdk-pixbuf/Makefile.in
 Index: gtk+2.0-2.21.1/docs/reference/gtk/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/docs/reference/gtk/Makefile.in	2010-05-30 23:46:18.000000000 +0200
-+++ gtk+2.0-2.21.1/docs/reference/gtk/Makefile.in	2010-06-02 16:11:04.000000000 +0200
++++ gtk+2.0-2.21.1/docs/reference/gtk/Makefile.in	2010-06-10 18:31:55.000000000 +0200
 @@ -46,11 +46,14 @@
  	$(top_srcdir)/gtk-doc.make
  subdir = docs/reference/gtk
@@ -9489,7 +9489,7 @@ Index: gtk+2.0-2.21.1/docs/reference/gtk/Makefile.in
 Index: gtk+2.0-2.21.1/docs/reference/libgail-util/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/docs/reference/libgail-util/Makefile.in	2010-05-30 23:46:18.000000000 +0200
-+++ gtk+2.0-2.21.1/docs/reference/libgail-util/Makefile.in	2010-06-02 16:11:04.000000000 +0200
++++ gtk+2.0-2.21.1/docs/reference/libgail-util/Makefile.in	2010-06-10 18:31:55.000000000 +0200
 @@ -45,11 +45,14 @@
  	$(top_srcdir)/Makefile.decl $(top_srcdir)/gtk-doc.make
  subdir = docs/reference/libgail-util
@@ -9527,7 +9527,7 @@ Index: gtk+2.0-2.21.1/docs/reference/libgail-util/Makefile.in
 Index: gtk+2.0-2.21.1/docs/reference/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/docs/reference/Makefile.in	2010-05-30 23:46:17.000000000 +0200
-+++ gtk+2.0-2.21.1/docs/reference/Makefile.in	2010-06-02 16:11:04.000000000 +0200
++++ gtk+2.0-2.21.1/docs/reference/Makefile.in	2010-06-10 18:31:54.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl AUTHORS COPYING ChangeLog
  subdir = docs/reference
@@ -9565,7 +9565,7 @@ Index: gtk+2.0-2.21.1/docs/reference/Makefile.in
 Index: gtk+2.0-2.21.1/docs/tools/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/docs/tools/Makefile.in	2010-05-30 23:46:18.000000000 +0200
-+++ gtk+2.0-2.21.1/docs/tools/Makefile.in	2010-06-02 16:11:04.000000000 +0200
++++ gtk+2.0-2.21.1/docs/tools/Makefile.in	2010-06-10 18:31:55.000000000 +0200
 @@ -41,11 +41,14 @@
  @USE_X11_TRUE@noinst_PROGRAMS = doc-shooter$(EXEEXT)
  subdir = docs/tools
@@ -9603,7 +9603,7 @@ Index: gtk+2.0-2.21.1/docs/tools/Makefile.in
 Index: gtk+2.0-2.21.1/docs/tutorial/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/docs/tutorial/Makefile.in	2010-05-30 23:46:18.000000000 +0200
-+++ gtk+2.0-2.21.1/docs/tutorial/Makefile.in	2010-06-02 16:11:05.000000000 +0200
++++ gtk+2.0-2.21.1/docs/tutorial/Makefile.in	2010-06-10 18:31:55.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = docs/tutorial
@@ -9641,7 +9641,7 @@ Index: gtk+2.0-2.21.1/docs/tutorial/Makefile.in
 Index: gtk+2.0-2.21.1/gdk/directfb/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/gdk/directfb/Makefile.in	2010-05-30 23:46:19.000000000 +0200
-+++ gtk+2.0-2.21.1/gdk/directfb/Makefile.in	2010-06-02 16:11:05.000000000 +0200
++++ gtk+2.0-2.21.1/gdk/directfb/Makefile.in	2010-06-10 18:31:55.000000000 +0200
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl AUTHORS TODO
  subdir = gdk/directfb
@@ -9679,7 +9679,7 @@ Index: gtk+2.0-2.21.1/gdk/directfb/Makefile.in
 Index: gtk+2.0-2.21.1/gdk/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/gdk/Makefile.in	2010-05-30 23:46:19.000000000 +0200
-+++ gtk+2.0-2.21.1/gdk/Makefile.in	2010-06-02 16:11:05.000000000 +0200
++++ gtk+2.0-2.21.1/gdk/Makefile.in	2010-06-10 18:31:55.000000000 +0200
 @@ -45,11 +45,14 @@
  @HAVE_INTROSPECTION_TRUE@am__append_2 = $(dist_gir_DATA) $(typelibs_DATA)
  subdir = gdk
@@ -9726,7 +9726,7 @@ Index: gtk+2.0-2.21.1/gdk/Makefile.in
 Index: gtk+2.0-2.21.1/gdk/quartz/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/gdk/quartz/Makefile.in	2010-05-30 23:46:19.000000000 +0200
-+++ gtk+2.0-2.21.1/gdk/quartz/Makefile.in	2010-06-02 16:11:05.000000000 +0200
++++ gtk+2.0-2.21.1/gdk/quartz/Makefile.in	2010-06-10 18:31:56.000000000 +0200
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = gdk/quartz
@@ -9764,7 +9764,7 @@ Index: gtk+2.0-2.21.1/gdk/quartz/Makefile.in
 Index: gtk+2.0-2.21.1/gdk/tests/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/gdk/tests/Makefile.in	2010-05-30 23:46:19.000000000 +0200
-+++ gtk+2.0-2.21.1/gdk/tests/Makefile.in	2010-06-02 16:11:05.000000000 +0200
++++ gtk+2.0-2.21.1/gdk/tests/Makefile.in	2010-06-10 18:31:56.000000000 +0200
 @@ -41,11 +41,14 @@
  TESTS = $(am__EXEEXT_1)
  subdir = gdk/tests
@@ -9802,7 +9802,7 @@ Index: gtk+2.0-2.21.1/gdk/tests/Makefile.in
 Index: gtk+2.0-2.21.1/gdk/win32/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/gdk/win32/Makefile.in	2010-05-30 23:46:19.000000000 +0200
-+++ gtk+2.0-2.21.1/gdk/win32/Makefile.in	2010-06-02 16:11:05.000000000 +0200
++++ gtk+2.0-2.21.1/gdk/win32/Makefile.in	2010-06-10 18:31:56.000000000 +0200
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = gdk/win32
@@ -9840,7 +9840,7 @@ Index: gtk+2.0-2.21.1/gdk/win32/Makefile.in
 Index: gtk+2.0-2.21.1/gdk/win32/rc/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/gdk/win32/rc/Makefile.in	2010-05-30 23:46:19.000000000 +0200
-+++ gtk+2.0-2.21.1/gdk/win32/rc/Makefile.in	2010-06-02 16:11:05.000000000 +0200
++++ gtk+2.0-2.21.1/gdk/win32/rc/Makefile.in	2010-06-10 18:31:56.000000000 +0200
 @@ -40,11 +40,14 @@
  	$(srcdir)/gdk.rc.in $(top_srcdir)/Makefile.decl
  subdir = gdk/win32/rc
@@ -9878,7 +9878,7 @@ Index: gtk+2.0-2.21.1/gdk/win32/rc/Makefile.in
 Index: gtk+2.0-2.21.1/gdk/x11/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/gdk/x11/Makefile.in	2010-05-30 23:46:19.000000000 +0200
-+++ gtk+2.0-2.21.1/gdk/x11/Makefile.in	2010-06-02 16:11:06.000000000 +0200
++++ gtk+2.0-2.21.1/gdk/x11/Makefile.in	2010-06-10 18:31:56.000000000 +0200
 @@ -46,11 +46,14 @@
  TESTS = checksettings$(EXEEXT)
  subdir = gdk/x11
@@ -9916,7 +9916,7 @@ Index: gtk+2.0-2.21.1/gdk/x11/Makefile.in
 Index: gtk+2.0-2.21.1/gdk-pixbuf/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/gdk-pixbuf/Makefile.in	2010-05-30 23:46:18.000000000 +0200
-+++ gtk+2.0-2.21.1/gdk-pixbuf/Makefile.in	2010-06-02 16:11:05.000000000 +0200
++++ gtk+2.0-2.21.1/gdk-pixbuf/Makefile.in	2010-06-10 18:31:55.000000000 +0200
 @@ -51,11 +51,14 @@
  @HAVE_INTROSPECTION_TRUE@am__append_2 = $(dist_gir_DATA) $(typelibs_DATA)
  subdir = gdk-pixbuf
@@ -9971,7 +9971,7 @@ Index: gtk+2.0-2.21.1/gdk-pixbuf/Makefile.in
 Index: gtk+2.0-2.21.1/gdk-pixbuf/pixops/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/gdk-pixbuf/pixops/Makefile.in	2010-05-30 23:46:19.000000000 +0200
-+++ gtk+2.0-2.21.1/gdk-pixbuf/pixops/Makefile.in	2010-06-02 16:11:05.000000000 +0200
++++ gtk+2.0-2.21.1/gdk-pixbuf/pixops/Makefile.in	2010-06-10 18:31:55.000000000 +0200
 @@ -42,11 +42,14 @@
  noinst_PROGRAMS = timescale$(EXEEXT)
  subdir = gdk-pixbuf/pixops
@@ -10009,7 +10009,7 @@ Index: gtk+2.0-2.21.1/gdk-pixbuf/pixops/Makefile.in
 Index: gtk+2.0-2.21.1/gtk/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/gtk/Makefile.in	2010-05-30 23:46:20.000000000 +0200
-+++ gtk+2.0-2.21.1/gtk/Makefile.in	2010-06-02 16:11:06.000000000 +0200
++++ gtk+2.0-2.21.1/gtk/Makefile.in	2010-06-10 18:31:56.000000000 +0200
 @@ -77,11 +77,14 @@
  
  subdir = gtk
@@ -10027,7 +10027,35 @@ Index: gtk+2.0-2.21.1/gtk/Makefile.in
  CONFIG_HEADER = $(top_builddir)/config.h
  CONFIG_CLEAN_FILES = makefile.msc gtkversion.h gtk-win32.rc
  CONFIG_CLEAN_VPATH_FILES =
-@@ -181,13 +184,13 @@
+@@ -148,16 +151,17 @@
+ 	gtkinfobar.c gtkinputdialog.c gtkinvisible.c gtkitem.c \
+ 	gtkkeyhash.c gtklabel.c gtklayout.c gtklinkbutton.c \
+ 	gtkliststore.c gtkmain.c gtkmarshal.c gtkmarshalers.c \
+-	gtkmenu.c gtkmenubar.c gtkmenuitem.c gtkmenushell.c \
+-	gtkmenutoolbutton.c gtkmessagedialog.c gtkmisc.c \
+-	gtkmnemonichash.c gtkmodules.c gtkmountoperation.c \
+-	gtknotebook.c gtkobject.c gtkoffscreenwindow.c gtkorientable.c \
+-	gtkpagesetup.c gtkpaned.c gtkpapersize.c gtkpathbar.c \
+-	gtkplug.c gtkprintcontext.c gtkprintoperation.c \
+-	gtkprintoperationpreview.c gtkprintsettings.c gtkprintutils.c \
+-	gtkprogressbar.c gtkradioaction.c gtkradiobutton.c \
+-	gtkradiomenuitem.c gtkradiotoolbutton.c gtkrange.c gtkrbtree.c \
+-	gtkrc.c gtkrecentaction.c gtkrecentchooserdefault.c \
++	gtkmenu.c gtkmenubar.c gtkmenuitem.c ubuntumenuproxy.c \
++	ubuntumenuproxymodule.c gtkmenushell.c gtkmenutoolbutton.c \
++	gtkmessagedialog.c gtkmisc.c gtkmnemonichash.c gtkmodules.c \
++	gtkmountoperation.c gtknotebook.c gtkobject.c \
++	gtkoffscreenwindow.c gtkorientable.c gtkpagesetup.c gtkpaned.c \
++	gtkpapersize.c gtkpathbar.c gtkplug.c gtkprintcontext.c \
++	gtkprintoperation.c gtkprintoperationpreview.c \
++	gtkprintsettings.c gtkprintutils.c gtkprogressbar.c \
++	gtkradioaction.c gtkradiobutton.c gtkradiomenuitem.c \
++	gtkradiotoolbutton.c gtkrange.c gtkrbtree.c gtkrc.c \
++	gtkrecentaction.c gtkrecentchooserdefault.c \
+ 	gtkrecentchooserdialog.c gtkrecentchoosermenu.c \
+ 	gtkrecentchooserwidget.c gtkrecentchooserutils.c \
+ 	gtkrecentchooser.c gtkrecentfilter.c gtkrecentmanager.c \
+@@ -181,13 +185,13 @@
  	gtktypeutils.c gtkuimanager.c gtkvbbox.c gtkvbox.c \
  	gtkvolumebutton.c gtkviewport.c gtkvpaned.c gtkvruler.c \
  	gtkvscale.c gtkvscrollbar.c gtkvseparator.c gtkwidget.c \
@@ -10048,7 +10076,55 @@ Index: gtk+2.0-2.21.1/gtk/Makefile.in
  	gtkpagesetupunixdialog.c gtkprinter.c gtkprinteroption.c \
  	gtkprinteroptionset.c gtkprinteroptionwidget.c gtkprintjob.c \
  	gtkprintoperation-unix.c gtkprintunixdialog.c \
-@@ -268,13 +271,13 @@
+@@ -234,26 +238,27 @@
+ 	gtkinfobar.lo gtkinputdialog.lo gtkinvisible.lo gtkitem.lo \
+ 	gtkkeyhash.lo gtklabel.lo gtklayout.lo gtklinkbutton.lo \
+ 	gtkliststore.lo gtkmain.lo gtkmarshal.lo gtkmarshalers.lo \
+-	gtkmenu.lo gtkmenubar.lo gtkmenuitem.lo gtkmenushell.lo \
+-	gtkmenutoolbutton.lo gtkmessagedialog.lo gtkmisc.lo \
+-	gtkmnemonichash.lo gtkmodules.lo gtkmountoperation.lo \
+-	gtknotebook.lo gtkobject.lo gtkoffscreenwindow.lo \
+-	gtkorientable.lo gtkpagesetup.lo gtkpaned.lo gtkpapersize.lo \
+-	gtkpathbar.lo gtkplug.lo gtkprintcontext.lo \
+-	gtkprintoperation.lo gtkprintoperationpreview.lo \
+-	gtkprintsettings.lo gtkprintutils.lo gtkprogressbar.lo \
+-	gtkradioaction.lo gtkradiobutton.lo gtkradiomenuitem.lo \
+-	gtkradiotoolbutton.lo gtkrange.lo gtkrbtree.lo gtkrc.lo \
+-	gtkrecentaction.lo gtkrecentchooserdefault.lo \
+-	gtkrecentchooserdialog.lo gtkrecentchoosermenu.lo \
+-	gtkrecentchooserwidget.lo gtkrecentchooserutils.lo \
+-	gtkrecentchooser.lo gtkrecentfilter.lo gtkrecentmanager.lo \
+-	gtkruler.lo gtkscale.lo gtkscalebutton.lo gtkscrollbar.lo \
+-	gtkscrolledwindow.lo gtkselection.lo gtkseparator.lo \
+-	gtkseparatormenuitem.lo gtkseparatortoolitem.lo gtksettings.lo \
+-	gtksizegroup.lo gtkshow.lo gtksocket.lo gtkspinbutton.lo \
+-	gtkspinner.lo gtkstatusbar.lo gtkstatusicon.lo gtkstock.lo \
+-	gtkstyle.lo gtktable.lo gtktearoffmenuitem.lo gtktestutils.lo \
++	gtkmenu.lo gtkmenubar.lo gtkmenuitem.lo ubuntumenuproxy.lo \
++	ubuntumenuproxymodule.lo gtkmenushell.lo gtkmenutoolbutton.lo \
++	gtkmessagedialog.lo gtkmisc.lo gtkmnemonichash.lo \
++	gtkmodules.lo gtkmountoperation.lo gtknotebook.lo gtkobject.lo \
++	gtkoffscreenwindow.lo gtkorientable.lo gtkpagesetup.lo \
++	gtkpaned.lo gtkpapersize.lo gtkpathbar.lo gtkplug.lo \
++	gtkprintcontext.lo gtkprintoperation.lo \
++	gtkprintoperationpreview.lo gtkprintsettings.lo \
++	gtkprintutils.lo gtkprogressbar.lo gtkradioaction.lo \
++	gtkradiobutton.lo gtkradiomenuitem.lo gtkradiotoolbutton.lo \
++	gtkrange.lo gtkrbtree.lo gtkrc.lo gtkrecentaction.lo \
++	gtkrecentchooserdefault.lo gtkrecentchooserdialog.lo \
++	gtkrecentchoosermenu.lo gtkrecentchooserwidget.lo \
++	gtkrecentchooserutils.lo gtkrecentchooser.lo \
++	gtkrecentfilter.lo gtkrecentmanager.lo gtkruler.lo gtkscale.lo \
++	gtkscalebutton.lo gtkscrollbar.lo gtkscrolledwindow.lo \
++	gtkselection.lo gtkseparator.lo gtkseparatormenuitem.lo \
++	gtkseparatortoolitem.lo gtksettings.lo gtksizegroup.lo \
++	gtkshow.lo gtksocket.lo gtkspinbutton.lo gtkspinner.lo \
++	gtkstatusbar.lo gtkstatusicon.lo gtkstock.lo gtkstyle.lo \
++	gtktable.lo gtktearoffmenuitem.lo gtktestutils.lo \
+ 	gtktextbtree.lo gtktextbuffer.lo gtktextbufferrichtext.lo \
+ 	gtktextbufferserialize.lo gtktextchild.lo gtktextdisplay.lo \
+ 	gtktextiter.lo gtktextlayout.lo gtktextmark.lo \
+@@ -268,13 +273,13 @@
  	gtktreeviewcolumn.lo gtktypebuiltins.lo gtktypeutils.lo \
  	gtkuimanager.lo gtkvbbox.lo gtkvbox.lo gtkvolumebutton.lo \
  	gtkviewport.lo gtkvpaned.lo gtkvruler.lo gtkvscale.lo \
@@ -10069,7 +10145,35 @@ Index: gtk+2.0-2.21.1/gtk/Makefile.in
  am__objects_3 = gtkcustompaperunixdialog.lo gtkpagesetupunixdialog.lo \
  	gtkprinter.lo gtkprinteroption.lo gtkprinteroptionset.lo \
  	gtkprinteroptionwidget.lo gtkprintjob.lo \
-@@ -372,13 +375,13 @@
+@@ -339,16 +344,17 @@
+ 	gtkinfobar.c gtkinputdialog.c gtkinvisible.c gtkitem.c \
+ 	gtkkeyhash.c gtklabel.c gtklayout.c gtklinkbutton.c \
+ 	gtkliststore.c gtkmain.c gtkmarshal.c gtkmarshalers.c \
+-	gtkmenu.c gtkmenubar.c gtkmenuitem.c gtkmenushell.c \
+-	gtkmenutoolbutton.c gtkmessagedialog.c gtkmisc.c \
+-	gtkmnemonichash.c gtkmodules.c gtkmountoperation.c \
+-	gtknotebook.c gtkobject.c gtkoffscreenwindow.c gtkorientable.c \
+-	gtkpagesetup.c gtkpaned.c gtkpapersize.c gtkpathbar.c \
+-	gtkplug.c gtkprintcontext.c gtkprintoperation.c \
+-	gtkprintoperationpreview.c gtkprintsettings.c gtkprintutils.c \
+-	gtkprogressbar.c gtkradioaction.c gtkradiobutton.c \
+-	gtkradiomenuitem.c gtkradiotoolbutton.c gtkrange.c gtkrbtree.c \
+-	gtkrc.c gtkrecentaction.c gtkrecentchooserdefault.c \
++	gtkmenu.c gtkmenubar.c gtkmenuitem.c ubuntumenuproxy.c \
++	ubuntumenuproxymodule.c gtkmenushell.c gtkmenutoolbutton.c \
++	gtkmessagedialog.c gtkmisc.c gtkmnemonichash.c gtkmodules.c \
++	gtkmountoperation.c gtknotebook.c gtkobject.c \
++	gtkoffscreenwindow.c gtkorientable.c gtkpagesetup.c gtkpaned.c \
++	gtkpapersize.c gtkpathbar.c gtkplug.c gtkprintcontext.c \
++	gtkprintoperation.c gtkprintoperationpreview.c \
++	gtkprintsettings.c gtkprintutils.c gtkprogressbar.c \
++	gtkradioaction.c gtkradiobutton.c gtkradiomenuitem.c \
++	gtkradiotoolbutton.c gtkrange.c gtkrbtree.c gtkrc.c \
++	gtkrecentaction.c gtkrecentchooserdefault.c \
+ 	gtkrecentchooserdialog.c gtkrecentchoosermenu.c \
+ 	gtkrecentchooserwidget.c gtkrecentchooserutils.c \
+ 	gtkrecentchooser.c gtkrecentfilter.c gtkrecentmanager.c \
+@@ -372,13 +378,13 @@
  	gtktypeutils.c gtkuimanager.c gtkvbbox.c gtkvbox.c \
  	gtkvolumebutton.c gtkviewport.c gtkvpaned.c gtkvruler.c \
  	gtkvscale.c gtkvscrollbar.c gtkvseparator.c gtkwidget.c \
@@ -10090,7 +10194,35 @@ Index: gtk+2.0-2.21.1/gtk/Makefile.in
  	gtkpagesetupunixdialog.c gtkprinter.c gtkprinteroption.c \
  	gtkprinteroptionset.c gtkprinteroptionwidget.c gtkprintjob.c \
  	gtkprintoperation-unix.c gtkprintunixdialog.c \
-@@ -459,13 +462,13 @@
+@@ -426,16 +432,17 @@
+ 	gtkinfobar.c gtkinputdialog.c gtkinvisible.c gtkitem.c \
+ 	gtkkeyhash.c gtklabel.c gtklayout.c gtklinkbutton.c \
+ 	gtkliststore.c gtkmain.c gtkmarshal.c gtkmarshalers.c \
+-	gtkmenu.c gtkmenubar.c gtkmenuitem.c gtkmenushell.c \
+-	gtkmenutoolbutton.c gtkmessagedialog.c gtkmisc.c \
+-	gtkmnemonichash.c gtkmodules.c gtkmountoperation.c \
+-	gtknotebook.c gtkobject.c gtkoffscreenwindow.c gtkorientable.c \
+-	gtkpagesetup.c gtkpaned.c gtkpapersize.c gtkpathbar.c \
+-	gtkplug.c gtkprintcontext.c gtkprintoperation.c \
+-	gtkprintoperationpreview.c gtkprintsettings.c gtkprintutils.c \
+-	gtkprogressbar.c gtkradioaction.c gtkradiobutton.c \
+-	gtkradiomenuitem.c gtkradiotoolbutton.c gtkrange.c gtkrbtree.c \
+-	gtkrc.c gtkrecentaction.c gtkrecentchooserdefault.c \
++	gtkmenu.c gtkmenubar.c gtkmenuitem.c ubuntumenuproxy.c \
++	ubuntumenuproxymodule.c gtkmenushell.c gtkmenutoolbutton.c \
++	gtkmessagedialog.c gtkmisc.c gtkmnemonichash.c gtkmodules.c \
++	gtkmountoperation.c gtknotebook.c gtkobject.c \
++	gtkoffscreenwindow.c gtkorientable.c gtkpagesetup.c gtkpaned.c \
++	gtkpapersize.c gtkpathbar.c gtkplug.c gtkprintcontext.c \
++	gtkprintoperation.c gtkprintoperationpreview.c \
++	gtkprintsettings.c gtkprintutils.c gtkprogressbar.c \
++	gtkradioaction.c gtkradiobutton.c gtkradiomenuitem.c \
++	gtkradiotoolbutton.c gtkrange.c gtkrbtree.c gtkrc.c \
++	gtkrecentaction.c gtkrecentchooserdefault.c \
+ 	gtkrecentchooserdialog.c gtkrecentchoosermenu.c \
+ 	gtkrecentchooserwidget.c gtkrecentchooserutils.c \
+ 	gtkrecentchooser.c gtkrecentfilter.c gtkrecentmanager.c \
+@@ -459,13 +466,13 @@
  	gtktypeutils.c gtkuimanager.c gtkvbbox.c gtkvbox.c \
  	gtkvolumebutton.c gtkviewport.c gtkvpaned.c gtkvruler.c \
  	gtkvscale.c gtkvscrollbar.c gtkvseparator.c gtkwidget.c \
@@ -10111,7 +10243,35 @@ Index: gtk+2.0-2.21.1/gtk/Makefile.in
  	gtkpagesetupunixdialog.c gtkprinter.c gtkprinteroption.c \
  	gtkprinteroptionset.c gtkprinteroptionwidget.c gtkprintjob.c \
  	gtkprintoperation-unix.c gtkprintunixdialog.c \
-@@ -546,13 +549,13 @@
+@@ -513,16 +520,17 @@
+ 	gtkinfobar.c gtkinputdialog.c gtkinvisible.c gtkitem.c \
+ 	gtkkeyhash.c gtklabel.c gtklayout.c gtklinkbutton.c \
+ 	gtkliststore.c gtkmain.c gtkmarshal.c gtkmarshalers.c \
+-	gtkmenu.c gtkmenubar.c gtkmenuitem.c gtkmenushell.c \
+-	gtkmenutoolbutton.c gtkmessagedialog.c gtkmisc.c \
+-	gtkmnemonichash.c gtkmodules.c gtkmountoperation.c \
+-	gtknotebook.c gtkobject.c gtkoffscreenwindow.c gtkorientable.c \
+-	gtkpagesetup.c gtkpaned.c gtkpapersize.c gtkpathbar.c \
+-	gtkplug.c gtkprintcontext.c gtkprintoperation.c \
+-	gtkprintoperationpreview.c gtkprintsettings.c gtkprintutils.c \
+-	gtkprogressbar.c gtkradioaction.c gtkradiobutton.c \
+-	gtkradiomenuitem.c gtkradiotoolbutton.c gtkrange.c gtkrbtree.c \
+-	gtkrc.c gtkrecentaction.c gtkrecentchooserdefault.c \
++	gtkmenu.c gtkmenubar.c gtkmenuitem.c ubuntumenuproxy.c \
++	ubuntumenuproxymodule.c gtkmenushell.c gtkmenutoolbutton.c \
++	gtkmessagedialog.c gtkmisc.c gtkmnemonichash.c gtkmodules.c \
++	gtkmountoperation.c gtknotebook.c gtkobject.c \
++	gtkoffscreenwindow.c gtkorientable.c gtkpagesetup.c gtkpaned.c \
++	gtkpapersize.c gtkpathbar.c gtkplug.c gtkprintcontext.c \
++	gtkprintoperation.c gtkprintoperationpreview.c \
++	gtkprintsettings.c gtkprintutils.c gtkprogressbar.c \
++	gtkradioaction.c gtkradiobutton.c gtkradiomenuitem.c \
++	gtkradiotoolbutton.c gtkrange.c gtkrbtree.c gtkrc.c \
++	gtkrecentaction.c gtkrecentchooserdefault.c \
+ 	gtkrecentchooserdialog.c gtkrecentchoosermenu.c \
+ 	gtkrecentchooserwidget.c gtkrecentchooserutils.c \
+ 	gtkrecentchooser.c gtkrecentfilter.c gtkrecentmanager.c \
+@@ -546,13 +554,13 @@
  	gtktypeutils.c gtkuimanager.c gtkvbbox.c gtkvbox.c \
  	gtkvolumebutton.c gtkviewport.c gtkvpaned.c gtkvruler.c \
  	gtkvscale.c gtkvscrollbar.c gtkvseparator.c gtkwidget.c \
@@ -10132,7 +10292,7 @@ Index: gtk+2.0-2.21.1/gtk/Makefile.in
  	gtkpagesetupunixdialog.c gtkprinter.c gtkprinteroption.c \
  	gtkprinteroptionset.c gtkprinteroptionwidget.c gtkprintjob.c \
  	gtkprintoperation-unix.c gtkprintunixdialog.c \
-@@ -739,6 +742,7 @@
+@@ -739,6 +747,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
  GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
@@ -10140,7 +10300,7 @@ Index: gtk+2.0-2.21.1/gtk/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -831,8 +835,6 @@
+@@ -831,8 +840,6 @@
  PATH_SEPARATOR = @PATH_SEPARATOR@
  PERL = @PERL@
  PKG_CONFIG = @PKG_CONFIG@
@@ -10149,7 +10309,7 @@ Index: gtk+2.0-2.21.1/gtk/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-@@ -990,6 +992,8 @@
+@@ -990,6 +997,8 @@
  	-I$(top_srcdir)/gdk				\
  	-I$(top_srcdir)/gdk-pixbuf -I../gdk-pixbuf	\
  	-DGDK_DISABLE_DEPRECATED			\
@@ -10158,7 +10318,24 @@ Index: gtk+2.0-2.21.1/gtk/Makefile.in
  	-DGTK_DISABLE_DEPRECATED			\
  	-DGTK_FILE_SYSTEM_ENABLE_UNSUPPORTED		\
  	-DGTK_PRINT_BACKEND_ENABLE_UNSUPPORTED		\
-@@ -1091,7 +1095,7 @@
+@@ -1058,11 +1067,11 @@
+ 	gtkimmodule.h gtkimmulticontext.h gtkinfobar.h gtkinvisible.h \
+ 	gtkitem.h gtklabel.h gtklayout.h gtklinkbutton.h \
+ 	gtkliststore.h gtkmain.h gtkmenu.h gtkmenubar.h gtkmenuitem.h \
+-	gtkmenushell.h gtkmenutoolbutton.h gtkmessagedialog.h \
+-	gtkmisc.h gtkmodules.h gtkmountoperation.h gtknotebook.h \
+-	gtkobject.h gtkoffscreenwindow.h gtkorientable.h \
+-	gtkpagesetup.h gtkpaned.h gtkpapersize.h gtkplug.h \
+-	gtkprintcontext.h gtkprintoperation.h \
++	ubuntumenuproxy.h ubuntumenuproxymodule.h gtkmenushell.h \
++	gtkmenutoolbutton.h gtkmessagedialog.h gtkmisc.h gtkmodules.h \
++	gtkmountoperation.h gtknotebook.h gtkobject.h \
++	gtkoffscreenwindow.h gtkorientable.h gtkpagesetup.h gtkpaned.h \
++	gtkpapersize.h gtkplug.h gtkprintcontext.h gtkprintoperation.h \
+ 	gtkprintoperationpreview.h gtkprintsettings.h gtkprivate.h \
+ 	gtkprogressbar.h gtkradioaction.h gtkradiobutton.h \
+ 	gtkradiomenuitem.h gtkradiotoolbutton.h gtkrange.h gtkrc.h \
+@@ -1091,7 +1100,7 @@
  	gtkgamma.h gtkinputdialog.h gtkitemfactory.h gtklist.h \
  	gtklistitem.h gtkoldeditable.h gtkoptionmenu.h gtkpixmap.h \
  	gtkpreview.h gtkprogress.h gtksignal.h gtktipsquery.h \
@@ -10167,7 +10344,7 @@ Index: gtk+2.0-2.21.1/gtk/Makefile.in
  @OS_UNIX_TRUE@gtk_unix_print_public_h_sources = \
  @OS_UNIX_TRUE@	gtkpagesetupunixdialog.h	\
  @OS_UNIX_TRUE@	gtkprintunixdialog.h		\
-@@ -1103,17 +1107,21 @@
+@@ -1103,17 +1112,21 @@
  # Installed header files without compatibility guarantees
  # that are not included in gtk/gtk.h
  gtk_semi_private_h_sources = \
@@ -10197,7 +10374,7 @@ Index: gtk+2.0-2.21.1/gtk/Makefile.in
  	gtkmnemonichash.h gtkmountoperationprivate.h gtkpathbar.h \
  	gtkplugprivate.h gtkprintoperation-private.h gtkprintutils.h \
  	gtkrbtree.h gtkrecentchooserdefault.h \
-@@ -1123,7 +1131,7 @@
+@@ -1123,7 +1136,7 @@
  	gtktextmarkprivate.h gtktextsegment.h gtktexttagprivate.h \
  	gtktexttypes.h gtktextutil.h gtkthemes.h \
  	gtktoggleactionprivate.h gtktoolpaletteprivate.h \
@@ -10206,7 +10383,35 @@ Index: gtk+2.0-2.21.1/gtk/Makefile.in
  	$(gtk_clipboard_dnd_h_sources) $(am__append_4) $(am__append_6) \
  	$(am__append_8) $(am__append_10) $(am__append_12)
  
-@@ -1192,13 +1200,12 @@
+@@ -1159,16 +1172,17 @@
+ 	gtkinfobar.c gtkinputdialog.c gtkinvisible.c gtkitem.c \
+ 	gtkkeyhash.c gtklabel.c gtklayout.c gtklinkbutton.c \
+ 	gtkliststore.c gtkmain.c gtkmarshal.c gtkmarshalers.c \
+-	gtkmenu.c gtkmenubar.c gtkmenuitem.c gtkmenushell.c \
+-	gtkmenutoolbutton.c gtkmessagedialog.c gtkmisc.c \
+-	gtkmnemonichash.c gtkmodules.c gtkmountoperation.c \
+-	gtknotebook.c gtkobject.c gtkoffscreenwindow.c gtkorientable.c \
+-	gtkpagesetup.c gtkpaned.c gtkpapersize.c gtkpathbar.c \
+-	gtkplug.c gtkprintcontext.c gtkprintoperation.c \
+-	gtkprintoperationpreview.c gtkprintsettings.c gtkprintutils.c \
+-	gtkprogressbar.c gtkradioaction.c gtkradiobutton.c \
+-	gtkradiomenuitem.c gtkradiotoolbutton.c gtkrange.c gtkrbtree.c \
+-	gtkrc.c gtkrecentaction.c gtkrecentchooserdefault.c \
++	gtkmenu.c gtkmenubar.c gtkmenuitem.c ubuntumenuproxy.c \
++	ubuntumenuproxymodule.c gtkmenushell.c gtkmenutoolbutton.c \
++	gtkmessagedialog.c gtkmisc.c gtkmnemonichash.c gtkmodules.c \
++	gtkmountoperation.c gtknotebook.c gtkobject.c \
++	gtkoffscreenwindow.c gtkorientable.c gtkpagesetup.c gtkpaned.c \
++	gtkpapersize.c gtkpathbar.c gtkplug.c gtkprintcontext.c \
++	gtkprintoperation.c gtkprintoperationpreview.c \
++	gtkprintsettings.c gtkprintutils.c gtkprogressbar.c \
++	gtkradioaction.c gtkradiobutton.c gtkradiomenuitem.c \
++	gtkradiotoolbutton.c gtkrange.c gtkrbtree.c gtkrc.c \
++	gtkrecentaction.c gtkrecentchooserdefault.c \
+ 	gtkrecentchooserdialog.c gtkrecentchoosermenu.c \
+ 	gtkrecentchooserwidget.c gtkrecentchooserutils.c \
+ 	gtkrecentchooser.c gtkrecentfilter.c gtkrecentmanager.c \
+@@ -1192,13 +1206,12 @@
  	gtktypeutils.c gtkuimanager.c gtkvbbox.c gtkvbox.c \
  	gtkvolumebutton.c gtkviewport.c gtkvpaned.c gtkvruler.c \
  	gtkvscale.c gtkvscrollbar.c gtkvseparator.c gtkwidget.c \
@@ -10222,11 +10427,20 @@ Index: gtk+2.0-2.21.1/gtk/Makefile.in
  gtk_c_sources = $(gtk_base_c_sources) $(am__append_5) $(am__append_7) \
  	$(am__append_9) $(am__append_11) $(am__append_13) \
  	$(am__append_14)
+@@ -2078,6 +2091,8 @@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gtkwindow.Plo@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gtkxembed.Plo@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/queryimmodules.Po@am__quote@
++@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ubuntumenuproxy.Plo@am__quote@
++@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ubuntumenuproxymodule.Plo@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/updateiconcache.Po@am__quote@
+ 
+ .c.o:
 Index: gtk+2.0-2.21.1/gtk/tests/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/gtk/tests/Makefile.in	2010-05-30 23:46:20.000000000 +0200
-+++ gtk+2.0-2.21.1/gtk/tests/Makefile.in	2010-06-02 16:11:06.000000000 +0200
-@@ -42,11 +42,14 @@
++++ gtk+2.0-2.21.1/gtk/tests/Makefile.in	2010-06-10 18:31:56.000000000 +0200
+@@ -42,20 +42,24 @@
  @OS_UNIX_TRUE@am__append_1 = defaultvalue
  subdir = gtk/tests
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -10243,7 +10457,47 @@ Index: gtk+2.0-2.21.1/gtk/tests/Makefile.in
  CONFIG_HEADER = $(top_builddir)/config.h
  CONFIG_CLEAN_FILES =
  CONFIG_CLEAN_VPATH_FILES =
-@@ -225,6 +228,7 @@
+ @OS_UNIX_TRUE@am__EXEEXT_1 = defaultvalue$(EXEEXT)
+ am__EXEEXT_2 = testing$(EXEEXT) liststore$(EXEEXT) treestore$(EXEEXT) \
+ 	treeview$(EXEEXT) treeview-scrolling$(EXEEXT) \
+-	recentmanager$(EXEEXT) floating$(EXEEXT) object$(EXEEXT) \
+-	builder$(EXEEXT) $(am__EXEEXT_1) textbuffer$(EXEEXT) \
+-	filtermodel$(EXEEXT) expander$(EXEEXT) action$(EXEEXT)
++	recentmanager$(EXEEXT) menuproxy$(EXEEXT) floating$(EXEEXT) \
++	object$(EXEEXT) builder$(EXEEXT) $(am__EXEEXT_1) \
++	textbuffer$(EXEEXT) filtermodel$(EXEEXT) expander$(EXEEXT) \
++	action$(EXEEXT)
+ PROGRAMS = $(noinst_PROGRAMS)
+ am_action_OBJECTS = action.$(OBJEXT)
+ action_OBJECTS = $(am_action_OBJECTS)
+@@ -88,6 +92,9 @@
+ am_liststore_OBJECTS = liststore.$(OBJEXT)
+ liststore_OBJECTS = $(am_liststore_OBJECTS)
+ liststore_DEPENDENCIES = $(am__DEPENDENCIES_2)
++am_menuproxy_OBJECTS = menuproxy.$(OBJEXT)
++menuproxy_OBJECTS = $(am_menuproxy_OBJECTS)
++menuproxy_DEPENDENCIES = $(am__DEPENDENCIES_2)
+ am_object_OBJECTS = object.$(OBJEXT) pixbuf-init.$(OBJEXT)
+ object_OBJECTS = $(am_object_OBJECTS)
+ object_DEPENDENCIES = $(am__DEPENDENCIES_2)
+@@ -137,14 +144,14 @@
+ am__v_GEN_0 = @echo "  GEN   " $@;
+ SOURCES = $(action_SOURCES) $(builder_SOURCES) $(defaultvalue_SOURCES) \
+ 	$(expander_SOURCES) $(filtermodel_SOURCES) $(floating_SOURCES) \
+-	$(liststore_SOURCES) $(object_SOURCES) \
++	$(liststore_SOURCES) $(menuproxy_SOURCES) $(object_SOURCES) \
+ 	$(recentmanager_SOURCES) $(testing_SOURCES) \
+ 	$(textbuffer_SOURCES) $(treestore_SOURCES) $(treeview_SOURCES) \
+ 	$(treeview_scrolling_SOURCES)
+ DIST_SOURCES = $(action_SOURCES) $(builder_SOURCES) \
+ 	$(defaultvalue_SOURCES) $(expander_SOURCES) \
+ 	$(filtermodel_SOURCES) $(floating_SOURCES) \
+-	$(liststore_SOURCES) $(object_SOURCES) \
++	$(liststore_SOURCES) $(menuproxy_SOURCES) $(object_SOURCES) \
+ 	$(recentmanager_SOURCES) $(testing_SOURCES) \
+ 	$(textbuffer_SOURCES) $(treestore_SOURCES) $(treeview_SOURCES) \
+ 	$(treeview_scrolling_SOURCES)
+@@ -225,6 +232,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
  GDK_PIXBUF_XLIB_PACKAGES = @GDK_PIXBUF_XLIB_PACKAGES@
@@ -10251,7 +10505,7 @@ Index: gtk+2.0-2.21.1/gtk/tests/Makefile.in
  GDK_WLIBS = @GDK_WLIBS@
  GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
  GLIB_CFLAGS = @GLIB_CFLAGS@
-@@ -317,8 +321,6 @@
+@@ -317,8 +325,6 @@
  PATH_SEPARATOR = @PATH_SEPARATOR@
  PERL = @PERL@
  PKG_CONFIG = @PKG_CONFIG@
@@ -10260,10 +10514,48 @@ Index: gtk+2.0-2.21.1/gtk/tests/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+@@ -405,8 +411,8 @@
+ # initialize variables for unconditional += appending
+ EXTRA_DIST = 
+ TEST_PROGS = testing liststore treestore treeview treeview-scrolling \
+-	recentmanager floating object builder $(am__append_1) \
+-	textbuffer filtermodel expander action
++	recentmanager menuproxy floating object builder \
++	$(am__append_1) textbuffer filtermodel expander action
+ 
+ ### testing rules
+ 
+@@ -463,6 +469,8 @@
+ treeview_scrolling_LDADD = $(progs_ldadd)
+ recentmanager_SOURCES = recentmanager.c
+ recentmanager_LDADD = $(progs_ldadd)
++menuproxy_SOURCES = menuproxy.c
++menuproxy_LDADD = $(progs_ldadd)
+ floating_SOURCES = floating.c
+ floating_LDADD = $(progs_ldadd)
+ object_SOURCES = object.c pixbuf-init.c
+@@ -557,6 +565,9 @@
+ liststore$(EXEEXT): $(liststore_OBJECTS) $(liststore_DEPENDENCIES) 
+ 	@rm -f liststore$(EXEEXT)
+ 	$(AM_V_CCLD)$(LINK) $(liststore_OBJECTS) $(liststore_LDADD) $(LIBS)
++menuproxy$(EXEEXT): $(menuproxy_OBJECTS) $(menuproxy_DEPENDENCIES) 
++	@rm -f menuproxy$(EXEEXT)
++	$(AM_V_CCLD)$(LINK) $(menuproxy_OBJECTS) $(menuproxy_LDADD) $(LIBS)
+ object$(EXEEXT): $(object_OBJECTS) $(object_DEPENDENCIES) 
+ 	@rm -f object$(EXEEXT)
+ 	$(AM_V_CCLD)$(LINK) $(object_OBJECTS) $(object_LDADD) $(LIBS)
+@@ -592,6 +603,7 @@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/filtermodel.Po@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/floating.Po@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liststore.Po@am__quote@
++@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/menuproxy.Po@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/object.Po@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pixbuf-init.Po@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/recentmanager.Po@am__quote@
 Index: gtk+2.0-2.21.1/gtk/theme-bits/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/gtk/theme-bits/Makefile.in	2010-05-30 23:46:20.000000000 +0200
-+++ gtk+2.0-2.21.1/gtk/theme-bits/Makefile.in	2010-06-02 16:11:06.000000000 +0200
++++ gtk+2.0-2.21.1/gtk/theme-bits/Makefile.in	2010-06-10 18:31:56.000000000 +0200
 @@ -41,11 +41,14 @@
  noinst_PROGRAMS = decompose-bits$(EXEEXT)
  subdir = gtk/theme-bits
@@ -10301,7 +10593,7 @@ Index: gtk+2.0-2.21.1/gtk/theme-bits/Makefile.in
 Index: gtk+2.0-2.21.1/ltmain.sh
 ===================================================================
 --- gtk+2.0-2.21.1.orig/ltmain.sh	2010-05-01 09:19:03.000000000 +0200
-+++ gtk+2.0-2.21.1/ltmain.sh	2010-06-02 16:10:52.000000000 +0200
++++ gtk+2.0-2.21.1/ltmain.sh	2010-06-10 18:31:41.000000000 +0200
 @@ -65,7 +65,7 @@
  #       compiler:		$LTCC
  #       compiler flags:		$LTCFLAGS
@@ -10383,7 +10675,7 @@ Index: gtk+2.0-2.21.1/ltmain.sh
 Index: gtk+2.0-2.21.1/m4/gtk-doc.m4
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.1/m4/gtk-doc.m4	2010-06-02 16:10:52.000000000 +0200
++++ gtk+2.0-2.21.1/m4/gtk-doc.m4	2010-06-10 18:31:41.000000000 +0200
 @@ -0,0 +1,61 @@
 +dnl -*- mode: autoconf -*-
 +
@@ -10449,7 +10741,7 @@ Index: gtk+2.0-2.21.1/m4/gtk-doc.m4
 Index: gtk+2.0-2.21.1/m4/libtool.m4
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.1/m4/libtool.m4	2010-06-02 16:10:52.000000000 +0200
++++ gtk+2.0-2.21.1/m4/libtool.m4	2010-06-10 18:31:41.000000000 +0200
 @@ -0,0 +1,7377 @@
 +# libtool.m4 - Configure libtool for the host system. -*-Autoconf-*-
 +#
@@ -17831,7 +18123,7 @@ Index: gtk+2.0-2.21.1/m4/libtool.m4
 Index: gtk+2.0-2.21.1/m4/lt~obsolete.m4
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.1/m4/lt~obsolete.m4	2010-06-02 16:10:52.000000000 +0200
++++ gtk+2.0-2.21.1/m4/lt~obsolete.m4	2010-06-10 18:31:41.000000000 +0200
 @@ -0,0 +1,92 @@
 +# lt~obsolete.m4 -- aclocal satisfying obsolete definitions.    -*-Autoconf-*-
 +#
@@ -17928,7 +18220,7 @@ Index: gtk+2.0-2.21.1/m4/lt~obsolete.m4
 Index: gtk+2.0-2.21.1/m4/ltoptions.m4
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.1/m4/ltoptions.m4	2010-06-02 16:10:52.000000000 +0200
++++ gtk+2.0-2.21.1/m4/ltoptions.m4	2010-06-10 18:31:41.000000000 +0200
 @@ -0,0 +1,368 @@
 +# Helper functions for option handling.                    -*- Autoconf -*-
 +#
@@ -18301,7 +18593,7 @@ Index: gtk+2.0-2.21.1/m4/ltoptions.m4
 Index: gtk+2.0-2.21.1/m4/ltsugar.m4
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.1/m4/ltsugar.m4	2010-06-02 16:10:52.000000000 +0200
++++ gtk+2.0-2.21.1/m4/ltsugar.m4	2010-06-10 18:31:41.000000000 +0200
 @@ -0,0 +1,123 @@
 +# ltsugar.m4 -- libtool m4 base layer.                         -*-Autoconf-*-
 +#
@@ -18429,7 +18721,7 @@ Index: gtk+2.0-2.21.1/m4/ltsugar.m4
 Index: gtk+2.0-2.21.1/m4/ltversion.m4
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.1/m4/ltversion.m4	2010-06-02 16:10:52.000000000 +0200
++++ gtk+2.0-2.21.1/m4/ltversion.m4	2010-06-10 18:31:41.000000000 +0200
 @@ -0,0 +1,23 @@
 +# ltversion.m4 -- version numbers			-*- Autoconf -*-
 +#
@@ -18457,7 +18749,7 @@ Index: gtk+2.0-2.21.1/m4/ltversion.m4
 Index: gtk+2.0-2.21.1/m4macros/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/m4macros/Makefile.in	2010-05-30 23:46:20.000000000 +0200
-+++ gtk+2.0-2.21.1/m4macros/Makefile.in	2010-06-02 16:11:06.000000000 +0200
++++ gtk+2.0-2.21.1/m4macros/Makefile.in	2010-06-10 18:31:56.000000000 +0200
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = m4macros
@@ -18495,7 +18787,7 @@ Index: gtk+2.0-2.21.1/m4macros/Makefile.in
 Index: gtk+2.0-2.21.1/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/Makefile.in	2010-05-30 23:46:23.000000000 +0200
-+++ gtk+2.0-2.21.1/Makefile.in	2010-06-02 16:11:08.000000000 +0200
++++ gtk+2.0-2.21.1/Makefile.in	2010-06-10 18:31:59.000000000 +0200
 @@ -47,17 +47,20 @@
  	$(srcdir)/gtk+-unix-print-2.0.pc.in $(srcdir)/gtk-zip.sh.in \
  	$(top_srcdir)/Makefile.decl $(top_srcdir)/configure AUTHORS \
@@ -18562,7 +18854,7 @@ Index: gtk+2.0-2.21.1/Makefile.in
 Index: gtk+2.0-2.21.1/mkinstalldirs
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.1/mkinstalldirs	2010-06-02 16:10:52.000000000 +0200
++++ gtk+2.0-2.21.1/mkinstalldirs	2010-06-10 18:31:41.000000000 +0200
 @@ -0,0 +1,162 @@
 +#! /bin/sh
 +# mkinstalldirs --- make directory hierarchy
@@ -18729,7 +19021,7 @@ Index: gtk+2.0-2.21.1/mkinstalldirs
 Index: gtk+2.0-2.21.1/modules/engines/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/modules/engines/Makefile.in	2010-05-30 23:46:20.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/engines/Makefile.in	2010-06-02 16:11:06.000000000 +0200
++++ gtk+2.0-2.21.1/modules/engines/Makefile.in	2010-06-10 18:31:57.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/engines
@@ -18767,7 +19059,7 @@ Index: gtk+2.0-2.21.1/modules/engines/Makefile.in
 Index: gtk+2.0-2.21.1/modules/engines/ms-windows/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/modules/engines/ms-windows/Makefile.in	2010-05-30 23:46:20.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/engines/ms-windows/Makefile.in	2010-06-02 16:11:06.000000000 +0200
++++ gtk+2.0-2.21.1/modules/engines/ms-windows/Makefile.in	2010-06-10 18:31:57.000000000 +0200
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/engines/ms-windows
@@ -18805,7 +19097,7 @@ Index: gtk+2.0-2.21.1/modules/engines/ms-windows/Makefile.in
 Index: gtk+2.0-2.21.1/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-05-30 23:46:21.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-06-02 16:11:06.000000000 +0200
++++ gtk+2.0-2.21.1/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-06-10 18:31:57.000000000 +0200
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/engines/ms-windows/Theme/gtk-2.0
@@ -18843,7 +19135,7 @@ Index: gtk+2.0-2.21.1/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in
 Index: gtk+2.0-2.21.1/modules/engines/ms-windows/Theme/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/modules/engines/ms-windows/Theme/Makefile.in	2010-05-30 23:46:20.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/engines/ms-windows/Theme/Makefile.in	2010-06-02 16:11:06.000000000 +0200
++++ gtk+2.0-2.21.1/modules/engines/ms-windows/Theme/Makefile.in	2010-06-10 18:31:57.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/engines/ms-windows/Theme
@@ -18881,7 +19173,7 @@ Index: gtk+2.0-2.21.1/modules/engines/ms-windows/Theme/Makefile.in
 Index: gtk+2.0-2.21.1/modules/engines/pixbuf/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/modules/engines/pixbuf/Makefile.in	2010-05-30 23:46:21.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/engines/pixbuf/Makefile.in	2010-06-02 16:11:07.000000000 +0200
++++ gtk+2.0-2.21.1/modules/engines/pixbuf/Makefile.in	2010-06-10 18:31:57.000000000 +0200
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl ChangeLog
  subdir = modules/engines/pixbuf
@@ -18919,7 +19211,7 @@ Index: gtk+2.0-2.21.1/modules/engines/pixbuf/Makefile.in
 Index: gtk+2.0-2.21.1/modules/input/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/modules/input/Makefile.in	2010-05-30 23:46:21.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/input/Makefile.in	2010-06-02 16:11:07.000000000 +0200
++++ gtk+2.0-2.21.1/modules/input/Makefile.in	2010-06-10 18:31:57.000000000 +0200
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/input
@@ -18987,7 +19279,7 @@ Index: gtk+2.0-2.21.1/modules/input/Makefile.in
 Index: gtk+2.0-2.21.1/modules/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/modules/Makefile.in	2010-05-30 23:46:20.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/Makefile.in	2010-06-02 16:11:06.000000000 +0200
++++ gtk+2.0-2.21.1/modules/Makefile.in	2010-06-10 18:31:57.000000000 +0200
 @@ -40,11 +40,14 @@
  @OS_UNIX_TRUE@am__append_1 = printbackends
  subdir = modules
@@ -19025,7 +19317,7 @@ Index: gtk+2.0-2.21.1/modules/Makefile.in
 Index: gtk+2.0-2.21.1/modules/other/gail/libgail-util/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/modules/other/gail/libgail-util/Makefile.in	2010-05-30 23:46:21.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/other/gail/libgail-util/Makefile.in	2010-06-02 16:11:07.000000000 +0200
++++ gtk+2.0-2.21.1/modules/other/gail/libgail-util/Makefile.in	2010-06-10 18:31:58.000000000 +0200
 @@ -42,11 +42,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/other/gail/libgail-util
@@ -19063,7 +19355,7 @@ Index: gtk+2.0-2.21.1/modules/other/gail/libgail-util/Makefile.in
 Index: gtk+2.0-2.21.1/modules/other/gail/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/modules/other/gail/Makefile.in	2010-05-30 23:46:21.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/other/gail/Makefile.in	2010-06-02 16:11:07.000000000 +0200
++++ gtk+2.0-2.21.1/modules/other/gail/Makefile.in	2010-06-10 18:31:57.000000000 +0200
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl ChangeLog
  subdir = modules/other/gail
@@ -19101,7 +19393,7 @@ Index: gtk+2.0-2.21.1/modules/other/gail/Makefile.in
 Index: gtk+2.0-2.21.1/modules/other/gail/tests/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/modules/other/gail/tests/Makefile.in	2010-05-30 23:46:22.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/other/gail/tests/Makefile.in	2010-06-02 16:11:07.000000000 +0200
++++ gtk+2.0-2.21.1/modules/other/gail/tests/Makefile.in	2010-06-10 18:31:58.000000000 +0200
 @@ -40,11 +40,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/other/gail/tests
@@ -19139,7 +19431,7 @@ Index: gtk+2.0-2.21.1/modules/other/gail/tests/Makefile.in
 Index: gtk+2.0-2.21.1/modules/other/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/modules/other/Makefile.in	2010-05-30 23:46:21.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/other/Makefile.in	2010-06-02 16:11:07.000000000 +0200
++++ gtk+2.0-2.21.1/modules/other/Makefile.in	2010-06-10 18:31:57.000000000 +0200
 @@ -39,11 +39,14 @@
  	$(top_srcdir)/Makefile.decl
  subdir = modules/other
@@ -19177,7 +19469,7 @@ Index: gtk+2.0-2.21.1/modules/other/Makefile.in
 Index: gtk+2.0-2.21.1/modules/printbackends/cups/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/modules/printbackends/cups/Makefile.in	2010-05-30 23:46:22.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/printbackends/cups/Makefile.in	2010-06-02 16:11:07.000000000 +0200
++++ gtk+2.0-2.21.1/modules/printbackends/cups/Makefile.in	2010-06-10 18:31:58.000000000 +0200
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/printbackends/cups
@@ -19215,7 +19507,7 @@ Index: gtk+2.0-2.21.1/modules/printbackends/cups/Makefile.in
 Index: gtk+2.0-2.21.1/modules/printbackends/file/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/modules/printbackends/file/Makefile.in	2010-05-30 23:46:22.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/printbackends/file/Makefile.in	2010-06-02 16:11:08.000000000 +0200
++++ gtk+2.0-2.21.1/modules/printbackends/file/Makefile.in	2010-06-10 18:31:58.000000000 +0200
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/printbackends/file
@@ -19253,7 +19545,7 @@ Index: gtk+2.0-2.21.1/modules/printbackends/file/Makefile.in
 Index: gtk+2.0-2.21.1/modules/printbackends/lpr/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/modules/printbackends/lpr/Makefile.in	2010-05-30 23:46:22.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/printbackends/lpr/Makefile.in	2010-06-02 16:11:08.000000000 +0200
++++ gtk+2.0-2.21.1/modules/printbackends/lpr/Makefile.in	2010-06-10 18:31:58.000000000 +0200
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/printbackends/lpr
@@ -19291,7 +19583,7 @@ Index: gtk+2.0-2.21.1/modules/printbackends/lpr/Makefile.in
 Index: gtk+2.0-2.21.1/modules/printbackends/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/modules/printbackends/Makefile.in	2010-05-30 23:46:22.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/printbackends/Makefile.in	2010-06-02 16:11:07.000000000 +0200
++++ gtk+2.0-2.21.1/modules/printbackends/Makefile.in	2010-06-10 18:31:58.000000000 +0200
 @@ -42,11 +42,14 @@
  @HAVE_PAPI_TRUE@am__append_3 = papi
  subdir = modules/printbackends
@@ -19329,7 +19621,7 @@ Index: gtk+2.0-2.21.1/modules/printbackends/Makefile.in
 Index: gtk+2.0-2.21.1/modules/printbackends/papi/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/modules/printbackends/papi/Makefile.in	2010-05-30 23:46:22.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/printbackends/papi/Makefile.in	2010-06-02 16:11:08.000000000 +0200
++++ gtk+2.0-2.21.1/modules/printbackends/papi/Makefile.in	2010-06-10 18:31:58.000000000 +0200
 @@ -39,11 +39,14 @@
  DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
  	$(srcdir)/Makefile.in
@@ -19367,7 +19659,7 @@ Index: gtk+2.0-2.21.1/modules/printbackends/papi/Makefile.in
 Index: gtk+2.0-2.21.1/modules/printbackends/test/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/modules/printbackends/test/Makefile.in	2010-05-30 23:46:22.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/printbackends/test/Makefile.in	2010-06-02 16:11:08.000000000 +0200
++++ gtk+2.0-2.21.1/modules/printbackends/test/Makefile.in	2010-06-10 18:31:58.000000000 +0200
 @@ -41,11 +41,14 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
  subdir = modules/printbackends/test
@@ -19405,7 +19697,7 @@ Index: gtk+2.0-2.21.1/modules/printbackends/test/Makefile.in
 Index: gtk+2.0-2.21.1/perf/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/perf/Makefile.in	2010-05-30 23:46:22.000000000 +0200
-+++ gtk+2.0-2.21.1/perf/Makefile.in	2010-06-02 16:11:08.000000000 +0200
++++ gtk+2.0-2.21.1/perf/Makefile.in	2010-06-10 18:31:58.000000000 +0200
 @@ -41,11 +41,14 @@
  noinst_PROGRAMS = testperf$(EXEEXT)
  subdir = perf
@@ -19443,7 +19735,7 @@ Index: gtk+2.0-2.21.1/perf/Makefile.in
 Index: gtk+2.0-2.21.1/po/Makefile.in.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/po/Makefile.in.in	2010-04-09 04:30:01.000000000 +0200
-+++ gtk+2.0-2.21.1/po/Makefile.in.in	2010-06-02 16:10:52.000000000 +0200
++++ gtk+2.0-2.21.1/po/Makefile.in.in	2010-06-10 18:31:41.000000000 +0200
 @@ -25,22 +25,23 @@
  
  prefix = @prefix@
@@ -19560,7 +19852,7 @@ Index: gtk+2.0-2.21.1/po/Makefile.in.in
 Index: gtk+2.0-2.21.1/tests/Makefile.in
 ===================================================================
 --- gtk+2.0-2.21.1.orig/tests/Makefile.in	2010-05-30 23:46:23.000000000 +0200
-+++ gtk+2.0-2.21.1/tests/Makefile.in	2010-06-02 16:11:08.000000000 +0200
++++ gtk+2.0-2.21.1/tests/Makefile.in	2010-06-10 18:31:58.000000000 +0200
 @@ -76,11 +76,14 @@
  @HAVE_CXX_TRUE@@HAVE_OBJC_TRUE@am__append_2 = -DHAVE_OBJC=1 -x objective-c++
  subdir = tests

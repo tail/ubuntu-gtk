@@ -1,11 +1,19 @@
-gtk+2.0 (2.21.1-1ubuntu2) UNRELEASED; urgency=low
+gtk+2.0 (2.21.1-1ubuntu2) maverick; urgency=low
 
-  * debian/patches/100-menu-proxy.patch
+  * debian/libgtk2.0-0.symbols:
+    - updated symbols version
+  * debian/patches/043_menu_proxy.patch,
+    - renamed and updated to not conflict with other changes
+  * debian/patches/070_mandatory-relibtoolize.patch:
+    - refreshed
+
+  [ Ken VanDine ]
+  * debian/patches/043_menu_proxy.patch
     - Add GtkMenuProxy support for remoting menus.
   * debian/libgtk2.0-0.symbols
     - Added symbols for gtk_menu_proxy
 
- -- Ken VanDine <ken.vandine@canonical.com>  Thu, 10 Jun 2010 10:37:40 -0400
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 10 Jun 2010 18:32:56 +0200
 
 gtk+2.0 (2.21.1-1ubuntu1) maverick; urgency=low
 
