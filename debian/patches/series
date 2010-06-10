@@ -23,3 +23,4 @@
 072_indicator_menu_update.patch
 091_bugzilla_tooltip_refresh.patch
 092_git_change_no_gtkmisc_warning.patch
+100-menu-proxy.patch
