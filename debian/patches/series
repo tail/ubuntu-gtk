@@ -12,6 +12,7 @@
 022_module-files-append-compat-module-files-d.patch
 041_ia32-libs.patch
 042_treeview_single-focus.patch
+043_ubuntu_menu_proxy.patch
 060_ignore-random-icons.patch
 061_use_pdf_as_default_printing_standard.patch
 062_dnd_menubar.patch
@@ -23,4 +24,4 @@
 072_indicator_menu_update.patch
 091_bugzilla_tooltip_refresh.patch
 092_git_change_no_gtkmisc_warning.patch
-100-menu-proxy.patch
+
