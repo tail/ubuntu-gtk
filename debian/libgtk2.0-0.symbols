@@ -4809,3 +4809,4 @@ libgtk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  ubuntu_menu_proxy_insert@Base 2.21.1-1ubuntu2
  ubuntu_menu_proxy_module_get@Base 2.21.1-1ubuntu2
  ubuntu_menu_proxy_module_get_type@Base 2.21.1-1ubuntu2
+ ubuntu_menu_proxy_show_local@Base 2.21.1-1ubuntu2
