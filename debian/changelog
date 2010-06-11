@@ -1,3 +1,31 @@
+gtk+2.0 (2.21.2-0ubuntu1) maverick; urgency=low
+
+  * New upstream version:
+    - The newly added gdk_drag_context_get_action function has been
+      renamed to gdk_drag_context_get_selected_action to make the
+      name less confusing.
+    - Introspection annotations have been added in many places
+    - New accessors for sealed struct members:
+      gtk_viewport_get_view_window
+      gdk_drag_context_get_source_window
+    - Bug fixes:
+      608218 GtkOffscreenWindow causes bad window with GtkEntry
+      611709 Add gtk_statusbar_remove_all
+      596428 GtkAssistant: Support ending with a progress page
+      620511 Use g_source_set_name for all custom GSources in GTK+
+      608537 Make the file chooser's sort arrows consistent (lp:#509656)
+      620863 Unable to select GtkMenu item above the current one (lp: #590374)
+  * debian/control.in:
+    - updated glib requirement
+  * debian/patches/065_build_introspection_file.patch:
+    - dropped, the fix is in the new version
+  * debian/libgtk2.0-0.symbols:
+    - new version update
+  * debian/patches/070_mandatory-relibtoolize.patch:
+    - new version update
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 11 Jun 2010 11:48:48 +0200
+
 gtk+2.0 (2.21.1-1ubuntu3) maverick; urgency=low
 
   * debian/libgtk2.0-0.symbols

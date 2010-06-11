@@ -1,73 +1,10 @@
-Index: gtk+2.0-2.21.1/aclocal.m4
-===================================================================
---- gtk+2.0-2.21.1.orig/aclocal.m4	2010-05-30 23:46:12.000000000 +0200
-+++ gtk+2.0-2.21.1/aclocal.m4	2010-06-10 18:31:48.000000000 +0200
-@@ -664,8019 +664,7 @@
- fi])
+diff -Nur gtk+2.0-2.21.2/aclocal.m4 gtk+2.0-2.21.2.ubuntu/aclocal.m4
+--- gtk+2.0-2.21.2/aclocal.m4	2010-06-10 19:18:17.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/aclocal.m4	2010-06-11 12:15:17.000000000 +0200
+@@ -726,7957 +726,7 @@
+   AM_CONDITIONAL([GTK_DOC_USE_REBASE], [test -n "$GTKDOC_REBASE"])
+ ])
  
- 
--dnl -*- mode: autoconf -*-
--
--# serial 1
--
--dnl Usage:
--dnl   GTK_DOC_CHECK([minimum-gtk-doc-version])
--AC_DEFUN([GTK_DOC_CHECK],
--[
--  AC_BEFORE([AC_PROG_LIBTOOL],[$0])dnl setup libtool first
--  AC_BEFORE([AM_PROG_LIBTOOL],[$0])dnl setup libtool first
--
--  dnl check for tools we added during development
--  AC_PATH_PROG([GTKDOC_CHECK],[gtkdoc-check])
--  AC_PATH_PROGS([GTKDOC_REBASE],[gtkdoc-rebase],[true])
--  AC_PATH_PROG([GTKDOC_MKPDF],[gtkdoc-mkpdf])
--
--  dnl for overriding the documentation installation directory
--  AC_ARG_WITH([html-dir],
--    AS_HELP_STRING([--with-html-dir=PATH], [path to installed docs]),,
--    [with_html_dir='${datadir}/gtk-doc/html'])
--  HTML_DIR="$with_html_dir"
--  AC_SUBST([HTML_DIR])
--
--  dnl enable/disable documentation building
--  AC_ARG_ENABLE([gtk-doc],
--    AS_HELP_STRING([--enable-gtk-doc],
--                   [use gtk-doc to build documentation [[default=no]]]),,
--    [enable_gtk_doc=no])
--
--  if test x$enable_gtk_doc = xyes; then
--    ifelse([$1],[],
--      [PKG_CHECK_EXISTS([gtk-doc],,
--                        AC_MSG_ERROR([gtk-doc not installed and --enable-gtk-doc requested]))],
--      [PKG_CHECK_EXISTS([gtk-doc >= $1],,
--                        AC_MSG_ERROR([You need to have gtk-doc >= $1 installed to build $PACKAGE_NAME]))])
--  fi
--
--  AC_MSG_CHECKING([whether to build gtk-doc documentation])
--  AC_MSG_RESULT($enable_gtk_doc)
--
--  dnl enable/disable output formats
--  AC_ARG_ENABLE([gtk-doc-html],
--    AS_HELP_STRING([--enable-gtk-doc-html],
--                   [build documentation in html format [[default=yes]]]),,
--    [enable_gtk_doc_html=yes])
--    AC_ARG_ENABLE([gtk-doc-pdf],
--      AS_HELP_STRING([--enable-gtk-doc-pdf],
--                     [build documentation in pdf format [[default=no]]]),,
--      [enable_gtk_doc_pdf=no])
--
--  if test -z "$GTKDOC_MKPDF"; then
--    enable_gtk_doc_pdf=no
--  fi
--
--
--  AM_CONDITIONAL([ENABLE_GTK_DOC], [test x$enable_gtk_doc = xyes])
--  AM_CONDITIONAL([GTK_DOC_BUILD_HTML], [test x$enable_gtk_doc_html = xyes])
--  AM_CONDITIONAL([GTK_DOC_BUILD_PDF], [test x$enable_gtk_doc_pdf = xyes])
--  AM_CONDITIONAL([GTK_DOC_USE_LIBTOOL], [test -n "$LIBTOOL"])
--  AM_CONDITIONAL([GTK_DOC_USE_REBASE], [test -n "$GTKDOC_REBASE"])
--])
--
 -# libtool.m4 - Configure libtool for the host system. -*-Autoconf-*-
 -#
 -#   Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2003, 2004, 2005,
@@ -8022,7 +7959,7 @@ Index: gtk+2.0-2.21.1/aclocal.m4
  # 
  # Copyright © 2004 Scott James Remnant <scott@netsplit.com>.
  #
-@@ -8704,10 +692,7 @@
+@@ -8704,10 +754,7 @@
  AC_DEFUN([PKG_PROG_PKG_CONFIG],
  [m4_pattern_forbid([^_?PKG_[A-Z_]+$])
  m4_pattern_allow([^PKG_CONFIG(_PATH)?$])
@@ -8034,7 +7971,7 @@ Index: gtk+2.0-2.21.1/aclocal.m4
  if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
  	AC_PATH_TOOL([PKG_CONFIG], [pkg-config])
  fi
-@@ -8720,6 +705,7 @@
+@@ -8720,6 +767,7 @@
  		AC_MSG_RESULT([no])
  		PKG_CONFIG=""
  	fi
@@ -8042,7 +7979,7 @@ Index: gtk+2.0-2.21.1/aclocal.m4
  fi[]dnl
  ])# PKG_PROG_PKG_CONFIG
  
-@@ -8728,31 +714,34 @@
+@@ -8728,31 +776,34 @@
  # Check to see whether a particular set of modules exists.  Similar
  # to PKG_CHECK_MODULES(), but does not set variables or print errors.
  #
@@ -8090,7 +8027,7 @@ Index: gtk+2.0-2.21.1/aclocal.m4
  fi[]dnl
  ])# _PKG_CONFIG
  
-@@ -8794,17 +783,16 @@
+@@ -8794,17 +845,16 @@
  See the pkg-config man page for more details.])
  
  if test $pkg_failed = yes; then
@@ -8111,7 +8048,7 @@ Index: gtk+2.0-2.21.1/aclocal.m4
  [Package requirements ($2) were not met:
  
  $$1_PKG_ERRORS
-@@ -8812,24 +800,25 @@
+@@ -8812,24 +862,25 @@
  Consider adjusting the PKG_CONFIG_PATH environment variable if you
  installed software in a non-standard prefix.
  
@@ -8144,11 +8081,9 @@ Index: gtk+2.0-2.21.1/aclocal.m4
  fi[]dnl
  ])# PKG_CHECK_MODULES
  
-@@ -9922,5 +1911,11 @@
- AC_SUBST([am__untar])
+@@ -9923,4 +1974,9 @@
  ]) # _AM_PROG_TAR
  
-+m4_include([m4/gtk-doc.m4])
  m4_include([m4/introspection.m4])
 +m4_include([m4/libtool.m4])
 +m4_include([m4/ltoptions.m4])
@@ -8156,27 +8091,21 @@ Index: gtk+2.0-2.21.1/aclocal.m4
 +m4_include([m4/ltversion.m4])
 +m4_include([m4/lt~obsolete.m4])
  m4_include([acinclude.m4])
-Index: gtk+2.0-2.21.1/build/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/build/Makefile.in	2010-05-30 23:46:16.000000000 +0200
-+++ gtk+2.0-2.21.1/build/Makefile.in	2010-06-10 18:31:54.000000000 +0200
-@@ -39,11 +39,14 @@
- 	$(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/build/Makefile.in gtk+2.0-2.21.2.ubuntu/build/Makefile.in
+--- gtk+2.0-2.21.2/build/Makefile.in	2010-06-10 19:18:21.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/build/Makefile.in	2010-06-11 12:15:20.000000000 +0200
+@@ -40,7 +40,10 @@
  subdir = build
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -170,6 +173,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -8194,27 +8123,21 @@ Index: gtk+2.0-2.21.1/build/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/build/win32/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/build/win32/Makefile.in	2010-05-30 23:46:17.000000000 +0200
-+++ gtk+2.0-2.21.1/build/win32/Makefile.in	2010-06-10 18:31:54.000000000 +0200
-@@ -39,11 +39,14 @@
- 	$(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/build/win32/Makefile.in gtk+2.0-2.21.2.ubuntu/build/win32/Makefile.in
+--- gtk+2.0-2.21.2/build/win32/Makefile.in	2010-06-10 19:18:21.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/build/win32/Makefile.in	2010-06-11 12:15:20.000000000 +0200
+@@ -40,7 +40,10 @@
  subdir = build/win32
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -170,6 +173,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -8232,27 +8155,21 @@ Index: gtk+2.0-2.21.1/build/win32/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/build/win32/vs9/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/build/win32/vs9/Makefile.in	2010-05-30 23:46:17.000000000 +0200
-+++ gtk+2.0-2.21.1/build/win32/vs9/Makefile.in	2010-06-10 18:31:54.000000000 +0200
-@@ -39,11 +39,14 @@
- 	$(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/build/win32/vs9/Makefile.in gtk+2.0-2.21.2.ubuntu/build/win32/vs9/Makefile.in
+--- gtk+2.0-2.21.2/build/win32/vs9/Makefile.in	2010-06-10 19:18:21.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/build/win32/vs9/Makefile.in	2010-06-11 12:15:20.000000000 +0200
+@@ -40,7 +40,10 @@
  subdir = build/win32/vs9
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -130,6 +133,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -8270,10 +8187,9 @@ Index: gtk+2.0-2.21.1/build/win32/vs9/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/configure
-===================================================================
---- gtk+2.0-2.21.1.orig/configure	2010-05-30 23:46:24.000000000 +0200
-+++ gtk+2.0-2.21.1/configure	2010-06-10 18:31:53.000000000 +0200
+diff -Nur gtk+2.0-2.21.2/configure gtk+2.0-2.21.2.ubuntu/configure
+--- gtk+2.0-2.21.2/configure	2010-06-10 19:18:28.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/configure	2010-06-11 12:15:19.000000000 +0200
 @@ -816,6 +816,7 @@
  GDK_DEP_LIBS
  GDK_EXTRA_CFLAGS
@@ -8769,8 +8685,8 @@ Index: gtk+2.0-2.21.1/configure
 +        pkg_cv_BASE_DEPENDENCIES_CFLAGS="$BASE_DEPENDENCIES_CFLAGS"
 +    else
 +        if test -n "$PKG_CONFIG" && \
-     { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"glib-2.0 >= 2.23.6    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6\""; } >&5
-   ($PKG_CONFIG --exists --print-errors "glib-2.0 >= 2.23.6    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6") 2>&5
+     { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"glib-2.0 >= 2.25.8    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6\""; } >&5
+   ($PKG_CONFIG --exists --print-errors "glib-2.0 >= 2.25.8    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6") 2>&5
    ac_status=$?
 @@ -18796,13 +18857,15 @@
  else
@@ -8791,8 +8707,8 @@ Index: gtk+2.0-2.21.1/configure
 +        pkg_cv_BASE_DEPENDENCIES_LIBS="$BASE_DEPENDENCIES_LIBS"
 +    else
 +        if test -n "$PKG_CONFIG" && \
-     { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"glib-2.0 >= 2.23.6    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6\""; } >&5
-   ($PKG_CONFIG --exists --print-errors "glib-2.0 >= 2.23.6    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6") 2>&5
+     { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"glib-2.0 >= 2.25.8    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6\""; } >&5
+   ($PKG_CONFIG --exists --print-errors "glib-2.0 >= 2.25.8    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6") 2>&5
    ac_status=$?
 @@ -18812,15 +18875,14 @@
  else
@@ -8817,11 +8733,11 @@ Index: gtk+2.0-2.21.1/configure
          _pkg_short_errors_supported=no
  fi
          if test $_pkg_short_errors_supported = yes; then
--	        BASE_DEPENDENCIES_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "glib-2.0 >= 2.23.6    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6" 2>&1`
-+	        BASE_DEPENDENCIES_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "glib-2.0 >= 2.23.6    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6"`
+-	        BASE_DEPENDENCIES_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "glib-2.0 >= 2.25.8    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6" 2>&1`
++	        BASE_DEPENDENCIES_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "glib-2.0 >= 2.25.8    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6"`
          else
--	        BASE_DEPENDENCIES_PKG_ERRORS=`$PKG_CONFIG --print-errors "glib-2.0 >= 2.23.6    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6" 2>&1`
-+	        BASE_DEPENDENCIES_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "glib-2.0 >= 2.23.6    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6"`
+-	        BASE_DEPENDENCIES_PKG_ERRORS=`$PKG_CONFIG --print-errors "glib-2.0 >= 2.25.8    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6" 2>&1`
++	        BASE_DEPENDENCIES_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "glib-2.0 >= 2.25.8    atk >= 1.29.2    pango >= 1.20    cairo >= 1.6"`
          fi
  	# Put the nasty error message in config.log where it belongs
  	echo "$BASE_DEPENDENCIES_PKG_ERRORS" >&5
@@ -9144,27 +9060,21 @@ Index: gtk+2.0-2.21.1/configure
  if test -z "${am__fastdepCXX_TRUE}" && test -z "${am__fastdepCXX_FALSE}"; then
    as_fn_error "conditional \"am__fastdepCXX\" was never defined.
  Usually this means the macro was only invoked conditionally." "$LINENO" 5
-Index: gtk+2.0-2.21.1/contrib/gdk-pixbuf-xlib/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/contrib/gdk-pixbuf-xlib/Makefile.in	2010-05-30 23:46:17.000000000 +0200
-+++ gtk+2.0-2.21.1/contrib/gdk-pixbuf-xlib/Makefile.in	2010-06-10 18:31:54.000000000 +0200
-@@ -44,11 +44,14 @@
- 	$(top_srcdir)/Makefile.decl ChangeLog
+diff -Nur gtk+2.0-2.21.2/contrib/gdk-pixbuf-xlib/Makefile.in gtk+2.0-2.21.2.ubuntu/contrib/gdk-pixbuf-xlib/Makefile.in
+--- gtk+2.0-2.21.2/contrib/gdk-pixbuf-xlib/Makefile.in	2010-06-10 19:18:21.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/contrib/gdk-pixbuf-xlib/Makefile.in	2010-06-11 12:15:20.000000000 +0200
+@@ -45,7 +45,10 @@
  subdir = contrib/gdk-pixbuf-xlib
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES = gdk-pixbuf-xlib-2.0.pc
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -198,6 +201,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9182,27 +9092,21 @@ Index: gtk+2.0-2.21.1/contrib/gdk-pixbuf-xlib/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/contrib/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/contrib/Makefile.in	2010-05-30 23:46:17.000000000 +0200
-+++ gtk+2.0-2.21.1/contrib/Makefile.in	2010-06-10 18:31:54.000000000 +0200
-@@ -40,11 +40,14 @@
- @USE_X11_TRUE@am__append_1 = gdk-pixbuf-xlib
+diff -Nur gtk+2.0-2.21.2/contrib/Makefile.in gtk+2.0-2.21.2.ubuntu/contrib/Makefile.in
+--- gtk+2.0-2.21.2/contrib/Makefile.in	2010-06-10 19:18:21.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/contrib/Makefile.in	2010-06-11 12:15:20.000000000 +0200
+@@ -41,7 +41,10 @@
  subdir = contrib
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -171,6 +174,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9220,27 +9124,21 @@ Index: gtk+2.0-2.21.1/contrib/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/demos/gtk-demo/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/demos/gtk-demo/Makefile.in	2010-05-30 23:46:17.000000000 +0200
-+++ gtk+2.0-2.21.1/demos/gtk-demo/Makefile.in	2010-06-10 18:31:54.000000000 +0200
-@@ -42,11 +42,14 @@
- bin_PROGRAMS = gtk-demo$(EXEEXT)
+diff -Nur gtk+2.0-2.21.2/demos/gtk-demo/Makefile.in gtk+2.0-2.21.2.ubuntu/demos/gtk-demo/Makefile.in
+--- gtk+2.0-2.21.2/demos/gtk-demo/Makefile.in	2010-06-10 19:18:21.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/demos/gtk-demo/Makefile.in	2010-06-11 12:15:20.000000000 +0200
+@@ -43,7 +43,10 @@
  subdir = demos/gtk-demo
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES = geninclude.pl
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -207,6 +210,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9258,27 +9156,21 @@ Index: gtk+2.0-2.21.1/demos/gtk-demo/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/demos/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/demos/Makefile.in	2010-05-30 23:46:17.000000000 +0200
-+++ gtk+2.0-2.21.1/demos/Makefile.in	2010-06-10 18:31:54.000000000 +0200
-@@ -46,11 +46,14 @@
- @HAVE_PNG_TRUE@am__append_1 = testpixbuf
+diff -Nur gtk+2.0-2.21.2/demos/Makefile.in gtk+2.0-2.21.2.ubuntu/demos/Makefile.in
+--- gtk+2.0-2.21.2/demos/Makefile.in	2010-06-10 19:18:21.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/demos/Makefile.in	2010-06-11 12:15:20.000000000 +0200
+@@ -47,7 +47,10 @@
  subdir = demos
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -230,6 +233,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9296,27 +9188,21 @@ Index: gtk+2.0-2.21.1/demos/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/docs/faq/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/docs/faq/Makefile.in	2010-05-30 23:46:17.000000000 +0200
-+++ gtk+2.0-2.21.1/docs/faq/Makefile.in	2010-06-10 18:31:54.000000000 +0200
-@@ -39,11 +39,14 @@
- 	$(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/docs/faq/Makefile.in gtk+2.0-2.21.2.ubuntu/docs/faq/Makefile.in
+--- gtk+2.0-2.21.2/docs/faq/Makefile.in	2010-06-10 19:18:21.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/docs/faq/Makefile.in	2010-06-11 12:15:20.000000000 +0200
+@@ -40,7 +40,10 @@
  subdir = docs/faq
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -130,6 +133,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9334,27 +9220,21 @@ Index: gtk+2.0-2.21.1/docs/faq/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/docs/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/docs/Makefile.in	2010-05-30 23:46:17.000000000 +0200
-+++ gtk+2.0-2.21.1/docs/Makefile.in	2010-06-10 18:31:54.000000000 +0200
-@@ -39,11 +39,14 @@
- 	$(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/docs/Makefile.in gtk+2.0-2.21.2.ubuntu/docs/Makefile.in
+--- gtk+2.0-2.21.2/docs/Makefile.in	2010-06-10 19:18:21.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/docs/Makefile.in	2010-06-11 12:15:20.000000000 +0200
+@@ -40,7 +40,10 @@
  subdir = docs
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -170,6 +173,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9372,27 +9252,21 @@ Index: gtk+2.0-2.21.1/docs/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/docs/reference/gdk/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/docs/reference/gdk/Makefile.in	2010-05-30 23:46:18.000000000 +0200
-+++ gtk+2.0-2.21.1/docs/reference/gdk/Makefile.in	2010-06-10 18:31:55.000000000 +0200
-@@ -46,11 +46,14 @@
- 	$(top_srcdir)/gtk-doc.make
+diff -Nur gtk+2.0-2.21.2/docs/reference/gdk/Makefile.in gtk+2.0-2.21.2.ubuntu/docs/reference/gdk/Makefile.in
+--- gtk+2.0-2.21.2/docs/reference/gdk/Makefile.in	2010-06-10 19:18:22.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/docs/reference/gdk/Makefile.in	2010-06-11 12:15:21.000000000 +0200
+@@ -47,7 +47,10 @@
  subdir = docs/reference/gdk
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES = version.xml
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -137,6 +140,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9410,27 +9284,21 @@ Index: gtk+2.0-2.21.1/docs/reference/gdk/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/docs/reference/gdk-pixbuf/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/docs/reference/gdk-pixbuf/Makefile.in	2010-05-30 23:46:18.000000000 +0200
-+++ gtk+2.0-2.21.1/docs/reference/gdk-pixbuf/Makefile.in	2010-06-10 18:31:54.000000000 +0200
-@@ -46,11 +46,14 @@
- 	$(top_srcdir)/gtk-doc.make
+diff -Nur gtk+2.0-2.21.2/docs/reference/gdk-pixbuf/Makefile.in gtk+2.0-2.21.2.ubuntu/docs/reference/gdk-pixbuf/Makefile.in
+--- gtk+2.0-2.21.2/docs/reference/gdk-pixbuf/Makefile.in	2010-06-10 19:18:22.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/docs/reference/gdk-pixbuf/Makefile.in	2010-06-11 12:15:21.000000000 +0200
+@@ -47,7 +47,10 @@
  subdir = docs/reference/gdk-pixbuf
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES = version.xml
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -162,6 +165,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9448,27 +9316,21 @@ Index: gtk+2.0-2.21.1/docs/reference/gdk-pixbuf/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/docs/reference/gtk/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/docs/reference/gtk/Makefile.in	2010-05-30 23:46:18.000000000 +0200
-+++ gtk+2.0-2.21.1/docs/reference/gtk/Makefile.in	2010-06-10 18:31:55.000000000 +0200
-@@ -46,11 +46,14 @@
- 	$(top_srcdir)/gtk-doc.make
+diff -Nur gtk+2.0-2.21.2/docs/reference/gtk/Makefile.in gtk+2.0-2.21.2.ubuntu/docs/reference/gtk/Makefile.in
+--- gtk+2.0-2.21.2/docs/reference/gtk/Makefile.in	2010-06-10 19:18:22.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/docs/reference/gtk/Makefile.in	2010-06-11 12:15:21.000000000 +0200
+@@ -47,7 +47,10 @@
  subdir = docs/reference/gtk
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES = version.xml
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -162,6 +165,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9486,27 +9348,21 @@ Index: gtk+2.0-2.21.1/docs/reference/gtk/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/docs/reference/libgail-util/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/docs/reference/libgail-util/Makefile.in	2010-05-30 23:46:18.000000000 +0200
-+++ gtk+2.0-2.21.1/docs/reference/libgail-util/Makefile.in	2010-06-10 18:31:55.000000000 +0200
-@@ -45,11 +45,14 @@
- 	$(top_srcdir)/Makefile.decl $(top_srcdir)/gtk-doc.make
+diff -Nur gtk+2.0-2.21.2/docs/reference/libgail-util/Makefile.in gtk+2.0-2.21.2.ubuntu/docs/reference/libgail-util/Makefile.in
+--- gtk+2.0-2.21.2/docs/reference/libgail-util/Makefile.in	2010-06-10 19:18:22.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/docs/reference/libgail-util/Makefile.in	2010-06-11 12:15:21.000000000 +0200
+@@ -46,7 +46,10 @@
  subdir = docs/reference/libgail-util
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -136,6 +139,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9524,27 +9380,21 @@ Index: gtk+2.0-2.21.1/docs/reference/libgail-util/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/docs/reference/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/docs/reference/Makefile.in	2010-05-30 23:46:17.000000000 +0200
-+++ gtk+2.0-2.21.1/docs/reference/Makefile.in	2010-06-10 18:31:54.000000000 +0200
-@@ -39,11 +39,14 @@
- 	$(top_srcdir)/Makefile.decl AUTHORS COPYING ChangeLog
+diff -Nur gtk+2.0-2.21.2/docs/reference/Makefile.in gtk+2.0-2.21.2.ubuntu/docs/reference/Makefile.in
+--- gtk+2.0-2.21.2/docs/reference/Makefile.in	2010-06-10 19:18:22.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/docs/reference/Makefile.in	2010-06-11 12:15:21.000000000 +0200
+@@ -40,7 +40,10 @@
  subdir = docs/reference
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -170,6 +173,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9562,27 +9412,21 @@ Index: gtk+2.0-2.21.1/docs/reference/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/docs/tools/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/docs/tools/Makefile.in	2010-05-30 23:46:18.000000000 +0200
-+++ gtk+2.0-2.21.1/docs/tools/Makefile.in	2010-06-10 18:31:55.000000000 +0200
-@@ -41,11 +41,14 @@
- @USE_X11_TRUE@noinst_PROGRAMS = doc-shooter$(EXEEXT)
+diff -Nur gtk+2.0-2.21.2/docs/tools/Makefile.in gtk+2.0-2.21.2.ubuntu/docs/tools/Makefile.in
+--- gtk+2.0-2.21.2/docs/tools/Makefile.in	2010-06-10 19:18:22.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/docs/tools/Makefile.in	2010-06-11 12:15:21.000000000 +0200
+@@ -42,7 +42,10 @@
  subdir = docs/tools
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -166,6 +169,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9600,27 +9444,21 @@ Index: gtk+2.0-2.21.1/docs/tools/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/docs/tutorial/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/docs/tutorial/Makefile.in	2010-05-30 23:46:18.000000000 +0200
-+++ gtk+2.0-2.21.1/docs/tutorial/Makefile.in	2010-06-10 18:31:55.000000000 +0200
-@@ -39,11 +39,14 @@
- 	$(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/docs/tutorial/Makefile.in gtk+2.0-2.21.2.ubuntu/docs/tutorial/Makefile.in
+--- gtk+2.0-2.21.2/docs/tutorial/Makefile.in	2010-06-10 19:18:22.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/docs/tutorial/Makefile.in	2010-06-11 12:15:21.000000000 +0200
+@@ -40,7 +40,10 @@
  subdir = docs/tutorial
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -130,6 +133,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9638,27 +9476,21 @@ Index: gtk+2.0-2.21.1/docs/tutorial/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/gdk/directfb/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/gdk/directfb/Makefile.in	2010-05-30 23:46:19.000000000 +0200
-+++ gtk+2.0-2.21.1/gdk/directfb/Makefile.in	2010-06-10 18:31:55.000000000 +0200
-@@ -41,11 +41,14 @@
- 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl AUTHORS TODO
+diff -Nur gtk+2.0-2.21.2/gdk/directfb/Makefile.in gtk+2.0-2.21.2.ubuntu/gdk/directfb/Makefile.in
+--- gtk+2.0-2.21.2/gdk/directfb/Makefile.in	2010-06-10 19:18:23.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/gdk/directfb/Makefile.in	2010-06-11 12:15:22.000000000 +0200
+@@ -42,7 +42,10 @@
  subdir = gdk/directfb
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -194,6 +197,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9676,27 +9508,21 @@ Index: gtk+2.0-2.21.1/gdk/directfb/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/gdk/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/gdk/Makefile.in	2010-05-30 23:46:19.000000000 +0200
-+++ gtk+2.0-2.21.1/gdk/Makefile.in	2010-06-10 18:31:55.000000000 +0200
-@@ -45,11 +45,14 @@
- @HAVE_INTROSPECTION_TRUE@am__append_2 = $(dist_gir_DATA) $(typelibs_DATA)
+diff -Nur gtk+2.0-2.21.2/gdk/Makefile.in gtk+2.0-2.21.2.ubuntu/gdk/Makefile.in
+--- gtk+2.0-2.21.2/gdk/Makefile.in	2010-06-10 19:18:23.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/gdk/Makefile.in	2010-06-11 12:15:22.000000000 +0200
+@@ -46,7 +46,10 @@
  subdir = gdk
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -321,6 +324,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9714,36 +9540,21 @@ Index: gtk+2.0-2.21.1/gdk/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-@@ -700,7 +702,7 @@
- @HAVE_INTROSPECTION_TRUE@		$(gdk_c_sources) \
- @HAVE_INTROSPECTION_TRUE@        gdkenumtypes.c \
- @HAVE_INTROSPECTION_TRUE@        gdkenumtypes.h \
--@HAVE_INTROSPECTION_TRUE@        $(srcdir)/x11/*.c
-+@HAVE_INTROSPECTION_TRUE@        x11/*.c
- 
- @HAVE_INTROSPECTION_TRUE@Gdk_2_0_gir_SCANNERFLAGS = --strip-prefix=Gdk --add-include-path=../gdk-pixbuf
- @HAVE_INTROSPECTION_TRUE@Gdk_2_0_gir_INCLUDES = Gio-2.0 GdkPixbuf-2.0 Pango-1.0
-Index: gtk+2.0-2.21.1/gdk/quartz/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/gdk/quartz/Makefile.in	2010-05-30 23:46:19.000000000 +0200
-+++ gtk+2.0-2.21.1/gdk/quartz/Makefile.in	2010-06-10 18:31:56.000000000 +0200
-@@ -41,11 +41,14 @@
- 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/gdk/quartz/Makefile.in gtk+2.0-2.21.2.ubuntu/gdk/quartz/Makefile.in
+--- gtk+2.0-2.21.2/gdk/quartz/Makefile.in	2010-06-10 19:18:23.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/gdk/quartz/Makefile.in	2010-06-11 12:15:22.000000000 +0200
+@@ -42,7 +42,10 @@
  subdir = gdk/quartz
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -193,6 +196,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9761,27 +9572,21 @@ Index: gtk+2.0-2.21.1/gdk/quartz/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/gdk/tests/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/gdk/tests/Makefile.in	2010-05-30 23:46:19.000000000 +0200
-+++ gtk+2.0-2.21.1/gdk/tests/Makefile.in	2010-06-10 18:31:56.000000000 +0200
-@@ -41,11 +41,14 @@
- TESTS = $(am__EXEEXT_1)
+diff -Nur gtk+2.0-2.21.2/gdk/tests/Makefile.in gtk+2.0-2.21.2.ubuntu/gdk/tests/Makefile.in
+--- gtk+2.0-2.21.2/gdk/tests/Makefile.in	2010-06-10 19:18:23.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/gdk/tests/Makefile.in	2010-06-11 12:15:22.000000000 +0200
+@@ -42,7 +42,10 @@
  subdir = gdk/tests
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -135,6 +138,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9799,27 +9604,21 @@ Index: gtk+2.0-2.21.1/gdk/tests/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/gdk/win32/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/gdk/win32/Makefile.in	2010-05-30 23:46:19.000000000 +0200
-+++ gtk+2.0-2.21.1/gdk/win32/Makefile.in	2010-06-10 18:31:56.000000000 +0200
-@@ -41,11 +41,14 @@
- 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/gdk/win32/Makefile.in gtk+2.0-2.21.2.ubuntu/gdk/win32/Makefile.in
+--- gtk+2.0-2.21.2/gdk/win32/Makefile.in	2010-06-10 19:18:23.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/gdk/win32/Makefile.in	2010-06-11 12:15:22.000000000 +0200
+@@ -42,7 +42,10 @@
  subdir = gdk/win32
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -231,6 +234,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9837,27 +9636,21 @@ Index: gtk+2.0-2.21.1/gdk/win32/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/gdk/win32/rc/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/gdk/win32/rc/Makefile.in	2010-05-30 23:46:19.000000000 +0200
-+++ gtk+2.0-2.21.1/gdk/win32/rc/Makefile.in	2010-06-10 18:31:56.000000000 +0200
-@@ -40,11 +40,14 @@
- 	$(srcdir)/gdk.rc.in $(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/gdk/win32/rc/Makefile.in gtk+2.0-2.21.2.ubuntu/gdk/win32/rc/Makefile.in
+--- gtk+2.0-2.21.2/gdk/win32/rc/Makefile.in	2010-06-10 19:18:23.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/gdk/win32/rc/Makefile.in	2010-06-11 12:15:22.000000000 +0200
+@@ -41,7 +41,10 @@
  subdir = gdk/win32/rc
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES = gdk.rc
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -132,6 +135,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9875,27 +9668,21 @@ Index: gtk+2.0-2.21.1/gdk/win32/rc/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/gdk/x11/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/gdk/x11/Makefile.in	2010-05-30 23:46:19.000000000 +0200
-+++ gtk+2.0-2.21.1/gdk/x11/Makefile.in	2010-06-10 18:31:56.000000000 +0200
-@@ -46,11 +46,14 @@
- TESTS = checksettings$(EXEEXT)
+diff -Nur gtk+2.0-2.21.2/gdk/x11/Makefile.in gtk+2.0-2.21.2.ubuntu/gdk/x11/Makefile.in
+--- gtk+2.0-2.21.2/gdk/x11/Makefile.in	2010-06-10 19:18:24.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/gdk/x11/Makefile.in	2010-06-11 12:15:22.000000000 +0200
+@@ -47,7 +47,10 @@
  subdir = gdk/x11
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -223,6 +226,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9913,27 +9700,21 @@ Index: gtk+2.0-2.21.1/gdk/x11/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/gdk-pixbuf/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/gdk-pixbuf/Makefile.in	2010-05-30 23:46:18.000000000 +0200
-+++ gtk+2.0-2.21.1/gdk-pixbuf/Makefile.in	2010-06-10 18:31:55.000000000 +0200
-@@ -51,11 +51,14 @@
- @HAVE_INTROSPECTION_TRUE@am__append_2 = $(dist_gir_DATA) $(typelibs_DATA)
+diff -Nur gtk+2.0-2.21.2/gdk-pixbuf/Makefile.in gtk+2.0-2.21.2.ubuntu/gdk-pixbuf/Makefile.in
+--- gtk+2.0-2.21.2/gdk-pixbuf/Makefile.in	2010-06-10 19:18:23.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/gdk-pixbuf/Makefile.in	2010-06-11 12:15:21.000000000 +0200
+@@ -52,7 +52,10 @@
  subdir = gdk-pixbuf
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES = gdk_pixbuf.rc gdk-pixbuf-features.h
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -779,6 +782,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -9968,27 +9749,21 @@ Index: gtk+2.0-2.21.1/gdk-pixbuf/Makefile.in
  LDADDS = libgdk_pixbuf-$(GTK_API_VERSION).la $(GDK_PIXBUF_DEP_LIBS)
  test_gdk_pixbuf_LDADD = $(LDADDS)
  gdk_pixbuf_csource_SOURCES = gdk-pixbuf-csource.c
-Index: gtk+2.0-2.21.1/gdk-pixbuf/pixops/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/gdk-pixbuf/pixops/Makefile.in	2010-05-30 23:46:19.000000000 +0200
-+++ gtk+2.0-2.21.1/gdk-pixbuf/pixops/Makefile.in	2010-06-10 18:31:55.000000000 +0200
-@@ -42,11 +42,14 @@
- noinst_PROGRAMS = timescale$(EXEEXT)
+diff -Nur gtk+2.0-2.21.2/gdk-pixbuf/pixops/Makefile.in gtk+2.0-2.21.2.ubuntu/gdk-pixbuf/pixops/Makefile.in
+--- gtk+2.0-2.21.2/gdk-pixbuf/pixops/Makefile.in	2010-06-10 19:18:23.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/gdk-pixbuf/pixops/Makefile.in	2010-06-11 12:15:21.000000000 +0200
+@@ -43,7 +43,10 @@
  subdir = gdk-pixbuf/pixops
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -183,6 +186,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -10006,27 +9781,21 @@ Index: gtk+2.0-2.21.1/gdk-pixbuf/pixops/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/gtk/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/gtk/Makefile.in	2010-05-30 23:46:20.000000000 +0200
-+++ gtk+2.0-2.21.1/gtk/Makefile.in	2010-06-10 18:31:56.000000000 +0200
-@@ -77,11 +77,14 @@
- 
+diff -Nur gtk+2.0-2.21.2/gtk/Makefile.in gtk+2.0-2.21.2.ubuntu/gtk/Makefile.in
+--- gtk+2.0-2.21.2/gtk/Makefile.in	2010-06-10 19:18:24.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/gtk/Makefile.in	2010-06-11 12:15:22.000000000 +0200
+@@ -78,7 +78,10 @@
  subdir = gtk
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES = makefile.msc gtkversion.h gtk-win32.rc
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -148,16 +151,17 @@
  	gtkinfobar.c gtkinputdialog.c gtkinvisible.c gtkitem.c \
  	gtkkeyhash.c gtklabel.c gtklayout.c gtklinkbutton.c \
@@ -10436,27 +10205,22 @@ Index: gtk+2.0-2.21.1/gtk/Makefile.in
  @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/updateiconcache.Po@am__quote@
  
  .c.o:
-Index: gtk+2.0-2.21.1/gtk/tests/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/gtk/tests/Makefile.in	2010-05-30 23:46:20.000000000 +0200
-+++ gtk+2.0-2.21.1/gtk/tests/Makefile.in	2010-06-10 18:31:56.000000000 +0200
-@@ -42,20 +42,24 @@
- @OS_UNIX_TRUE@am__append_1 = defaultvalue
+diff -Nur gtk+2.0-2.21.2/gtk/tests/Makefile.in gtk+2.0-2.21.2.ubuntu/gtk/tests/Makefile.in
+--- gtk+2.0-2.21.2/gtk/tests/Makefile.in	2010-06-10 19:18:24.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/gtk/tests/Makefile.in	2010-06-11 12:15:23.000000000 +0200
+@@ -43,7 +43,10 @@
  subdir = gtk/tests
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
+@@ -53,9 +56,10 @@
  @OS_UNIX_TRUE@am__EXEEXT_1 = defaultvalue$(EXEEXT)
  am__EXEEXT_2 = testing$(EXEEXT) liststore$(EXEEXT) treestore$(EXEEXT) \
  	treeview$(EXEEXT) treeview-scrolling$(EXEEXT) \
@@ -10552,27 +10316,21 @@ Index: gtk+2.0-2.21.1/gtk/tests/Makefile.in
  @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/object.Po@am__quote@
  @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pixbuf-init.Po@am__quote@
  @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/recentmanager.Po@am__quote@
-Index: gtk+2.0-2.21.1/gtk/theme-bits/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/gtk/theme-bits/Makefile.in	2010-05-30 23:46:20.000000000 +0200
-+++ gtk+2.0-2.21.1/gtk/theme-bits/Makefile.in	2010-06-10 18:31:56.000000000 +0200
-@@ -41,11 +41,14 @@
- noinst_PROGRAMS = decompose-bits$(EXEEXT)
+diff -Nur gtk+2.0-2.21.2/gtk/theme-bits/Makefile.in gtk+2.0-2.21.2.ubuntu/gtk/theme-bits/Makefile.in
+--- gtk+2.0-2.21.2/gtk/theme-bits/Makefile.in	2010-06-10 19:18:24.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/gtk/theme-bits/Makefile.in	2010-06-11 12:15:23.000000000 +0200
+@@ -42,7 +42,10 @@
  subdir = gtk/theme-bits
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -163,6 +166,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -10590,158 +10348,9 @@ Index: gtk+2.0-2.21.1/gtk/theme-bits/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/ltmain.sh
-===================================================================
---- gtk+2.0-2.21.1.orig/ltmain.sh	2010-05-01 09:19:03.000000000 +0200
-+++ gtk+2.0-2.21.1/ltmain.sh	2010-06-10 18:31:41.000000000 +0200
-@@ -65,7 +65,7 @@
- #       compiler:		$LTCC
- #       compiler flags:		$LTCFLAGS
- #       linker:		$LD (gnu? $with_gnu_ld)
--#       $progname:		(GNU libtool) 2.2.6b
-+#       $progname:		(GNU libtool) 2.2.6b Debian-2.2.6b-2
- #       automake:		$automake_version
- #       autoconf:		$autoconf_version
- #
-@@ -73,7 +73,7 @@
- 
- PROGRAM=ltmain.sh
- PACKAGE=libtool
--VERSION=2.2.6b
-+VERSION="2.2.6b Debian-2.2.6b-2"
- TIMESTAMP=""
- package_revision=1.3017
- 
-@@ -5033,7 +5033,10 @@
- 	case $pass in
- 	dlopen) libs="$dlfiles" ;;
- 	dlpreopen) libs="$dlprefiles" ;;
--	link) libs="$deplibs %DEPLIBS% $dependency_libs" ;;
-+	link)
-+	  libs="$deplibs %DEPLIBS%"
-+	  test "X$link_all_deplibs" != Xno && libs="$libs $dependency_libs"
-+	  ;;
- 	esac
-       fi
-       if test "$linkmode,$pass" = "lib,dlpreopen"; then
-@@ -5344,19 +5347,19 @@
- 	    # It is a libtool convenience library, so add in its objects.
- 	    convenience="$convenience $ladir/$objdir/$old_library"
- 	    old_convenience="$old_convenience $ladir/$objdir/$old_library"
-+	    tmp_libs=
-+	    for deplib in $dependency_libs; do
-+	      deplibs="$deplib $deplibs"
-+	      if $opt_duplicate_deps ; then
-+		case "$tmp_libs " in
-+		*" $deplib "*) specialdeplibs="$specialdeplibs $deplib" ;;
-+		esac
-+	      fi
-+	      tmp_libs="$tmp_libs $deplib"
-+	    done
- 	  elif test "$linkmode" != prog && test "$linkmode" != lib; then
- 	    func_fatal_error "\`$lib' is not a convenience library"
- 	  fi
--	  tmp_libs=
--	  for deplib in $dependency_libs; do
--	    deplibs="$deplib $deplibs"
--	    if $opt_duplicate_deps ; then
--	      case "$tmp_libs " in
--	      *" $deplib "*) specialdeplibs="$specialdeplibs $deplib" ;;
--	      esac
--	    fi
--	    tmp_libs="$tmp_libs $deplib"
--	  done
- 	  continue
- 	fi # $pass = conv
- 
-@@ -5893,6 +5896,7 @@
- 	  if test "$link_all_deplibs" != no; then
- 	    # Add the search paths of all dependency libraries
- 	    for deplib in $dependency_libs; do
-+	      path=
- 	      case $deplib in
- 	      -L*) path="$deplib" ;;
- 	      *.la)
-@@ -6206,6 +6210,9 @@
- 	    revision="$number_minor"
- 	    lt_irix_increment=no
- 	    ;;
-+	  *)
-+	    func_fatal_configuration "$modename: unknown library version type \`$version_type'"
-+	    ;;
- 	  esac
- 	  ;;
- 	no)
-Index: gtk+2.0-2.21.1/m4/gtk-doc.m4
-===================================================================
---- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.1/m4/gtk-doc.m4	2010-06-10 18:31:41.000000000 +0200
-@@ -0,0 +1,61 @@
-+dnl -*- mode: autoconf -*-
-+
-+# serial 1
-+
-+dnl Usage:
-+dnl   GTK_DOC_CHECK([minimum-gtk-doc-version])
-+AC_DEFUN([GTK_DOC_CHECK],
-+[
-+  AC_BEFORE([AC_PROG_LIBTOOL],[$0])dnl setup libtool first
-+  AC_BEFORE([AM_PROG_LIBTOOL],[$0])dnl setup libtool first
-+
-+  dnl check for tools we added during development
-+  AC_PATH_PROG([GTKDOC_CHECK],[gtkdoc-check])
-+  AC_PATH_PROGS([GTKDOC_REBASE],[gtkdoc-rebase],[true])
-+  AC_PATH_PROG([GTKDOC_MKPDF],[gtkdoc-mkpdf])
-+
-+  dnl for overriding the documentation installation directory
-+  AC_ARG_WITH([html-dir],
-+    AS_HELP_STRING([--with-html-dir=PATH], [path to installed docs]),,
-+    [with_html_dir='${datadir}/gtk-doc/html'])
-+  HTML_DIR="$with_html_dir"
-+  AC_SUBST([HTML_DIR])
-+
-+  dnl enable/disable documentation building
-+  AC_ARG_ENABLE([gtk-doc],
-+    AS_HELP_STRING([--enable-gtk-doc],
-+                   [use gtk-doc to build documentation [[default=no]]]),,
-+    [enable_gtk_doc=no])
-+
-+  if test x$enable_gtk_doc = xyes; then
-+    ifelse([$1],[],
-+      [PKG_CHECK_EXISTS([gtk-doc],,
-+                        AC_MSG_ERROR([gtk-doc not installed and --enable-gtk-doc requested]))],
-+      [PKG_CHECK_EXISTS([gtk-doc >= $1],,
-+                        AC_MSG_ERROR([You need to have gtk-doc >= $1 installed to build $PACKAGE_NAME]))])
-+  fi
-+
-+  AC_MSG_CHECKING([whether to build gtk-doc documentation])
-+  AC_MSG_RESULT($enable_gtk_doc)
-+
-+  dnl enable/disable output formats
-+  AC_ARG_ENABLE([gtk-doc-html],
-+    AS_HELP_STRING([--enable-gtk-doc-html],
-+                   [build documentation in html format [[default=yes]]]),,
-+    [enable_gtk_doc_html=yes])
-+    AC_ARG_ENABLE([gtk-doc-pdf],
-+      AS_HELP_STRING([--enable-gtk-doc-pdf],
-+                     [build documentation in pdf format [[default=no]]]),,
-+      [enable_gtk_doc_pdf=no])
-+
-+  if test -z "$GTKDOC_MKPDF"; then
-+    enable_gtk_doc_pdf=no
-+  fi
-+
-+
-+  AM_CONDITIONAL([ENABLE_GTK_DOC], [test x$enable_gtk_doc = xyes])
-+  AM_CONDITIONAL([GTK_DOC_BUILD_HTML], [test x$enable_gtk_doc_html = xyes])
-+  AM_CONDITIONAL([GTK_DOC_BUILD_PDF], [test x$enable_gtk_doc_pdf = xyes])
-+  AM_CONDITIONAL([GTK_DOC_USE_LIBTOOL], [test -n "$LIBTOOL"])
-+  AM_CONDITIONAL([GTK_DOC_USE_REBASE], [test -n "$GTKDOC_REBASE"])
-+])
-Index: gtk+2.0-2.21.1/m4/libtool.m4
-===================================================================
---- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.1/m4/libtool.m4	2010-06-10 18:31:41.000000000 +0200
+diff -Nur gtk+2.0-2.21.2/m4/libtool.m4 gtk+2.0-2.21.2.ubuntu/m4/libtool.m4
+--- gtk+2.0-2.21.2/m4/libtool.m4	1970-01-01 01:00:00.000000000 +0100
++++ gtk+2.0-2.21.2.ubuntu/m4/libtool.m4	2010-06-11 12:15:14.000000000 +0200
 @@ -0,0 +1,7377 @@
 +# libtool.m4 - Configure libtool for the host system. -*-Autoconf-*-
 +#
@@ -18120,10 +17729,9 @@ Index: gtk+2.0-2.21.1/m4/libtool.m4
 +    ;;
 +  esac
 +])
-Index: gtk+2.0-2.21.1/m4/lt~obsolete.m4
-===================================================================
---- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.1/m4/lt~obsolete.m4	2010-06-10 18:31:41.000000000 +0200
+diff -Nur gtk+2.0-2.21.2/m4/lt~obsolete.m4 gtk+2.0-2.21.2.ubuntu/m4/lt~obsolete.m4
+--- gtk+2.0-2.21.2/m4/lt~obsolete.m4	1970-01-01 01:00:00.000000000 +0100
++++ gtk+2.0-2.21.2.ubuntu/m4/lt~obsolete.m4	2010-06-11 12:15:14.000000000 +0200
 @@ -0,0 +1,92 @@
 +# lt~obsolete.m4 -- aclocal satisfying obsolete definitions.    -*-Autoconf-*-
 +#
@@ -18217,10 +17825,9 @@ Index: gtk+2.0-2.21.1/m4/lt~obsolete.m4
 +m4_ifndef([_LT_AC_LANG_RC_CONFIG],	[AC_DEFUN([_LT_AC_LANG_RC_CONFIG])])
 +m4_ifndef([AC_LIBTOOL_CONFIG],		[AC_DEFUN([AC_LIBTOOL_CONFIG])])
 +m4_ifndef([_LT_AC_FILE_LTDLL_C],	[AC_DEFUN([_LT_AC_FILE_LTDLL_C])])
-Index: gtk+2.0-2.21.1/m4/ltoptions.m4
-===================================================================
---- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.1/m4/ltoptions.m4	2010-06-10 18:31:41.000000000 +0200
+diff -Nur gtk+2.0-2.21.2/m4/ltoptions.m4 gtk+2.0-2.21.2.ubuntu/m4/ltoptions.m4
+--- gtk+2.0-2.21.2/m4/ltoptions.m4	1970-01-01 01:00:00.000000000 +0100
++++ gtk+2.0-2.21.2.ubuntu/m4/ltoptions.m4	2010-06-11 12:15:14.000000000 +0200
 @@ -0,0 +1,368 @@
 +# Helper functions for option handling.                    -*- Autoconf -*-
 +#
@@ -18590,10 +18197,9 @@ Index: gtk+2.0-2.21.1/m4/ltoptions.m4
 +		 [m4_define([_LTDL_TYPE], [installable])])
 +LT_OPTION_DEFINE([LTDL_INIT], [convenience],
 +		 [m4_define([_LTDL_TYPE], [convenience])])
-Index: gtk+2.0-2.21.1/m4/ltsugar.m4
-===================================================================
---- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.1/m4/ltsugar.m4	2010-06-10 18:31:41.000000000 +0200
+diff -Nur gtk+2.0-2.21.2/m4/ltsugar.m4 gtk+2.0-2.21.2.ubuntu/m4/ltsugar.m4
+--- gtk+2.0-2.21.2/m4/ltsugar.m4	1970-01-01 01:00:00.000000000 +0100
++++ gtk+2.0-2.21.2.ubuntu/m4/ltsugar.m4	2010-06-11 12:15:14.000000000 +0200
 @@ -0,0 +1,123 @@
 +# ltsugar.m4 -- libtool m4 base layer.                         -*-Autoconf-*-
 +#
@@ -18718,10 +18324,9 @@ Index: gtk+2.0-2.21.1/m4/ltsugar.m4
 +           lt_unquote(m4_split(m4_normalize(m4_foreach(_Lt_key, lt_car([m4_shiftn(4, $@)]),
 +		      [lt_if_dict_fetch([$1], _Lt_key, [$2], [$3], [_Lt_key ])])))))])[]dnl
 +])
-Index: gtk+2.0-2.21.1/m4/ltversion.m4
-===================================================================
---- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.1/m4/ltversion.m4	2010-06-10 18:31:41.000000000 +0200
+diff -Nur gtk+2.0-2.21.2/m4/ltversion.m4 gtk+2.0-2.21.2.ubuntu/m4/ltversion.m4
+--- gtk+2.0-2.21.2/m4/ltversion.m4	1970-01-01 01:00:00.000000000 +0100
++++ gtk+2.0-2.21.2.ubuntu/m4/ltversion.m4	2010-06-11 12:15:14.000000000 +0200
 @@ -0,0 +1,23 @@
 +# ltversion.m4 -- version numbers			-*- Autoconf -*-
 +#
@@ -18746,27 +18351,21 @@ Index: gtk+2.0-2.21.1/m4/ltversion.m4
 +_LT_DECL(, macro_version, 0, [Which release of libtool.m4 was used?])
 +_LT_DECL(, macro_revision, 0)
 +])
-Index: gtk+2.0-2.21.1/m4macros/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/m4macros/Makefile.in	2010-05-30 23:46:20.000000000 +0200
-+++ gtk+2.0-2.21.1/m4macros/Makefile.in	2010-06-10 18:31:56.000000000 +0200
-@@ -40,11 +40,14 @@
- 	$(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/m4macros/Makefile.in gtk+2.0-2.21.2.ubuntu/m4macros/Makefile.in
+--- gtk+2.0-2.21.2/m4macros/Makefile.in	2010-06-10 19:18:24.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/m4macros/Makefile.in	2010-06-11 12:15:23.000000000 +0200
+@@ -41,7 +41,10 @@
  subdir = m4macros
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -154,6 +157,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -18784,34 +18383,21 @@ Index: gtk+2.0-2.21.1/m4macros/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/Makefile.in	2010-05-30 23:46:23.000000000 +0200
-+++ gtk+2.0-2.21.1/Makefile.in	2010-06-10 18:31:59.000000000 +0200
-@@ -47,17 +47,20 @@
- 	$(srcdir)/gtk+-unix-print-2.0.pc.in $(srcdir)/gtk-zip.sh.in \
- 	$(top_srcdir)/Makefile.decl $(top_srcdir)/configure AUTHORS \
- 	COPYING ChangeLog INSTALL NEWS compile config.guess config.sub \
--	depcomp install-sh ltmain.sh missing
-+	depcomp install-sh ltmain.sh missing mkinstalldirs
- @OS_UNIX_TRUE@am__append_1 = gtk+-unix-print-2.0.pc
+diff -Nur gtk+2.0-2.21.2/Makefile.in gtk+2.0-2.21.2.ubuntu/Makefile.in
+--- gtk+2.0-2.21.2/Makefile.in	2010-06-10 19:18:27.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/Makefile.in	2010-06-11 12:15:25.000000000 +0200
+@@ -52,7 +52,10 @@
  subdir = .
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
  am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
-  configure.lineno config.status.lineno
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = config.h
- CONFIG_CLEAN_FILES = config.h.win32 gtk-zip.sh gdk-pixbuf-2.0.pc \
- 	gdk-2.0.pc gtk+-2.0.pc gtk+-unix-print-2.0.pc gail.pc \
 @@ -109,7 +112,8 @@
  	distdir dist dist-all distcheck
  ETAGS = etags
@@ -18851,194 +18437,21 @@ Index: gtk+2.0-2.21.1/Makefile.in
  SUBDIRS = po po-properties $(SRC_SUBDIRS) docs m4macros build
  
  # require automake 1.4
-Index: gtk+2.0-2.21.1/mkinstalldirs
-===================================================================
---- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.1/mkinstalldirs	2010-06-10 18:31:41.000000000 +0200
-@@ -0,0 +1,162 @@
-+#! /bin/sh
-+# mkinstalldirs --- make directory hierarchy
-+
-+scriptversion=2009-04-28.21; # UTC
-+
-+# Original author: Noah Friedman <friedman@prep.ai.mit.edu>
-+# Created: 1993-05-16
-+# Public domain.
-+#
-+# This file is maintained in Automake, please report
-+# bugs to <bug-automake@gnu.org> or send patches to
-+# <automake-patches@gnu.org>.
-+
-+nl='
-+'
-+IFS=" ""	$nl"
-+errstatus=0
-+dirmode=
-+
-+usage="\
-+Usage: mkinstalldirs [-h] [--help] [--version] [-m MODE] DIR ...
-+
-+Create each directory DIR (with mode MODE, if specified), including all
-+leading file name components.
-+
-+Report bugs to <bug-automake@gnu.org>."
-+
-+# process command line arguments
-+while test $# -gt 0 ; do
-+  case $1 in
-+    -h | --help | --h*)         # -h for help
-+      echo "$usage"
-+      exit $?
-+      ;;
-+    -m)                         # -m PERM arg
-+      shift
-+      test $# -eq 0 && { echo "$usage" 1>&2; exit 1; }
-+      dirmode=$1
-+      shift
-+      ;;
-+    --version)
-+      echo "$0 $scriptversion"
-+      exit $?
-+      ;;
-+    --)                         # stop option processing
-+      shift
-+      break
-+      ;;
-+    -*)                         # unknown option
-+      echo "$usage" 1>&2
-+      exit 1
-+      ;;
-+    *)                          # first non-opt arg
-+      break
-+      ;;
-+  esac
-+done
-+
-+for file
-+do
-+  if test -d "$file"; then
-+    shift
-+  else
-+    break
-+  fi
-+done
-+
-+case $# in
-+  0) exit 0 ;;
-+esac
-+
-+# Solaris 8's mkdir -p isn't thread-safe.  If you mkdir -p a/b and
-+# mkdir -p a/c at the same time, both will detect that a is missing,
-+# one will create a, then the other will try to create a and die with
-+# a "File exists" error.  This is a problem when calling mkinstalldirs
-+# from a parallel make.  We use --version in the probe to restrict
-+# ourselves to GNU mkdir, which is thread-safe.
-+case $dirmode in
-+  '')
-+    if mkdir -p --version . >/dev/null 2>&1 && test ! -d ./--version; then
-+      echo "mkdir -p -- $*"
-+      exec mkdir -p -- "$@"
-+    else
-+      # On NextStep and OpenStep, the `mkdir' command does not
-+      # recognize any option.  It will interpret all options as
-+      # directories to create, and then abort because `.' already
-+      # exists.
-+      test -d ./-p && rmdir ./-p
-+      test -d ./--version && rmdir ./--version
-+    fi
-+    ;;
-+  *)
-+    if mkdir -m "$dirmode" -p --version . >/dev/null 2>&1 &&
-+       test ! -d ./--version; then
-+      echo "mkdir -m $dirmode -p -- $*"
-+      exec mkdir -m "$dirmode" -p -- "$@"
-+    else
-+      # Clean up after NextStep and OpenStep mkdir.
-+      for d in ./-m ./-p ./--version "./$dirmode";
-+      do
-+        test -d $d && rmdir $d
-+      done
-+    fi
-+    ;;
-+esac
-+
-+for file
-+do
-+  case $file in
-+    /*) pathcomp=/ ;;
-+    *)  pathcomp= ;;
-+  esac
-+  oIFS=$IFS
-+  IFS=/
-+  set fnord $file
-+  shift
-+  IFS=$oIFS
-+
-+  for d
-+  do
-+    test "x$d" = x && continue
-+
-+    pathcomp=$pathcomp$d
-+    case $pathcomp in
-+      -*) pathcomp=./$pathcomp ;;
-+    esac
-+
-+    if test ! -d "$pathcomp"; then
-+      echo "mkdir $pathcomp"
-+
-+      mkdir "$pathcomp" || lasterr=$?
-+
-+      if test ! -d "$pathcomp"; then
-+	errstatus=$lasterr
-+      else
-+	if test ! -z "$dirmode"; then
-+	  echo "chmod $dirmode $pathcomp"
-+	  lasterr=
-+	  chmod "$dirmode" "$pathcomp" || lasterr=$?
-+
-+	  if test ! -z "$lasterr"; then
-+	    errstatus=$lasterr
-+	  fi
-+	fi
-+      fi
-+    fi
-+
-+    pathcomp=$pathcomp/
-+  done
-+done
-+
-+exit $errstatus
-+
-+# Local Variables:
-+# mode: shell-script
-+# sh-indentation: 2
-+# eval: (add-hook 'write-file-hooks 'time-stamp)
-+# time-stamp-start: "scriptversion="
-+# time-stamp-format: "%:y-%02m-%02d.%02H"
-+# time-stamp-time-zone: "UTC"
-+# time-stamp-end: "; # UTC"
-+# End:
-Index: gtk+2.0-2.21.1/modules/engines/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/modules/engines/Makefile.in	2010-05-30 23:46:20.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/engines/Makefile.in	2010-06-10 18:31:57.000000000 +0200
-@@ -39,11 +39,14 @@
- 	$(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/modules/engines/Makefile.in gtk+2.0-2.21.2.ubuntu/modules/engines/Makefile.in
+--- gtk+2.0-2.21.2/modules/engines/Makefile.in	2010-06-10 19:18:25.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/modules/engines/Makefile.in	2010-06-11 12:15:23.000000000 +0200
+@@ -40,7 +40,10 @@
  subdir = modules/engines
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -170,6 +173,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -19056,27 +18469,21 @@ Index: gtk+2.0-2.21.1/modules/engines/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/modules/engines/ms-windows/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/modules/engines/ms-windows/Makefile.in	2010-05-30 23:46:20.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/engines/ms-windows/Makefile.in	2010-06-10 18:31:57.000000000 +0200
-@@ -40,11 +40,14 @@
- 	$(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/modules/engines/ms-windows/Makefile.in gtk+2.0-2.21.2.ubuntu/modules/engines/ms-windows/Makefile.in
+--- gtk+2.0-2.21.2/modules/engines/ms-windows/Makefile.in	2010-06-10 19:18:25.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/modules/engines/ms-windows/Makefile.in	2010-06-11 12:15:23.000000000 +0200
+@@ -41,7 +41,10 @@
  subdir = modules/engines/ms-windows
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -228,6 +231,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -19094,27 +18501,21 @@ Index: gtk+2.0-2.21.1/modules/engines/ms-windows/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-05-30 23:46:21.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-06-10 18:31:57.000000000 +0200
-@@ -40,11 +40,14 @@
- 	$(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in gtk+2.0-2.21.2.ubuntu/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in
+--- gtk+2.0-2.21.2/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-06-10 19:18:25.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-06-11 12:15:23.000000000 +0200
+@@ -41,7 +41,10 @@
  subdir = modules/engines/ms-windows/Theme/gtk-2.0
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -154,6 +157,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -19132,27 +18533,21 @@ Index: gtk+2.0-2.21.1/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/modules/engines/ms-windows/Theme/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/modules/engines/ms-windows/Theme/Makefile.in	2010-05-30 23:46:20.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/engines/ms-windows/Theme/Makefile.in	2010-06-10 18:31:57.000000000 +0200
-@@ -39,11 +39,14 @@
- 	$(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/modules/engines/ms-windows/Theme/Makefile.in gtk+2.0-2.21.2.ubuntu/modules/engines/ms-windows/Theme/Makefile.in
+--- gtk+2.0-2.21.2/modules/engines/ms-windows/Theme/Makefile.in	2010-06-10 19:18:25.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/modules/engines/ms-windows/Theme/Makefile.in	2010-06-11 12:15:23.000000000 +0200
+@@ -40,7 +40,10 @@
  subdir = modules/engines/ms-windows/Theme
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -170,6 +173,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -19170,27 +18565,21 @@ Index: gtk+2.0-2.21.1/modules/engines/ms-windows/Theme/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/modules/engines/pixbuf/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/modules/engines/pixbuf/Makefile.in	2010-05-30 23:46:21.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/engines/pixbuf/Makefile.in	2010-06-10 18:31:57.000000000 +0200
-@@ -40,11 +40,14 @@
- 	$(top_srcdir)/Makefile.decl ChangeLog
+diff -Nur gtk+2.0-2.21.2/modules/engines/pixbuf/Makefile.in gtk+2.0-2.21.2.ubuntu/modules/engines/pixbuf/Makefile.in
+--- gtk+2.0-2.21.2/modules/engines/pixbuf/Makefile.in	2010-06-10 19:18:25.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/modules/engines/pixbuf/Makefile.in	2010-06-11 12:15:23.000000000 +0200
+@@ -41,7 +41,10 @@
  subdir = modules/engines/pixbuf
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -191,6 +194,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -19208,27 +18597,21 @@ Index: gtk+2.0-2.21.1/modules/engines/pixbuf/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/modules/input/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/modules/input/Makefile.in	2010-05-30 23:46:21.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/input/Makefile.in	2010-06-10 18:31:57.000000000 +0200
-@@ -41,11 +41,14 @@
- 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/modules/input/Makefile.in gtk+2.0-2.21.2.ubuntu/modules/input/Makefile.in
+--- gtk+2.0-2.21.2/modules/input/Makefile.in	2010-06-10 19:18:25.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/modules/input/Makefile.in	2010-06-11 12:15:23.000000000 +0200
+@@ -42,7 +42,10 @@
  subdir = modules/input
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -392,6 +395,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -19276,27 +18659,21 @@ Index: gtk+2.0-2.21.1/modules/input/Makefile.in
  
  @CROSS_COMPILING_FALSE@all-local: gtk.immodules
  
-Index: gtk+2.0-2.21.1/modules/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/modules/Makefile.in	2010-05-30 23:46:20.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/Makefile.in	2010-06-10 18:31:57.000000000 +0200
-@@ -40,11 +40,14 @@
- @OS_UNIX_TRUE@am__append_1 = printbackends
+diff -Nur gtk+2.0-2.21.2/modules/Makefile.in gtk+2.0-2.21.2.ubuntu/modules/Makefile.in
+--- gtk+2.0-2.21.2/modules/Makefile.in	2010-06-10 19:18:24.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/modules/Makefile.in	2010-06-11 12:15:23.000000000 +0200
+@@ -41,7 +41,10 @@
  subdir = modules
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -171,6 +174,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -19314,27 +18691,21 @@ Index: gtk+2.0-2.21.1/modules/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/modules/other/gail/libgail-util/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/modules/other/gail/libgail-util/Makefile.in	2010-05-30 23:46:21.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/other/gail/libgail-util/Makefile.in	2010-06-10 18:31:58.000000000 +0200
-@@ -42,11 +42,14 @@
- 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/modules/other/gail/libgail-util/Makefile.in gtk+2.0-2.21.2.ubuntu/modules/other/gail/libgail-util/Makefile.in
+--- gtk+2.0-2.21.2/modules/other/gail/libgail-util/Makefile.in	2010-06-10 19:18:26.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/modules/other/gail/libgail-util/Makefile.in	2010-06-11 12:15:24.000000000 +0200
+@@ -43,7 +43,10 @@
  subdir = modules/other/gail/libgail-util
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -195,6 +198,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -19352,27 +18723,21 @@ Index: gtk+2.0-2.21.1/modules/other/gail/libgail-util/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/modules/other/gail/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/modules/other/gail/Makefile.in	2010-05-30 23:46:21.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/other/gail/Makefile.in	2010-06-10 18:31:57.000000000 +0200
-@@ -41,11 +41,14 @@
- 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl ChangeLog
+diff -Nur gtk+2.0-2.21.2/modules/other/gail/Makefile.in gtk+2.0-2.21.2.ubuntu/modules/other/gail/Makefile.in
+--- gtk+2.0-2.21.2/modules/other/gail/Makefile.in	2010-06-10 19:18:26.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/modules/other/gail/Makefile.in	2010-06-11 12:15:24.000000000 +0200
+@@ -42,7 +42,10 @@
  subdir = modules/other/gail
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -262,6 +265,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -19390,27 +18755,21 @@ Index: gtk+2.0-2.21.1/modules/other/gail/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/modules/other/gail/tests/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/modules/other/gail/tests/Makefile.in	2010-05-30 23:46:22.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/other/gail/tests/Makefile.in	2010-06-10 18:31:58.000000000 +0200
-@@ -40,11 +40,14 @@
- 	$(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/modules/other/gail/tests/Makefile.in gtk+2.0-2.21.2.ubuntu/modules/other/gail/tests/Makefile.in
+--- gtk+2.0-2.21.2/modules/other/gail/tests/Makefile.in	2010-06-10 19:18:26.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/modules/other/gail/tests/Makefile.in	2010-06-11 12:15:24.000000000 +0200
+@@ -41,7 +41,10 @@
  subdir = modules/other/gail/tests
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -334,6 +337,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -19428,27 +18787,21 @@ Index: gtk+2.0-2.21.1/modules/other/gail/tests/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/modules/other/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/modules/other/Makefile.in	2010-05-30 23:46:21.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/other/Makefile.in	2010-06-10 18:31:57.000000000 +0200
-@@ -39,11 +39,14 @@
- 	$(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/modules/other/Makefile.in gtk+2.0-2.21.2.ubuntu/modules/other/Makefile.in
+--- gtk+2.0-2.21.2/modules/other/Makefile.in	2010-06-10 19:18:25.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/modules/other/Makefile.in	2010-06-11 12:15:23.000000000 +0200
+@@ -40,7 +40,10 @@
  subdir = modules/other
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -170,6 +173,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -19466,27 +18819,21 @@ Index: gtk+2.0-2.21.1/modules/other/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/modules/printbackends/cups/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/modules/printbackends/cups/Makefile.in	2010-05-30 23:46:22.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/printbackends/cups/Makefile.in	2010-06-10 18:31:58.000000000 +0200
-@@ -41,11 +41,14 @@
- 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/modules/printbackends/cups/Makefile.in gtk+2.0-2.21.2.ubuntu/modules/printbackends/cups/Makefile.in
+--- gtk+2.0-2.21.2/modules/printbackends/cups/Makefile.in	2010-06-10 19:18:26.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/modules/printbackends/cups/Makefile.in	2010-06-11 12:15:24.000000000 +0200
+@@ -42,7 +42,10 @@
  subdir = modules/printbackends/cups
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -194,6 +197,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -19504,27 +18851,21 @@ Index: gtk+2.0-2.21.1/modules/printbackends/cups/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/modules/printbackends/file/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/modules/printbackends/file/Makefile.in	2010-05-30 23:46:22.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/printbackends/file/Makefile.in	2010-06-10 18:31:58.000000000 +0200
-@@ -41,11 +41,14 @@
- 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/modules/printbackends/file/Makefile.in gtk+2.0-2.21.2.ubuntu/modules/printbackends/file/Makefile.in
+--- gtk+2.0-2.21.2/modules/printbackends/file/Makefile.in	2010-06-10 19:18:26.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/modules/printbackends/file/Makefile.in	2010-06-11 12:15:24.000000000 +0200
+@@ -42,7 +42,10 @@
  subdir = modules/printbackends/file
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -193,6 +196,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -19542,27 +18883,21 @@ Index: gtk+2.0-2.21.1/modules/printbackends/file/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/modules/printbackends/lpr/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/modules/printbackends/lpr/Makefile.in	2010-05-30 23:46:22.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/printbackends/lpr/Makefile.in	2010-06-10 18:31:58.000000000 +0200
-@@ -41,11 +41,14 @@
- 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/modules/printbackends/lpr/Makefile.in gtk+2.0-2.21.2.ubuntu/modules/printbackends/lpr/Makefile.in
+--- gtk+2.0-2.21.2/modules/printbackends/lpr/Makefile.in	2010-06-10 19:18:26.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/modules/printbackends/lpr/Makefile.in	2010-06-11 12:15:24.000000000 +0200
+@@ -42,7 +42,10 @@
  subdir = modules/printbackends/lpr
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -191,6 +194,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -19580,27 +18915,21 @@ Index: gtk+2.0-2.21.1/modules/printbackends/lpr/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/modules/printbackends/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/modules/printbackends/Makefile.in	2010-05-30 23:46:22.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/printbackends/Makefile.in	2010-06-10 18:31:58.000000000 +0200
-@@ -42,11 +42,14 @@
- @HAVE_PAPI_TRUE@am__append_3 = papi
+diff -Nur gtk+2.0-2.21.2/modules/printbackends/Makefile.in gtk+2.0-2.21.2.ubuntu/modules/printbackends/Makefile.in
+--- gtk+2.0-2.21.2/modules/printbackends/Makefile.in	2010-06-10 19:18:26.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/modules/printbackends/Makefile.in	2010-06-11 12:15:24.000000000 +0200
+@@ -43,7 +43,10 @@
  subdir = modules/printbackends
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -172,6 +175,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -19618,27 +18947,21 @@ Index: gtk+2.0-2.21.1/modules/printbackends/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/modules/printbackends/papi/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/modules/printbackends/papi/Makefile.in	2010-05-30 23:46:22.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/printbackends/papi/Makefile.in	2010-06-10 18:31:58.000000000 +0200
-@@ -39,11 +39,14 @@
- DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
+diff -Nur gtk+2.0-2.21.2/modules/printbackends/papi/Makefile.in gtk+2.0-2.21.2.ubuntu/modules/printbackends/papi/Makefile.in
+--- gtk+2.0-2.21.2/modules/printbackends/papi/Makefile.in	2010-06-10 19:18:26.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/modules/printbackends/papi/Makefile.in	2010-06-11 12:15:24.000000000 +0200
+@@ -40,7 +40,10 @@
  	$(srcdir)/Makefile.in
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -191,6 +194,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -19656,27 +18979,21 @@ Index: gtk+2.0-2.21.1/modules/printbackends/papi/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/modules/printbackends/test/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/modules/printbackends/test/Makefile.in	2010-05-30 23:46:22.000000000 +0200
-+++ gtk+2.0-2.21.1/modules/printbackends/test/Makefile.in	2010-06-10 18:31:58.000000000 +0200
-@@ -41,11 +41,14 @@
- 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
+diff -Nur gtk+2.0-2.21.2/modules/printbackends/test/Makefile.in gtk+2.0-2.21.2.ubuntu/modules/printbackends/test/Makefile.in
+--- gtk+2.0-2.21.2/modules/printbackends/test/Makefile.in	2010-06-10 19:18:27.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/modules/printbackends/test/Makefile.in	2010-06-11 12:15:24.000000000 +0200
+@@ -42,7 +42,10 @@
  subdir = modules/printbackends/test
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -192,6 +195,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -19694,27 +19011,21 @@ Index: gtk+2.0-2.21.1/modules/printbackends/test/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/perf/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/perf/Makefile.in	2010-05-30 23:46:22.000000000 +0200
-+++ gtk+2.0-2.21.1/perf/Makefile.in	2010-06-10 18:31:58.000000000 +0200
-@@ -41,11 +41,14 @@
- noinst_PROGRAMS = testperf$(EXEEXT)
+diff -Nur gtk+2.0-2.21.2/perf/Makefile.in gtk+2.0-2.21.2.ubuntu/perf/Makefile.in
+--- gtk+2.0-2.21.2/perf/Makefile.in	2010-06-10 19:18:27.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/perf/Makefile.in	2010-06-11 12:15:24.000000000 +0200
+@@ -42,7 +42,10 @@
  subdir = perf
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -166,6 +169,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
@@ -19732,144 +19043,21 @@ Index: gtk+2.0-2.21.1/perf/Makefile.in
  POFILES = @POFILES@
  POSUB = @POSUB@
  PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-Index: gtk+2.0-2.21.1/po/Makefile.in.in
-===================================================================
---- gtk+2.0-2.21.1.orig/po/Makefile.in.in	2010-04-09 04:30:01.000000000 +0200
-+++ gtk+2.0-2.21.1/po/Makefile.in.in	2010-06-10 18:31:41.000000000 +0200
-@@ -25,22 +25,23 @@
- 
- prefix = @prefix@
- exec_prefix = @exec_prefix@
-+datarootdir = @datarootdir@
- datadir = @datadir@
- libdir = @libdir@
- localedir = $(libdir)/locale
- gnulocaledir = $(datadir)/locale
- gettextsrcdir = $(datadir)/glib-2.0/gettext/po
- subdir = po
--install_sh = @install_sh@
--mkdir_p = $(install_sh) -d
- 
- INSTALL = @INSTALL@
- INSTALL_DATA = @INSTALL_DATA@
-+MKINSTALLDIRS = $(top_srcdir)/@MKINSTALLDIRS@
- 
- CC = @CC@
- GENCAT = @GENCAT@
- GMSGFMT = @GMSGFMT@
- MSGFMT = @MSGFMT@
-+MSGFMT_OPTS = @MSGFMT_OPTS@
- XGETTEXT = @XGETTEXT@
- MSGMERGE = msgmerge
- 
-@@ -55,7 +56,7 @@
- SOURCES = 
- POFILES = @POFILES@
- GMOFILES = @GMOFILES@
--DISTFILES = LINGUAS ChangeLog Makefile.in.in POTFILES.in POTFILES.skip $(GETTEXT_PACKAGE).pot \
-+DISTFILES = LINGUAS ChangeLog Makefile.in.in POTFILES.in $(GETTEXT_PACKAGE).pot \
- $(POFILES) $(GMOFILES) $(SOURCES)
- 
- POTFILES = \
-@@ -79,7 +80,7 @@
- 
- .po.gmo:
- 	file=$(srcdir)/`echo $* | sed 's,.*/,,'`.gmo \
--	  && rm -f $$file && $(GMSGFMT) -c -o $$file $<
-+	  && rm -f $$file && $(GMSGFMT) $(MSGFMT_OPTS) -o $$file $<
- 
- .po.cat:
- 	sed -f ../intl/po2msg.sed < $< > $*.msg \
-@@ -93,8 +94,15 @@
- 
- $(srcdir)/$(GETTEXT_PACKAGE).pot: $(POTFILES)
- 	$(XGETTEXT) --default-domain=$(GETTEXT_PACKAGE) --directory=$(top_srcdir) \
--	  --add-comments --keyword=_ --keyword=N_ --keyword=C_:1c,2 --keyword=NC_:1c,2 \
-+	  --add-comments --keyword=_ --keyword=N_ \
-+	  --keyword=C_:1c,2 \
-+	  --keyword=NC_:1c,2 \
-+	  --keyword=g_dcgettext:2 \
- 	  --keyword=g_dngettext:2,3 \
-+	  --keyword=g_dpgettext2:2c,3 \
-+	  --flag=N_:1:pass-c-format \
-+	  --flag=C_:2:pass-c-format \
-+	  --flag=NC_:2:pass-c-format \
- 	  --flag=g_dngettext:2:pass-c-format \
-           --flag=g_strdup_printf:1:c-format \
-           --flag=g_string_printf:2:c-format \
-@@ -111,10 +119,6 @@
-           --flag=g_snprintf:3:c-format \
-           --flag=g_scanner_error:2:c-format \
-           --flag=g_scanner_warn:2:c-format \
--          --flag=gtk_message_dialog_format_secondary_markup:2:c-format \
--          --flag=gtk_message_dialog_format_secondary_text:2:c-format \
--          --flag=gtk_message_dialog_new:5:c-format \
--          --flag=gtk_message_dialog_new_with_markup:5:c-format \
- 	  --files-from=$(srcdir)/POTFILES.in \
- 	&& test ! -f $(GETTEXT_PACKAGE).po \
- 	   || ( rm -f $(srcdir)/$(GETTEXT_PACKAGE).pot \
-@@ -125,8 +129,12 @@
- install-data: install-data-@USE_NLS@
- install-data-no: all
- install-data-yes: all
--	$(mkdir_p) $(DESTDIR)$(datadir); \
--	catalogs='$(CATALOGS)'; \
-+	if test -r "$(MKINSTALLDIRS)"; then \
-+	  $(MKINSTALLDIRS) $(DESTDIR)$(datadir); \
-+	else \
-+	  $(SHELL) $(top_srcdir)/mkinstalldirs $(DESTDIR)$(datadir); \
-+	fi
-+	@catalogs='$(CATALOGS)'; \
- 	for cat in $$catalogs; do \
- 	  cat=`basename $$cat`; \
- 	  case "$$cat" in \
-@@ -135,7 +143,11 @@
- 	  esac; \
- 	  lang=`echo $$cat | sed 's/\$(CATOBJEXT)$$//'`; \
- 	  dir=$(DESTDIR)$$destdir/$$lang/LC_MESSAGES; \
--	  $(mkdir_p) $$dir; \
-+	  if test -r "$(MKINSTALLDIRS)"; then \
-+	    $(MKINSTALLDIRS) $$dir; \
-+	  else \
-+	    $(SHELL) $(top_srcdir)/mkinstalldirs $$dir; \
-+	  fi; \
- 	  if test -r $$cat; then \
- 	    $(INSTALL_DATA) $$cat $$dir/$(GETTEXT_PACKAGE)$(INSTOBJEXT); \
- 	    echo "installing $$cat as $$dir/$(GETTEXT_PACKAGE)$(INSTOBJEXT)"; \
-@@ -159,7 +171,11 @@
- 	  fi; \
- 	done
- 	if test "$(PACKAGE)" = "glib"; then \
--	  $(mkdir_p) $(DESTDIR)$(gettextsrcdir); \
-+	  if test -r "$(MKINSTALLDIRS)"; then \
-+	    $(MKINSTALLDIRS) $(DESTDIR)$(gettextsrcdir); \
-+	  else \
-+	    $(SHELL) $(top_srcdir)/mkinstalldirs $(DESTDIR)$(gettextsrcdir); \
-+	  fi; \
- 	  $(INSTALL_DATA) $(srcdir)/Makefile.in.in \
- 			  $(DESTDIR)$(gettextsrcdir)/Makefile.in.in; \
- 	else \
-Index: gtk+2.0-2.21.1/tests/Makefile.in
-===================================================================
---- gtk+2.0-2.21.1.orig/tests/Makefile.in	2010-05-30 23:46:23.000000000 +0200
-+++ gtk+2.0-2.21.1/tests/Makefile.in	2010-06-10 18:31:58.000000000 +0200
-@@ -76,11 +76,14 @@
- @HAVE_CXX_TRUE@@HAVE_OBJC_TRUE@am__append_2 = -DHAVE_OBJC=1 -x objective-c++
+diff -Nur gtk+2.0-2.21.2/tests/Makefile.in gtk+2.0-2.21.2.ubuntu/tests/Makefile.in
+--- gtk+2.0-2.21.2/tests/Makefile.in	2010-06-10 19:18:27.000000000 +0200
++++ gtk+2.0-2.21.2.ubuntu/tests/Makefile.in	2010-06-11 12:15:25.000000000 +0200
+@@ -77,7 +77,10 @@
  subdir = tests
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
--am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
-+am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
-+	$(top_srcdir)/m4/introspection.m4 $(top_srcdir)/m4/libtool.m4 \
-+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
- 	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+ am__aclocal_m4_deps = $(top_srcdir)/m4/introspection.m4 \
+-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
++	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
++	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
++	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
++	$(top_srcdir)/configure.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
--mkinstalldirs = $(install_sh) -d
-+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
- CONFIG_HEADER = $(top_builddir)/config.h
- CONFIG_CLEAN_FILES =
- CONFIG_CLEAN_VPATH_FILES =
+ mkinstalldirs = $(install_sh) -d
 @@ -437,6 +440,7 @@
  GDK_PIXBUF_XLIB_EXTRA_CFLAGS = @GDK_PIXBUF_XLIB_EXTRA_CFLAGS@
  GDK_PIXBUF_XLIB_EXTRA_LIBS = @GDK_PIXBUF_XLIB_EXTRA_LIBS@
