@@ -1,3 +1,14 @@
+gtk+2.0 (2.21.2-0ubuntu2) maverick; urgency=low
+
+  * debian/patches/065_attach_widget.patch:
+    - notify the "attach-widget" property when a menu is attach to a widget
+  * debian/patches/064_client_side_decoration.patch:
+    - don't use rgba and csd for now, we got testing and bugs filed to work on
+      but it's not a priority for alpha2 so let's bring gtk in a stable state 
+      until we have ressources to deal with those issues
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 15 Jun 2010 19:31:05 +0200
+
 gtk+2.0 (2.21.2-0ubuntu1) maverick; urgency=low
 
   * New upstream version:

@@ -1,0 +1,13 @@
+diff --git a/gtk/gtkmenu.c b/gtk/gtkmenu.c
+index d1ae422..244fae4 100644
+--- a/gtk/gtkmenu.c
++++ b/gtk/gtkmenu.c
+@@ -1225,6 +1225,8 @@ gtk_menu_attach_to_widget (GtkMenu	       *menu,
+ 
+   /* Fallback title for menu comes from attach widget */
+   gtk_menu_update_title (menu);
++
++  g_object_notify (G_OBJECT (menu), "attach-widget");
+ }
+ 
+ GtkWidget*
