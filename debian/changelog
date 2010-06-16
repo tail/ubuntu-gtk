@@ -1,3 +1,9 @@
+gtk+2.0 (2.21.2-0ubuntu3) maverick; urgency=low
+
+  * debian/patches/043_ubuntu_menu_proxy.patch: updated version by Cody Russell
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 16 Jun 2010 23:44:28 +0200
+
 gtk+2.0 (2.21.2-0ubuntu2) maverick; urgency=low
 
   * debian/patches/065_attach_widget.patch:

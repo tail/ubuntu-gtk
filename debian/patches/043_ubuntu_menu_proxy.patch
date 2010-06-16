@@ -1,7 +1,7 @@
-Index: gtk+2.0-2.21.1/gtk/Makefile.am
+Index: gtk+2.0-2.21.2/gtk/Makefile.am
 ===================================================================
---- gtk+2.0-2.21.1.orig/gtk/Makefile.am	2010-06-10 18:52:57.000000000 +0200
-+++ gtk+2.0-2.21.1/gtk/Makefile.am	2010-06-10 18:52:58.000000000 +0200
+--- gtk+2.0-2.21.2.orig/gtk/Makefile.am	2010-06-16 23:43:18.000000000 +0200
++++ gtk+2.0-2.21.2/gtk/Makefile.am	2010-06-16 23:43:18.000000000 +0200
 @@ -253,6 +253,8 @@
  	gtkmenu.h		\
  	gtkmenubar.h		\
@@ -20,10 +20,10 @@ Index: gtk+2.0-2.21.1/gtk/Makefile.am
  	gtkmenushell.c		\
  	gtkmenutoolbutton.c	\
  	gtkmessagedialog.c	\
-Index: gtk+2.0-2.21.1/gtk/gtk.h
+Index: gtk+2.0-2.21.2/gtk/gtk.h
 ===================================================================
---- gtk+2.0-2.21.1.orig/gtk/gtk.h	2010-05-30 08:52:43.000000000 +0200
-+++ gtk+2.0-2.21.1/gtk/gtk.h	2010-06-10 18:52:58.000000000 +0200
+--- gtk+2.0-2.21.2.orig/gtk/gtk.h	2010-06-10 14:53:46.000000000 +0200
++++ gtk+2.0-2.21.2/gtk/gtk.h	2010-06-16 23:43:18.000000000 +0200
 @@ -65,6 +65,8 @@
  #include <gtk/gtkcellview.h>
  #include <gtk/gtkcheckbutton.h>
@@ -33,11 +33,11 @@ Index: gtk+2.0-2.21.1/gtk/gtk.h
  #include <gtk/gtkclipboard.h>
  #include <gtk/gtkcolorbutton.h>
  #include <gtk/gtkcolorsel.h>
-Index: gtk+2.0-2.21.1/gtk/gtk.symbols
+Index: gtk+2.0-2.21.2/gtk/gtk.symbols
 ===================================================================
---- gtk+2.0-2.21.1.orig/gtk/gtk.symbols	2010-06-10 18:52:57.000000000 +0200
-+++ gtk+2.0-2.21.1/gtk/gtk.symbols	2010-06-10 18:52:58.000000000 +0200
-@@ -2566,6 +2566,21 @@
+--- gtk+2.0-2.21.2.orig/gtk/gtk.symbols	2010-06-16 23:43:18.000000000 +0200
++++ gtk+2.0-2.21.2/gtk/gtk.symbols	2010-06-16 23:43:18.000000000 +0200
+@@ -2567,6 +2567,21 @@
  #endif
  #endif
  
@@ -59,10 +59,10 @@ Index: gtk+2.0-2.21.1/gtk/gtk.symbols
  #if IN_HEADER(__GTK_MENU_SHELL_H__)
  #if IN_FILE(__GTK_MENU_SHELL_C__)
  gtk_menu_shell_activate_item
-Index: gtk+2.0-2.21.1/gtk/gtkmenubar.c
+Index: gtk+2.0-2.21.2/gtk/gtkmenubar.c
 ===================================================================
---- gtk+2.0-2.21.1.orig/gtk/gtkmenubar.c	2010-04-10 04:20:02.000000000 +0200
-+++ gtk+2.0-2.21.1/gtk/gtkmenubar.c	2010-06-10 18:52:58.000000000 +0200
+--- gtk+2.0-2.21.2.orig/gtk/gtkmenubar.c	2010-04-10 04:20:02.000000000 +0200
++++ gtk+2.0-2.21.2/gtk/gtkmenubar.c	2010-06-16 23:43:18.000000000 +0200
 @@ -69,6 +69,7 @@
  					    guint                prop_id,
  					    GValue              *value,
@@ -144,10 +144,10 @@ Index: gtk+2.0-2.21.1/gtk/gtkmenubar.c
    if (gtk_widget_get_visible (widget))
      {
        menu_bar = GTK_MENU_BAR (widget);
-Index: gtk+2.0-2.21.1/gtk/gtkmenushell.c
+Index: gtk+2.0-2.21.2/gtk/gtkmenushell.c
 ===================================================================
---- gtk+2.0-2.21.1.orig/gtk/gtkmenushell.c	2010-05-30 08:52:44.000000000 +0200
-+++ gtk+2.0-2.21.1/gtk/gtkmenushell.c	2010-06-10 18:53:08.000000000 +0200
+--- gtk+2.0-2.21.2.orig/gtk/gtkmenushell.c	2010-06-10 14:53:46.000000000 +0200
++++ gtk+2.0-2.21.2/gtk/gtkmenushell.c	2010-06-16 23:43:18.000000000 +0200
 @@ -37,6 +37,7 @@
  #include "gtkmenubar.h"
  #include "gtkmenuitem.h"
@@ -245,10 +245,10 @@ Index: gtk+2.0-2.21.1/gtk/gtkmenushell.c
    if (class->insert)
      class->insert (menu_shell, child, position);
  }
-Index: gtk+2.0-2.21.1/gtk/tests/Makefile.am
+Index: gtk+2.0-2.21.2/gtk/tests/Makefile.am
 ===================================================================
---- gtk+2.0-2.21.1.orig/gtk/tests/Makefile.am	2010-05-30 08:52:44.000000000 +0200
-+++ gtk+2.0-2.21.1/gtk/tests/Makefile.am	2010-06-10 18:52:58.000000000 +0200
+--- gtk+2.0-2.21.2.orig/gtk/tests/Makefile.am	2010-06-10 14:53:46.000000000 +0200
++++ gtk+2.0-2.21.2/gtk/tests/Makefile.am	2010-06-16 23:43:18.000000000 +0200
 @@ -47,6 +47,10 @@
  recentmanager_SOURCES 		 = recentmanager.c
  recentmanager_LDADD   		 = $(progs_ldadd)
@@ -260,10 +260,10 @@ Index: gtk+2.0-2.21.1/gtk/tests/Makefile.am
  TEST_PROGS			+= floating
  floating_SOURCES		 = floating.c
  floating_LDADD			 = $(progs_ldadd)
-Index: gtk+2.0-2.21.1/gtk/tests/menuproxy.c
+Index: gtk+2.0-2.21.2/gtk/tests/menuproxy.c
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.1/gtk/tests/menuproxy.c	2010-06-10 18:52:58.000000000 +0200
++++ gtk+2.0-2.21.2/gtk/tests/menuproxy.c	2010-06-16 23:43:18.000000000 +0200
 @@ -0,0 +1,278 @@
 +/*
 + * Copyright (C) 2009 Canonical, Ltd.
@@ -543,10 +543,10 @@ Index: gtk+2.0-2.21.1/gtk/tests/menuproxy.c
 +
 +  return g_test_run();
 +}
-Index: gtk+2.0-2.21.1/gtk/ubuntumenuproxy.c
+Index: gtk+2.0-2.21.2/gtk/ubuntumenuproxy.c
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.1/gtk/ubuntumenuproxy.c	2010-06-10 18:52:58.000000000 +0200
++++ gtk+2.0-2.21.2/gtk/ubuntumenuproxy.c	2010-06-16 23:43:18.000000000 +0200
 @@ -0,0 +1,151 @@
 +/*
 + * Copyright (C) 2010 Canonical, Ltd.
@@ -699,10 +699,10 @@ Index: gtk+2.0-2.21.1/gtk/ubuntumenuproxy.c
 +
 +#define __UBUNTU_MENU_PROXY_C__
 +#include "gtkaliasdef.c"
-Index: gtk+2.0-2.21.1/gtk/ubuntumenuproxy.h
+Index: gtk+2.0-2.21.2/gtk/ubuntumenuproxy.h
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.1/gtk/ubuntumenuproxy.h	2010-06-10 18:52:58.000000000 +0200
++++ gtk+2.0-2.21.2/gtk/ubuntumenuproxy.h	2010-06-16 23:43:18.000000000 +0200
 @@ -0,0 +1,72 @@
 +/*
 + * Copyright (C) 2010 Canonical, Ltd.
@@ -776,10 +776,10 @@ Index: gtk+2.0-2.21.1/gtk/ubuntumenuproxy.h
 +G_END_DECLS
 +
 +#endif /* __UBUNTU_MENU_PROXY_H__ */
-Index: gtk+2.0-2.21.1/gtk/ubuntumenuproxymodule.c
+Index: gtk+2.0-2.21.2/gtk/ubuntumenuproxymodule.c
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.1/gtk/ubuntumenuproxymodule.c	2010-06-10 18:52:58.000000000 +0200
++++ gtk+2.0-2.21.2/gtk/ubuntumenuproxymodule.c	2010-06-16 23:43:18.000000000 +0200
 @@ -0,0 +1,212 @@
 +/*
 + * Copyright (C) 2010 Canonical, Ltd.
@@ -993,10 +993,10 @@ Index: gtk+2.0-2.21.1/gtk/ubuntumenuproxymodule.c
 +
 +#define __UBUNTU_MENU_PROXY_MODULE_C__
 +#include "gtkaliasdef.c"
-Index: gtk+2.0-2.21.1/gtk/ubuntumenuproxymodule.h
+Index: gtk+2.0-2.21.2/gtk/ubuntumenuproxymodule.h
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.1/gtk/ubuntumenuproxymodule.h	2010-06-10 18:52:58.000000000 +0200
++++ gtk+2.0-2.21.2/gtk/ubuntumenuproxymodule.h	2010-06-16 23:43:18.000000000 +0200
 @@ -0,0 +1,69 @@
 +/*
 + * Copyright (C) 2010 Canonical, Ltd.
@@ -1067,3 +1067,61 @@ Index: gtk+2.0-2.21.1/gtk/ubuntumenuproxymodule.h
 +G_END_DECLS
 +
 +#endif /* __UBUNTU_MENU_PROXY_MODULE_H__ */
+Index: gtk+2.0-2.21.2/gtk/gtkwindow.c
+===================================================================
+--- gtk+2.0-2.21.2.orig/gtk/gtkwindow.c	2010-06-16 23:43:21.000000000 +0200
++++ gtk+2.0-2.21.2/gtk/gtkwindow.c	2010-06-16 23:43:26.000000000 +0200
+@@ -94,7 +94,8 @@
+   PROP_GRAVITY,
+   PROP_TRANSIENT_FOR,
+   PROP_OPACITY,
+-  
++  PROP_NO_PROXY,
++
+   /* Readonly properties */
+   PROP_IS_ACTIVE,
+   PROP_HAS_TOPLEVEL_FOCUS,
+@@ -195,6 +196,8 @@
+ 
+   gdouble opacity;
+ 
++  gboolean no_proxy;
++
+   gchar *startup_id;
+ };
+ 
+@@ -502,6 +505,14 @@
+ 							NULL,
+ 							GTK_PARAM_READWRITE));
+ 
++  g_object_class_install_property (object_class,
++                                   PROP_NO_PROXY,
++                                   g_param_spec_boolean ("ubuntu-no-proxy",
++                                                         P_("Disable menu proxies for this window"),
++                                                         P_("Disable menu proxies for this window"),
++                                                         FALSE,
++                                                         GTK_PARAM_READWRITE));
++
+   /**
+    * GtkWindow:startup-id:
+    *
+@@ -1069,6 +1080,9 @@
+     case PROP_MNEMONICS_VISIBLE:
+       gtk_window_set_mnemonics_visible (window, g_value_get_boolean (value));
+       break;
++    case PROP_NO_PROXY:
++      priv->no_proxy = g_value_get_boolean (value);
++      break;
+     default:
+       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+       break;
+@@ -1187,6 +1201,9 @@
+     case PROP_MNEMONICS_VISIBLE:
+       g_value_set_boolean (value, priv->mnemonics_visible);
+       break;
++    case PROP_NO_PROXY:
++      g_value_set_boolean (value, priv->no_proxy);
++      break;
+     default:
+       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+       break;
