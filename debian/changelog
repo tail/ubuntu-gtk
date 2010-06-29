@@ -1,3 +1,13 @@
+gtk+2.0 (2.21.2-0ubuntu4) maverick; urgency=low
+
+  * debian/patches/043_ubuntu_menu_proxy.patch:
+    - updated by Cody Russell to fix appmenu items not being listed
+      (lp: #598623)
+  * debian/patches/072_indicator_menu_update.patch:
+    - refreshed due to the previous change
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 29 Jun 2010 11:05:00 +0200
+
 gtk+2.0 (2.21.2-0ubuntu3) maverick; urgency=low
 
   * debian/patches/043_ubuntu_menu_proxy.patch: updated version by Cody Russell
