@@ -1,3 +1,11 @@
+gtk+2.0 (2.21.2-0ubuntu5) maverick; urgency=low
+
+  * debian/patches/090_git_no_implicit_declaration.patch:
+    - git change to fix an implicit declaration issue wuth the new glib version
+      which breaks 64 bit architectures builds
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 29 Jun 2010 13:53:19 +0200
+
 gtk+2.0 (2.21.2-0ubuntu4) maverick; urgency=low
 
   * debian/patches/043_ubuntu_menu_proxy.patch:

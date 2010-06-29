@@ -1,0 +1,19 @@
+From bdbe090dc0687fc998b226aa64a77c26e54fce04 Mon Sep 17 00:00:00 2001
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Mon, 28 Jun 2010 17:31:57 +0000
+Subject: Silence the build
+
+---
+diff --git a/gtk/gtkcombo.c b/gtk/gtkcombo.c
+index 69ab413..5cbc61d 100644
+--- a/gtk/gtkcombo.c
++++ b/gtk/gtkcombo.c
+@@ -29,6 +29,8 @@
+  */
+ 
+ #undef GTK_DISABLE_DEPRECATED
++/* For GCompletion */
++#undef G_DISABLE_DEPRECATED
+ 
+ #include "config.h"
+ #include <string.h>

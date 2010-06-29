@@ -22,6 +22,7 @@
 070_mandatory-relibtoolize.patch
 071_no_offscreen_widgets_grabbing.patch
 072_indicator_menu_update.patch
+090_git_no_implicit_declaration.patch
 091_bugzilla_tooltip_refresh.patch
 092_git_change_no_gtkmisc_warning.patch
 
