@@ -64,6 +64,7 @@ Depends: @COMMON_PKG@,
 Provides: @GTK_BINVER_DEP@
 Recommends: hicolor-icon-theme,
             @BIN_PKG@
+Conflicts: appmenu-gtk (<< 0.1.3)
 Suggests: librsvg2-common,
           gvfs
 Description: The GTK+ graphical user interface library
