@@ -1,3 +1,13 @@
+gtk+2.0 (2.21.2-0ubuntu6) maverick; urgency=low
+
+  * debian/patches/043_ubuntu_menu_proxy.patch 
+    - Updated to handle fallback of appmenus when there is no renderer 
+      present (LP: #607285)
+  * debian/control
+    - Conflict with appmenu-gtk (<< 0.1.3) to prevent menu proxy breakage
+
+ -- Ken VanDine <ken.vandine@canonical.com>  Thu, 22 Jul 2010 14:34:42 +0200
+
 gtk+2.0 (2.21.2-0ubuntu5) maverick; urgency=low
 
   * debian/patches/090_git_no_implicit_declaration.patch:
