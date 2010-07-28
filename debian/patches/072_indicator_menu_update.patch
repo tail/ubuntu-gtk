@@ -1,7 +1,7 @@
-Index: gtk+-2.21.3/gtk/gtkcontainer.c
+Index: gtk+-2.21.5/gtk/gtkcontainer.c
 ===================================================================
---- gtk+-2.21.3.orig/gtk/gtkcontainer.c	2010-06-27 14:33:46.000000000 +1000
-+++ gtk+-2.21.3/gtk/gtkcontainer.c	2010-06-29 12:43:07.925943000 +1000
+--- gtk+-2.21.5.orig/gtk/gtkcontainer.c	2010-07-12 18:23:44.000000000 +0200
++++ gtk+-2.21.5/gtk/gtkcontainer.c	2010-07-28 18:02:42.568207000 +0200
 @@ -48,6 +48,8 @@
    REMOVE,
    CHECK_RESIZE,
@@ -36,14 +36,14 @@ Index: gtk+-2.21.3/gtk/gtkcontainer.c
  }
  
  static void
-Index: gtk+-2.21.3/gtk/gtkmenushell.c
+Index: gtk+-2.21.5/gtk/gtkmenushell.c
 ===================================================================
---- gtk+-2.21.3.orig/gtk/gtkmenushell.c	2010-06-29 12:36:51.955943000 +1000
-+++ gtk+-2.21.3/gtk/gtkmenushell.c	2010-06-29 12:43:07.925943000 +1000
-@@ -533,6 +533,8 @@
- 
-   if (class->insert)
-     class->insert (menu_shell, child, position);
+--- gtk+-2.21.5.orig/gtk/gtkmenushell.c	2010-07-28 17:58:24.000000000 +0200
++++ gtk+-2.21.5/gtk/gtkmenushell.c	2010-07-28 18:02:53.018207001 +0200
+@@ -559,6 +559,8 @@
+                               menu_shell,
+                               child,
+                               position);
 +
 +  g_signal_emit_by_name (menu_shell, "child-added", child);
  }

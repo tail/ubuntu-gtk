@@ -1,3 +1,9 @@
+gtk+2.0 (2.21.5-1ubuntu2) maverick; urgency=low
+
+  * Fix non-applying patch
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Wed, 28 Jul 2010 18:22:33 +0200
+
 gtk+2.0 (2.21.5-1ubuntu1) maverick; urgency=low
 
   * Merge with Debian experimental, Ubuntu changes:
@@ -42,7 +48,7 @@ gtk+2.0 (2.21.5-1ubuntu1) maverick; urgency=low
 
  -- Robert Ancell <robert.ancell@canonical.com>  Thu, 22 Jul 2010 21:41:30 +0200
 
-gtk+2.0 (2.21.5-1) UNRELEASED; urgency=low
+gtk+2.0 (2.21.5-1) experimental; urgency=low
 
   * New upstream development release:
     + debian/control.in,
