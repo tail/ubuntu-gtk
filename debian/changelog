@@ -1,3 +1,13 @@
+gtk+2.0 (2.21.5-1ubuntu3) maverick; urgency=low
+
+  * debian/patches/012_ubuntu-set-grab-add.patch
+    - Added ubuntu_gtk_widget_set_has_grab so we can grab sliders and 
+      things in menus, needed by ido
+  * debian/libgtk2.0-0.symbols:
+    - added ubuntu_gtk_widget_set_has_grab to symbols 
+
+ -- Ken VanDine <ken.vandine@canonical.com>  Thu, 29 Jul 2010 11:52:21 -0400
+
 gtk+2.0 (2.21.5-1ubuntu2) maverick; urgency=low
 
   * Fix non-applying patch
