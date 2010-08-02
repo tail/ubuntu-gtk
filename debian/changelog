@@ -1,3 +1,10 @@
+gtk+2.0 (2.21.5-1ubuntu5) maverick; urgency=low
+
+  * debian/patches/043_ubuntu_menu_proxy.patch: 
+    - update version from Cody Russell to fix warning and crash issues
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 02 Aug 2010 18:51:32 +0200
+
 gtk+2.0 (2.21.5-1ubuntu4) maverick; urgency=low
 
   * debian/rules, debian/*.links.in: Drop installation of upstream changelog.

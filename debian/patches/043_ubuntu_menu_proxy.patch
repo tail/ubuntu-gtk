@@ -212,16 +212,17 @@ Index: gtk+-2.21.5/gtk/gtkmenushell.c
  gtk_menu_shell_init (GtkMenuShell *menu_shell)
  {
    GtkMenuShellPrivate *priv = GTK_MENU_SHELL_GET_PRIVATE (menu_shell);
-@@ -408,6 +437,12 @@
+@@ -408,6 +437,13 @@
    priv->key_hash = NULL;
    priv->take_focus = TRUE;
    priv->activated_submenu = FALSE;
 +  priv->proxy = ubuntu_menu_proxy_get ();
 +  priv->local = TRUE;
 +
-+  g_signal_connect (priv->proxy, "notify::show-local",
-+                    G_CALLBACK (show_local_notify),
-+                    menu_shell);
++  if (priv->proxy != NULL)
++    g_signal_connect (priv->proxy, "notify::show-local",
++                      G_CALLBACK (show_local_notify),
++                      menu_shell);
  }
  
  static void
