@@ -1,3 +1,10 @@
+gtk+2.0 (2.21.5-1ubuntu6) maverick; urgency=low
+
+  * debian/patches/072_indicator_menu_update.patch: Adding 'submenu-added' and
+    'submenu-removed' signals so Application Indicators now that.
+
+ -- Sense Egbert Hofstede <sense@ubuntu.com>  Tue, 03 Aug 2010 09:36:03 +0200
+
 gtk+2.0 (2.21.5-1ubuntu5) maverick; urgency=low
 
   * debian/patches/043_ubuntu_menu_proxy.patch: 
