@@ -1,3 +1,11 @@
+gtk+2.0 (2.21.5-1ubuntu6) maverick; urgency=low
+
+  * debian/patches/043_ubuntu_menu_proxy.patch:
+    - update by Cody Russell required to get the mnemonic activation working in
+      the indicator-appmenu.
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 04 Aug 2010 15:59:31 +0200
+
 gtk+2.0 (2.21.5-1ubuntu5) maverick; urgency=low
 
   * debian/patches/043_ubuntu_menu_proxy.patch: 
