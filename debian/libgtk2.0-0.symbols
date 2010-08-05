@@ -4679,7 +4679,9 @@ libgtk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gtk_window_unstick@Base 2.8.0
  gtk_wrap_mode_get_type@Base 2.8.0
  hildon_gtk_file_chooser_install_properties@Base 2.10.0
+ ubuntu_gtk_menu_shell_activate_mnemonic@Base 2.21.5-1ubuntu5.1
  ubuntu_gtk_widget_set_has_grab@Base 2.21.5-1ubuntu3
+ ubuntu_menu_proxy_activate_menu@Base 2.21.5-1ubuntu5.1
  ubuntu_menu_proxy_get@Base 2.21.1-1ubuntu2
  ubuntu_menu_proxy_get_type@Base 2.21.1-1ubuntu2
  ubuntu_menu_proxy_insert@Base 2.21.1-1ubuntu2

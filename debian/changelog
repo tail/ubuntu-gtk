@@ -7,6 +7,7 @@ gtk+2.0 (2.21.5-1ubuntu6) maverick; urgency=low
       in the indicator-appmenu.
   * debian/patches/090_git_calendar_style_properties.patch:
     - git change to allow tweaking GtkCalendar layouts styling
+  * debian/libgtk2.0-0.symbols: updated for the previous changes
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 04 Aug 2010 15:59:31 +0200
 
