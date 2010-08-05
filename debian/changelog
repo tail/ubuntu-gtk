@@ -9,6 +9,10 @@ gtk+2.0 (2.21.5-1ubuntu6) maverick; urgency=low
     - git change to allow tweaking GtkCalendar layouts styling
   * debian/libgtk2.0-0.symbols: updated for the previous changes
 
+  [ Sense Egbert Hofstede ]
+  * debian/patches/072_indicator_menu_update.patch: Adding 'submenu-added' and
+    'submenu-removed' signals so Application Indicators now that.
+
  -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 04 Aug 2010 15:59:31 +0200
 
 gtk+2.0 (2.21.5-1ubuntu5) maverick; urgency=low

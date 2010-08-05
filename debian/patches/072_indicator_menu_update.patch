@@ -1,7 +1,12 @@
-Index: gtk+-2.21.5/gtk/gtkcontainer.c
+## Description: Adding two signals that are needed for Application Indicator to
+##              keep up-to-date with changed GtkMenu(Item)s.
+## Origin/Author: Cody Russell <bratsche@gnome.org>, 
+##                Sense Hofstede <sense@ubuntu.com>
+## Bug: unknown and https://launchpad.net/bug/608219
+Index: gtk+2.0-2.21.5/gtk/gtkcontainer.c
 ===================================================================
---- gtk+-2.21.5.orig/gtk/gtkcontainer.c	2010-07-12 18:23:44.000000000 +0200
-+++ gtk+-2.21.5/gtk/gtkcontainer.c	2010-07-28 18:02:42.568207000 +0200
+--- gtk+2.0-2.21.5.orig/gtk/gtkcontainer.c	2010-07-12 18:23:44.000000000 +0200
++++ gtk+2.0-2.21.5/gtk/gtkcontainer.c	2010-08-02 21:19:03.649494139 +0200
 @@ -48,6 +48,8 @@
    REMOVE,
    CHECK_RESIZE,
@@ -36,11 +41,11 @@ Index: gtk+-2.21.5/gtk/gtkcontainer.c
  }
  
  static void
-Index: gtk+-2.21.5/gtk/gtkmenushell.c
+Index: gtk+2.0-2.21.5/gtk/gtkmenushell.c
 ===================================================================
---- gtk+-2.21.5.orig/gtk/gtkmenushell.c	2010-07-28 17:58:24.000000000 +0200
-+++ gtk+-2.21.5/gtk/gtkmenushell.c	2010-07-28 18:02:53.018207001 +0200
-@@ -559,6 +559,8 @@
+--- gtk+2.0-2.21.5.orig/gtk/gtkmenushell.c	2010-08-02 21:19:03.329528983 +0200
++++ gtk+2.0-2.21.5/gtk/gtkmenushell.c	2010-08-02 21:19:03.649494139 +0200
+@@ -560,6 +560,8 @@
                                menu_shell,
                                child,
                                position);
@@ -49,3 +54,57 @@ Index: gtk+-2.21.5/gtk/gtkmenushell.c
  }
  
  static void
+Index: gtk+2.0-2.21.5/gtk/gtkmenuitem.c
+===================================================================
+--- gtk+2.0-2.21.5.orig/gtk/gtkmenuitem.c	2010-08-02 21:20:04.862829521 +0200
++++ gtk+2.0-2.21.5/gtk/gtkmenuitem.c	2010-08-02 21:19:51.224314400 +0200
+@@ -52,6 +52,8 @@
+   ACTIVATE_ITEM,
+   TOGGLE_SIZE_REQUEST,
+   TOGGLE_SIZE_ALLOCATE,
++  SUBMENU_ADDED,
++  SUBMENU_REMOVED,
+   LAST_SIGNAL
+ };
+ 
+@@ -244,6 +246,25 @@
+ 		  G_TYPE_NONE, 1,
+ 		  G_TYPE_INT);
+ 
++  menu_item_signals[SUBMENU_ADDED] =
++    g_signal_new (I_("submenu-added"),
++		  G_OBJECT_CLASS_TYPE (gobject_class),
++		  G_SIGNAL_RUN_FIRST,
++ 		  0,
++		  NULL, NULL,
++		  _gtk_marshal_VOID__OBJECT,
++		  G_TYPE_NONE, 1,
++		  GTK_TYPE_WIDGET);
++ 
++ menu_item_signals[SUBMENU_REMOVED] =
++    g_signal_new (I_("submenu-removed"),
++		  G_OBJECT_CLASS_TYPE (gobject_class),
++		  G_SIGNAL_RUN_FIRST,
++ 		  0,
++		  NULL, NULL,
++		  _gtk_marshal_VOID__VOID,
++		  G_TYPE_NONE, 0);
++
+   /**
+    * GtkMenuItem:right-justified:
+    *
+@@ -791,6 +812,14 @@
+       if (GTK_WIDGET (menu_item)->parent)
+ 	gtk_widget_queue_resize (GTK_WIDGET (menu_item));
+ 
++        if(submenu == NULL)
++      {
++        g_signal_emit_by_name (menu_item, "submenu-removed");
++      }
++        else
++      {
++        g_signal_emit_by_name (menu_item, "submenu-added", GTK_WIDGET(submenu));
++      }
+       g_object_notify (G_OBJECT (menu_item), "submenu");
+     }
+ }
