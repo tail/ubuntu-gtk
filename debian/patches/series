@@ -8,7 +8,6 @@
 012_ubuntu-set-grab-add.patch
 015_default-fallback-icon-theme.patch
 022_disable-viqr-im-for-vi-locale.patch
-023_rgba_by_default.patch
 041_ia32-libs.patch
 042_treeview_single-focus.patch
 043_ubuntu_menu_proxy.patch

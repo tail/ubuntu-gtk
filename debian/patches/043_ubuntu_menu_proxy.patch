@@ -125,7 +125,7 @@ Index: gtk+2.0-2.20.1/gtk/gtkmenubar.c
    gint nchildren;
    GtkRequisition child_requisition;
    gint ipadding;
-+  gboolean local = TRUE;
++  gboolean local = FALSE;
  
    g_return_if_fail (GTK_IS_MENU_BAR (widget));
    g_return_if_fail (requisition != NULL);
