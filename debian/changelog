@@ -1,4 +1,4 @@
-gtk+2.0 (2.21.6-1ubuntu1) UNRELEASED; urgency=low
+gtk+2.0 (2.21.6-1ubuntu1) maverick; urgency=low
 
   * New version update
   * debian/patches/090_git_calendar_style_properties.patch:
@@ -6,7 +6,7 @@ gtk+2.0 (2.21.6-1ubuntu1) UNRELEASED; urgency=low
   * debian/patches/064_gir_build_workaround.patch: 
     - workaround build issues with the gir when build out of srcdir
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 18 Aug 2010 11:52:58 +0200
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 18 Aug 2010 17:15:22 +0200
 
 gtk+2.0 (2.21.6-1) experimental; urgency=low
 
