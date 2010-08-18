@@ -15,8 +15,8 @@
 061_use_pdf_as_default_printing_standard.patch
 062_dnd_menubar.patch
 063_treeview_almost_fixed.patch
+064_gir_build_workaround.patch
 070_mandatory-relibtoolize.patch
 071_no_offscreen_widgets_grabbing.patch
 072_indicator_menu_update.patch
-090_git_calendar_style_properties.patch
 091_bugzilla_tooltip_refresh.patch

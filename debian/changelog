@@ -1,3 +1,28 @@
+gtk+2.0 (2.21.6-1ubuntu1) UNRELEASED; urgency=low
+
+  * New version update
+  * debian/patches/090_git_calendar_style_properties.patch:
+    - the change is in the new version
+  * debian/patches/064_gir_build_workaround.patch: 
+    - workaround build issues with the gir when build out of srcdir
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 18 Aug 2010 11:52:58 +0200
+
+gtk+2.0 (2.21.6-1) experimental; urgency=low
+
+  * debian/rules:
+    + Remove obsolete configure parameter.
+  * New upstream development release:
+    + debian/rules,
+      debian/libgtk2.0-0.symbols:
+      - Update for new API symbols.
+    + debian/patches/009_gtk-export-filechooser.patch,
+      debian/patches/042_treeview_single-focus.patch,
+      debian/patches/070_mandatory-relibtoolize.patch:
+      - Refreshed.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 17 Aug 2010 11:44:53 +0200
+
 gtk+2.0 (2.21.5-1ubuntu6) maverick; urgency=low
 
   * debian/patches/043_ubuntu_menu_proxy.patch:

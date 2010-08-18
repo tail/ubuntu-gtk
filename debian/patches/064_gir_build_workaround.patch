@@ -1,0 +1,11 @@
+--- gtk+2.0-2.21.6/gdk/Makefile.am	2010-08-16 22:57:54.000000000 +0200
++++ gtk+2.0-2.21.6/gdk/Makefile.am.workaround	2010-08-18 14:39:43.000000000 +0200
+@@ -241,7 +241,7 @@
+ GdkX11_2_0_gir_INCLUDES = Gio-2.0 Gdk-2.0 GdkPixbuf-2.0 Pango-1.0 xlib-2.0
+ GdkX11_2_0_gir_LIBS = $(gdktargetlib)
+ GdkX11_2_0_gir_FILES = $(x11_introspection_files)
+-GdkX11_2_0_gir_CFLAGS = $(INCLUDES) -L$(top_builddir)/gdk
++GdkX11_2_0_gir_CFLAGS = $(INCLUDES) -L$(top_builddir)/gdk -I.. -I$(srcdir)
+ INTROSPECTION_GIRS += GdkX11-2.0.gir
+ endif # USE_X11
+ 
