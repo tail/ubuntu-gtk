@@ -1,3 +1,10 @@
+gtk+2.0 (2.21.6-1ubuntu2) maverick; urgency=low
+
+  * debian/patches/043_ubuntu_menu_proxy.patch:
+    - update by Cody Russell to fix a crash issue (lp: #609390)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 24 Aug 2010 17:48:16 +0200
+
 gtk+2.0 (2.21.6-1ubuntu1) maverick; urgency=low
 
   * New version update
