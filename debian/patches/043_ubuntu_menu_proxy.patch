@@ -327,7 +327,7 @@ Index: gtk+2.0-2.21.6/gtk/gtkmenushell.c
 +
 +  priv = GTK_MENU_SHELL_GET_PRIVATE (shell);
 +
-+  if (priv->proxy)
++  if (priv->proxy && !ubuntu_menu_proxy_show_local (priv->proxy))
 +    {
 +      ubuntu_menu_proxy_activate_menu (priv->proxy,
 +                                       item);

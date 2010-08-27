@@ -1,3 +1,10 @@
+gtk+2.0 (2.21.6-1ubuntu3) maverick; urgency=low
+
+  * debian/patches/043_ubuntu_menu_proxy.patch:
+    - update by Cody Russell to fix menu shortcuts under GNOME
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 27 Aug 2010 15:44:28 +0200
+
 gtk+2.0 (2.21.6-1ubuntu2) maverick; urgency=low
 
   * debian/patches/043_ubuntu_menu_proxy.patch:
