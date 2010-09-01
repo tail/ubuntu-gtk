@@ -1,12 +1,12 @@
 # Comment: let click on menubar to do dnd
 # Upstream: https://bugzilla.gnome.org/show_bug.cgi?id=611313
 #
-Index: gtk+-2.21.5/gtk/gtkmenushell.c
+Index: gtk+-2.21.7/gtk/gtkmenushell.c
 ===================================================================
---- gtk+-2.21.5.orig/gtk/gtkmenushell.c	2010-07-28 17:58:17.518207001 +0200
-+++ gtk+-2.21.5/gtk/gtkmenushell.c	2010-07-28 17:58:24.258207000 +0200
+--- gtk+-2.21.7.orig/gtk/gtkmenushell.c	2010-09-01 12:21:09.552617001 +1000
++++ gtk+-2.21.7/gtk/gtkmenushell.c	2010-09-01 12:21:11.762617001 +1000
 @@ -394,6 +394,14 @@
-                                                          TRUE,
+                                                          FALSE,
                                                           GTK_PARAM_READWRITE));
  
 +
@@ -20,7 +20,7 @@ Index: gtk+-2.21.5/gtk/gtkmenushell.c
    g_type_class_add_private (object_class, sizeof (GtkMenuShellPrivate));
  }
  
-@@ -649,18 +657,45 @@
+@@ -657,18 +665,45 @@
  
    if (!menu_shell->active || !menu_shell->button)
      {

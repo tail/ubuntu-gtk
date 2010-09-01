@@ -3,10 +3,10 @@
 ## Origin/Author: Cody Russell <bratsche@gnome.org>, 
 ##                Sense Hofstede <sense@ubuntu.com>
 ## Bug: unknown and https://launchpad.net/bug/608219
-Index: gtk+2.0-2.21.5/gtk/gtkcontainer.c
+Index: gtk+-2.21.7/gtk/gtkcontainer.c
 ===================================================================
---- gtk+2.0-2.21.5.orig/gtk/gtkcontainer.c	2010-07-12 18:23:44.000000000 +0200
-+++ gtk+2.0-2.21.5/gtk/gtkcontainer.c	2010-08-02 21:19:03.649494139 +0200
+--- gtk+-2.21.7.orig/gtk/gtkcontainer.c	2010-08-31 01:09:37.000000000 +1000
++++ gtk+-2.21.7/gtk/gtkcontainer.c	2010-09-01 12:22:01.612617000 +1000
 @@ -48,6 +48,8 @@
    REMOVE,
    CHECK_RESIZE,
@@ -41,12 +41,12 @@ Index: gtk+2.0-2.21.5/gtk/gtkcontainer.c
  }
  
  static void
-Index: gtk+2.0-2.21.5/gtk/gtkmenushell.c
+Index: gtk+-2.21.7/gtk/gtkmenushell.c
 ===================================================================
---- gtk+2.0-2.21.5.orig/gtk/gtkmenushell.c	2010-08-02 21:19:03.329528983 +0200
-+++ gtk+2.0-2.21.5/gtk/gtkmenushell.c	2010-08-02 21:19:03.649494139 +0200
-@@ -560,6 +560,8 @@
-                               menu_shell,
+--- gtk+-2.21.7.orig/gtk/gtkmenushell.c	2010-09-01 12:21:11.762617001 +1000
++++ gtk+-2.21.7/gtk/gtkmenushell.c	2010-09-01 12:22:01.612617000 +1000
+@@ -567,6 +567,8 @@
+                               GTK_WIDGET (menu_shell),
                                child,
                                position);
 +
@@ -54,10 +54,10 @@ Index: gtk+2.0-2.21.5/gtk/gtkmenushell.c
  }
  
  static void
-Index: gtk+2.0-2.21.5/gtk/gtkmenuitem.c
+Index: gtk+-2.21.7/gtk/gtkmenuitem.c
 ===================================================================
---- gtk+2.0-2.21.5.orig/gtk/gtkmenuitem.c	2010-08-02 21:20:04.862829521 +0200
-+++ gtk+2.0-2.21.5/gtk/gtkmenuitem.c	2010-08-02 21:19:51.224314400 +0200
+--- gtk+-2.21.7.orig/gtk/gtkmenuitem.c	2010-09-01 12:21:09.562617001 +1000
++++ gtk+-2.21.7/gtk/gtkmenuitem.c	2010-09-01 12:22:01.612617000 +1000
 @@ -52,6 +52,8 @@
    ACTIVATE_ITEM,
    TOGGLE_SIZE_REQUEST,

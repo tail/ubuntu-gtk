@@ -1,3 +1,20 @@
+gtk+2.0 (2.21.7-1ubuntu1) maverick; urgency=low
+
+  * New upstream version
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Wed, 01 Sep 2010 12:14:05 +1000
+
+gtk+2.0 (2.21.7-1) experimental; urgency=low
+
+  * New upstream development release:
+    + debian/rules,
+      debian/libgtk2.0-0.symbols:
+      - Update for new API symbols.
+    + debian/patches/070_mandatory-relibtoolize.patch:
+      - Refreshed.
+
+ -- Sebastian Dröge <slomo@debian.org>  Mon, 30 Aug 2010 21:45:01 +0200
+
 gtk+2.0 (2.21.6-1ubuntu3) maverick; urgency=low
 
   * debian/patches/043_ubuntu_menu_proxy.patch:

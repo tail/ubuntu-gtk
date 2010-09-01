@@ -1,10 +1,10 @@
 # Description: better looking tooltips
 # Upstream: https://bugzilla.gnome.org/show_bug.cgi?id=599617
 # Ubuntu: https://launchpad.net/bugs/487208
-Index: gtk+-2.21.3/gtk/gtktooltip.c
+Index: gtk+-2.21.7/gtk/gtktooltip.c
 ===================================================================
---- gtk+-2.21.3.orig/gtk/gtktooltip.c	2010-06-27 14:33:46.000000000 +1000
-+++ gtk+-2.21.3/gtk/gtktooltip.c	2010-06-29 12:43:09.405943001 +1000
+--- gtk+-2.21.7.orig/gtk/gtktooltip.c	2010-09-01 12:22:03.992617001 +1000
++++ gtk+-2.21.7/gtk/gtktooltip.c	2010-09-01 12:22:11.252617001 +1000
 @@ -33,6 +33,10 @@
  #include "gtkhbox.h"
  #include "gtkalignment.h"
@@ -323,11 +323,11 @@ Index: gtk+-2.21.3/gtk/gtktooltip.c
  
    return FALSE;
  }
-Index: gtk+-2.21.3/gtk/gtkwidget.c
+Index: gtk+-2.21.7/gtk/gtkwidget.c
 ===================================================================
---- gtk+-2.21.3.orig/gtk/gtkwidget.c	2010-06-27 14:33:46.000000000 +1000
-+++ gtk+-2.21.3/gtk/gtkwidget.c	2010-06-29 12:43:09.405943001 +1000
-@@ -2580,6 +2580,14 @@
+--- gtk+-2.21.7.orig/gtk/gtkwidget.c	2010-09-01 12:22:03.982617001 +1000
++++ gtk+-2.21.7/gtk/gtkwidget.c	2010-09-01 12:22:11.252617001 +1000
+@@ -2582,6 +2582,14 @@
                                                               P_("The length of vertical scroll arrows"),
                                                               1, G_MAXINT, 16,
                                                               GTK_PARAM_READABLE));
