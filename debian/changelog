@@ -1,3 +1,16 @@
+gtk+2.0 (2.22.0-0ubuntu1) maverick; urgency=low
+
+  * New stable version
+  * debian/control:
+    - don't use gir-repository-dev it's not required
+  * debian/libgtk2.0-0.symbols: updated
+  * debian/patches/064_gir_build_workaround.patch
+    - workaround a build issue with the current gir version
+  * debian/patches/070_mandatory-relibtoolize.patch:
+    - new version update
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 27 Sep 2010 15:43:08 +0200
+
 gtk+2.0 (2.21.7-1ubuntu1) maverick; urgency=low
 
   * New upstream version

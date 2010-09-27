@@ -3,7 +3,7 @@ Section: libs
 Priority: optional
 Maintainer: Ubuntu Desktop Team <ubuntu-desktop@lists.ubuntu.com>
 XSBC-Original-Maintainer: Sebastien Bacher <seb128@debian.org>
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Emilio Pozuelo Monfort <pochu@debian.org>, Michael Biebl <biebl@debian.org>, Sebastian Dröge <slomo@debian.org>
+Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Sebastian Dröge <slomo@debian.org>
 Build-Depends: debhelper (>= 5.0.22),
                gettext,
                pkg-config,
@@ -33,7 +33,6 @@ Build-Depends: debhelper (>= 5.0.22),
                libcups2-dev (>= 1.2),
                gobject-introspection,
                gir1.0-freedesktop,
-               gir-repository-dev,
                libgirepository1.0-dev,
                gir1.0-glib-2.0,
                gir1.0-atk-1.0,
