@@ -20,3 +20,4 @@
 071_no_offscreen_widgets_grabbing.patch
 072_indicator_menu_update.patch
 091_bugzilla_tooltip_refresh.patch
+092_default_to_xdg_document_dir.patch

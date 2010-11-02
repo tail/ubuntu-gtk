@@ -1,3 +1,11 @@
+gtk+2.0 (2.22.0-0ubuntu2) UNRELEASED; urgency=low
+
+  * debian/patches/092_default_to_xdg_document_dir.patch:
+    - Use $XDG_DOCUMENTS_DIR as default directory rather than the home
+      directory for the 'Print to File' function. (LP: #611011)
+
+ -- Bilal Akhtar <bilalakhtar@ubuntu.com>  Tue, 02 Nov 2010 19:15:45 +0300
+
 gtk+2.0 (2.22.0-0ubuntu1) maverick; urgency=low
 
   * New stable version

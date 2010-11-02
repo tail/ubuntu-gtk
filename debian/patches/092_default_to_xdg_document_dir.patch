@@ -1,0 +1,18 @@
+Description: Use XDG_DOCUMENTS_DIR as default for 'Print to File'
+ This patch uses $XDG_DOCUMENTS_DIR as the default directory rather
+ than the home directory when the user selects Print to File in the
+ GtkPrinterOptionWidget.
+Author: Bilal Akhtar <bilalakhtar@ubuntu.com>
+Bug-Ubuntu: https://launchpad.net/bugs/611011
+--- a/gtk/gtkprinteroptionwidget.c
++++ b/gtk/gtkprinteroptionwidget.c
+@@ -886,6 +886,9 @@
+             if (g_path_is_absolute (dirname))
+               gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (priv->combo),
+                                                    dirname);
++	    else
++	      gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (priv->combo),
++                                                   g_get_user_special_dir (G_USER_DIRECTORY_DOCUMENTS));
+             g_free (text);
+             g_free (basename);
+             g_free (dirname);
