@@ -1,3 +1,11 @@
+gtk+2.0 (2.23.1-0ubuntu1) natty; urgency=low
+
+  * New upstream release
+  * debian/libgtk2.0-0.symbols: 
+    - Updated
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Wed, 10 Nov 2010 14:30:36 +1100
+
 gtk+2.0 (2.22.0-0ubuntu4) natty; urgency=low
 
   * debian/patches/092_default_to_xdg_document_dir.patch:

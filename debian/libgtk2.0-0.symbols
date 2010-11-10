@@ -24,6 +24,7 @@ libgdk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gdk_cairo_set_source_color@Base 2.8.0
  gdk_cairo_set_source_pixbuf@Base 2.8.0
  gdk_cairo_set_source_pixmap@Base 2.10.0
+ gdk_cairo_set_source_window@Base 2.23.1
  gdk_cap_style_get_type@Base 2.8.0
  gdk_char_height@Base 2.8.0
  gdk_char_measure@Base 2.8.0
@@ -600,6 +601,7 @@ libgdk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gdk_window_get_cursor@Base 2.18.0
  gdk_window_get_decorations@Base 2.8.0
  gdk_window_get_deskrelative_origin@Base 2.8.0
+ gdk_window_get_display@Base 2.23.1
  gdk_window_get_effective_parent@Base 2.21.8
  gdk_window_get_effective_toplevel@Base 2.21.8
  gdk_window_get_events@Base 2.8.0
@@ -607,6 +609,7 @@ libgdk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gdk_window_get_frame_extents@Base 2.8.0
  gdk_window_get_geometry@Base 2.8.0
  gdk_window_get_group@Base 2.8.0
+ gdk_window_get_height@Base 2.23.1
  gdk_window_get_internal_paint_info@Base 2.8.0
  gdk_window_get_modal_hint@Base 2.21.8
  gdk_window_get_origin@Base 2.8.0
@@ -615,12 +618,15 @@ libgdk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gdk_window_get_position@Base 2.8.0
  gdk_window_get_root_coords@Base 2.18.0
  gdk_window_get_root_origin@Base 2.8.0
+ gdk_window_get_screen@Base 2.23.1
  gdk_window_get_state@Base 2.8.0
  gdk_window_get_toplevel@Base 2.8.0
  gdk_window_get_toplevels@Base 2.8.0
  gdk_window_get_type_hint@Base 2.10.0
  gdk_window_get_update_area@Base 2.8.0
  gdk_window_get_user_data@Base 2.8.0
+ gdk_window_get_visual@Base 2.23.1
+ gdk_window_get_width@Base 2.23.1
  gdk_window_get_window_type@Base 2.8.0
  gdk_window_has_native@Base 2.21.8
  gdk_window_hide@Base 2.8.0
@@ -1341,7 +1347,9 @@ libgtk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gtk_combo_box_get_add_tearoffs@Base 2.8.0
  gtk_combo_box_get_button_sensitivity@Base 2.14.0
  gtk_combo_box_get_column_span_column@Base 2.8.0
+ gtk_combo_box_get_entry_text_column@Base 2.23.1
  gtk_combo_box_get_focus_on_click@Base 2.8.0
+ gtk_combo_box_get_has_entry@Base 2.23.1
  gtk_combo_box_get_model@Base 2.8.0
  gtk_combo_box_get_popup_accessible@Base 2.8.0
  gtk_combo_box_get_row_separator_func@Base 2.8.0
@@ -1352,7 +1360,9 @@ libgtk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gtk_combo_box_insert_text@Base 2.8.0
  gtk_combo_box_new@Base 2.8.0
  gtk_combo_box_new_text@Base 2.8.0
+ gtk_combo_box_new_with_entry@Base 2.23.1
  gtk_combo_box_new_with_model@Base 2.8.0
+ gtk_combo_box_new_with_model_and_entry@Base 2.23.1
  gtk_combo_box_popdown@Base 2.8.0
  gtk_combo_box_popup@Base 2.8.0
  gtk_combo_box_prepend_text@Base 2.8.0
@@ -1362,12 +1372,21 @@ libgtk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gtk_combo_box_set_add_tearoffs@Base 2.8.0
  gtk_combo_box_set_button_sensitivity@Base 2.14.0
  gtk_combo_box_set_column_span_column@Base 2.8.0
+ gtk_combo_box_set_entry_text_column@Base 2.23.1
  gtk_combo_box_set_focus_on_click@Base 2.8.0
  gtk_combo_box_set_model@Base 2.8.0
  gtk_combo_box_set_row_separator_func@Base 2.8.0
  gtk_combo_box_set_row_span_column@Base 2.8.0
  gtk_combo_box_set_title@Base 2.10.0
  gtk_combo_box_set_wrap_width@Base 2.8.0
+ gtk_combo_box_text_append_text@Base 2.23.1
+ gtk_combo_box_text_get_active_text@Base 2.23.1
+ gtk_combo_box_text_get_type@Base 2.23.1
+ gtk_combo_box_text_insert_text@Base 2.23.1
+ gtk_combo_box_text_new@Base 2.23.1
+ gtk_combo_box_text_new_with_entry@Base 2.23.1
+ gtk_combo_box_text_prepend_text@Base 2.23.1
+ gtk_combo_box_text_remove@Base 2.23.1
  gtk_combo_disable_activate@Base 2.8.0
  gtk_combo_get_type@Base 2.8.0
  gtk_combo_new@Base 2.8.0
@@ -2481,6 +2500,7 @@ libgtk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gtk_notebook_get_current_page@Base 2.8.0
  gtk_notebook_get_group@Base 2.12.0
  gtk_notebook_get_group_id@Base 2.10.0
+ gtk_notebook_get_group_name@Base 2.23.1
  gtk_notebook_get_menu_label@Base 2.8.0
  gtk_notebook_get_menu_label_text@Base 2.8.0
  gtk_notebook_get_n_pages@Base 2.8.0
@@ -2513,6 +2533,7 @@ libgtk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gtk_notebook_set_current_page@Base 2.8.0
  gtk_notebook_set_group@Base 2.12.0
  gtk_notebook_set_group_id@Base 2.10.0
+ gtk_notebook_set_group_name@Base 2.23.1
  gtk_notebook_set_homogeneous_tabs@Base 2.8.0
  gtk_notebook_set_menu_label@Base 2.8.0
  gtk_notebook_set_menu_label_text@Base 2.8.0
@@ -2937,7 +2958,6 @@ libgtk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gtk_printer_set_job_count@Base 2.10.0
  gtk_printer_set_location@Base 2.10.0
  gtk_printer_set_state_message@Base 2.10.0
- gtk_private_flags_get_type@Base 2.8.0
  gtk_progress_bar_get_ellipsize@Base 2.8.0
  gtk_progress_bar_get_fraction@Base 2.8.0
  gtk_progress_bar_get_orientation@Base 2.8.0
