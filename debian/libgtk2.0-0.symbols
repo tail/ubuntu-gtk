@@ -2958,6 +2958,7 @@ libgtk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gtk_printer_set_job_count@Base 2.10.0
  gtk_printer_set_location@Base 2.10.0
  gtk_printer_set_state_message@Base 2.10.0
+ gtk_private_flags_get_type@Base 2.8.0
  gtk_progress_bar_get_ellipsize@Base 2.8.0
  gtk_progress_bar_get_fraction@Base 2.8.0
  gtk_progress_bar_get_orientation@Base 2.8.0
