@@ -16,6 +16,7 @@
 062_dnd_menubar.patch
 063_treeview_almost_fixed.patch
 064_gir_build_workaround.patch
+065_gir_set_packages.patch
 070_mandatory-relibtoolize.patch
 071_no_offscreen_widgets_grabbing.patch
 072_indicator_menu_update.patch

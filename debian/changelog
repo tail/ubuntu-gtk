@@ -1,3 +1,13 @@
+gtk+2.0 (2.23.2-0ubuntu2) natty; urgency=low
+
+  * debian/patches/065_gir_set_packages.patch
+    - Added _gir_PACKAGES for each gir created, to match gir to pkg which is
+      needed by vapigen-0.12
+  * debian/patches/070_mandatory-relibtoolize.patch
+    - Refreshed
+
+ -- Ken VanDine <ken.vandine@canonical.com>  Fri, 19 Nov 2010 10:43:26 -0500
+
 gtk+2.0 (2.23.2-0ubuntu1) natty; urgency=low
 
   * New upstream release

@@ -1,56 +1,45 @@
-## Description: add some description
-## Origin/Author: add some origin or author
-## Bug: bug URL
-Index: gtk+-2.23.2/aclocal.m4
-===================================================================
---- gtk+-2.23.2.orig/aclocal.m4	2010-11-11 17:47:55.298619001 +1100
-+++ gtk+-2.23.2/aclocal.m4	2010-11-11 17:48:04.990619001 +1100
-@@ -13,8 +13,8 @@
- 
- m4_ifndef([AC_AUTOCONF_VERSION],
-   [m4_copy([m4_PACKAGE_VERSION], [AC_AUTOCONF_VERSION])])dnl
--m4_if(m4_defn([AC_AUTOCONF_VERSION]), [2.66],,
--[m4_warning([this file was generated for autoconf 2.66.
-+m4_if(m4_defn([AC_AUTOCONF_VERSION]), [2.67],,
-+[m4_warning([this file was generated for autoconf 2.67.
- You have another version of autoconf.  It may work, but is not guaranteed to.
- If you have problems, you may need to regenerate the build system entirely.
- To do so, use the procedure documented by the package, typically `autoreconf'.])])
-@@ -801,7 +801,7 @@
- Consider adjusting the PKG_CONFIG_PATH environment variable if you
- installed software in a non-standard prefix.
- 
--_PKG_TEXT])
-+_PKG_TEXT])[]dnl
-         ])
- elif test $pkg_failed = untried; then
-      	AC_MSG_RESULT([no])
-@@ -812,7 +812,7 @@
- 
- _PKG_TEXT
- 
--To get pkg-config, see <http://pkg-config.freedesktop.org/>.])
-+To get pkg-config, see <http://pkg-config.freedesktop.org/>.])[]dnl
-         ])
- else
- 	$1[]_CFLAGS=$pkg_cv_[]$1[]_CFLAGS
-Index: gtk+-2.23.2/INSTALL
-===================================================================
---- gtk+-2.23.2.orig/INSTALL	2010-11-11 17:49:52.202618999 +1100
-+++ gtk+-2.23.2/INSTALL	2010-11-11 17:48:45.334619001 +1100
+=== modified file 'INSTALL'
+--- old/INSTALL	2010-11-19 15:35:46 +0000
++++ new/INSTALL	2010-11-19 15:41:55 +0000
 @@ -1,33 +1,365 @@
 -Prerequisites
 -=============
-+Installation Instructions
-+*************************
- 
+-
 -GTK+ requires the following packages:
-+Copyright (C) 1994, 1995, 1996, 1999, 2000, 2001, 2002, 2004, 2005,
-+2006, 2007, 2008, 2009 Free Software Foundation, Inc.
- 
+-
 - - The GLib, Pango, GdkPixbuf, ATK and cairo libraries, available at the same
 -   location as GTK+. GTK+ 2.23.2 requires at least GLib 2.25.10,
 -   Pango 1.20, GdkPixbuf 2.21.0, ATK 1.29.2 and cairo 1.6.0.
+-
+- - gobject-introspection 0.9.3 or newer.
+-
+-Simple install procedure
+-========================
+-
+-  % gzip -cd gtk+-2.23.2.tar.gz | tar xvf - # unpack the sources
+-  % cd gtk+-2.23.2			   # change to the toplevel directory
+-  % ./configure				   # run the `configure' script
+-  % make				   # build GTK+
+-  [ Become root if necessary ]
+-  % make install			   # install GTK+
+-
+-The Details
+-===========
+-
+-Complete information about installing GTK+ and related libraries can be found 
+-in the file:
+-
+- docs/reference/gtk/html/gtk-building.html
+-
+-Or online at:
+-
+- http://developer.gnome.org/doc/API/2.0/gtk/gtk-building.html
++Installation Instructions
++*************************
++
++Copyright (C) 1994, 1995, 1996, 1999, 2000, 2001, 2002, 2004, 2005,
++2006, 2007, 2008, 2009 Free Software Foundation, Inc.
++
 +   Copying and distribution of this file, with or without modification,
 +are permitted in any medium without royalty provided the copyright
 +notice and this notice are preserved.  This file is offered as-is,
@@ -406,37 +395,14 @@ Index: gtk+-2.23.2/INSTALL
 +`-n'
 +     Run the configure checks, but stop before creating any output
 +     files.
- 
-- - gobject-introspection 0.9.3 or newer.
--
--Simple install procedure
--========================
--
--  % gzip -cd gtk+-2.23.2.tar.gz | tar xvf - # unpack the sources
--  % cd gtk+-2.23.2			   # change to the toplevel directory
--  % ./configure				   # run the `configure' script
--  % make				   # build GTK+
--  [ Become root if necessary ]
--  % make install			   # install GTK+
--
--The Details
--===========
--
--Complete information about installing GTK+ and related libraries can be found 
--in the file:
--
-- docs/reference/gtk/html/gtk-building.html
--
--Or online at:
--
-- http://developer.gnome.org/doc/API/2.0/gtk/gtk-building.html
++
 +`configure' also accepts some other, not widely useful, options.  Run
 +`configure --help' for more details.
  
-Index: gtk+-2.23.2/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/Makefile.in	2010-11-11 17:50:14.618619001 +1100
-+++ gtk+-2.23.2/Makefile.in	2010-11-11 17:48:45.406619001 +1100
+
+=== modified file 'Makefile.in'
+--- old/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/Makefile.in	2010-11-19 15:41:55 +0000
 @@ -109,7 +109,8 @@
  	distdir dist dist-all distcheck
  ETAGS = etags
@@ -475,10 +441,43 @@ Index: gtk+-2.23.2/Makefile.in
  SUBDIRS = po po-properties $(SRC_SUBDIRS) docs m4macros build
  
  # require automake 1.4
-Index: gtk+-2.23.2/build/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/build/Makefile.in	2010-11-11 17:50:21.554619001 +1100
-+++ gtk+-2.23.2/build/Makefile.in	2010-11-11 17:48:39.954619001 +1100
+
+=== modified file 'aclocal.m4'
+--- old/aclocal.m4	2010-11-19 15:35:46 +0000
++++ new/aclocal.m4	2010-11-19 15:41:48 +0000
+@@ -13,8 +13,8 @@
+ 
+ m4_ifndef([AC_AUTOCONF_VERSION],
+   [m4_copy([m4_PACKAGE_VERSION], [AC_AUTOCONF_VERSION])])dnl
+-m4_if(m4_defn([AC_AUTOCONF_VERSION]), [2.66],,
+-[m4_warning([this file was generated for autoconf 2.66.
++m4_if(m4_defn([AC_AUTOCONF_VERSION]), [2.67],,
++[m4_warning([this file was generated for autoconf 2.67.
+ You have another version of autoconf.  It may work, but is not guaranteed to.
+ If you have problems, you may need to regenerate the build system entirely.
+ To do so, use the procedure documented by the package, typically `autoreconf'.])])
+@@ -801,7 +801,7 @@
+ Consider adjusting the PKG_CONFIG_PATH environment variable if you
+ installed software in a non-standard prefix.
+ 
+-_PKG_TEXT])
++_PKG_TEXT])[]dnl
+         ])
+ elif test $pkg_failed = untried; then
+      	AC_MSG_RESULT([no])
+@@ -812,7 +812,7 @@
+ 
+ _PKG_TEXT
+ 
+-To get pkg-config, see <http://pkg-config.freedesktop.org/>.])
++To get pkg-config, see <http://pkg-config.freedesktop.org/>.])[]dnl
+         ])
+ else
+ 	$1[]_CFLAGS=$pkg_cv_[]$1[]_CFLAGS
+
+=== modified file 'build/Makefile.in'
+--- old/build/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/build/Makefile.in	2010-11-19 15:41:51 +0000
 @@ -160,6 +160,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -495,10 +494,10 @@ Index: gtk+-2.23.2/build/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/build/win32/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/build/win32/Makefile.in	2010-11-11 17:50:21.898619001 +1100
-+++ gtk+-2.23.2/build/win32/Makefile.in	2010-11-11 17:48:40.022619001 +1100
+
+=== modified file 'build/win32/Makefile.in'
+--- old/build/win32/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/build/win32/Makefile.in	2010-11-19 15:41:51 +0000
 @@ -160,6 +160,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -515,10 +514,10 @@ Index: gtk+-2.23.2/build/win32/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/build/win32/vs9/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/build/win32/vs9/Makefile.in	2010-11-11 17:50:21.742619001 +1100
-+++ gtk+-2.23.2/build/win32/vs9/Makefile.in	2010-11-11 17:48:40.090619001 +1100
+
+=== modified file 'build/win32/vs9/Makefile.in'
+--- old/build/win32/vs9/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/build/win32/vs9/Makefile.in	2010-11-19 15:41:51 +0000
 @@ -120,6 +120,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -535,10 +534,10 @@ Index: gtk+-2.23.2/build/win32/vs9/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/config.guess
-===================================================================
---- gtk+-2.23.2.orig/config.guess	2010-11-11 17:50:21.410619000 +1100
-+++ gtk+-2.23.2/config.guess	2010-11-11 17:48:39.838618999 +1100
+
+=== modified file 'config.guess'
+--- old/config.guess	2010-11-19 15:35:46 +0000
++++ new/config.guess	2010-11-19 15:41:50 +0000
 @@ -1,10 +1,10 @@
  #! /bin/sh
  # Attempt to guess a canonical system name.
@@ -564,10 +563,10 @@ Index: gtk+-2.23.2/config.guess
  
  This is free software; see the source for copying conditions.  There is NO
  warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
-Index: gtk+-2.23.2/config.sub
-===================================================================
---- gtk+-2.23.2.orig/config.sub	2010-11-11 17:50:14.738619001 +1100
-+++ gtk+-2.23.2/config.sub	2010-11-11 17:48:39.846619005 +1100
+
+=== modified file 'config.sub'
+--- old/config.sub	2010-11-19 15:35:46 +0000
++++ new/config.sub	2010-11-19 15:41:50 +0000
 @@ -1,10 +1,10 @@
  #! /bin/sh
  # Configuration validation subroutine script.
@@ -624,10 +623,10 @@ Index: gtk+-2.23.2/config.sub
  	-none)
  		;;
  	*)
-Index: gtk+-2.23.2/configure
-===================================================================
---- gtk+-2.23.2.orig/configure	2010-11-11 17:50:20.794619005 +1100
-+++ gtk+-2.23.2/configure	2010-11-11 17:48:37.414619001 +1100
+
+=== modified file 'configure'
+--- old/configure	2010-11-19 15:35:46 +0000
++++ new/configure	2010-11-19 15:41:49 +0000
 @@ -1,6 +1,6 @@
  #! /bin/sh
  # Guess values for system-dependent variables and create Makefiles.
@@ -1421,7 +1420,7 @@ Index: gtk+-2.23.2/configure
  fi
  
  ac_ext=c
-@@ -8227,37 +8243,561 @@
+@@ -8227,6 +8243,530 @@
  
  
  
@@ -1461,13 +1460,7 @@ Index: gtk+-2.23.2/configure
 +done
 +  done
 +IFS=$as_save_IFS
- 
--
--# Set options
--
--
--
--        enable_dlopen=no
++
 +fi
 +fi
 +CXX=$ac_cv_prog_CXX
@@ -1478,8 +1471,8 @@ Index: gtk+-2.23.2/configure
 +  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +$as_echo "no" >&6; }
 +fi
- 
- 
++
++
 +    test -n "$CXX" && break
 +  done
 +fi
@@ -1511,34 +1504,14 @@ Index: gtk+-2.23.2/configure
 +done
 +  done
 +IFS=$as_save_IFS
- 
--            # Check whether --enable-shared was given.
--if test "${enable_shared+set}" = set; then :
--  enableval=$enable_shared; p=${PACKAGE-default}
--    case $enableval in
--    yes) enable_shared=yes ;;
--    no) enable_shared=no ;;
--    *)
--      enable_shared=no
--      # Look at the argument we got.  We use all the common list separators.
--      lt_save_ifs="$IFS"; IFS="${IFS}$PATH_SEPARATOR,"
--      for pkg in $enableval; do
--	IFS="$lt_save_ifs"
--	if test "X$pkg" = "X$p"; then
--	  enable_shared=yes
--	fi
--      done
--      IFS="$lt_save_ifs"
--      ;;
--    esac
++
 +fi
 +fi
 +ac_ct_CXX=$ac_cv_prog_ac_ct_CXX
 +if test -n "$ac_ct_CXX"; then
 +  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_ct_CXX" >&5
 +$as_echo "$ac_ct_CXX" >&6; }
- else
--  enable_shared=yes
++else
 +  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 +$as_echo "no" >&6; }
 +fi
@@ -1975,40 +1948,9 @@ Index: gtk+-2.23.2/configure
 +fi
 +
 +
-+
-+
-+# Set options
-+
-+
-+
-+        enable_dlopen=no
-+
-+
-+
-+            # Check whether --enable-shared was given.
-+if test "${enable_shared+set}" = set; then :
-+  enableval=$enable_shared; p=${PACKAGE-default}
-+    case $enableval in
-+    yes) enable_shared=yes ;;
-+    no) enable_shared=no ;;
-+    *)
-+      enable_shared=no
-+      # Look at the argument we got.  We use all the common list separators.
-+      lt_save_ifs="$IFS"; IFS="${IFS}$PATH_SEPARATOR,"
-+      for pkg in $enableval; do
-+	IFS="$lt_save_ifs"
-+	if test "X$pkg" = "X$p"; then
-+	  enable_shared=yes
-+	fi
-+      done
-+      IFS="$lt_save_ifs"
-+      ;;
-+    esac
-+else
-+  enable_shared=yes
- fi
  
  
+ # Set options
 @@ -8349,7 +8889,6 @@
  
  
@@ -2976,49 +2918,10 @@ Index: gtk+-2.23.2/configure
        /* dlclose (self); */
      }
    else
-@@ -11966,184 +12384,45 @@
- $as_echo_n "checking whether to build shared libraries... " >&6; }
-   test "$can_build_shared" = "no" && enable_shared=no
+@@ -12005,145 +12423,6 @@
  
--  # On AIX, shared libraries and static libraries use the same namespace, and
--  # are all built from PIC.
--  case $host_os in
--  aix3*)
--    test "$enable_shared" = yes && enable_static=no
--    if test -n "$RANLIB"; then
--      archive_cmds="$archive_cmds~\$RANLIB \$lib"
--      postinstall_cmds='$RANLIB $lib'
--    fi
--    ;;
--
--  aix[4-9]*)
--    if test "$host_cpu" != ia64 && test "$aix_use_runtimelinking" = no ; then
--      test "$enable_shared" = yes && enable_static=no
--    fi
--    ;;
--  esac
--  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $enable_shared" >&5
--$as_echo "$enable_shared" >&6; }
--
--  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to build static libraries" >&5
--$as_echo_n "checking whether to build static libraries... " >&6; }
--  # Make sure either enable_shared or enable_static is yes.
--  test "$enable_shared" = yes || enable_static=yes
--  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $enable_static" >&5
--$as_echo "$enable_static" >&6; }
--
--
--
--
--fi
--ac_ext=c
--ac_cpp='$CPP $CPPFLAGS'
--ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
--ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
--ac_compiler_gnu=$ac_cv_c_compiler_gnu
--
--CC="$lt_save_CC"
--
+ CC="$lt_save_CC"
+ 
 -      if test -n "$CXX" && ( test "X$CXX" != "Xno" &&
 -    ( (test "X$CXX" = "Xg++" && `g++ -v >/dev/null 2>&1` ) ||
 -    (test "X$CXX" != "Xg++"))) ; then
@@ -3087,17 +2990,7 @@ Index: gtk+-2.23.2/configure
 -
 -    done
 -    ac_cv_prog_CXXCPP=$CXXCPP
-+  # On AIX, shared libraries and static libraries use the same namespace, and
-+  # are all built from PIC.
-+  case $host_os in
-+  aix3*)
-+    test "$enable_shared" = yes && enable_static=no
-+    if test -n "$RANLIB"; then
-+      archive_cmds="$archive_cmds~\$RANLIB \$lib"
-+      postinstall_cmds='$RANLIB $lib'
-+    fi
-+    ;;
- 
+-
 -fi
 -  CXXCPP=$ac_cv_prog_CXXCPP
 -else
@@ -3124,27 +3017,13 @@ Index: gtk+-2.23.2/configure
 -		     Syntax error
 -_ACEOF
 -if ac_fn_cxx_try_cpp "$LINENO"; then :
-+  aix[4-9]*)
-+    if test "$host_cpu" != ia64 && test "$aix_use_runtimelinking" = no ; then
-+      test "$enable_shared" = yes && enable_static=no
-+    fi
-+    ;;
-+  esac
-+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $enable_shared" >&5
-+$as_echo "$enable_shared" >&6; }
- 
+-
 -else
 -  # Broken: fails on valid input.
 -continue
 -fi
 -rm -f conftest.err conftest.$ac_ext
-+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to build static libraries" >&5
-+$as_echo_n "checking whether to build static libraries... " >&6; }
-+  # Make sure either enable_shared or enable_static is yes.
-+  test "$enable_shared" = yes || enable_static=yes
-+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $enable_static" >&5
-+$as_echo "$enable_static" >&6; }
- 
+-
 -  # OK, works on sane cases.  Now check whether nonexistent headers
 -  # can be detected and how.
 -  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
@@ -3160,31 +3039,28 @@ Index: gtk+-2.23.2/configure
 -break
 -fi
 -rm -f conftest.err conftest.$ac_ext
- 
+-
 -done
 -# Because of `break', _AC_PREPROC_IFELSE's cleaning code was skipped.
 -rm -f conftest.err conftest.$ac_ext
 -if $ac_preproc_ok; then :
- 
+-
 -else
 -  { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
 -$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
 -as_fn_error $? "C++ preprocessor \"$CXXCPP\" fails sanity check
 -See \`config.log' for more details" "$LINENO" 5; }
 -fi
- 
-+fi
- ac_ext=c
- ac_cpp='$CPP $CPPFLAGS'
- ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
- ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
- ac_compiler_gnu=$ac_cv_c_compiler_gnu
- 
+-
+-ac_ext=c
+-ac_cpp='$CPP $CPPFLAGS'
+-ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+-ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+-ac_compiler_gnu=$ac_cv_c_compiler_gnu
+-
 -else
 -  _lt_caught_CXX_error=yes
 -fi
-+CC="$lt_save_CC"
-+
  
  ac_ext=cpp
  ac_cpp='$CXXCPP $CPPFLAGS'
@@ -3879,7 +3755,7 @@ Index: gtk+-2.23.2/configure
      { $as_echo "$as_me:${as_lineno-$LINENO}: checking how to hardcode library paths into programs" >&5
  $as_echo_n "checking how to hardcode library paths into programs... " >&6; }
  hardcode_action_CXX=
-@@ -15051,15 +15293,16 @@
+@@ -15051,397 +15293,392 @@
  : ${CONFIG_LT=./config.lt}
  { $as_echo "$as_me:${as_lineno-$LINENO}: creating $CONFIG_LT" >&5
  $as_echo "$as_me: creating $CONFIG_LT" >&6;}
@@ -3889,48 +3765,772 @@ Index: gtk+-2.23.2/configure
  #! $SHELL
  # Generated by $as_me.
  # Run this file to recreate a libtool stub with the current configuration.
-+
-+lt_cl_silent=false
- SHELL=\${CONFIG_SHELL-$SHELL}
+-SHELL=\${CONFIG_SHELL-$SHELL}
 -export SHELL
 -_ASEOF
 -cat >>"$CONFIG_LT" <<\_ASEOF || as_write_fail=1
-+_LTEOF
-+
-+cat >>"$CONFIG_LT" <<\_LTEOF
- ## -------------------- ##
- ## M4sh Initialization. ##
- ## -------------------- ##
-@@ -15184,6 +15427,7 @@
- (unset CDPATH) >/dev/null 2>&1 && unset CDPATH
- 
- 
-+
- # as_fn_error STATUS ERROR [LINENO LOG_FD]
- # ----------------------------------------
- # Output "`basename $0`: error: ERROR" to stderr. If LINENO and LOG_FD are
-@@ -15392,7 +15636,7 @@
-       test -d "$as_dir" && break
-     done
-     test -z "$as_dirs" || eval "mkdir $as_dirs"
+-## -------------------- ##
+-## M4sh Initialization. ##
+-## -------------------- ##
+-
+-# Be more Bourne compatible
+-DUALCASE=1; export DUALCASE # for MKS sh
+-if test -n "${ZSH_VERSION+set}" && (emulate sh) >/dev/null 2>&1; then :
+-  emulate sh
+-  NULLCMD=:
+-  # Pre-4.2 versions of Zsh do word splitting on ${1+"$@"}, which
+-  # is contrary to our usage.  Disable this feature.
+-  alias -g '${1+"$@"}'='"$@"'
+-  setopt NO_GLOB_SUBST
+-else
+-  case `(set -o) 2>/dev/null` in #(
+-  *posix*) :
+-    set -o posix ;; #(
+-  *) :
+-     ;;
+-esac
+-fi
+-
+-
+-as_nl='
+-'
+-export as_nl
+-# Printing a long string crashes Solaris 7 /usr/bin/printf.
+-as_echo='\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+-as_echo=$as_echo$as_echo$as_echo$as_echo$as_echo
+-as_echo=$as_echo$as_echo$as_echo$as_echo$as_echo$as_echo
+-# Prefer a ksh shell builtin over an external printf program on Solaris,
+-# but without wasting forks for bash or zsh.
+-if test -z "$BASH_VERSION$ZSH_VERSION" \
+-    && (test "X`print -r -- $as_echo`" = "X$as_echo") 2>/dev/null; then
+-  as_echo='print -r --'
+-  as_echo_n='print -rn --'
+-elif (test "X`printf %s $as_echo`" = "X$as_echo") 2>/dev/null; then
+-  as_echo='printf %s\n'
+-  as_echo_n='printf %s'
+-else
+-  if test "X`(/usr/ucb/echo -n -n $as_echo) 2>/dev/null`" = "X-n $as_echo"; then
+-    as_echo_body='eval /usr/ucb/echo -n "$1$as_nl"'
+-    as_echo_n='/usr/ucb/echo -n'
+-  else
+-    as_echo_body='eval expr "X$1" : "X\\(.*\\)"'
+-    as_echo_n_body='eval
+-      arg=$1;
+-      case $arg in #(
+-      *"$as_nl"*)
+-	expr "X$arg" : "X\\(.*\\)$as_nl";
+-	arg=`expr "X$arg" : ".*$as_nl\\(.*\\)"`;;
+-      esac;
+-      expr "X$arg" : "X\\(.*\\)" | tr -d "$as_nl"
+-    '
+-    export as_echo_n_body
+-    as_echo_n='sh -c $as_echo_n_body as_echo'
+-  fi
+-  export as_echo_body
+-  as_echo='sh -c $as_echo_body as_echo'
+-fi
+-
+-# The user is always right.
+-if test "${PATH_SEPARATOR+set}" != set; then
+-  PATH_SEPARATOR=:
+-  (PATH='/bin;/bin'; FPATH=$PATH; sh -c :) >/dev/null 2>&1 && {
+-    (PATH='/bin:/bin'; FPATH=$PATH; sh -c :) >/dev/null 2>&1 ||
+-      PATH_SEPARATOR=';'
+-  }
+-fi
+-
+-
+-# IFS
+-# We need space, tab and new line, in precisely that order.  Quoting is
+-# there to prevent editors from complaining about space-tab.
+-# (If _AS_PATH_WALK were called with IFS unset, it would disable word
+-# splitting by setting IFS to empty value.)
+-IFS=" ""	$as_nl"
+-
+-# Find who we are.  Look in the path if we contain no directory separator.
+-case $0 in #((
+-  *[\\/]* ) as_myself=$0 ;;
+-  *) as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+-for as_dir in $PATH
+-do
+-  IFS=$as_save_IFS
+-  test -z "$as_dir" && as_dir=.
+-    test -r "$as_dir/$0" && as_myself=$as_dir/$0 && break
+-  done
+-IFS=$as_save_IFS
+-
+-     ;;
+-esac
+-# We did not find ourselves, most probably we were run as `sh COMMAND'
+-# in which case we are not to be found in the path.
+-if test "x$as_myself" = x; then
+-  as_myself=$0
+-fi
+-if test ! -f "$as_myself"; then
+-  $as_echo "$as_myself: error: cannot find myself; rerun with an absolute file name" >&2
+-  exit 1
+-fi
+-
+-# Unset variables that we do not need and which cause bugs (e.g. in
+-# pre-3.0 UWIN ksh).  But do not cause bugs in bash 2.01; the "|| exit 1"
+-# suppresses any "Segmentation fault" message there.  '((' could
+-# trigger a bug in pdksh 5.2.14.
+-for as_var in BASH_ENV ENV MAIL MAILPATH
+-do eval test x\${$as_var+set} = xset \
+-  && ( (unset $as_var) || exit 1) >/dev/null 2>&1 && unset $as_var || :
+-done
+-PS1='$ '
+-PS2='> '
+-PS4='+ '
+-
+-# NLS nuisances.
+-LC_ALL=C
+-export LC_ALL
+-LANGUAGE=C
+-export LANGUAGE
+-
+-# CDPATH.
+-(unset CDPATH) >/dev/null 2>&1 && unset CDPATH
+-
+-
+-# as_fn_error STATUS ERROR [LINENO LOG_FD]
+-# ----------------------------------------
+-# Output "`basename $0`: error: ERROR" to stderr. If LINENO and LOG_FD are
+-# provided, also output the error to LOG_FD, referencing LINENO. Then exit the
+-# script with STATUS, using 1 if that was 0.
+-as_fn_error ()
+-{
+-  as_status=$1; test $as_status -eq 0 && as_status=1
+-  if test "$4"; then
+-    as_lineno=${as_lineno-"$3"} as_lineno_stack=as_lineno_stack=$as_lineno_stack
+-    $as_echo "$as_me:${as_lineno-$LINENO}: error: $2" >&$4
+-  fi
+-  $as_echo "$as_me: error: $2" >&2
+-  as_fn_exit $as_status
+-} # as_fn_error
+-
+-
+-# as_fn_set_status STATUS
+-# -----------------------
+-# Set $? to STATUS, without forking.
+-as_fn_set_status ()
+-{
+-  return $1
+-} # as_fn_set_status
+-
+-# as_fn_exit STATUS
+-# -----------------
+-# Exit the shell with STATUS, even in a "trap 0" or "set -e" context.
+-as_fn_exit ()
+-{
+-  set +e
+-  as_fn_set_status $1
+-  exit $1
+-} # as_fn_exit
+-
+-# as_fn_unset VAR
+-# ---------------
+-# Portably unset VAR.
+-as_fn_unset ()
+-{
+-  { eval $1=; unset $1;}
+-}
+-as_unset=as_fn_unset
+-# as_fn_append VAR VALUE
+-# ----------------------
+-# Append the text in VALUE to the end of the definition contained in VAR. Take
+-# advantage of any shell optimizations that allow amortized linear growth over
+-# repeated appends, instead of the typical quadratic growth present in naive
+-# implementations.
+-if (eval "as_var=1; as_var+=2; test x\$as_var = x12") 2>/dev/null; then :
+-  eval 'as_fn_append ()
+-  {
+-    eval $1+=\$2
+-  }'
+-else
+-  as_fn_append ()
+-  {
+-    eval $1=\$$1\$2
+-  }
+-fi # as_fn_append
+-
+-# as_fn_arith ARG...
+-# ------------------
+-# Perform arithmetic evaluation on the ARGs, and store the result in the
+-# global $as_val. Take advantage of shells that can avoid forks. The arguments
+-# must be portable across $(()) and expr.
+-if (eval "test \$(( 1 + 1 )) = 2") 2>/dev/null; then :
+-  eval 'as_fn_arith ()
+-  {
+-    as_val=$(( $* ))
+-  }'
+-else
+-  as_fn_arith ()
+-  {
+-    as_val=`expr "$@" || test $? -eq 1`
+-  }
+-fi # as_fn_arith
+-
+-
+-if expr a : '\(a\)' >/dev/null 2>&1 &&
+-   test "X`expr 00001 : '.*\(...\)'`" = X001; then
+-  as_expr=expr
+-else
+-  as_expr=false
+-fi
+-
+-if (basename -- /) >/dev/null 2>&1 && test "X`basename -- / 2>&1`" = "X/"; then
+-  as_basename=basename
+-else
+-  as_basename=false
+-fi
+-
+-if (as_dir=`dirname -- /` && test "X$as_dir" = X/) >/dev/null 2>&1; then
+-  as_dirname=dirname
+-else
+-  as_dirname=false
+-fi
+-
+-as_me=`$as_basename -- "$0" ||
+-$as_expr X/"$0" : '.*/\([^/][^/]*\)/*$' \| \
+-	 X"$0" : 'X\(//\)$' \| \
+-	 X"$0" : 'X\(/\)' \| . 2>/dev/null ||
+-$as_echo X/"$0" |
+-    sed '/^.*\/\([^/][^/]*\)\/*$/{
+-	    s//\1/
+-	    q
+-	  }
+-	  /^X\/\(\/\/\)$/{
+-	    s//\1/
+-	    q
+-	  }
+-	  /^X\/\(\/\).*/{
+-	    s//\1/
+-	    q
+-	  }
+-	  s/.*/./; q'`
+-
+-# Avoid depending upon Character Ranges.
+-as_cr_letters='abcdefghijklmnopqrstuvwxyz'
+-as_cr_LETTERS='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+-as_cr_Letters=$as_cr_letters$as_cr_LETTERS
+-as_cr_digits='0123456789'
+-as_cr_alnum=$as_cr_Letters$as_cr_digits
+-
+-ECHO_C= ECHO_N= ECHO_T=
+-case `echo -n x` in #(((((
+--n*)
+-  case `echo 'xy\c'` in
+-  *c*) ECHO_T='	';;	# ECHO_T is single tab character.
+-  xy)  ECHO_C='\c';;
+-  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
+-       ECHO_T='	';;
+-  esac;;
+-*)
+-  ECHO_N='-n';;
+-esac
+-
+-rm -f conf$$ conf$$.exe conf$$.file
+-if test -d conf$$.dir; then
+-  rm -f conf$$.dir/conf$$.file
+-else
+-  rm -f conf$$.dir
+-  mkdir conf$$.dir 2>/dev/null
+-fi
+-if (echo >conf$$.file) 2>/dev/null; then
+-  if ln -s conf$$.file conf$$ 2>/dev/null; then
+-    as_ln_s='ln -s'
+-    # ... but there are two gotchas:
+-    # 1) On MSYS, both `ln -s file dir' and `ln file dir' fail.
+-    # 2) DJGPP < 2.04 has no symlinks; `ln -s' creates a wrapper executable.
+-    # In both cases, we have to default to `cp -p'.
+-    ln -s conf$$.file conf$$.dir 2>/dev/null && test ! -f conf$$.exe ||
+-      as_ln_s='cp -p'
+-  elif ln conf$$.file conf$$ 2>/dev/null; then
+-    as_ln_s=ln
+-  else
+-    as_ln_s='cp -p'
+-  fi
+-else
+-  as_ln_s='cp -p'
+-fi
+-rm -f conf$$ conf$$.exe conf$$.dir/conf$$.file conf$$.file
+-rmdir conf$$.dir 2>/dev/null
+-
+-
+-# as_fn_mkdir_p
+-# -------------
+-# Create "$as_dir" as a directory, including parents if necessary.
+-as_fn_mkdir_p ()
+-{
+-
+-  case $as_dir in #(
+-  -*) as_dir=./$as_dir;;
+-  esac
+-  test -d "$as_dir" || eval $as_mkdir_p || {
+-    as_dirs=
+-    while :; do
+-      case $as_dir in #(
+-      *\'*) as_qdir=`$as_echo "$as_dir" | sed "s/'/'\\\\\\\\''/g"`;; #'(
+-      *) as_qdir=$as_dir;;
+-      esac
+-      as_dirs="'$as_qdir' $as_dirs"
+-      as_dir=`$as_dirname -- "$as_dir" ||
+-$as_expr X"$as_dir" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
+-	 X"$as_dir" : 'X\(//\)[^/]' \| \
+-	 X"$as_dir" : 'X\(//\)$' \| \
+-	 X"$as_dir" : 'X\(/\)' \| . 2>/dev/null ||
+-$as_echo X"$as_dir" |
+-    sed '/^X\(.*[^/]\)\/\/*[^/][^/]*\/*$/{
+-	    s//\1/
+-	    q
+-	  }
+-	  /^X\(\/\/\)[^/].*/{
+-	    s//\1/
+-	    q
+-	  }
+-	  /^X\(\/\/\)$/{
+-	    s//\1/
+-	    q
+-	  }
+-	  /^X\(\/\).*/{
+-	    s//\1/
+-	    q
+-	  }
+-	  s/.*/./; q'`
+-      test -d "$as_dir" && break
+-    done
+-    test -z "$as_dirs" || eval "mkdir $as_dirs"
 -  } || test -d "$as_dir" || as_fn_error $? "cannot create directory $as_dir"
-+  } || test -d "$as_dir" || as_fn_error $? "cannot create directory $as_dir" "$LINENO" 5
- 
- 
- } # as_fn_mkdir_p
-@@ -15433,15 +15677,8 @@
- as_tr_sh="eval sed 'y%*+%pp%;s%[^_$as_cr_alnum]%_%g'"
- 
- 
+-
+-
+-} # as_fn_mkdir_p
+-if mkdir -p . 2>/dev/null; then
+-  as_mkdir_p='mkdir -p "$as_dir"'
+-else
+-  test -d ./-p && rmdir ./-p
+-  as_mkdir_p=false
+-fi
+-
+-if test -x / >/dev/null 2>&1; then
+-  as_test_x='test -x'
+-else
+-  if ls -dL / >/dev/null 2>&1; then
+-    as_ls_L_option=L
+-  else
+-    as_ls_L_option=
+-  fi
+-  as_test_x='
+-    eval sh -c '\''
+-      if test -d "$1"; then
+-	test -d "$1/.";
+-      else
+-	case $1 in #(
+-	-*)set "./$1";;
+-	esac;
+-	case `ls -ld'$as_ls_L_option' "$1" 2>/dev/null` in #((
+-	???[sx]*):;;*)false;;esac;fi
+-    '\'' sh
+-  '
+-fi
+-as_executable_p=$as_test_x
+-
+-# Sed expression to map a string onto a valid CPP name.
+-as_tr_cpp="eval sed 'y%*$as_cr_letters%P$as_cr_LETTERS%;s%[^_$as_cr_alnum]%_%g'"
+-
+-# Sed expression to map a string onto a valid variable name.
+-as_tr_sh="eval sed 'y%*+%pp%;s%[^_$as_cr_alnum]%_%g'"
+-
+-
 -exec 6>&1
 -## --------------------------------- ##
 -## Main body of "$CONFIG_LT" script. ##
 -## --------------------------------- ##
 -_ASEOF
 -test $as_write_fail = 0 && chmod +x "$CONFIG_LT"
- 
+-
 -cat >>"$CONFIG_LT" <<\_LTEOF
--lt_cl_silent=false
++
+ lt_cl_silent=false
++SHELL=\${CONFIG_SHELL-$SHELL}
++_LTEOF
++
++cat >>"$CONFIG_LT" <<\_LTEOF
++## -------------------- ##
++## M4sh Initialization. ##
++## -------------------- ##
++
++# Be more Bourne compatible
++DUALCASE=1; export DUALCASE # for MKS sh
++if test -n "${ZSH_VERSION+set}" && (emulate sh) >/dev/null 2>&1; then :
++  emulate sh
++  NULLCMD=:
++  # Pre-4.2 versions of Zsh do word splitting on ${1+"$@"}, which
++  # is contrary to our usage.  Disable this feature.
++  alias -g '${1+"$@"}'='"$@"'
++  setopt NO_GLOB_SUBST
++else
++  case `(set -o) 2>/dev/null` in #(
++  *posix*) :
++    set -o posix ;; #(
++  *) :
++     ;;
++esac
++fi
++
++
++as_nl='
++'
++export as_nl
++# Printing a long string crashes Solaris 7 /usr/bin/printf.
++as_echo='\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
++as_echo=$as_echo$as_echo$as_echo$as_echo$as_echo
++as_echo=$as_echo$as_echo$as_echo$as_echo$as_echo$as_echo
++# Prefer a ksh shell builtin over an external printf program on Solaris,
++# but without wasting forks for bash or zsh.
++if test -z "$BASH_VERSION$ZSH_VERSION" \
++    && (test "X`print -r -- $as_echo`" = "X$as_echo") 2>/dev/null; then
++  as_echo='print -r --'
++  as_echo_n='print -rn --'
++elif (test "X`printf %s $as_echo`" = "X$as_echo") 2>/dev/null; then
++  as_echo='printf %s\n'
++  as_echo_n='printf %s'
++else
++  if test "X`(/usr/ucb/echo -n -n $as_echo) 2>/dev/null`" = "X-n $as_echo"; then
++    as_echo_body='eval /usr/ucb/echo -n "$1$as_nl"'
++    as_echo_n='/usr/ucb/echo -n'
++  else
++    as_echo_body='eval expr "X$1" : "X\\(.*\\)"'
++    as_echo_n_body='eval
++      arg=$1;
++      case $arg in #(
++      *"$as_nl"*)
++	expr "X$arg" : "X\\(.*\\)$as_nl";
++	arg=`expr "X$arg" : ".*$as_nl\\(.*\\)"`;;
++      esac;
++      expr "X$arg" : "X\\(.*\\)" | tr -d "$as_nl"
++    '
++    export as_echo_n_body
++    as_echo_n='sh -c $as_echo_n_body as_echo'
++  fi
++  export as_echo_body
++  as_echo='sh -c $as_echo_body as_echo'
++fi
++
++# The user is always right.
++if test "${PATH_SEPARATOR+set}" != set; then
++  PATH_SEPARATOR=:
++  (PATH='/bin;/bin'; FPATH=$PATH; sh -c :) >/dev/null 2>&1 && {
++    (PATH='/bin:/bin'; FPATH=$PATH; sh -c :) >/dev/null 2>&1 ||
++      PATH_SEPARATOR=';'
++  }
++fi
++
++
++# IFS
++# We need space, tab and new line, in precisely that order.  Quoting is
++# there to prevent editors from complaining about space-tab.
++# (If _AS_PATH_WALK were called with IFS unset, it would disable word
++# splitting by setting IFS to empty value.)
++IFS=" ""	$as_nl"
++
++# Find who we are.  Look in the path if we contain no directory separator.
++case $0 in #((
++  *[\\/]* ) as_myself=$0 ;;
++  *) as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
++for as_dir in $PATH
++do
++  IFS=$as_save_IFS
++  test -z "$as_dir" && as_dir=.
++    test -r "$as_dir/$0" && as_myself=$as_dir/$0 && break
++  done
++IFS=$as_save_IFS
++
++     ;;
++esac
++# We did not find ourselves, most probably we were run as `sh COMMAND'
++# in which case we are not to be found in the path.
++if test "x$as_myself" = x; then
++  as_myself=$0
++fi
++if test ! -f "$as_myself"; then
++  $as_echo "$as_myself: error: cannot find myself; rerun with an absolute file name" >&2
++  exit 1
++fi
++
++# Unset variables that we do not need and which cause bugs (e.g. in
++# pre-3.0 UWIN ksh).  But do not cause bugs in bash 2.01; the "|| exit 1"
++# suppresses any "Segmentation fault" message there.  '((' could
++# trigger a bug in pdksh 5.2.14.
++for as_var in BASH_ENV ENV MAIL MAILPATH
++do eval test x\${$as_var+set} = xset \
++  && ( (unset $as_var) || exit 1) >/dev/null 2>&1 && unset $as_var || :
++done
++PS1='$ '
++PS2='> '
++PS4='+ '
++
++# NLS nuisances.
++LC_ALL=C
++export LC_ALL
++LANGUAGE=C
++export LANGUAGE
++
++# CDPATH.
++(unset CDPATH) >/dev/null 2>&1 && unset CDPATH
++
++
++
++# as_fn_error STATUS ERROR [LINENO LOG_FD]
++# ----------------------------------------
++# Output "`basename $0`: error: ERROR" to stderr. If LINENO and LOG_FD are
++# provided, also output the error to LOG_FD, referencing LINENO. Then exit the
++# script with STATUS, using 1 if that was 0.
++as_fn_error ()
++{
++  as_status=$1; test $as_status -eq 0 && as_status=1
++  if test "$4"; then
++    as_lineno=${as_lineno-"$3"} as_lineno_stack=as_lineno_stack=$as_lineno_stack
++    $as_echo "$as_me:${as_lineno-$LINENO}: error: $2" >&$4
++  fi
++  $as_echo "$as_me: error: $2" >&2
++  as_fn_exit $as_status
++} # as_fn_error
++
++
++# as_fn_set_status STATUS
++# -----------------------
++# Set $? to STATUS, without forking.
++as_fn_set_status ()
++{
++  return $1
++} # as_fn_set_status
++
++# as_fn_exit STATUS
++# -----------------
++# Exit the shell with STATUS, even in a "trap 0" or "set -e" context.
++as_fn_exit ()
++{
++  set +e
++  as_fn_set_status $1
++  exit $1
++} # as_fn_exit
++
++# as_fn_unset VAR
++# ---------------
++# Portably unset VAR.
++as_fn_unset ()
++{
++  { eval $1=; unset $1;}
++}
++as_unset=as_fn_unset
++# as_fn_append VAR VALUE
++# ----------------------
++# Append the text in VALUE to the end of the definition contained in VAR. Take
++# advantage of any shell optimizations that allow amortized linear growth over
++# repeated appends, instead of the typical quadratic growth present in naive
++# implementations.
++if (eval "as_var=1; as_var+=2; test x\$as_var = x12") 2>/dev/null; then :
++  eval 'as_fn_append ()
++  {
++    eval $1+=\$2
++  }'
++else
++  as_fn_append ()
++  {
++    eval $1=\$$1\$2
++  }
++fi # as_fn_append
++
++# as_fn_arith ARG...
++# ------------------
++# Perform arithmetic evaluation on the ARGs, and store the result in the
++# global $as_val. Take advantage of shells that can avoid forks. The arguments
++# must be portable across $(()) and expr.
++if (eval "test \$(( 1 + 1 )) = 2") 2>/dev/null; then :
++  eval 'as_fn_arith ()
++  {
++    as_val=$(( $* ))
++  }'
++else
++  as_fn_arith ()
++  {
++    as_val=`expr "$@" || test $? -eq 1`
++  }
++fi # as_fn_arith
++
++
++if expr a : '\(a\)' >/dev/null 2>&1 &&
++   test "X`expr 00001 : '.*\(...\)'`" = X001; then
++  as_expr=expr
++else
++  as_expr=false
++fi
++
++if (basename -- /) >/dev/null 2>&1 && test "X`basename -- / 2>&1`" = "X/"; then
++  as_basename=basename
++else
++  as_basename=false
++fi
++
++if (as_dir=`dirname -- /` && test "X$as_dir" = X/) >/dev/null 2>&1; then
++  as_dirname=dirname
++else
++  as_dirname=false
++fi
++
++as_me=`$as_basename -- "$0" ||
++$as_expr X/"$0" : '.*/\([^/][^/]*\)/*$' \| \
++	 X"$0" : 'X\(//\)$' \| \
++	 X"$0" : 'X\(/\)' \| . 2>/dev/null ||
++$as_echo X/"$0" |
++    sed '/^.*\/\([^/][^/]*\)\/*$/{
++	    s//\1/
++	    q
++	  }
++	  /^X\/\(\/\/\)$/{
++	    s//\1/
++	    q
++	  }
++	  /^X\/\(\/\).*/{
++	    s//\1/
++	    q
++	  }
++	  s/.*/./; q'`
++
++# Avoid depending upon Character Ranges.
++as_cr_letters='abcdefghijklmnopqrstuvwxyz'
++as_cr_LETTERS='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
++as_cr_Letters=$as_cr_letters$as_cr_LETTERS
++as_cr_digits='0123456789'
++as_cr_alnum=$as_cr_Letters$as_cr_digits
++
++ECHO_C= ECHO_N= ECHO_T=
++case `echo -n x` in #(((((
++-n*)
++  case `echo 'xy\c'` in
++  *c*) ECHO_T='	';;	# ECHO_T is single tab character.
++  xy)  ECHO_C='\c';;
++  *)   echo `echo ksh88 bug on AIX 6.1` > /dev/null
++       ECHO_T='	';;
++  esac;;
++*)
++  ECHO_N='-n';;
++esac
++
++rm -f conf$$ conf$$.exe conf$$.file
++if test -d conf$$.dir; then
++  rm -f conf$$.dir/conf$$.file
++else
++  rm -f conf$$.dir
++  mkdir conf$$.dir 2>/dev/null
++fi
++if (echo >conf$$.file) 2>/dev/null; then
++  if ln -s conf$$.file conf$$ 2>/dev/null; then
++    as_ln_s='ln -s'
++    # ... but there are two gotchas:
++    # 1) On MSYS, both `ln -s file dir' and `ln file dir' fail.
++    # 2) DJGPP < 2.04 has no symlinks; `ln -s' creates a wrapper executable.
++    # In both cases, we have to default to `cp -p'.
++    ln -s conf$$.file conf$$.dir 2>/dev/null && test ! -f conf$$.exe ||
++      as_ln_s='cp -p'
++  elif ln conf$$.file conf$$ 2>/dev/null; then
++    as_ln_s=ln
++  else
++    as_ln_s='cp -p'
++  fi
++else
++  as_ln_s='cp -p'
++fi
++rm -f conf$$ conf$$.exe conf$$.dir/conf$$.file conf$$.file
++rmdir conf$$.dir 2>/dev/null
++
++
++# as_fn_mkdir_p
++# -------------
++# Create "$as_dir" as a directory, including parents if necessary.
++as_fn_mkdir_p ()
++{
++
++  case $as_dir in #(
++  -*) as_dir=./$as_dir;;
++  esac
++  test -d "$as_dir" || eval $as_mkdir_p || {
++    as_dirs=
++    while :; do
++      case $as_dir in #(
++      *\'*) as_qdir=`$as_echo "$as_dir" | sed "s/'/'\\\\\\\\''/g"`;; #'(
++      *) as_qdir=$as_dir;;
++      esac
++      as_dirs="'$as_qdir' $as_dirs"
++      as_dir=`$as_dirname -- "$as_dir" ||
++$as_expr X"$as_dir" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
++	 X"$as_dir" : 'X\(//\)[^/]' \| \
++	 X"$as_dir" : 'X\(//\)$' \| \
++	 X"$as_dir" : 'X\(/\)' \| . 2>/dev/null ||
++$as_echo X"$as_dir" |
++    sed '/^X\(.*[^/]\)\/\/*[^/][^/]*\/*$/{
++	    s//\1/
++	    q
++	  }
++	  /^X\(\/\/\)[^/].*/{
++	    s//\1/
++	    q
++	  }
++	  /^X\(\/\/\)$/{
++	    s//\1/
++	    q
++	  }
++	  /^X\(\/\).*/{
++	    s//\1/
++	    q
++	  }
++	  s/.*/./; q'`
++      test -d "$as_dir" && break
++    done
++    test -z "$as_dirs" || eval "mkdir $as_dirs"
++  } || test -d "$as_dir" || as_fn_error $? "cannot create directory $as_dir" "$LINENO" 5
++
++
++} # as_fn_mkdir_p
++if mkdir -p . 2>/dev/null; then
++  as_mkdir_p='mkdir -p "$as_dir"'
++else
++  test -d ./-p && rmdir ./-p
++  as_mkdir_p=false
++fi
++
++if test -x / >/dev/null 2>&1; then
++  as_test_x='test -x'
++else
++  if ls -dL / >/dev/null 2>&1; then
++    as_ls_L_option=L
++  else
++    as_ls_L_option=
++  fi
++  as_test_x='
++    eval sh -c '\''
++      if test -d "$1"; then
++	test -d "$1/.";
++      else
++	case $1 in #(
++	-*)set "./$1";;
++	esac;
++	case `ls -ld'$as_ls_L_option' "$1" 2>/dev/null` in #((
++	???[sx]*):;;*)false;;esac;fi
++    '\'' sh
++  '
++fi
++as_executable_p=$as_test_x
++
++# Sed expression to map a string onto a valid CPP name.
++as_tr_cpp="eval sed 'y%*$as_cr_letters%P$as_cr_LETTERS%;s%[^_$as_cr_alnum]%_%g'"
++
++# Sed expression to map a string onto a valid variable name.
++as_tr_sh="eval sed 'y%*+%pp%;s%[^_$as_cr_alnum]%_%g'"
++
++
++
 +exec 6>&1
  exec 5>>config.log
  {
@@ -5539,10 +6139,10 @@ Index: gtk+-2.23.2/configure
  # Commands used to build an old-style archive.
  old_archive_cmds=$lt_old_archive_cmds_CXX
  
-Index: gtk+-2.23.2/demos/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/demos/Makefile.in	2010-11-11 17:50:22.658619001 +1100
-+++ gtk+-2.23.2/demos/Makefile.in	2010-11-11 17:48:40.222619001 +1100
+
+=== modified file 'demos/Makefile.in'
+--- old/demos/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/demos/Makefile.in	2010-11-19 15:41:51 +0000
 @@ -216,6 +216,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -5559,10 +6159,10 @@ Index: gtk+-2.23.2/demos/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/demos/gtk-demo/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/demos/gtk-demo/Makefile.in	2010-11-11 17:50:23.078619001 +1100
-+++ gtk+-2.23.2/demos/gtk-demo/Makefile.in	2010-11-11 17:48:40.346619001 +1100
+
+=== modified file 'demos/gtk-demo/Makefile.in'
+--- old/demos/gtk-demo/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/demos/gtk-demo/Makefile.in	2010-11-19 15:41:51 +0000
 @@ -196,6 +196,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -5579,10 +6179,10 @@ Index: gtk+-2.23.2/demos/gtk-demo/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/docs/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/docs/Makefile.in	2010-11-11 17:50:12.046619001 +1100
-+++ gtk+-2.23.2/docs/Makefile.in	2010-11-11 17:48:40.422619001 +1100
+
+=== modified file 'docs/Makefile.in'
+--- old/docs/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/docs/Makefile.in	2010-11-19 15:41:51 +0000
 @@ -160,6 +160,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -5599,10 +6199,10 @@ Index: gtk+-2.23.2/docs/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/docs/faq/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/docs/faq/Makefile.in	2010-11-11 17:50:02.010619001 +1100
-+++ gtk+-2.23.2/docs/faq/Makefile.in	2010-11-11 17:48:40.506619001 +1100
+
+=== modified file 'docs/faq/Makefile.in'
+--- old/docs/faq/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/docs/faq/Makefile.in	2010-11-19 15:41:51 +0000
 @@ -120,6 +120,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -5619,10 +6219,10 @@ Index: gtk+-2.23.2/docs/faq/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/docs/reference/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/docs/reference/Makefile.in	2010-11-11 17:50:04.434619001 +1100
-+++ gtk+-2.23.2/docs/reference/Makefile.in	2010-11-11 17:48:40.586619001 +1100
+
+=== modified file 'docs/reference/Makefile.in'
+--- old/docs/reference/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/docs/reference/Makefile.in	2010-11-19 15:41:51 +0000
 @@ -160,6 +160,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -5639,10 +6239,10 @@ Index: gtk+-2.23.2/docs/reference/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/docs/reference/gdk/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/docs/reference/gdk/Makefile.in	2010-11-11 17:50:03.462619001 +1100
-+++ gtk+-2.23.2/docs/reference/gdk/Makefile.in	2010-11-11 17:48:40.686619001 +1100
+
+=== modified file 'docs/reference/gdk/Makefile.in'
+--- old/docs/reference/gdk/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/docs/reference/gdk/Makefile.in	2010-11-19 15:41:51 +0000
 @@ -127,6 +127,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -5659,10 +6259,10 @@ Index: gtk+-2.23.2/docs/reference/gdk/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/docs/reference/gtk/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/docs/reference/gtk/Makefile.in	2010-11-11 17:50:06.338619001 +1100
-+++ gtk+-2.23.2/docs/reference/gtk/Makefile.in	2010-11-11 17:48:40.806619001 +1100
+
+=== modified file 'docs/reference/gtk/Makefile.in'
+--- old/docs/reference/gtk/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/docs/reference/gtk/Makefile.in	2010-11-19 15:41:51 +0000
 @@ -152,6 +152,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -5679,10 +6279,10 @@ Index: gtk+-2.23.2/docs/reference/gtk/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/docs/reference/libgail-util/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/docs/reference/libgail-util/Makefile.in	2010-11-11 17:50:10.390619001 +1100
-+++ gtk+-2.23.2/docs/reference/libgail-util/Makefile.in	2010-11-11 17:48:40.910619001 +1100
+
+=== modified file 'docs/reference/libgail-util/Makefile.in'
+--- old/docs/reference/libgail-util/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/docs/reference/libgail-util/Makefile.in	2010-11-19 15:41:51 +0000
 @@ -126,6 +126,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -5699,10 +6299,10 @@ Index: gtk+-2.23.2/docs/reference/libgail-util/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/docs/tools/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/docs/tools/Makefile.in	2010-11-11 17:50:12.234619001 +1100
-+++ gtk+-2.23.2/docs/tools/Makefile.in	2010-11-11 17:48:41.014619001 +1100
+
+=== modified file 'docs/tools/Makefile.in'
+--- old/docs/tools/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/docs/tools/Makefile.in	2010-11-19 15:41:51 +0000
 @@ -155,6 +155,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -5719,10 +6319,10 @@ Index: gtk+-2.23.2/docs/tools/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/docs/tutorial/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/docs/tutorial/Makefile.in	2010-11-11 17:50:10.790619001 +1100
-+++ gtk+-2.23.2/docs/tutorial/Makefile.in	2010-11-11 17:48:41.098619001 +1100
+
+=== modified file 'docs/tutorial/Makefile.in'
+--- old/docs/tutorial/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/docs/tutorial/Makefile.in	2010-11-19 15:41:51 +0000
 @@ -120,6 +120,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -5739,10 +6339,10 @@ Index: gtk+-2.23.2/docs/tutorial/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/gdk/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/gdk/Makefile.in	2010-11-11 17:50:00.738618993 +1100
-+++ gtk+-2.23.2/gdk/Makefile.in	2010-11-11 17:48:41.294619001 +1100
+
+=== modified file 'gdk/Makefile.in'
+--- old/gdk/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/gdk/Makefile.in	2010-11-19 15:41:52 +0000
 @@ -42,8 +42,7 @@
  	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl COPYING
  @HAVE_INTROSPECTION_TRUE@am__append_1 = Gdk-2.0.gir
@@ -5778,7 +6378,7 @@ Index: gtk+-2.23.2/gdk/Makefile.in
  INCLUDES = \
  	-DG_LOG_DOMAIN=\"Gdk\"		\
  	-DGDK_COMPILATION		\
-@@ -666,12 +667,13 @@
+@@ -666,15 +667,17 @@
  libgdk_win32_2_0_la_LIBADD = win32/libgdk-win32.la $(GDK_DEP_LIBS)
  libgdk_win32_2_0_la_DEPENDENCIES = win32/libgdk-win32.la win32/rc/gdk-win32-res.o gdk.def
  libgdk_win32_2_0_la_LDFLAGS = -Wl,win32/rc/gdk-win32-res.o -export-symbols $(srcdir)/gdk.def $(LDADD)
@@ -5798,19 +6398,24 @@ Index: gtk+-2.23.2/gdk/Makefile.in
  @HAVE_INTROSPECTION_TRUE@Gdk_2_0_gir_INCLUDES = Gio-2.0 GdkPixbuf-2.0 Pango-1.0 cairo-1.0
  @HAVE_INTROSPECTION_TRUE@Gdk_2_0_gir_LIBS = $(gdktargetlib)
  @HAVE_INTROSPECTION_TRUE@Gdk_2_0_gir_FILES = $(introspection_files)
-@@ -712,7 +714,7 @@
++@HAVE_INTROSPECTION_TRUE@Gdk_2_0_gir_PACKAGES = gdk-2.0
+ @HAVE_INTROSPECTION_TRUE@Gdk_2_0_gir_CFLAGS = $(INCLUDES)
+ @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@x11_introspection_files = \
+ @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/checksettings.c		\
+@@ -712,7 +715,8 @@
  @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@GdkX11_2_0_gir_INCLUDES = Gio-2.0 Gdk-2.0 GdkPixbuf-2.0 Pango-1.0 xlib-2.0
  @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@GdkX11_2_0_gir_LIBS = $(gdktargetlib)
  @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@GdkX11_2_0_gir_FILES = $(x11_introspection_files)
 -@HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@GdkX11_2_0_gir_CFLAGS = $(INCLUDES) -L$(top_builddir)/gdk
++@HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@GdkX11_2_0_gir_PACKAGES = gdk-x11-2.0
 +@HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@GdkX11_2_0_gir_CFLAGS = $(INCLUDES) -L$(top_builddir)/gdk -I.. -I$(srcdir)
  @HAVE_INTROSPECTION_TRUE@girdir = $(datadir)/gir-1.0
  @HAVE_INTROSPECTION_TRUE@gir_DATA = $(INTROSPECTION_GIRS)
  @HAVE_INTROSPECTION_TRUE@typelibsdir = $(libdir)/girepository-1.0
-Index: gtk+-2.23.2/gdk/directfb/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/gdk/directfb/Makefile.in	2010-11-11 17:50:00.386619001 +1100
-+++ gtk+-2.23.2/gdk/directfb/Makefile.in	2010-11-11 17:48:41.402619001 +1100
+
+=== modified file 'gdk/directfb/Makefile.in'
+--- old/gdk/directfb/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/gdk/directfb/Makefile.in	2010-11-19 15:41:52 +0000
 @@ -184,6 +184,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -5827,10 +6432,10 @@ Index: gtk+-2.23.2/gdk/directfb/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/gdk/quartz/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/gdk/quartz/Makefile.in	2010-11-11 17:49:59.970619001 +1100
-+++ gtk+-2.23.2/gdk/quartz/Makefile.in	2010-11-11 17:48:41.514619001 +1100
+
+=== modified file 'gdk/quartz/Makefile.in'
+--- old/gdk/quartz/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/gdk/quartz/Makefile.in	2010-11-19 15:41:52 +0000
 @@ -183,6 +183,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -5847,10 +6452,10 @@ Index: gtk+-2.23.2/gdk/quartz/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/gdk/tests/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/gdk/tests/Makefile.in	2010-11-11 17:49:59.538619001 +1100
-+++ gtk+-2.23.2/gdk/tests/Makefile.in	2010-11-11 17:48:41.590619001 +1100
+
+=== modified file 'gdk/tests/Makefile.in'
+--- old/gdk/tests/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/gdk/tests/Makefile.in	2010-11-19 15:41:52 +0000
 @@ -125,6 +125,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -5867,10 +6472,10 @@ Index: gtk+-2.23.2/gdk/tests/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/gdk/win32/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/gdk/win32/Makefile.in	2010-11-11 17:50:01.234619001 +1100
-+++ gtk+-2.23.2/gdk/win32/Makefile.in	2010-11-11 17:48:41.722619001 +1100
+
+=== modified file 'gdk/win32/Makefile.in'
+--- old/gdk/win32/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/gdk/win32/Makefile.in	2010-11-19 15:41:52 +0000
 @@ -221,6 +221,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -5887,10 +6492,10 @@ Index: gtk+-2.23.2/gdk/win32/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/gdk/win32/rc/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/gdk/win32/rc/Makefile.in	2010-11-11 17:50:01.066619001 +1100
-+++ gtk+-2.23.2/gdk/win32/rc/Makefile.in	2010-11-11 17:48:41.794619001 +1100
+
+=== modified file 'gdk/win32/rc/Makefile.in'
+--- old/gdk/win32/rc/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/gdk/win32/rc/Makefile.in	2010-11-19 15:41:52 +0000
 @@ -122,6 +122,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -5907,10 +6512,10 @@ Index: gtk+-2.23.2/gdk/win32/rc/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/gdk/x11/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/gdk/x11/Makefile.in	2010-11-11 17:49:59.246619001 +1100
-+++ gtk+-2.23.2/gdk/x11/Makefile.in	2010-11-11 17:48:41.918619001 +1100
+
+=== modified file 'gdk/x11/Makefile.in'
+--- old/gdk/x11/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/gdk/x11/Makefile.in	2010-11-19 15:41:52 +0000
 @@ -212,6 +212,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -5927,10 +6532,10 @@ Index: gtk+-2.23.2/gdk/x11/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/gtk/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/gtk/Makefile.in	2010-11-11 17:50:19.486619001 +1100
-+++ gtk+-2.23.2/gtk/Makefile.in	2010-11-11 17:48:42.318619001 +1100
+
+=== modified file 'gtk/Makefile.in'
+--- old/gtk/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/gtk/Makefile.in	2010-11-19 15:41:52 +0000
 @@ -152,12 +152,13 @@
  	gtkinfobar.c gtkinputdialog.c gtkinvisible.c gtkitem.c \
  	gtkkeyhash.c gtklabel.c gtklayout.c gtklinkbutton.c \
@@ -6159,7 +6764,15 @@ Index: gtk+-2.23.2/gtk/Makefile.in
  	gtkprintoperationpreview.c gtkprintsettings.c gtkprintutils.c \
  	gtkprogressbar.c gtkradioaction.c gtkradiobutton.c \
  	gtkradiomenuitem.c gtkradiotoolbutton.c gtkrange.c gtkrbtree.c \
-@@ -2051,6 +2065,8 @@
+@@ -1348,6 +1362,7 @@
+ 
+ @HAVE_INTROSPECTION_TRUE@Gtk_2_0_gir_LIBS = $(gtktargetlib)
+ @HAVE_INTROSPECTION_TRUE@Gtk_2_0_gir_FILES = $(addprefix $(srcdir)/, $(introspection_files))
++@HAVE_INTROSPECTION_TRUE@Gtk_2_0_gir_PACKAGES = gtk+-2.0
+ @HAVE_INTROSPECTION_TRUE@girdir = $(datadir)/gir-1.0
+ @HAVE_INTROSPECTION_TRUE@gir_DATA = $(INTROSPECTION_GIRS)
+ @HAVE_INTROSPECTION_TRUE@typelibsdir = $(libdir)/girepository-1.0
+@@ -2051,6 +2066,8 @@
  @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gtkwindow.Plo@am__quote@
  @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gtkxembed.Plo@am__quote@
  @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/queryimmodules.Po@am__quote@
@@ -6168,10 +6781,10 @@ Index: gtk+-2.23.2/gtk/Makefile.in
  @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/updateiconcache.Po@am__quote@
  
  .c.o:
-Index: gtk+-2.23.2/gtk/tests/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/gtk/tests/Makefile.in	2010-11-11 17:50:15.734619001 +1100
-+++ gtk+-2.23.2/gtk/tests/Makefile.in	2010-11-11 17:48:42.482619001 +1100
+
+=== modified file 'gtk/tests/Makefile.in'
+--- old/gtk/tests/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/gtk/tests/Makefile.in	2010-11-19 15:41:52 +0000
 @@ -56,9 +56,10 @@
  @OS_UNIX_TRUE@am__EXEEXT_1 = defaultvalue$(EXEEXT)
  am__EXEEXT_2 = testing$(EXEEXT) liststore$(EXEEXT) treestore$(EXEEXT) \
@@ -6267,10 +6880,10 @@ Index: gtk+-2.23.2/gtk/tests/Makefile.in
  @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/object.Po@am__quote@
  @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pixbuf-init.Po@am__quote@
  @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/recentmanager.Po@am__quote@
-Index: gtk+-2.23.2/gtk/theme-bits/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/gtk/theme-bits/Makefile.in	2010-11-11 17:50:16.306619001 +1100
-+++ gtk+-2.23.2/gtk/theme-bits/Makefile.in	2010-11-11 17:48:42.638619001 +1100
+
+=== modified file 'gtk/theme-bits/Makefile.in'
+--- old/gtk/theme-bits/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/gtk/theme-bits/Makefile.in	2010-11-19 15:41:53 +0000
 @@ -152,6 +152,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -6287,10 +6900,10 @@ Index: gtk+-2.23.2/gtk/theme-bits/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/ltmain.sh
-===================================================================
---- gtk+-2.23.2.orig/ltmain.sh	2010-11-11 17:50:01.850619001 +1100
-+++ gtk+-2.23.2/ltmain.sh	2010-11-11 17:48:31.250619001 +1100
+
+=== modified file 'ltmain.sh'
+--- old/ltmain.sh	2010-11-19 15:35:46 +0000
++++ new/ltmain.sh	2010-11-19 15:41:45 +0000
 @@ -1,10 +1,9 @@
  # Generated from ltmain.m4sh.
  
@@ -7358,22 +7971,22 @@ Index: gtk+-2.23.2/ltmain.sh
 -# wrapper executable.  Must ONLY be called from within
 -# func_mode_link because it depends on a number of variables
 -# set therein.
-+
-+# func_emit_wrapper_part1 [arg=no]
- #
+-#
 -# ARG is the value that the WRAPPER_SCRIPT_BELONGS_IN_OBJDIR
 -# variable will take.  If 'yes', then the emitted script
 -# will assume that the directory in which it is stored is
 -# the $objdir directory.  This is a cygwin/mingw-specific
 -# behavior.
 -func_emit_wrapper ()
--{
--	func_emit_wrapper_arg1=${1-no}
++
++# func_emit_wrapper_part1 [arg=no]
++#
 +# Emit the first part of a libtool wrapper script on stdout.
 +# For more information, see the description associated with
 +# func_emit_wrapper(), below.
 +func_emit_wrapper_part1 ()
-+{
+ {
+-	func_emit_wrapper_arg1=${1-no}
 +	func_emit_wrapper_part1_arg1=no
 +	if test -n "$1" ; then
 +	  func_emit_wrapper_part1_arg1=$1
@@ -7484,21 +8097,7 @@ Index: gtk+-2.23.2/ltmain.sh
 -        func_lt_dump_args \${1+\"\$@\"} 1>&2
 -      fi
 -      exec \"\$progdir/\$program\" \${1+\"\$@\"}
-+    ECHO=\"$qecho\"
-+    file=\"\$0\"
-+    # Make sure echo works.
-+    if test \"X\$1\" = X--no-reexec; then
-+      # Discard the --no-reexec flag, and continue.
-+      shift
-+    elif test \"X\`{ \$ECHO '\t'; } 2>/dev/null\`\" = 'X\t'; then
-+      # Yippee, \$ECHO works!
-+      :
-+    else
-+      # Restart under the correct shell, and then maybe \$ECHO will work.
-+      exec $SHELL \"\$0\" --no-reexec \${1+\"\$@\"}
-+    fi
-+  fi\
- "
+-"
 -    ;;
 -  esac
 -  $ECHO "\
@@ -7524,6 +8123,21 @@ Index: gtk+-2.23.2/ltmain.sh
 -
 -  # Parse options
 -  func_parse_lt_options \"\$0\" \${1+\"\$@\"}
++    ECHO=\"$qecho\"
++    file=\"\$0\"
++    # Make sure echo works.
++    if test \"X\$1\" = X--no-reexec; then
++      # Discard the --no-reexec flag, and continue.
++      shift
++    elif test \"X\`{ \$ECHO '\t'; } 2>/dev/null\`\" = 'X\t'; then
++      # Yippee, \$ECHO works!
++      :
++    else
++      # Restart under the correct shell, and then maybe \$ECHO will work.
++      exec $SHELL \"\$0\" --no-reexec \${1+\"\$@\"}
++    fi
++  fi\
++"
 +	$ECHO "\
  
    # Find the directory that this script lives in.
@@ -7931,6 +8545,7 @@ Index: gtk+-2.23.2/ltmain.sh
  void lt_update_lib_path (const char *name, const char *value);
 -char **prepare_spawn (char **argv);
 -void lt_dump_script (FILE *f);
+-EOF
 +
 +static const char *script_text_part1 =
 +EOF
@@ -7942,7 +8557,7 @@ Index: gtk+-2.23.2/ltmain.sh
 +	    cat <<EOF
 +
 +static const char *script_text_part2 =
- EOF
++EOF
 +	    func_emit_wrapper_part2 yes |
 +	        $SED -e 's/\([\\"]\)/\\\1/g' \
 +	             -e 's/^/  "/' -e 's/$/\\n"/'
@@ -8035,7 +8650,8 @@ Index: gtk+-2.23.2/ltmain.sh
 -	    cat <<"EOF"
 -  lt_debugprintf (__FILE__, __LINE__, "(main) argv[0]: %s\n", argv[0]);
 -  lt_debugprintf (__FILE__, __LINE__, "(main) program_name: %s\n", program_name);
- 
+-
++
 +  newargz = XMALLOC (char *, argc + 1);
    tmp_pathspec = find_executable (argv[0]);
    if (tmp_pathspec == NULL)
@@ -8576,9 +9192,10 @@ Index: gtk+-2.23.2/ltmain.sh
 -	    func_emit_wrapper yes |
 -              $SED -e 's/\([\\"]\)/\\\1/g' \
 -	           -e 's/^/  fputs ("/' -e 's/$/\\n", f);/'
- 
+-
 -            cat <<"EOF"
 -}
++
  EOF
  }
  # end: func_emit_cwrapperexe_src
@@ -9393,10 +10010,10 @@ Index: gtk+-2.23.2/ltmain.sh
  	  esac
  	  $ECHO > $output "\
  # $outputname - a libtool library file
-Index: gtk+-2.23.2/m4/libtool.m4
-===================================================================
---- gtk+-2.23.2.orig/m4/libtool.m4	2010-11-11 17:50:14.058619001 +1100
-+++ gtk+-2.23.2/m4/libtool.m4	2010-11-11 17:48:31.418619001 +1100
+
+=== modified file 'm4/libtool.m4'
+--- old/m4/libtool.m4	2010-11-19 15:35:46 +0000
++++ new/m4/libtool.m4	2010-11-19 15:41:45 +0000
 @@ -1,8 +1,7 @@
  # libtool.m4 - Configure libtool for the host system. -*-Autoconf-*-
  #
@@ -9820,16 +10437,35 @@ Index: gtk+-2.23.2/m4/libtool.m4
 -_LTECHO_EOF'
 -  }
 -  ECHO='func_fallback_echo'
-+  # Restart under the correct shell.
-+  exec $SHELL "[$]0" --no-reexec ${1+"[$]@"}
- fi
- 
+-fi
+-
 -# func_echo_all arg...
 -# Invoke $ECHO with all args, space-separated.
 -func_echo_all ()
 -{
 -    $ECHO "$*" 
 -}
+-
+-case "$ECHO" in
+-  printf*) AC_MSG_RESULT([printf]) ;;
+-  print*) AC_MSG_RESULT([print -r]) ;;
+-  *) AC_MSG_RESULT([cat]) ;;
+-esac
+-
+-m4_ifdef([_AS_DETECT_SUGGESTED],
+-[_AS_DETECT_SUGGESTED([
+-  test -n "${ZSH_VERSION+set}${BASH_VERSION+set}" || (
+-    ECHO='\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+-    ECHO=$ECHO$ECHO$ECHO$ECHO$ECHO
+-    ECHO=$ECHO$ECHO$ECHO$ECHO$ECHO$ECHO
+-    PATH=/empty FPATH=/empty; export PATH FPATH
+-    test "X`printf %s $ECHO`" = "X$ECHO" \
+-      || test "X`print -r -- $ECHO`" = "X$ECHO" )])])
+-
++  # Restart under the correct shell.
++  exec $SHELL "[$]0" --no-reexec ${1+"[$]@"}
++fi
++
 +if test "X[$]1" = X--fallback-echo; then
 +  # used as fallback echo
 +  shift
@@ -9838,12 +10474,7 @@ Index: gtk+-2.23.2/m4/libtool.m4
 +_LT_EOF
 +  exit 0
 +fi
- 
--case "$ECHO" in
--  printf*) AC_MSG_RESULT([printf]) ;;
--  print*) AC_MSG_RESULT([print -r]) ;;
--  *) AC_MSG_RESULT([cat]) ;;
--esac
++
 +# The HP-UX ksh and POSIX shell print the target directory to stdout
 +# if CDPATH is set.
 +(unset CDPATH) >/dev/null 2>&1 && unset CDPATH
@@ -9925,16 +10556,7 @@ Index: gtk+-2.23.2/m4/libtool.m4
 +        else
 +	  # maybe with a smaller string...
 +	  prev=:
- 
--m4_ifdef([_AS_DETECT_SUGGESTED],
--[_AS_DETECT_SUGGESTED([
--  test -n "${ZSH_VERSION+set}${BASH_VERSION+set}" || (
--    ECHO='\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
--    ECHO=$ECHO$ECHO$ECHO$ECHO$ECHO
--    ECHO=$ECHO$ECHO$ECHO$ECHO$ECHO$ECHO
--    PATH=/empty FPATH=/empty; export PATH FPATH
--    test "X`printf %s $ECHO`" = "X$ECHO" \
--      || test "X`print -r -- $ECHO`" = "X$ECHO" )])])
++
 +	  for cmd in 'echo test' 'sed 2q "[$]0"' 'sed 10q "[$]0"' 'sed 20q "[$]0"' 'sed 50q "[$]0"'; do
 +	    if { test "X$echo_test_string" = "X`eval $cmd`"; } 2>/dev/null
 +	    then
@@ -9942,7 +10564,7 @@ Index: gtk+-2.23.2/m4/libtool.m4
 +	    fi
 +	    prev="$cmd"
 +	  done
- 
++
 +	  if test "$prev" != 'sed 50q "[$]0"'; then
 +	    echo_test_string=`eval $prev`
 +	    export echo_test_string
@@ -10919,7 +11541,10 @@ Index: gtk+-2.23.2/m4/libtool.m4
 -	[lt_cv_]_LT_TAGVAR(archive_cmds_need_lc, $1),
 -	[$RM conftest*
 -	echo "$lt_simple_compile_test_code" > conftest.$ac_ext
--
++      AC_MSG_CHECKING([whether -lc should be explicitly linked in])
++      $RM conftest*
++      echo "$lt_simple_compile_test_code" > conftest.$ac_ext
+ 
 -	if AC_TRY_EVAL(ac_compile) 2>conftest.err; then
 -	  soname=conftest
 -	  lib=conftest
@@ -10947,10 +11572,6 @@ Index: gtk+-2.23.2/m4/libtool.m4
 -	$RM conftest*
 -	])
 -      _LT_TAGVAR(archive_cmds_need_lc, $1)=$lt_cv_[]_LT_TAGVAR(archive_cmds_need_lc, $1)
-+      AC_MSG_CHECKING([whether -lc should be explicitly linked in])
-+      $RM conftest*
-+      echo "$lt_simple_compile_test_code" > conftest.$ac_ext
-+
 +      if AC_TRY_EVAL(ac_compile) 2>conftest.err; then
 +        soname=conftest
 +        lib=conftest
@@ -11479,10 +12100,10 @@ Index: gtk+-2.23.2/m4/libtool.m4
  }
  
  # func_arith arithmetic-term...
-Index: gtk+-2.23.2/m4/ltoptions.m4
-===================================================================
---- gtk+-2.23.2.orig/m4/ltoptions.m4	2010-11-11 17:50:14.430619001 +1100
-+++ gtk+-2.23.2/m4/ltoptions.m4	2010-11-11 17:48:31.562619001 +1100
+
+=== modified file 'm4/ltoptions.m4'
+--- old/m4/ltoptions.m4	2010-11-19 15:35:46 +0000
++++ new/m4/ltoptions.m4	2010-11-19 15:41:45 +0000
 @@ -1,14 +1,13 @@
  # Helper functions for option handling.                    -*- Autoconf -*-
  #
@@ -11526,10 +12147,10 @@ Index: gtk+-2.23.2/m4/ltoptions.m4
  ])# win32-dll
  
  AU_DEFUN([AC_LIBTOOL_WIN32_DLL],
-Index: gtk+-2.23.2/m4/ltversion.m4
-===================================================================
---- gtk+-2.23.2.orig/m4/ltversion.m4	2010-11-11 17:50:14.310619001 +1100
-+++ gtk+-2.23.2/m4/ltversion.m4	2010-11-11 17:48:31.882619001 +1100
+
+=== modified file 'm4/ltversion.m4'
+--- old/m4/ltversion.m4	2010-11-19 15:35:46 +0000
++++ new/m4/ltversion.m4	2010-11-19 15:41:45 +0000
 @@ -9,15 +9,15 @@
  
  # Generated from ltversion.in.
@@ -11551,10 +12172,10 @@ Index: gtk+-2.23.2/m4/ltversion.m4
  _LT_DECL(, macro_version, 0, [Which release of libtool.m4 was used?])
  _LT_DECL(, macro_revision, 0)
  ])
-Index: gtk+-2.23.2/m4/lt~obsolete.m4
-===================================================================
---- gtk+-2.23.2.orig/m4/lt~obsolete.m4	2010-11-11 17:50:14.186619001 +1100
-+++ gtk+-2.23.2/m4/lt~obsolete.m4	2010-11-11 17:48:32.050619001 +1100
+
+=== modified file 'm4/lt~obsolete.m4'
+--- old/m4/lt~obsolete.m4	2010-11-19 15:35:46 +0000
++++ new/m4/lt~obsolete.m4	2010-11-19 15:41:45 +0000
 @@ -1,13 +1,13 @@
  # lt~obsolete.m4 -- aclocal satisfying obsolete definitions.    -*-Autoconf-*-
  #
@@ -11590,10 +12211,10 @@ Index: gtk+-2.23.2/m4/lt~obsolete.m4
 -m4_ifndef([_LT_PROG_F77],		[AC_DEFUN([_LT_PROG_F77])])
 -m4_ifndef([_LT_PROG_FC],		[AC_DEFUN([_LT_PROG_FC])])
 -m4_ifndef([_LT_PROG_CXX],		[AC_DEFUN([_LT_PROG_CXX])])
-Index: gtk+-2.23.2/m4macros/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/m4macros/Makefile.in	2010-11-11 17:50:20.974619001 +1100
-+++ gtk+-2.23.2/m4macros/Makefile.in	2010-11-11 17:48:42.718619001 +1100
+
+=== modified file 'm4macros/Makefile.in'
+--- old/m4macros/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/m4macros/Makefile.in	2010-11-19 15:41:53 +0000
 @@ -144,6 +144,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -11610,10 +12231,10 @@ Index: gtk+-2.23.2/m4macros/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/modules/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/modules/Makefile.in	2010-11-11 17:49:54.022619001 +1100
-+++ gtk+-2.23.2/modules/Makefile.in	2010-11-11 17:48:42.794619001 +1100
+
+=== modified file 'modules/Makefile.in'
+--- old/modules/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/modules/Makefile.in	2010-11-19 15:41:53 +0000
 @@ -161,6 +161,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -11630,10 +12251,10 @@ Index: gtk+-2.23.2/modules/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/modules/engines/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/modules/engines/Makefile.in	2010-11-11 17:49:52.978619001 +1100
-+++ gtk+-2.23.2/modules/engines/Makefile.in	2010-11-11 17:48:42.874619001 +1100
+
+=== modified file 'modules/engines/Makefile.in'
+--- old/modules/engines/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/modules/engines/Makefile.in	2010-11-19 15:41:53 +0000
 @@ -160,6 +160,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -11650,10 +12271,10 @@ Index: gtk+-2.23.2/modules/engines/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/modules/engines/ms-windows/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/modules/engines/ms-windows/Makefile.in	2010-11-11 17:49:52.634619001 +1100
-+++ gtk+-2.23.2/modules/engines/ms-windows/Makefile.in	2010-11-11 17:48:42.986619001 +1100
+
+=== modified file 'modules/engines/ms-windows/Makefile.in'
+--- old/modules/engines/ms-windows/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/modules/engines/ms-windows/Makefile.in	2010-11-19 15:41:53 +0000
 @@ -217,6 +217,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -11670,10 +12291,10 @@ Index: gtk+-2.23.2/modules/engines/ms-windows/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/modules/engines/ms-windows/Theme/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/modules/engines/ms-windows/Theme/Makefile.in	2010-11-11 17:49:52.510619001 +1100
-+++ gtk+-2.23.2/modules/engines/ms-windows/Theme/Makefile.in	2010-11-11 17:48:43.066619001 +1100
+
+=== modified file 'modules/engines/ms-windows/Theme/Makefile.in'
+--- old/modules/engines/ms-windows/Theme/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/modules/engines/ms-windows/Theme/Makefile.in	2010-11-19 15:41:53 +0000
 @@ -160,6 +160,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -11690,10 +12311,10 @@ Index: gtk+-2.23.2/modules/engines/ms-windows/Theme/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-11-11 17:49:52.386619001 +1100
-+++ gtk+-2.23.2/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-11-11 17:48:43.146619001 +1100
+
+=== modified file 'modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in'
+--- old/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in	2010-11-19 15:41:53 +0000
 @@ -144,6 +144,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -11710,10 +12331,10 @@ Index: gtk+-2.23.2/modules/engines/ms-windows/Theme/gtk-2.0/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/modules/engines/pixbuf/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/modules/engines/pixbuf/Makefile.in	2010-11-11 17:49:52.822619001 +1100
-+++ gtk+-2.23.2/modules/engines/pixbuf/Makefile.in	2010-11-11 17:48:43.258619001 +1100
+
+=== modified file 'modules/engines/pixbuf/Makefile.in'
+--- old/modules/engines/pixbuf/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/modules/engines/pixbuf/Makefile.in	2010-11-19 15:41:53 +0000
 @@ -180,6 +180,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -11730,10 +12351,10 @@ Index: gtk+-2.23.2/modules/engines/pixbuf/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/modules/input/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/modules/input/Makefile.in	2010-11-11 17:49:55.758619000 +1100
-+++ gtk+-2.23.2/modules/input/Makefile.in	2010-11-11 17:48:43.478619001 +1100
+
+=== modified file 'modules/input/Makefile.in'
+--- old/modules/input/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/modules/input/Makefile.in	2010-11-19 15:41:53 +0000
 @@ -381,6 +381,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -11780,10 +12401,10 @@ Index: gtk+-2.23.2/modules/input/Makefile.in
  
  @CROSS_COMPILING_FALSE@all-local: gtk.immodules
  
-Index: gtk+-2.23.2/modules/other/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/modules/other/Makefile.in	2010-11-11 17:49:55.390619001 +1100
-+++ gtk+-2.23.2/modules/other/Makefile.in	2010-11-11 17:48:43.558619001 +1100
+
+=== modified file 'modules/other/Makefile.in'
+--- old/modules/other/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/modules/other/Makefile.in	2010-11-19 15:41:53 +0000
 @@ -160,6 +160,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -11800,10 +12421,10 @@ Index: gtk+-2.23.2/modules/other/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/modules/other/gail/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/modules/other/gail/Makefile.in	2010-11-11 17:49:54.906619001 +1100
-+++ gtk+-2.23.2/modules/other/gail/Makefile.in	2010-11-11 17:48:43.890619001 +1100
+
+=== modified file 'modules/other/gail/Makefile.in'
+--- old/modules/other/gail/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/modules/other/gail/Makefile.in	2010-11-19 15:41:54 +0000
 @@ -251,6 +251,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -11820,10 +12441,10 @@ Index: gtk+-2.23.2/modules/other/gail/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/modules/other/gail/libgail-util/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/modules/other/gail/libgail-util/Makefile.in	2010-11-11 17:49:55.098619001 +1100
-+++ gtk+-2.23.2/modules/other/gail/libgail-util/Makefile.in	2010-11-11 17:48:44.022619001 +1100
+
+=== modified file 'modules/other/gail/libgail-util/Makefile.in'
+--- old/modules/other/gail/libgail-util/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/modules/other/gail/libgail-util/Makefile.in	2010-11-19 15:41:54 +0000
 @@ -185,6 +185,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -11840,10 +12461,10 @@ Index: gtk+-2.23.2/modules/other/gail/libgail-util/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/modules/other/gail/tests/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/modules/other/gail/tests/Makefile.in	2010-11-11 17:49:54.402619001 +1100
-+++ gtk+-2.23.2/modules/other/gail/tests/Makefile.in	2010-11-11 17:48:44.198619001 +1100
+
+=== modified file 'modules/other/gail/tests/Makefile.in'
+--- old/modules/other/gail/tests/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/modules/other/gail/tests/Makefile.in	2010-11-19 15:41:54 +0000
 @@ -324,6 +324,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -11860,10 +12481,10 @@ Index: gtk+-2.23.2/modules/other/gail/tests/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/modules/printbackends/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/modules/printbackends/Makefile.in	2010-11-11 17:49:53.590619001 +1100
-+++ gtk+-2.23.2/modules/printbackends/Makefile.in	2010-11-11 17:48:44.274619001 +1100
+
+=== modified file 'modules/printbackends/Makefile.in'
+--- old/modules/printbackends/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/modules/printbackends/Makefile.in	2010-11-19 15:41:54 +0000
 @@ -162,6 +162,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -11880,10 +12501,10 @@ Index: gtk+-2.23.2/modules/printbackends/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/modules/printbackends/cups/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/modules/printbackends/cups/Makefile.in	2010-11-11 17:49:53.890619001 +1100
-+++ gtk+-2.23.2/modules/printbackends/cups/Makefile.in	2010-11-11 17:48:44.390619001 +1100
+
+=== modified file 'modules/printbackends/cups/Makefile.in'
+--- old/modules/printbackends/cups/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/modules/printbackends/cups/Makefile.in	2010-11-19 15:41:54 +0000
 @@ -184,6 +184,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -11900,10 +12521,10 @@ Index: gtk+-2.23.2/modules/printbackends/cups/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/modules/printbackends/file/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/modules/printbackends/file/Makefile.in	2010-11-11 17:49:53.726619001 +1100
-+++ gtk+-2.23.2/modules/printbackends/file/Makefile.in	2010-11-11 17:48:44.506619001 +1100
+
+=== modified file 'modules/printbackends/file/Makefile.in'
+--- old/modules/printbackends/file/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/modules/printbackends/file/Makefile.in	2010-11-19 15:41:54 +0000
 @@ -183,6 +183,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -11920,10 +12541,10 @@ Index: gtk+-2.23.2/modules/printbackends/file/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/modules/printbackends/lpr/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/modules/printbackends/lpr/Makefile.in	2010-11-11 17:49:53.474619005 +1100
-+++ gtk+-2.23.2/modules/printbackends/lpr/Makefile.in	2010-11-11 17:48:44.666619032 +1100
+
+=== modified file 'modules/printbackends/lpr/Makefile.in'
+--- old/modules/printbackends/lpr/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/modules/printbackends/lpr/Makefile.in	2010-11-19 15:41:54 +0000
 @@ -181,6 +181,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -11940,10 +12561,10 @@ Index: gtk+-2.23.2/modules/printbackends/lpr/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/modules/printbackends/papi/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/modules/printbackends/papi/Makefile.in	2010-11-11 17:49:53.266619001 +1100
-+++ gtk+-2.23.2/modules/printbackends/papi/Makefile.in	2010-11-11 17:48:44.782619000 +1100
+
+=== modified file 'modules/printbackends/papi/Makefile.in'
+--- old/modules/printbackends/papi/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/modules/printbackends/papi/Makefile.in	2010-11-19 15:41:54 +0000
 @@ -181,6 +181,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -11960,10 +12581,10 @@ Index: gtk+-2.23.2/modules/printbackends/papi/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/modules/printbackends/test/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/modules/printbackends/test/Makefile.in	2010-11-11 17:49:53.118619001 +1100
-+++ gtk+-2.23.2/modules/printbackends/test/Makefile.in	2010-11-11 17:48:44.906619001 +1100
+
+=== modified file 'modules/printbackends/test/Makefile.in'
+--- old/modules/printbackends/test/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/modules/printbackends/test/Makefile.in	2010-11-19 15:41:54 +0000
 @@ -182,6 +182,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -11980,10 +12601,10 @@ Index: gtk+-2.23.2/modules/printbackends/test/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/perf/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/perf/Makefile.in	2010-11-11 17:50:21.238619001 +1100
-+++ gtk+-2.23.2/perf/Makefile.in	2010-11-11 17:48:45.018619001 +1100
+
+=== modified file 'perf/Makefile.in'
+--- old/perf/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/perf/Makefile.in	2010-11-19 15:41:54 +0000
 @@ -155,6 +155,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -12000,10 +12621,10 @@ Index: gtk+-2.23.2/perf/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
-Index: gtk+-2.23.2/tests/Makefile.in
-===================================================================
---- gtk+-2.23.2.orig/tests/Makefile.in	2010-11-11 17:49:58.722619001 +1100
-+++ gtk+-2.23.2/tests/Makefile.in	2010-11-11 17:48:45.290619001 +1100
+
+=== modified file 'tests/Makefile.in'
+--- old/tests/Makefile.in	2010-11-19 15:35:46 +0000
++++ new/tests/Makefile.in	2010-11-19 15:41:55 +0000
 @@ -405,6 +405,7 @@
  GDK_PACKAGES = @GDK_PACKAGES@
  GDK_PIXBUF_CSOURCE = @GDK_PIXBUF_CSOURCE@
@@ -12020,3 +12641,4 @@ Index: gtk+-2.23.2/tests/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  ms_librarian = @ms_librarian@
+
