@@ -22,3 +22,5 @@
 072_indicator_menu_update.patch
 091_bugzilla_tooltip_refresh.patch
 092_default_to_xdg_document_dir.patch
+093_git_no_start_delay.patch
+094_git_optimization.patch

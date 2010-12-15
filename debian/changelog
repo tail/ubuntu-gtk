@@ -1,3 +1,13 @@
+gtk+2.0 (2.23.2-0ubuntu3) UNRELEASED; urgency=low
+
+  * debian/patches/093_git_no_start_delay.patch:
+    - git patch to no do sync io calls when opening an url, should fix issues
+      where the caller hangs while the url is opening.
+  * debian/patches/094_git_optimization.patch:
+    - optimization from git to avoid recomputing when no needed (lp: #689741)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 15 Dec 2010 10:23:01 +0100
+
 gtk+2.0 (2.23.2-0ubuntu2) natty; urgency=low
 
   * debian/patches/065_gir_set_packages.patch
