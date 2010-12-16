@@ -1,3 +1,9 @@
+gtk+2.0 (2.23.2-0ubuntu4) natty; urgency=low
+
+  * Updated for gir abi transition.
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 16 Dec 2010 16:36:02 +0100
+
 gtk+2.0 (2.23.2-0ubuntu3) natty; urgency=low
 
   * debian/patches/093_git_no_start_delay.patch:

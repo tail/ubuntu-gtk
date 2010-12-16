@@ -32,12 +32,12 @@ Build-Depends: debhelper (>= 5.0.22),
                x11proto-xext-dev,
                libcups2-dev (>= 1.2),
                gobject-introspection,
-               gir1.0-freedesktop,
+               gir1.2-freedesktop,
                libgirepository1.0-dev,
-               gir1.0-glib-2.0,
-               gir1.0-atk-1.0,
-               gir1.0-pango-1.0,
-               gir1.0-gdkpixbuf-2.0,
+               gir1.2-glib-2.0,
+               gir1.2-atk-1.0,
+               gir1.2-pango-1.0,
+               gir1.2-gdkpixbuf-2.0,
                quilt,
                gawk,
                xsltproc,
@@ -220,13 +220,13 @@ Description: Pixbuf-based theme for GTK+ 2.x
  .
  This package contains the pixbuf theme engine.
 
-Package: gir1.0-gtk-2.0
+Package: gir1.2-gtk-2.0
 Architecture: any
 Depends: @COMMON_PKG@,
          ${misc:Depends},
          ${shlibs:Depends},
          ${gir:Depends}
-Conflicts: gobject-introspection-repository
+Conflicts: gobject-introspection-repository, gir1.0-gtk-2.0
 Description: The GTK+ graphical user interface library
  The GTK+ is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, the GTK+ is suitable
