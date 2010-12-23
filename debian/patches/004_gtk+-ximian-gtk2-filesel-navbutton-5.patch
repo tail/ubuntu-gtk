@@ -1,7 +1,7 @@
-Index: gtk+2.0-2.21.5/gtk/gtkfilesel.c
+Index: gtk+2.0-2.22.0/gtk/gtkfilesel.c
 ===================================================================
---- gtk+2.0-2.21.5.orig/gtk/gtkfilesel.c	2010-07-12 18:23:44.000000000 +0200
-+++ gtk+2.0-2.21.5/gtk/gtkfilesel.c	2010-07-22 17:54:34.257053706 +0200
+--- gtk+2.0-2.22.0.orig/gtk/gtkfilesel.c	2010-09-23 05:00:36.000000000 +0200
++++ gtk+2.0-2.22.0/gtk/gtkfilesel.c	2010-09-23 20:29:26.590578775 +0200
 @@ -80,9 +80,13 @@
  #include "gtkeventbox.h"
  #include "gtkoptionmenu.h"
@@ -388,10 +388,10 @@ Index: gtk+2.0-2.21.5/gtk/gtkfilesel.c
  static gint
  gtk_file_selection_key_press (GtkWidget   *widget,
  			      GdkEventKey *event,
-Index: gtk+2.0-2.21.5/gtk/stock-icons/ximian-icons.h
+Index: gtk+2.0-2.22.0/gtk/stock-icons/ximian-icons.h
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.21.5/gtk/stock-icons/ximian-icons.h	2010-07-22 17:54:34.261053795 +0200
++++ gtk+2.0-2.22.0/gtk/stock-icons/ximian-icons.h	2010-09-23 20:29:26.817579822 +0200
 @@ -0,0 +1,825 @@
 +/* GdkPixbuf RGBA C-Source image dump 1-byte-run-length-encoded */
 +
