@@ -1,3 +1,11 @@
+gtk+2.0 (2.23.3-1ubuntu3) natty; urgency=high
+
+  * debian/patches/00git_gdk_window_foreign_new_for_display.patch:
+    - Fix broken gdk_window_foreign_new_for_display function that stopped GNOME
+      panel applets being shown (LP: #693758)
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Fri, 24 Dec 2010 08:45:41 +1100
+
 gtk+2.0 (2.23.3-1ubuntu2) natty; urgency=low
 
   * debian/control:
