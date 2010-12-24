@@ -34,8 +34,10 @@
     
     	* tests/autotestfilechooser.c: build with
     	GTK_FILE_CHOOSER_ENABLE_UNSUPPORTED
---- a/gtk/Makefile.am
-+++ b/gtk/Makefile.am
+Index: gtk+-2.23.2/gtk/Makefile.am
+===================================================================
+--- gtk+-2.23.2.orig/gtk/Makefile.am	2010-11-11 17:52:07.010619001 +1100
++++ gtk+-2.23.2/gtk/Makefile.am	2010-11-11 17:52:13.130619001 +1100
 @@ -49,6 +49,8 @@
  	-I$(top_srcdir) -I../gdk			\
  	-I$(top_srcdir)/gdk				\
@@ -77,8 +79,10 @@
  	gtkiconcache.h		\
  	gtkimcontextsimpleseqs.h   \
  	gtkintl.h		\
---- a/gtk/gtk.symbols
-+++ b/gtk/gtk.symbols
+Index: gtk+-2.23.2/gtk/gtk.symbols
+===================================================================
+--- gtk+-2.23.2.orig/gtk/gtk.symbols	2010-11-11 17:52:07.326619001 +1100
++++ gtk+-2.23.2/gtk/gtk.symbols	2010-11-11 17:52:13.134619001 +1100
 @@ -1667,6 +1667,12 @@
  #endif
  #endif
@@ -92,8 +96,10 @@
  #if IN_HEADER(__GTK_FILE_CHOOSER_WIDGET_H__)
  #if IN_FILE(__GTK_FILE_CHOOSER_WIDGET_C__)
  gtk_file_chooser_widget_get_type G_GNUC_CONST
---- a/gtk/gtkfilechooserprivate.h
-+++ b/gtk/gtkfilechooserprivate.h
+Index: gtk+-2.23.2/gtk/gtkfilechooserprivate.h
+===================================================================
+--- gtk+-2.23.2.orig/gtk/gtkfilechooserprivate.h	2010-11-11 17:52:07.262619001 +1100
++++ gtk+-2.23.2/gtk/gtkfilechooserprivate.h	2010-11-11 17:52:13.134619001 +1100
 @@ -21,6 +21,14 @@
  #ifndef __GTK_FILE_CHOOSER_PRIVATE_H__
  #define __GTK_FILE_CHOOSER_PRIVATE_H__
@@ -109,8 +115,10 @@
  #include "gtkfilechooser.h"
  #include "gtkfilesystem.h"
  #include "gtkfilesystemmodel.h"
---- a/gtk/gtkfilechooserutils.c
-+++ b/gtk/gtkfilechooserutils.c
+Index: gtk+-2.23.2/gtk/gtkfilechooserutils.c
+===================================================================
+--- gtk+-2.23.2.orig/gtk/gtkfilechooserutils.c	2010-11-11 17:52:07.062619001 +1100
++++ gtk+-2.23.2/gtk/gtkfilechooserutils.c	2010-11-11 17:52:13.134619001 +1100
 @@ -122,6 +122,22 @@
  				    "create-folders");
  }
@@ -141,8 +149,10 @@
 +
 +#define __GTK_FILE_CHOOSER_UTILS_C__
 +#include "gtkaliasdef.c"
---- a/gtk/gtkfilechooserutils.h
-+++ b/gtk/gtkfilechooserutils.h
+Index: gtk+-2.23.2/gtk/gtkfilechooserutils.h
+===================================================================
+--- gtk+-2.23.2.orig/gtk/gtkfilechooserutils.h	2010-11-11 17:52:07.162619001 +1100
++++ gtk+-2.23.2/gtk/gtkfilechooserutils.h	2010-11-11 17:52:13.134619001 +1100
 @@ -22,6 +22,14 @@
  #ifndef __GTK_FILE_CHOOSER_UTILS_H__
  #define __GTK_FILE_CHOOSER_UTILS_H__
@@ -168,8 +178,10 @@
  
  void _gtk_file_chooser_delegate_iface_init (GtkFileChooserIface *iface);
  void _gtk_file_chooser_set_delegate        (GtkFileChooser *receiver,
---- a/gtk/gtkfilesystemmodel.h
-+++ b/gtk/gtkfilesystemmodel.h
+Index: gtk+-2.23.2/gtk/gtkfilesystemmodel.h
+===================================================================
+--- gtk+-2.23.2.orig/gtk/gtkfilesystemmodel.h	2010-11-11 17:52:07.114619001 +1100
++++ gtk+-2.23.2/gtk/gtkfilesystemmodel.h	2010-11-11 17:52:13.134619001 +1100
 @@ -21,6 +21,10 @@
  #ifndef __GTK_FILE_SYSTEM_MODEL_H__
  #define __GTK_FILE_SYSTEM_MODEL_H__
@@ -181,8 +193,10 @@
  #include <gio/gio.h>
  #include <gtk/gtkfilefilter.h>
  #include <gtk/gtktreemodel.h>
---- a/gtk/gtkquery.h
-+++ b/gtk/gtkquery.h
+Index: gtk+-2.23.2/gtk/gtkquery.h
+===================================================================
+--- gtk+-2.23.2.orig/gtk/gtkquery.h	2010-11-11 17:52:06.954619001 +1100
++++ gtk+-2.23.2/gtk/gtkquery.h	2010-11-11 17:52:13.134619001 +1100
 @@ -23,6 +23,14 @@
  #ifndef __GTK_QUERY_H__
  #define __GTK_QUERY_H__
@@ -198,8 +212,10 @@
  #include <glib-object.h>
  
  G_BEGIN_DECLS
---- a/gtk/gtksearchengine.h
-+++ b/gtk/gtksearchengine.h
+Index: gtk+-2.23.2/gtk/gtksearchengine.h
+===================================================================
+--- gtk+-2.23.2.orig/gtk/gtksearchengine.h	2010-11-11 17:52:07.214619001 +1100
++++ gtk+-2.23.2/gtk/gtksearchengine.h	2010-11-11 17:52:13.134619001 +1100
 @@ -23,6 +23,14 @@
  #ifndef __GTK_SEARCH_ENGINE_H__
  #define __GTK_SEARCH_ENGINE_H__

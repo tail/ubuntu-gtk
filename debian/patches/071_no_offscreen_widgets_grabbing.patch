@@ -1,11 +1,11 @@
 # Description: don't let offscreen widget do grabbing
 # Upstream: https://bugzilla.gnome.org/show_bug.cgi?id=607668
 # Ubuntu: https://bugs.launchpad.net/bugs/512427
-Index: gtk+-2.23.3/gtk/gtkmain.c
+Index: gtk+-2.23.1/gtk/gtkmain.c
 ===================================================================
---- gtk+-2.23.3.orig/gtk/gtkmain.c	2010-12-22 13:34:53.000000000 +1100
-+++ gtk+-2.23.3/gtk/gtkmain.c	2010-12-23 14:39:08.436944001 +1100
-@@ -1845,9 +1845,14 @@
+--- gtk+-2.23.1.orig/gtk/gtkmain.c	2010-11-10 14:54:30.813111001 +1100
++++ gtk+-2.23.1/gtk/gtkmain.c	2010-11-10 14:55:23.825111001 +1100
+@@ -1843,9 +1843,14 @@
  {
    GtkWindowGroup *group;
    GtkWidget *old_grab_widget;

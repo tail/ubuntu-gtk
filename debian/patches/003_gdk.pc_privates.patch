@@ -1,7 +1,7 @@
-Index: gtk+2.0-2.22.0/configure.in
+Index: gtk+2.0-2.21.5/configure.in
 ===================================================================
---- gtk+2.0-2.22.0.orig/configure.in	2010-09-23 20:29:21.069589516 +0200
-+++ gtk+2.0-2.22.0/configure.in	2010-09-23 20:29:25.890579526 +0200
+--- gtk+2.0-2.21.5.orig/configure.in	2010-07-22 17:53:08.402066616 +0200
++++ gtk+2.0-2.21.5/configure.in	2010-07-22 17:54:32.685052226 +0200
 @@ -1310,23 +1310,27 @@
  
  # Pull in gio-unix for GDesktopAppInfo usage, see at least gdkapplaunchcontext-x11.c
@@ -35,10 +35,10 @@ Index: gtk+2.0-2.22.0/configure.in
  AC_SUBST(GDK_EXTRA_LIBS)
  AC_SUBST(GDK_EXTRA_CFLAGS)
  AC_SUBST(GDK_DEP_LIBS)
-Index: gtk+2.0-2.22.0/gdk-2.0.pc.in
+Index: gtk+2.0-2.21.5/gdk-2.0.pc.in
 ===================================================================
---- gtk+2.0-2.22.0.orig/gdk-2.0.pc.in	2010-09-23 05:00:35.000000000 +0200
-+++ gtk+2.0-2.22.0/gdk-2.0.pc.in	2010-09-23 20:29:25.890579526 +0200
+--- gtk+2.0-2.21.5.orig/gdk-2.0.pc.in	2010-07-12 18:23:43.000000000 +0200
++++ gtk+2.0-2.21.5/gdk-2.0.pc.in	2010-07-22 17:54:32.685052226 +0200
 @@ -8,5 +8,6 @@
  Description: GTK+ Drawing Kit (${target} target)
  Version: @VERSION@

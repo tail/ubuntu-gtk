@@ -1,3 +1,13 @@
+gtk+2.0 (2.23.3.is.2.23.2-0ubuntu1) natty; urgency=low
+
+  * Downgrade to older 2.32.2-0ubuntu4 version for now, there are still
+    problems being reported
+  * debian/control:
+    - Build-depend on gobject-introspection 0.10.0-0ubuntu3 as the previous
+      version has problems
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Fri, 24 Dec 2010 09:55:45 +1100
+
 gtk+2.0 (2.23.3-1ubuntu3) natty; urgency=high
 
   * debian/patches/00git_gdk_window_foreign_new_for_display.patch:

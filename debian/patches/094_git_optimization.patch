@@ -1,0 +1,25 @@
+From c282958fb4bb25c736c682735002d15c50cb44d0 Mon Sep 17 00:00:00 2001
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Wed, 15 Dec 2010 03:24:09 +0000
+Subject: Optimize gdk_window_set_shape_combine_region
+
+When setting no shape on an unshaped window, nothing changes,
+so return early instead of recomputing lots of visibility
+information.
+
+Pointed out by Owen Taylor in bug 637156.
+---
+diff --git a/gdk/gdkwindow.c b/gdk/gdkwindow.c
+index c550aea..c4e8744 100644
+--- a/gdk/gdkwindow.c
++++ b/gdk/gdkwindow.c
+@@ -8640,6 +8640,9 @@ gdk_window_shape_combine_region (GdkWindow       *window,
+   if (GDK_WINDOW_DESTROYED (window))
+     return;
+ 
++  if (!private->shaped && shape_region == NULL)
++    return;
++
+   private->shaped = (shape_region != NULL);
+ 
+   if (private->shape)
