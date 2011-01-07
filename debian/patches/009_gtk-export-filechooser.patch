@@ -34,20 +34,20 @@
     
     	* tests/autotestfilechooser.c: build with
     	GTK_FILE_CHOOSER_ENABLE_UNSUPPORTED
-Index: gtk+-2.23.2/gtk/Makefile.am
+Index: gtk+-2.23.90/gtk/Makefile.am
 ===================================================================
---- gtk+-2.23.2.orig/gtk/Makefile.am	2010-11-11 17:52:07.010619001 +1100
-+++ gtk+-2.23.2/gtk/Makefile.am	2010-11-11 17:52:13.130619001 +1100
-@@ -49,6 +49,8 @@
+--- gtk+-2.23.90.orig/gtk/Makefile.am	2011-01-07 04:15:12.000000000 +1100
++++ gtk+-2.23.90/gtk/Makefile.am	2011-01-07 12:30:17.493891001 +1100
+@@ -48,6 +48,8 @@
+ 	-I$(top_builddir)/gtk				\
  	-I$(top_srcdir) -I../gdk			\
  	-I$(top_srcdir)/gdk				\
- 	-DGDK_DISABLE_DEPRECATED			\
 +	-DMAEMO_CHANGES					\
 +	-DGTK_FILE_CHOOSER_ENABLE_UNSUPPORTED		\
  	-DGTK_DISABLE_DEPRECATED			\
  	-DGTK_FILE_SYSTEM_ENABLE_UNSUPPORTED		\
  	-DGTK_PRINT_BACKEND_ENABLE_UNSUPPORTED		\
-@@ -357,12 +359,16 @@
+@@ -356,12 +358,16 @@
  # Installed header files without compatibility guarantees
  # that are not included in gtk/gtk.h
  gtk_semi_private_h_sources =    \
@@ -67,7 +67,7 @@ Index: gtk+-2.23.2/gtk/Makefile.am
  	gtksearchenginesimple.h	\
  	gtkdndcursors.h		\
  	gtkentryprivate.h	\
-@@ -371,11 +377,7 @@
+@@ -370,11 +376,7 @@
  	gtkfilechooserdefault.h	\
  	gtkfilechooserembed.h	\
  	gtkfilechooserentry.h	\
@@ -79,10 +79,10 @@ Index: gtk+-2.23.2/gtk/Makefile.am
  	gtkiconcache.h		\
  	gtkimcontextsimpleseqs.h   \
  	gtkintl.h		\
-Index: gtk+-2.23.2/gtk/gtk.symbols
+Index: gtk+-2.23.90/gtk/gtk.symbols
 ===================================================================
---- gtk+-2.23.2.orig/gtk/gtk.symbols	2010-11-11 17:52:07.326619001 +1100
-+++ gtk+-2.23.2/gtk/gtk.symbols	2010-11-11 17:52:13.134619001 +1100
+--- gtk+-2.23.90.orig/gtk/gtk.symbols	2011-01-07 06:34:50.000000000 +1100
++++ gtk+-2.23.90/gtk/gtk.symbols	2011-01-07 12:29:32.203891001 +1100
 @@ -1667,6 +1667,12 @@
  #endif
  #endif
@@ -96,10 +96,10 @@ Index: gtk+-2.23.2/gtk/gtk.symbols
  #if IN_HEADER(__GTK_FILE_CHOOSER_WIDGET_H__)
  #if IN_FILE(__GTK_FILE_CHOOSER_WIDGET_C__)
  gtk_file_chooser_widget_get_type G_GNUC_CONST
-Index: gtk+-2.23.2/gtk/gtkfilechooserprivate.h
+Index: gtk+-2.23.90/gtk/gtkfilechooserprivate.h
 ===================================================================
---- gtk+-2.23.2.orig/gtk/gtkfilechooserprivate.h	2010-11-11 17:52:07.262619001 +1100
-+++ gtk+-2.23.2/gtk/gtkfilechooserprivate.h	2010-11-11 17:52:13.134619001 +1100
+--- gtk+-2.23.90.orig/gtk/gtkfilechooserprivate.h	2011-01-07 04:15:12.000000000 +1100
++++ gtk+-2.23.90/gtk/gtkfilechooserprivate.h	2011-01-07 12:29:32.203891001 +1100
 @@ -21,6 +21,14 @@
  #ifndef __GTK_FILE_CHOOSER_PRIVATE_H__
  #define __GTK_FILE_CHOOSER_PRIVATE_H__
@@ -115,10 +115,10 @@ Index: gtk+-2.23.2/gtk/gtkfilechooserprivate.h
  #include "gtkfilechooser.h"
  #include "gtkfilesystem.h"
  #include "gtkfilesystemmodel.h"
-Index: gtk+-2.23.2/gtk/gtkfilechooserutils.c
+Index: gtk+-2.23.90/gtk/gtkfilechooserutils.c
 ===================================================================
---- gtk+-2.23.2.orig/gtk/gtkfilechooserutils.c	2010-11-11 17:52:07.062619001 +1100
-+++ gtk+-2.23.2/gtk/gtkfilechooserutils.c	2010-11-11 17:52:13.134619001 +1100
+--- gtk+-2.23.90.orig/gtk/gtkfilechooserutils.c	2011-01-07 04:15:12.000000000 +1100
++++ gtk+-2.23.90/gtk/gtkfilechooserutils.c	2011-01-07 12:29:32.203891001 +1100
 @@ -122,6 +122,22 @@
  				    "create-folders");
  }
@@ -149,10 +149,10 @@ Index: gtk+-2.23.2/gtk/gtkfilechooserutils.c
 +
 +#define __GTK_FILE_CHOOSER_UTILS_C__
 +#include "gtkaliasdef.c"
-Index: gtk+-2.23.2/gtk/gtkfilechooserutils.h
+Index: gtk+-2.23.90/gtk/gtkfilechooserutils.h
 ===================================================================
---- gtk+-2.23.2.orig/gtk/gtkfilechooserutils.h	2010-11-11 17:52:07.162619001 +1100
-+++ gtk+-2.23.2/gtk/gtkfilechooserutils.h	2010-11-11 17:52:13.134619001 +1100
+--- gtk+-2.23.90.orig/gtk/gtkfilechooserutils.h	2011-01-07 04:15:12.000000000 +1100
++++ gtk+-2.23.90/gtk/gtkfilechooserutils.h	2011-01-07 12:29:32.203891001 +1100
 @@ -22,6 +22,14 @@
  #ifndef __GTK_FILE_CHOOSER_UTILS_H__
  #define __GTK_FILE_CHOOSER_UTILS_H__
@@ -178,10 +178,10 @@ Index: gtk+-2.23.2/gtk/gtkfilechooserutils.h
  
  void _gtk_file_chooser_delegate_iface_init (GtkFileChooserIface *iface);
  void _gtk_file_chooser_set_delegate        (GtkFileChooser *receiver,
-Index: gtk+-2.23.2/gtk/gtkfilesystemmodel.h
+Index: gtk+-2.23.90/gtk/gtkfilesystemmodel.h
 ===================================================================
---- gtk+-2.23.2.orig/gtk/gtkfilesystemmodel.h	2010-11-11 17:52:07.114619001 +1100
-+++ gtk+-2.23.2/gtk/gtkfilesystemmodel.h	2010-11-11 17:52:13.134619001 +1100
+--- gtk+-2.23.90.orig/gtk/gtkfilesystemmodel.h	2010-06-17 01:27:02.000000000 +1000
++++ gtk+-2.23.90/gtk/gtkfilesystemmodel.h	2011-01-07 12:29:32.203891001 +1100
 @@ -21,6 +21,10 @@
  #ifndef __GTK_FILE_SYSTEM_MODEL_H__
  #define __GTK_FILE_SYSTEM_MODEL_H__
@@ -193,10 +193,10 @@ Index: gtk+-2.23.2/gtk/gtkfilesystemmodel.h
  #include <gio/gio.h>
  #include <gtk/gtkfilefilter.h>
  #include <gtk/gtktreemodel.h>
-Index: gtk+-2.23.2/gtk/gtkquery.h
+Index: gtk+-2.23.90/gtk/gtkquery.h
 ===================================================================
---- gtk+-2.23.2.orig/gtk/gtkquery.h	2010-11-11 17:52:06.954619001 +1100
-+++ gtk+-2.23.2/gtk/gtkquery.h	2010-11-11 17:52:13.134619001 +1100
+--- gtk+-2.23.90.orig/gtk/gtkquery.h	2009-04-03 00:54:56.000000000 +1100
++++ gtk+-2.23.90/gtk/gtkquery.h	2011-01-07 12:29:32.203891001 +1100
 @@ -23,6 +23,14 @@
  #ifndef __GTK_QUERY_H__
  #define __GTK_QUERY_H__
@@ -212,10 +212,10 @@ Index: gtk+-2.23.2/gtk/gtkquery.h
  #include <glib-object.h>
  
  G_BEGIN_DECLS
-Index: gtk+-2.23.2/gtk/gtksearchengine.h
+Index: gtk+-2.23.90/gtk/gtksearchengine.h
 ===================================================================
---- gtk+-2.23.2.orig/gtk/gtksearchengine.h	2010-11-11 17:52:07.214619001 +1100
-+++ gtk+-2.23.2/gtk/gtksearchengine.h	2010-11-11 17:52:13.134619001 +1100
+--- gtk+-2.23.90.orig/gtk/gtksearchengine.h	2010-04-09 12:29:58.000000000 +1000
++++ gtk+-2.23.90/gtk/gtksearchengine.h	2011-01-07 12:29:32.203891001 +1100
 @@ -23,6 +23,14 @@
  #ifndef __GTK_SEARCH_ENGINE_H__
  #define __GTK_SEARCH_ENGINE_H__

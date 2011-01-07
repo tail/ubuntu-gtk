@@ -1,6 +1,8 @@
 === modified file 'gdk/Makefile.am'
---- old/gdk/Makefile.am	2010-11-19 15:52:22 +0000
-+++ new/gdk/Makefile.am	2010-11-19 15:52:53 +0000
+Index: gtk+-2.23.90/gdk/Makefile.am
+===================================================================
+--- gtk+-2.23.90.orig/gdk/Makefile.am	2011-01-07 12:33:11.543891001 +1100
++++ gtk+-2.23.90/gdk/Makefile.am	2011-01-07 12:33:12.183891001 +1100
 @@ -201,6 +201,7 @@
  Gdk_2_0_gir_INCLUDES = Gio-2.0 GdkPixbuf-2.0 Pango-1.0 cairo-1.0
  Gdk_2_0_gir_LIBS = $(gdktargetlib)
@@ -17,11 +19,11 @@
  GdkX11_2_0_gir_CFLAGS = $(INCLUDES) -L$(top_builddir)/gdk -I.. -I$(srcdir)
  INTROSPECTION_GIRS += GdkX11-2.0.gir
  
-
-=== modified file 'gtk/Makefile.am'
---- old/gtk/Makefile.am	2010-11-19 15:52:22 +0000
-+++ new/gtk/Makefile.am	2010-11-19 15:52:40 +0000
-@@ -1011,6 +1011,7 @@
+Index: gtk+-2.23.90/gtk/Makefile.am
+===================================================================
+--- gtk+-2.23.90.orig/gtk/Makefile.am	2011-01-07 12:30:34.383891001 +1100
++++ gtk+-2.23.90/gtk/Makefile.am	2011-01-07 12:33:12.183891001 +1100
+@@ -1010,6 +1010,7 @@
  		-DGTK_TEXT_USE_INTERNAL_UNSUPPORTED_API
  Gtk_2_0_gir_LIBS = $(gtktargetlib)
  Gtk_2_0_gir_FILES = $(addprefix $(srcdir)/, $(introspection_files))
@@ -29,4 +31,3 @@
  INTROSPECTION_GIRS += Gtk-2.0.gir
  
  girdir = $(datadir)/gir-1.0
-

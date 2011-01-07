@@ -79,6 +79,7 @@ libgdk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gdk_device_get_key@Base 2.21.8
  gdk_device_get_mode@Base 2.21.8
  gdk_device_get_n_axes@Base 2.21.8
+ gdk_device_get_n_keys@Base 2.23.3
  gdk_device_get_name@Base 2.21.8
  gdk_device_get_source@Base 2.21.8
  gdk_device_get_state@Base 2.8.0
@@ -138,6 +139,8 @@ libgdk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gdk_drag_action_get_type@Base 2.8.0
  gdk_drag_begin@Base 2.8.0
  gdk_drag_context_get_actions@Base 2.21.8
+ gdk_drag_context_get_dest_window@Base 2.23.3
+ gdk_drag_context_get_protocol@Base 2.23.3
  gdk_drag_context_get_selected_action@Base 2.21.8
  gdk_drag_context_get_source_window@Base 2.21.8
  gdk_drag_context_get_suggested_action@Base 2.21.8
@@ -386,6 +389,7 @@ libgdk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gdk_pixmap_foreign_new@Base 2.8.0
  gdk_pixmap_foreign_new_for_display@Base 2.8.0
  gdk_pixmap_foreign_new_for_screen@Base 2.10.0
+ gdk_pixmap_get_size@Base 2.23.3
  gdk_pixmap_get_type@Base 2.8.0
  gdk_pixmap_impl_x11_get_type@Base 2.8.0
  gdk_pixmap_lookup@Base 2.8.0
@@ -729,12 +733,16 @@ libgdk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gdk_x11_display_get_xdisplay@Base 2.8.0
  gdk_x11_display_grab@Base 2.8.0
  gdk_x11_display_set_cursor_theme@Base 2.8.0
+ gdk_x11_display_string_to_compound_text@Base 2.23.3
+ gdk_x11_display_text_property_to_text_list@Base 2.23.3
  gdk_x11_display_ungrab@Base 2.8.0
  gdk_x11_drawable_get_xdisplay@Base 2.8.0
- gdk_x11_drawable_get_xdisplay@Base 2.8.0
+ gdk_x11_display_utf8_to_compound_text@Base 2.23.3
  gdk_x11_drawable_get_xid@Base 2.8.0
  gdk_x11_font_get_name@Base 2.8.0
  gdk_x11_font_get_xdisplay@Base 2.8.0
+ gdk_x11_free_compound_text@Base 2.23.3
+ gdk_x11_free_text_list@Base 2.23.3
  gdk_x11_font_get_xfont@Base 2.8.0
  gdk_x11_gc_get_xdisplay@Base 2.8.0
  gdk_x11_gc_get_xgc@Base 2.8.0
@@ -758,9 +766,12 @@ libgdk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gdk_x11_screen_get_xscreen@Base 2.8.0
  gdk_x11_screen_lookup_visual@Base 2.8.0
  gdk_x11_screen_supports_net_wm_hint@Base 2.8.0
+ gdk_x11_set_sm_client_id@Base 2.23.3
  gdk_x11_ungrab_server@Base 2.8.0
  gdk_x11_visual_get_xvisual@Base 2.8.0
+ gdk_x11_window_foreign_new_for_display@Base 2.23.3
  gdk_x11_window_get_drawable_impl@Base 2.18.0
+ gdk_x11_window_lookup_for_display@Base 2.23.3
  gdk_x11_window_move_to_current_desktop@Base 2.8.0
  gdk_x11_window_set_user_time@Base 2.8.0
  gdk_x11_xatom_to_atom@Base 2.8.0
@@ -2947,6 +2958,8 @@ libgtk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gtk_printer_option_widget_new@Base 2.10.0
  gtk_printer_option_widget_set_source@Base 2.10.0
  gtk_printer_request_details@Base 2.12.0
+ gtk_printer_set_accepts_pdf@Base 2.23.90
+ gtk_printer_set_accepts_ps@Base 2.23.90
  gtk_printer_set_description@Base 2.10.0
  gtk_printer_set_has_details@Base 2.10.0
  gtk_printer_set_icon_name@Base 2.10.0
