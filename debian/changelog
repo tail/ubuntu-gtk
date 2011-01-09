@@ -1,4 +1,4 @@
-gtk+2.0 (2.23.90-0ubuntu2) UNRELEASED; urgency=low
+gtk+2.0 (2.23.90-0ubuntu2) natty; urgency=low
 
   * Add 000git_gir_radiobuttons.patch: Add GtkRadioButton constructor GI
     annotations. Taken from GTK 3. (Also committed to upstream git)
@@ -7,7 +7,9 @@ gtk+2.0 (2.23.90-0ubuntu2) UNRELEASED; urgency=low
   * Add 000git_gir_icontheme.patch: Fix gtk_icon_theme_load_icon annotation.
     (Also committed to upstream git)
 
- -- Martin Pitt <martin.pitt@ubuntu.com>  Sun, 09 Jan 2011 11:17:19 -0600
+  With these fixes, we can run Apport and Jockey with GI instead of pygtk.
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Sun, 09 Jan 2011 13:28:15 -0600
 
 gtk+2.0 (2.23.90-0ubuntu1) natty; urgency=low
 
