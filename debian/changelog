@@ -2,6 +2,8 @@ gtk+2.0 (2.23.90-0ubuntu2) UNRELEASED; urgency=low
 
   * Add 000git_gir_radiobuttons.patch: Add GtkRadioButton constructor GI
     annotations. Taken from GTK 3. (Also committed to upstream git)
+  * Add 000git_gir_treeview.patch: Fix various GI annotations on tree API.
+    (Also committed to upstream git)
 
  -- Martin Pitt <martin.pitt@ubuntu.com>  Sun, 09 Jan 2011 11:17:19 -0600
 

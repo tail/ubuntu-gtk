@@ -1,4 +1,5 @@
 000git_gir_radiobuttons.patch
+000git_gir_treeview.patch
 001_static-linking-dont-query-immodules.patch
 002_static-linking-dont-build-perf.patch
 003_gdk.pc_privates.patch
