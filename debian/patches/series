@@ -1,6 +1,12 @@
 000git_gir_radiobuttons.patch
 000git_gir_treeview.patch
 000git_gir_icontheme.patch
+000git_gir_textbuffer.patch
+000git_gir_builder.patch
+000git_gir_messagedialog.patch
+000git_gir_transfer_annotations.patch
+000git_gir_tree_iter.patch
+000git_gir_treemodelfilter.patch
 001_static-linking-dont-query-immodules.patch
 002_static-linking-dont-build-perf.patch
 003_gdk.pc_privates.patch

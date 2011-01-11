@@ -1,0 +1,25 @@
+From f40a129e283fe130b12b68c7351f613c5b77f3c8 Mon Sep 17 00:00:00 2001
+From: Tomeu Vizoso <tomeu.vizoso@collabora.co.uk>
+Date: Tue, 17 Aug 2010 17:42:50 +0200
+Subject: [PATCH 9/9] gtk_tree_model_iter_next's iter is (in), not (inout)
+
+---
+ gtk/gtktreemodel.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/gtk/gtktreemodel.c b/gtk/gtktreemodel.c
+index d5b2f12..e9315ad 100644
+--- a/gtk/gtktreemodel.c
++++ b/gtk/gtktreemodel.c
+@@ -1175,7 +1175,7 @@ gtk_tree_model_get_value (GtkTreeModel *tree_model,
+ /**
+  * gtk_tree_model_iter_next:
+  * @tree_model: A #GtkTreeModel.
+- * @iter: (inout): The #GtkTreeIter.
++ * @iter: (in): The #GtkTreeIter.
+  *
+  * Sets @iter to point to the node following it at the current level.  If there
+  * is no next @iter, %FALSE is returned and @iter is set to be invalid.
+-- 
+1.7.2.3
+

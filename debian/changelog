@@ -1,3 +1,12 @@
+gtk+2.0 (2.23.90-0ubuntu3) UNRELEASED; urgency=low
+
+  * Add 000git_gir_textbuffer.patch, 000git_gir_builder.patch,
+    000git_gir_messagedialog.patch, 000git_gir_transfer_annotations.patch,
+    000git_gir_tree_iter.patch, 000git_gir_treemodelfilter.patch: A lot more
+    GI annotation fixes backported from GTK3.
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Mon, 10 Jan 2011 21:32:53 -0600
+
 gtk+2.0 (2.23.90-0ubuntu2) natty; urgency=low
 
   * Add 000git_gir_radiobuttons.patch: Add GtkRadioButton constructor GI
