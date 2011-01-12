@@ -1,4 +1,4 @@
-gtk+2.0 (2.23.90-0ubuntu4) UNRELEASED; urgency=low
+gtk+2.0 (2.23.90-0ubuntu4) natty; urgency=low
 
   * debian/patches/044_grips.patch: backport from the gtk3 resize grips
     to the natty gtk2 version, thanks Cody Russell
@@ -6,7 +6,7 @@ gtk+2.0 (2.23.90-0ubuntu4) UNRELEASED; urgency=low
     - updated the symbols list for the new function added in this 
       version
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 12 Jan 2011 11:05:01 -0600
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 12 Jan 2011 11:49:02 -0600
 
 gtk+2.0 (2.23.90-0ubuntu3) natty; urgency=low
 
