@@ -1,3 +1,13 @@
+gtk+2.0 (2.23.90-0ubuntu5) UNRELEASED; urgency=low
+
+  * debian/patches/093_gtk3_gtkimage_fallbacks_use.patch:
+    - backported gtk3 patch to add a "use-fallback" property to GtkImage, using 
+      it "icon-name and GIcon type of GtkImages can use automatic fallback 
+      names.", it will be useful for the indicator stack
+      (lp: #704632)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 19 Jan 2011 11:38:31 +0100
+
 gtk+2.0 (2.23.90-0ubuntu4) natty; urgency=low
 
   * debian/patches/044_grips.patch: backport from the gtk3 resize grips
