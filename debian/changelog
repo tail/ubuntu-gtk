@@ -1,3 +1,12 @@
+gtk+2.0 (2.23.90-0ubuntu7) natty; urgency=low
+
+  * debian/patches/043_ubuntu_menu_proxy.patch:
+    - Update to proxy F10 presses to the global menu.  LP: #689178
+  * debian/libgtk2.0-0.symbols:
+    - Add new symbol ubuntu_gtk_menu_shell_activate_first
+
+ -- Michael Terry <mterry@ubuntu.com>  Thu, 27 Jan 2011 09:45:46 -0500
+
 gtk+2.0 (2.23.90-0ubuntu6) natty; urgency=low
 
   * debian/patches/065_gir_set_packages.patch
