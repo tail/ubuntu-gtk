@@ -4,6 +4,7 @@ gtk+2.0 (2.24.0-0ubuntu1) UNRELEASED; urgency=low
   * Drop 000git_gir_*.patch, upstream now.
   * Drop 061_use_pdf_as_default_printing_standard.patch, fixed upstream in a
     better way.
+  * debian/libgtk2.0-0.symbols: Add new symbols.
 
  -- Martin Pitt <martin.pitt@ubuntu.com>  Mon, 31 Jan 2011 12:31:00 +0100
 
