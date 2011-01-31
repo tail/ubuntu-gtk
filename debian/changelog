@@ -1,4 +1,4 @@
-gtk+2.0 (2.24.0-0ubuntu1) UNRELEASED; urgency=low
+gtk+2.0 (2.24.0-0ubuntu1) natty; urgency=low
 
   * New upstream release.
   * Drop 000git_gir_*.patch, upstream now.
@@ -6,7 +6,7 @@ gtk+2.0 (2.24.0-0ubuntu1) UNRELEASED; urgency=low
     better way.
   * debian/libgtk2.0-0.symbols: Add new symbols.
 
- -- Martin Pitt <martin.pitt@ubuntu.com>  Mon, 31 Jan 2011 12:31:00 +0100
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Mon, 31 Jan 2011 13:44:06 +0100
 
 gtk+2.0 (2.23.90-0ubuntu7) natty; urgency=low
 
