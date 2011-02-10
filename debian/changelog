@@ -1,9 +1,9 @@
-gtk+2.0 (2.24.0-0ubuntu2) UNRELEASED; urgency=low
+gtk+2.0 (2.24.0-0ubuntu2) natty; urgency=low
 
   * update debian/patches/043_ubuntu_menu_proxy.patch:
     - fix the menubar with appmenu-gtk is 1px tall (by Cimi) (LP: #705112)
 
- -- Didier Roche <didrocks@ubuntu.com>  Thu, 10 Feb 2011 12:03:54 +0100
+ -- Didier Roche <didrocks@ubuntu.com>  Thu, 10 Feb 2011 13:43:42 +0100
 
 gtk+2.0 (2.24.0-0ubuntu1) natty; urgency=low
 
