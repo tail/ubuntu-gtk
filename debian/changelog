@@ -1,3 +1,13 @@
+gtk+2.0 (2.24.0-0ubuntu3) UNRELEASED; urgency=low
+
+  * debian/patches/043_ubuntu_menu_proxy.patch:
+    - revert the previous upload since it's adding extra menubar when it 
+      should not, should fix the nautilus bar being displayed on configurations
+      where appmenu is not in use 
+      (lp: #717358)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 16 Feb 2011 19:05:08 +0100
+
 gtk+2.0 (2.24.0-0ubuntu2) natty; urgency=low
 
   * update debian/patches/043_ubuntu_menu_proxy.patch:
