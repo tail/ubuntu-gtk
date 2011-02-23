@@ -13,6 +13,7 @@
 043_ubuntu_menu_proxy.patch
 044_grips.patch
 060_ignore-random-icons.patch
+061_use_pdf_as_default_printing_standard.patch
 062_dnd_menubar.patch
 063_treeview_almost_fixed.patch
 064_gir_build_workaround.patch
