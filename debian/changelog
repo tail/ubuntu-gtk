@@ -1,10 +1,10 @@
-gtk+2.0 (2.24.1-1ubuntu2+multiarch.2) UNRELEASED; urgency=low
+gtk+2.0 (2.24.1-1ubuntu2+multiarch.2) natty; urgency=low
 
   * Set build-deps in debian/control.in, not debian/control.
   * Make the -dev packages depend on a multiarch-capable version of
     pkg-config.
 
- -- Steve Langasek <steve.langasek@ubuntu.com>  Sat, 05 Mar 2011 00:04:19 -0800
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Sat, 05 Mar 2011 00:33:26 -0800
 
 gtk+2.0 (2.24.1-1ubuntu2+multiarch.1) natty; urgency=low
 
