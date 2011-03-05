@@ -1,6 +1,7 @@
 gtk+2.0 (2.24.1-1ubuntu2+multiarch.1) UNRELEASED; urgency=low
 
   * Build for multiarch.
+  * Bump gobject-introspection build-dependency for multiarch tuple support.
 
  -- Steve Langasek <steve.langasek@ubuntu.com>  Fri, 04 Mar 2011 16:47:00 -0800
 
