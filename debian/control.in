@@ -97,6 +97,7 @@ Section: misc
 Architecture: all
 Depends: ${misc:Depends}
 Recommends: @SHARED_PKG@
+Multi-Arch: foreign
 Description: Common files for the GTK+ graphical user interface library
  The GTK+ is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, the GTK+ is suitable
@@ -111,6 +112,7 @@ Architecture: all
 Depends: ${misc:Depends},
          @SHARED_PKG@ (>= ${source:Version}),
          @COMMON_PKG@
+Multi-Arch: foreign
 Description: The programs for the GTK+ graphical user interface library
  The GTK+ is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, the GTK+ is suitable
@@ -181,6 +183,7 @@ Depends: lynx | www-browser,
 Recommends: libglib2.0-doc,
             libatk1.0-doc,
             libpango1.0-doc
+Multi-Arch: foreign
 Description: Documentation for the GTK+ graphical user interface library
  The GTK+ is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, the GTK+ is suitable
@@ -257,6 +260,7 @@ Architecture: any
 Depends: ${misc:Depends},
          ${shlibs:Depends},
          libgail18 (= ${binary:Version})
+Multi-Arch: foreign
 Description: GNOME Accessibility Implementation Library -- common modules
  Gail implements ATK interfaces for GTK+ widgets which are dynamically
  loadable at runtime by a GTK+ application. Once loaded, those parts of
@@ -303,6 +307,7 @@ Architecture: all
 Section: doc
 Depends: ${misc:Depends}, lynx | www-browser
 Replaces: libgtk2.0-doc (<< 2.14.5)
+Multi-Arch: foreign
 Description: documentation files of the Gail library
  Gail implements ATK interfaces for GTK+ widgets which are dynamically
  loadable at runtime by a GTK+ application. Once loaded, those parts of
