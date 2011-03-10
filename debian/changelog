@@ -1,9 +1,9 @@
-gtk+2.0 (2.24.1-1ubuntu3) UNRELEASED; urgency=low
+gtk+2.0 (2.24.1-1ubuntu3) natty; urgency=low
 
   * Add 000git_GI-gdk_keyval_name.patch: Fix gdk_keyval_name() and
     gdk_keyval_from_name() annotations. (LP: #732484)
 
- -- Martin Pitt <martin.pitt@ubuntu.com>  Thu, 10 Mar 2011 15:50:36 +0100
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Thu, 10 Mar 2011 15:56:10 +0100
 
 gtk+2.0 (2.24.1-1ubuntu2) natty; urgency=low
 
