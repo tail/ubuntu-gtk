@@ -1,4 +1,5 @@
 000git_GI_calendar_get_date.patch
+000git_GI-gdk_keyval_name.patch
 001_static-linking-dont-query-immodules.patch
 002_static-linking-dont-build-perf.patch
 003_gdk.pc_privates.patch

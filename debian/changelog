@@ -1,3 +1,16 @@
+gtk+2.0 (2.24.1-1ubuntu3+multiarch.1) UNRELEASED; urgency=low
+
+  * Merge from natty.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Sun, 13 Mar 2011 20:55:31 -0700
+
+gtk+2.0 (2.24.1-1ubuntu3) natty; urgency=low
+
+  * Add 000git_GI-gdk_keyval_name.patch: Fix gdk_keyval_name() and
+    gdk_keyval_from_name() annotations. (LP: #732484)
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Thu, 10 Mar 2011 15:56:10 +0100
+
 gtk+2.0 (2.24.1-1ubuntu2+multiarch.2) natty; urgency=low
 
   * Set build-deps in debian/control.in, not debian/control.
@@ -13,7 +26,7 @@ gtk+2.0 (2.24.1-1ubuntu2+multiarch.1) natty; urgency=low
 
  -- Steve Langasek <steve.langasek@ubuntu.com>  Fri, 04 Mar 2011 23:43:41 -0800
 
-gtk+2.0 (2.24.1-1ubuntu2) UNRELEASED; urgency=low
+gtk+2.0 (2.24.1-1ubuntu2) natty; urgency=low
 
   [ Martin Pitt ]
   * Add 000git_GI_calendar_get_date.patch: Fix missing (out) annotation for
@@ -27,7 +40,7 @@ gtk+2.0 (2.24.1-1ubuntu2) UNRELEASED; urgency=low
     to @LIBDIR@ yet because it needs to integrate with g-i-r.
   * Likewise, handle libgail with .install.in + @LIBDIR@ for multiarch.
 
- -- Martin Pitt <martin.pitt@ubuntu.com>  Tue, 01 Mar 2011 16:20:31 +0100
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Mon, 07 Mar 2011 10:42:53 +0100
 
 gtk+2.0 (2.24.1-1ubuntu1) natty; urgency=low
 
