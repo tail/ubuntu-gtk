@@ -1,3 +1,9 @@
+gtk+2.0 (2.24.1-1ubuntu3+multiarch.2) natty; urgency=low
+
+  * Fix up a wrong cut'n'paste in debian/control
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Sun, 13 Mar 2011 23:34:01 -0700
+
 gtk+2.0 (2.24.1-1ubuntu3+multiarch.1) natty; urgency=low
 
   * Merge from natty.
