@@ -1,9 +1,9 @@
-gtk+2.0 (2.24.1-1ubuntu3+multiarch.1) UNRELEASED; urgency=low
+gtk+2.0 (2.24.1-1ubuntu3+multiarch.1) natty; urgency=low
 
   * Merge from natty.
   * Rebuild for final multiarch paths and pre-depend on multiarch-support.
 
- -- Steve Langasek <steve.langasek@ubuntu.com>  Sun, 13 Mar 2011 20:55:31 -0700
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Sun, 13 Mar 2011 20:58:09 -0700
 
 gtk+2.0 (2.24.1-1ubuntu3) natty; urgency=low
 
