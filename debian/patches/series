@@ -23,4 +23,4 @@
 092_default_to_xdg_document_dir.patch
 093_gtk3_gtkimage_fallbacks_use.patch
 094_git_fileselector_error.patch
-
+095_git_menus_scrolling.patch
