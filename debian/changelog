@@ -1,3 +1,11 @@
+gtk+2.0 (2.24.3-0ubuntu2) UNRELEASED; urgency=low
+
+  * debian/patches/061_use_pdf_as_default_printing_standard.patch:
+    - really clean that deprecated patch this time
+  * 
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 15 Mar 2011 16:20:04 +0100
+
 gtk+2.0 (2.24.3-0ubuntu1) natty; urgency=low
 
   * New upstream release
