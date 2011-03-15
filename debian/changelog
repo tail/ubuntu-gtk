@@ -1,3 +1,30 @@
+gtk+2.0 (2.24.3-0ubuntu2+multiarch.1) natty; urgency=low
+
+  * Merge from natty.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Tue, 15 Mar 2011 14:52:53 -0700
+
+gtk+2.0 (2.24.3-0ubuntu2) natty; urgency=low
+
+  * debian/patches/061_use_pdf_as_default_printing_standard.patch:
+    - really clean that deprecated patch this time
+  * debian/patches/094_git_fileselector_error.patch:
+    - backported gtk3 commit to display errors when users try to enter
+      names with an invalid character (lp: #615505)
+  * debian/patches/095_git_menus_scrolling.patch:
+    - backported gtk3 commit to fix menu scrolling issues (lp: #548652)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 15 Mar 2011 17:28:06 +0100
+
+gtk+2.0 (2.24.3-0ubuntu1) natty; urgency=low
+
+  * New upstream release
+  * debian/patches/000git_GI-gdk_keyval_name.patch:
+  * debian/patches/000git_GI_calendar_get_date.patch:
+    - Applied upstream
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Tue, 15 Mar 2011 17:54:33 +1100
+
 gtk+2.0 (2.24.1-1ubuntu3+multiarch.2) natty; urgency=low
 
   * Fix up a wrong cut'n'paste in debian/control
