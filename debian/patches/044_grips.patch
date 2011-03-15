@@ -1,11 +1,11 @@
 ## Description: add some description
 ## Origin/Author: add some origin or author
 ## Bug: bug URL
-Index: gtk+2.0-2.23.90/gtk/gtk.symbols
+Index: gtk+-2.24.3/gtk/gtk.symbols
 ===================================================================
---- gtk+2.0-2.23.90.orig/gtk/gtk.symbols	2011-01-11 15:44:58.936037000 -0600
-+++ gtk+2.0-2.23.90/gtk/gtk.symbols	2011-01-11 15:44:59.164037000 -0600
-@@ -5379,6 +5379,7 @@
+--- gtk+-2.24.3.orig/gtk/gtk.symbols	2011-03-15 18:00:37.923481796 +1100
++++ gtk+-2.24.3/gtk/gtk.symbols	2011-03-15 18:00:39.243558846 +1100
+@@ -5381,6 +5381,7 @@
  gtk_window_get_modal
  gtk_window_get_position
  gtk_window_get_resizable
@@ -13,7 +13,7 @@ Index: gtk+2.0-2.23.90/gtk/gtk.symbols
  gtk_window_get_role
  gtk_window_get_screen
  gtk_window_get_size
-@@ -5414,6 +5415,7 @@
+@@ -5416,6 +5417,7 @@
  gtk_window_remove_mnemonic
  gtk_window_reshow_with_initial_size
  gtk_window_resize
@@ -21,7 +21,7 @@ Index: gtk+2.0-2.23.90/gtk/gtk.symbols
  gtk_window_set_accept_focus
  gtk_window_set_auto_startup_notification
  gtk_window_set_decorated
-@@ -5441,6 +5443,8 @@
+@@ -5443,6 +5445,8 @@
  gtk_window_get_has_frame
  gtk_window_set_has_frame
  #endif
@@ -30,11 +30,11 @@ Index: gtk+2.0-2.23.90/gtk/gtk.symbols
  gtk_window_set_icon
  #ifndef _WIN64
  gtk_window_set_icon_from_file PRIVATE
-Index: gtk+2.0-2.23.90/gtk/gtkalias.h
+Index: gtk+-2.24.3/gtk/gtkalias.h
 ===================================================================
---- gtk+2.0-2.23.90.orig/gtk/gtkalias.h	2011-01-11 15:44:53.552037000 -0600
-+++ gtk+2.0-2.23.90/gtk/gtkalias.h	2011-01-11 15:44:59.172037000 -0600
-@@ -12821,6 +12821,9 @@
+--- gtk+-2.24.3.orig/gtk/gtkalias.h	2011-03-15 04:13:57.000000000 +1100
++++ gtk+-2.24.3/gtk/gtkalias.h	2011-03-15 18:00:39.243558846 +1100
+@@ -12827,6 +12827,9 @@
  extern __typeof (gtk_window_get_group) IA__gtk_window_get_group __attribute((visibility("hidden")));
  #define gtk_window_get_group IA__gtk_window_get_group
  
@@ -44,7 +44,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkalias.h
  extern __typeof (gtk_window_get_icon) IA__gtk_window_get_icon __attribute((visibility("hidden")));
  #define gtk_window_get_icon IA__gtk_window_get_icon
  
-@@ -12845,6 +12848,9 @@
+@@ -12851,6 +12854,9 @@
  extern __typeof (gtk_window_get_resizable) IA__gtk_window_get_resizable __attribute((visibility("hidden")));
  #define gtk_window_get_resizable IA__gtk_window_get_resizable
  
@@ -54,7 +54,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkalias.h
  extern __typeof (gtk_window_get_role) IA__gtk_window_get_role __attribute((visibility("hidden")));
  #define gtk_window_get_role IA__gtk_window_get_role
  
-@@ -12950,6 +12956,9 @@
+@@ -12956,6 +12962,9 @@
  extern __typeof (gtk_window_resize) IA__gtk_window_resize __attribute((visibility("hidden")));
  #define gtk_window_resize IA__gtk_window_resize
  
@@ -64,11 +64,11 @@ Index: gtk+2.0-2.23.90/gtk/gtkalias.h
  extern __typeof (gtk_window_set_accept_focus) IA__gtk_window_set_accept_focus __attribute((visibility("hidden")));
  #define gtk_window_set_accept_focus IA__gtk_window_set_accept_focus
  
-Index: gtk+2.0-2.23.90/gtk/gtkaliasdef.c
+Index: gtk+-2.24.3/gtk/gtkaliasdef.c
 ===================================================================
---- gtk+2.0-2.23.90.orig/gtk/gtkaliasdef.c	2011-01-11 15:44:53.596037000 -0600
-+++ gtk+2.0-2.23.90/gtk/gtkaliasdef.c	2011-01-11 15:44:59.176037000 -0600
-@@ -12824,6 +12824,9 @@
+--- gtk+-2.24.3.orig/gtk/gtkaliasdef.c	2011-03-15 04:13:56.000000000 +1100
++++ gtk+-2.24.3/gtk/gtkaliasdef.c	2011-03-15 18:00:39.243558846 +1100
+@@ -12830,6 +12830,9 @@
  #undef gtk_window_get_group 
  extern __typeof (gtk_window_get_group) gtk_window_get_group __attribute((alias("IA__gtk_window_get_group"), visibility("default")));
  
@@ -78,7 +78,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkaliasdef.c
  #undef gtk_window_get_icon 
  extern __typeof (gtk_window_get_icon) gtk_window_get_icon __attribute((alias("IA__gtk_window_get_icon"), visibility("default")));
  
-@@ -12848,6 +12851,9 @@
+@@ -12854,6 +12857,9 @@
  #undef gtk_window_get_resizable 
  extern __typeof (gtk_window_get_resizable) gtk_window_get_resizable __attribute((alias("IA__gtk_window_get_resizable"), visibility("default")));
  
@@ -88,7 +88,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkaliasdef.c
  #undef gtk_window_get_role 
  extern __typeof (gtk_window_get_role) gtk_window_get_role __attribute((alias("IA__gtk_window_get_role"), visibility("default")));
  
-@@ -12953,6 +12959,9 @@
+@@ -12959,6 +12965,9 @@
  #undef gtk_window_resize 
  extern __typeof (gtk_window_resize) gtk_window_resize __attribute((alias("IA__gtk_window_resize"), visibility("default")));
  
@@ -98,10 +98,10 @@ Index: gtk+2.0-2.23.90/gtk/gtkaliasdef.c
  #undef gtk_window_set_accept_focus 
  extern __typeof (gtk_window_set_accept_focus) gtk_window_set_accept_focus __attribute((alias("IA__gtk_window_set_accept_focus"), visibility("default")));
  
-Index: gtk+2.0-2.23.90/gtk/gtkassistant.c
+Index: gtk+-2.24.3/gtk/gtkassistant.c
 ===================================================================
---- gtk+2.0-2.23.90.orig/gtk/gtkassistant.c	2011-01-11 15:44:58.540037000 -0600
-+++ gtk+2.0-2.23.90/gtk/gtkassistant.c	2011-01-11 15:44:59.180037000 -0600
+--- gtk+-2.24.3.orig/gtk/gtkassistant.c	2011-02-20 01:31:37.000000000 +1100
++++ gtk+-2.24.3/gtk/gtkassistant.c	2011-03-15 18:00:39.243558846 +1100
 @@ -1413,6 +1413,9 @@
      {
        container = GTK_CONTAINER (widget);
@@ -112,10 +112,10 @@ Index: gtk+2.0-2.23.90/gtk/gtkassistant.c
        assistant_paint_colored_box (widget);
  
        gtk_container_propagate_expose (container, priv->header_image, event);
-Index: gtk+2.0-2.23.90/gtk/gtkrange.c
+Index: gtk+-2.24.3/gtk/gtkrange.c
 ===================================================================
---- gtk+2.0-2.23.90.orig/gtk/gtkrange.c	2011-01-11 15:44:58.572037000 -0600
-+++ gtk+2.0-2.23.90/gtk/gtkrange.c	2011-01-11 15:44:59.180037000 -0600
+--- gtk+-2.24.3.orig/gtk/gtkrange.c	2011-02-20 01:31:37.000000000 +1100
++++ gtk+-2.24.3/gtk/gtkrange.c	2011-03-15 18:00:39.243558846 +1100
 @@ -39,6 +39,7 @@
  #include "gtkrange.h"
  #include "gtkscale.h"
@@ -124,7 +124,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkrange.c
  #include "gtkprivate.h"
  #include "gtkintl.h"
  #include "gtkalias.h"
-@@ -148,6 +149,8 @@
+@@ -149,6 +150,8 @@
                                        GtkRequisition   *requisition);
  static void gtk_range_size_allocate  (GtkWidget        *widget,
                                        GtkAllocation    *allocation);
@@ -133,7 +133,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkrange.c
  static void gtk_range_realize        (GtkWidget        *widget);
  static void gtk_range_unrealize      (GtkWidget        *widget);
  static void gtk_range_map            (GtkWidget        *widget);
-@@ -178,6 +181,8 @@
+@@ -179,6 +182,8 @@
  				      gint              mouse_x,
  				      gint              mouse_y);
  static void stop_scrolling           (GtkRange         *range);
@@ -142,7 +142,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkrange.c
  
  /* Range methods */
  
-@@ -256,8 +261,9 @@
+@@ -257,8 +262,9 @@
  
    widget_class->size_request = gtk_range_size_request;
    widget_class->size_allocate = gtk_range_size_allocate;
@@ -153,7 +153,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkrange.c
    widget_class->map = gtk_range_map;
    widget_class->unmap = gtk_range_unmap;
    widget_class->expose_event = gtk_range_expose;
-@@ -1507,6 +1513,67 @@
+@@ -1532,6 +1538,67 @@
    requisition->height = range_rect.height + border.top + border.bottom;
  }
  
@@ -221,7 +221,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkrange.c
  static void
  gtk_range_size_allocate (GtkWidget     *widget,
                           GtkAllocation *allocation)
-@@ -1515,6 +1582,7 @@
+@@ -1540,6 +1607,7 @@
  
    range = GTK_RANGE (widget);
  
@@ -229,7 +229,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkrange.c
    widget->allocation = *allocation;
    
    range->layout->recalc_marks = TRUE;
-@@ -1531,11 +1599,36 @@
+@@ -1556,11 +1624,36 @@
  }
  
  static void
@@ -267,7 +267,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkrange.c
  
    range = GTK_RANGE (widget);
  
-@@ -1545,7 +1638,11 @@
+@@ -1570,7 +1663,11 @@
  
    widget->window = gtk_widget_get_parent_window (widget);
    g_object_ref (widget->window);
@@ -280,10 +280,10 @@ Index: gtk+2.0-2.23.90/gtk/gtkrange.c
    attributes.window_type = GDK_WINDOW_CHILD;
    attributes.x = widget->allocation.x;
    attributes.y = widget->allocation.y;
-Index: gtk+2.0-2.23.90/gtk/gtkstatusbar.c
+Index: gtk+-2.24.3/gtk/gtkstatusbar.c
 ===================================================================
---- gtk+2.0-2.23.90.orig/gtk/gtkstatusbar.c	2011-01-11 15:44:58.580037000 -0600
-+++ gtk+2.0-2.23.90/gtk/gtkstatusbar.c	2011-01-11 15:44:59.180037000 -0600
+--- gtk+-2.24.3.orig/gtk/gtkstatusbar.c	2011-02-20 01:31:37.000000000 +1100
++++ gtk+-2.24.3/gtk/gtkstatusbar.c	2011-03-15 18:00:39.253559423 +1100
 @@ -72,20 +72,8 @@
  static void     gtk_statusbar_unrealize         (GtkWidget         *widget);
  static void     gtk_statusbar_map               (GtkWidget         *widget);
@@ -320,7 +320,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkstatusbar.c
    class->text_pushed = gtk_statusbar_update;
    class->text_popped = gtk_statusbar_update;
    
-@@ -547,21 +530,7 @@
+@@ -550,21 +533,7 @@
    if (setting != statusbar->has_resize_grip)
      {
        statusbar->has_resize_grip = setting;
@@ -342,7 +342,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkstatusbar.c
        g_object_notify (G_OBJECT (statusbar), "has-resize-grip");
      }
  }
-@@ -675,123 +644,6 @@
+@@ -678,123 +647,6 @@
  }
  
  static void
@@ -466,7 +466,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkstatusbar.c
  gtk_statusbar_realize (GtkWidget *widget)
  {
    GtkStatusbar *statusbar;
-@@ -799,9 +651,6 @@
+@@ -802,9 +654,6 @@
    statusbar = GTK_STATUSBAR (widget);
  
    GTK_WIDGET_CLASS (gtk_statusbar_parent_class)->realize (widget);
@@ -476,7 +476,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkstatusbar.c
  }
  
  static void
-@@ -811,9 +660,6 @@
+@@ -814,9 +663,6 @@
  
    statusbar = GTK_STATUSBAR (widget);
  
@@ -486,7 +486,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkstatusbar.c
    GTK_WIDGET_CLASS (gtk_statusbar_parent_class)->unrealize (widget);
  }
  
-@@ -825,9 +671,6 @@
+@@ -828,9 +674,6 @@
    statusbar = GTK_STATUSBAR (widget);
  
    GTK_WIDGET_CLASS (gtk_statusbar_parent_class)->map (widget);
@@ -496,7 +496,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkstatusbar.c
  }
  
  static void
-@@ -837,103 +680,9 @@
+@@ -840,103 +683,9 @@
  
    statusbar = GTK_STATUSBAR (widget);
  
@@ -600,7 +600,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkstatusbar.c
  /* look for extra children between the frame containing
   * the label and where we want to draw the resize grip 
   */
-@@ -976,40 +725,62 @@
+@@ -979,40 +728,62 @@
  {
    GtkStatusbar *statusbar = GTK_STATUSBAR (widget);
    gboolean extra_children = FALSE;
@@ -690,7 +690,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkstatusbar.c
  	  widget->allocation = *allocation;
  	}
        else
-@@ -1033,17 +804,6 @@
+@@ -1036,17 +807,6 @@
  	      gtk_widget_size_allocate (child, allocation);
  	    }
  	}
@@ -708,10 +708,10 @@ Index: gtk+2.0-2.23.90/gtk/gtkstatusbar.c
      }
  }
  
-Index: gtk+2.0-2.23.90/gtk/gtkwindow.c
+Index: gtk+-2.24.3/gtk/gtkwindow.c
 ===================================================================
---- gtk+2.0-2.23.90.orig/gtk/gtkwindow.c	2011-01-11 15:44:58.940037000 -0600
-+++ gtk+2.0-2.23.90/gtk/gtkwindow.c	2011-01-11 15:47:56.588037000 -0600
+--- gtk+-2.24.3.orig/gtk/gtkwindow.c	2011-03-15 18:00:37.923481796 +1100
++++ gtk+-2.24.3/gtk/gtkwindow.c	2011-03-15 18:00:39.253559423 +1100
 @@ -95,6 +95,8 @@
    PROP_TRANSIENT_FOR,
    PROP_OPACITY,
@@ -1539,10 +1539,10 @@ Index: gtk+2.0-2.23.90/gtk/gtkwindow.c
    gtk_window_set_policy_internal (window, FALSE, resizable, FALSE);
  }
  
-Index: gtk+2.0-2.23.90/gtk/gtkwindow.h
+Index: gtk+-2.24.3/gtk/gtkwindow.h
 ===================================================================
---- gtk+2.0-2.23.90.orig/gtk/gtkwindow.h	2011-01-11 15:44:53.564037000 -0600
-+++ gtk+2.0-2.23.90/gtk/gtkwindow.h	2011-01-11 15:44:59.184037000 -0600
+--- gtk+-2.24.3.orig/gtk/gtkwindow.h	2011-02-20 01:31:37.000000000 +1100
++++ gtk+-2.24.3/gtk/gtkwindow.h	2011-03-15 18:00:39.253559423 +1100
 @@ -404,6 +404,17 @@
  GList *          gtk_window_group_list_windows  (GtkWindowGroup     *window_group);
  

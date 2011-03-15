@@ -1,3 +1,12 @@
+gtk+2.0 (2.24.3-0ubuntu1) natty; urgency=low
+
+  * New upstream release
+  * debian/patches/000git_GI-gdk_keyval_name.patch:
+  * debian/patches/000git_GI_calendar_get_date.patch:
+    - Applied upstream
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Tue, 15 Mar 2011 17:54:33 +1100
+
 gtk+2.0 (2.24.1-1ubuntu3) natty; urgency=low
 
   * Add 000git_GI-gdk_keyval_name.patch: Fix gdk_keyval_name() and

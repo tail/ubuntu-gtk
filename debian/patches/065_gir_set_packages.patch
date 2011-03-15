@@ -1,6 +1,8 @@
 === modified file 'gdk/Makefile.am'
---- old/gdk/Makefile.am	2011-01-21 19:24:12 +0000
-+++ new/gdk/Makefile.am	2011-01-21 19:28:52 +0000
+Index: gtk+-2.24.3/gdk/Makefile.am
+===================================================================
+--- gtk+-2.24.3.orig/gdk/Makefile.am	2011-03-15 18:00:46.403971555 +1100
++++ gtk+-2.24.3/gdk/Makefile.am	2011-03-15 18:00:47.964060326 +1100
 @@ -3,6 +3,7 @@
  -include $(INTROSPECTION_MAKEFILE)
  INTROSPECTION_GIRS =
@@ -9,7 +11,7 @@
     --add-include-path=../gdk
  INTROSPECTION_COMPILER_ARGS = \
     --includedir=$(srcdir) \
-@@ -197,10 +198,11 @@
+@@ -198,10 +199,11 @@
          gdkenumtypes.h
  
  Gdk-2.0.gir: $(gdktargetlib) Makefile
@@ -22,7 +24,7 @@
  Gdk_2_0_gir_CFLAGS = $(INCLUDES)
  INTROSPECTION_GIRS += Gdk-2.0.gir
  
-@@ -238,10 +240,12 @@
+@@ -239,10 +241,12 @@
          x11/gdkx.h
  
  GdkX11-2.0.gir: $(gdktargetlib) Gdk-2.0.gir Makefile
@@ -37,10 +39,10 @@
  GdkX11_2_0_gir_CFLAGS = $(INCLUDES) -L$(top_builddir)/gdk -I.. -I$(srcdir)
  INTROSPECTION_GIRS += GdkX11-2.0.gir
  
-
-=== modified file 'gtk/Makefile.am'
---- old/gtk/Makefile.am	2011-01-21 19:23:36 +0000
-+++ new/gtk/Makefile.am	2011-01-21 19:31:54 +0000
+Index: gtk+-2.24.3/gtk/Makefile.am
+===================================================================
+--- gtk+-2.24.3.orig/gtk/Makefile.am	2011-03-15 18:00:37.923481796 +1100
++++ gtk+-2.24.3/gtk/Makefile.am	2011-03-15 18:00:47.964060326 +1100
 @@ -3,6 +3,7 @@
  -include $(INTROSPECTION_MAKEFILE)
  INTROSPECTION_GIRS =
@@ -49,7 +51,7 @@
  	--add-include-path=../gdk
  INTROSPECTION_COMPILER_ARGS = \
  	--includedir=$(srcdir) \
-@@ -998,11 +999,11 @@
+@@ -999,11 +1000,11 @@
      gtktypebuiltins.c
  
  Gtk-2.0.gir: $(INTROSPECTION_SCANNER) $(gtktargetlib) $(top_builddir)/gdk/Gdk-2.0.gir Makefile
@@ -63,7 +65,7 @@
  Gtk_2_0_gir_CFLAGS = \
  		$(INCLUDES) \
  		-UGDK_DISABLE_DEPRECATED \
-@@ -1010,6 +1011,7 @@
+@@ -1011,6 +1012,7 @@
  		-DGTK_TEXT_USE_INTERNAL_UNSUPPORTED_API
  Gtk_2_0_gir_LIBS = $(gtktargetlib)
  Gtk_2_0_gir_FILES = $(addprefix $(srcdir)/, $(introspection_files))
@@ -71,4 +73,3 @@
  INTROSPECTION_GIRS += Gtk-2.0.gir
  
  girdir = $(datadir)/gir-1.0
-
