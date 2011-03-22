@@ -1,9 +1,12 @@
-gtk+2.0 (2.24.3-0ubuntu3) UNRELEASED; urgency=low
+gtk+2.0 (2.24.3-0ubuntu3) natty; urgency=low
 
   * debian/patches/096_git_combo_hasentry.patch:
     - git commit to fix combo box automated testing issues (lp: #690657)
+  * debian/patches/096_git_gtkprintsettings.patch:
+    - upstream git commit backported from the gtk3 serie, don't ignore the 
+      gtkprintsettings resolution settings (lp: #434242, #735405)
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 18 Mar 2011 16:50:42 +0100
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 18 Mar 2011 17:32:42 +0100
 
 gtk+2.0 (2.24.3-0ubuntu2) natty; urgency=low
 
