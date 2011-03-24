@@ -1,3 +1,10 @@
+gtk+2.0 (2.24.3-0ubuntu4) natty; urgency=low
+
+  * debian/patches/097_statusicon_image_fallback.patch: Make GtkStatusIcon
+    images use fallbacks by default if the property is available. (LP: #729150)
+
+ -- Ted Gould <ted@ubuntu.com>  Wed, 23 Mar 2011 11:53:36 -0500
+
 gtk+2.0 (2.24.3-0ubuntu3) natty; urgency=low
 
   * debian/patches/096_git_combo_hasentry.patch:
