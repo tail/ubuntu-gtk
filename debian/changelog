@@ -1,3 +1,26 @@
+gtk+2.0 (2.24.3-0ubuntu4+multiarch.1) UNRELEASED; urgency=low
+
+  * Merge from natty.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Sat, 26 Mar 2011 14:02:19 -0700
+
+gtk+2.0 (2.24.3-0ubuntu4) natty; urgency=low
+
+  * debian/patches/097_statusicon_image_fallback.patch: Make GtkStatusIcon
+    images use fallbacks by default if the property is available. (LP: #729150)
+
+ -- Ted Gould <ted@ubuntu.com>  Wed, 23 Mar 2011 11:53:36 -0500
+
+gtk+2.0 (2.24.3-0ubuntu3) natty; urgency=low
+
+  * debian/patches/096_git_combo_hasentry.patch:
+    - git commit to fix combo box automated testing issues (lp: #690657)
+  * debian/patches/096_git_gtkprintsettings.patch:
+    - upstream git commit backported from the gtk3 serie, don't ignore the 
+      gtkprintsettings resolution settings (lp: #434242, #735405)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 18 Mar 2011 17:32:42 +0100
+
 gtk+2.0 (2.24.3-0ubuntu2+multiarch.1) natty; urgency=low
 
   * Merge from natty.
