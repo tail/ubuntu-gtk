@@ -65,6 +65,7 @@ GTK_BINVER_DEP := gtk$(APIVER)-binver-$(GTK_BINARY_VERSION)
 
 # relative base directory for all types of modules
 MODULES_BASE_PATH := $(LIBDIR)/gtk-$(APIVER)/$(GTK_BINARY_VERSION)
+OLD_MODULES_BASE_PATH := usr/lib/gtk-$(APIVER)/$(GTK_BINARY_VERSION)
 
 # package names
 SHARED_PKG := libgtk$(APIVER)-$(SONAME)
@@ -249,6 +250,7 @@ debian/%: debian/%.in
 		-e "s#@LIBDIR@#$(LIBDIR)#g" \
 		-e 's#@OPTLIBDIR@#$(OPTLIBDIR)#g' \
 		-e "s#@MODULES_BASE_PATH@#$(MODULES_BASE_PATH)#g" \
+		-e "s#@OLD_MODULES_BASE_PATH@#$(OLD_MODULES_BASE_PATH)#g" \
 		$@.in \
 		$(wildcard $(if $(filter opt,$(FLAVORS)),$@.opt)) \
 		> $@

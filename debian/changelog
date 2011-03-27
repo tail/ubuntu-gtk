@@ -1,8 +1,10 @@
-gtk+2.0 (2.24.3-0ubuntu4+multiarch.1) UNRELEASED; urgency=low
+gtk+2.0 (2.24.3-0ubuntu4+multiarch.1) natty; urgency=low
 
   * Merge from natty.
+  * Update the postinst/triggers for the compat module paths, the same as for
+    glib and gdk-pixbuf.
 
- -- Steve Langasek <steve.langasek@ubuntu.com>  Sat, 26 Mar 2011 14:02:19 -0700
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Sat, 26 Mar 2011 14:16:58 -0700
 
 gtk+2.0 (2.24.3-0ubuntu4) natty; urgency=low
 
