@@ -27,3 +27,4 @@
 096_git_combo_hasentry.patch
 096_git_gtkprintsettings.patch
 097_statusicon_image_fallback.patch
+100_overlay_scrollbar_loading.patch
