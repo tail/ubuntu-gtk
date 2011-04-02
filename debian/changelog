@@ -1,4 +1,4 @@
-gtk+2.0 (2.24.3-0ubuntu5) UNRELEASED; urgency=low
+gtk+2.0 (2.24.3-0ubuntu5) natty; urgency=low
 
   * debian/patches/100_overlay_scrollbar_loading.patch
     - support for dynamically loading overlay scrollbars (LP: #730740)
