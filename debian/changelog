@@ -1,3 +1,11 @@
+gtk+2.0 (2.24.4-0ubuntu1) natty; urgency=low
+
+  * New upstream release
+  * debian/patches/096_git_combo_hasentry.patch:
+    - Applied upstream
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Mon, 04 Apr 2011 10:37:35 +1000
+
 gtk+2.0 (2.24.3-0ubuntu5) natty; urgency=low
 
   * debian/patches/100_overlay_scrollbar_loading.patch

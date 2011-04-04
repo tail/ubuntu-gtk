@@ -15,10 +15,10 @@ the user types a subfolder name that doesn't exist.
 
 Signed-off-by: Federico Mena Quintero <federico@gnome.org>
 ---
-Index: gtk+2.0-2.24.3/gtk/gtkfilechooserdefault.c
+Index: gtk+-2.24.4/gtk/gtkfilechooserdefault.c
 ===================================================================
---- gtk+2.0-2.24.3.orig/gtk/gtkfilechooserdefault.c	2011-02-26 18:45:49.000000000 +0100
-+++ gtk+2.0-2.24.3/gtk/gtkfilechooserdefault.c	2011-03-15 16:35:12.963990347 +0100
+--- gtk+-2.24.4.orig/gtk/gtkfilechooserdefault.c	2011-04-02 07:44:11.000000000 +1100
++++ gtk+-2.24.4/gtk/gtkfilechooserdefault.c	2011-04-04 10:58:13.046596963 +1000
 @@ -1014,6 +1014,21 @@
  		file, error);
  }
@@ -41,7 +41,7 @@ Index: gtk+2.0-2.24.3/gtk/gtkfilechooserdefault.c
  /* Shows an error about not being able to select a folder because a file with
   * the same name is already there.
   */
-@@ -8354,7 +8369,11 @@
+@@ -8361,7 +8376,11 @@
  
    if (parent_is_folder)
      {
@@ -54,7 +54,7 @@ Index: gtk+2.0-2.24.3/gtk/gtkfilechooserdefault.c
          {
            if (data->file_exists_and_is_not_folder)
  	    {
-@@ -8378,28 +8397,40 @@
+@@ -8385,28 +8404,40 @@
        else if (data->impl->action == GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER
  	       || data->impl->action == GTK_FILE_CHOOSER_ACTION_CREATE_FOLDER)
          {
@@ -101,7 +101,7 @@ Index: gtk+2.0-2.24.3/gtk/gtkfilechooserdefault.c
      }
  
  out:
-@@ -8421,7 +8452,7 @@
+@@ -8428,7 +8459,7 @@
    gboolean cancelled = g_cancellable_is_cancelled (cancellable);
    gboolean file_exists;
    gboolean is_folder;
@@ -110,7 +110,7 @@ Index: gtk+2.0-2.24.3/gtk/gtkfilechooserdefault.c
    struct FileExistsData *data = user_data;
  
    if (cancellable != data->impl->file_exists_get_info_cancellable)
-@@ -8443,8 +8474,10 @@
+@@ -8450,8 +8481,10 @@
  	change_folder_and_display_error (data->impl, data->file, TRUE);
        else
  	{
@@ -123,7 +123,7 @@ Index: gtk+2.0-2.24.3/gtk/gtkfilechooserdefault.c
  	}
      }
    else if (data->impl->action == GTK_FILE_CHOOSER_ACTION_CREATE_FOLDER)
-@@ -8459,14 +8492,14 @@
+@@ -8466,14 +8499,14 @@
          }
        else
          {
@@ -140,7 +140,7 @@ Index: gtk+2.0-2.24.3/gtk/gtkfilechooserdefault.c
          }
        else
  	{
-@@ -8484,15 +8517,15 @@
+@@ -8491,15 +8524,15 @@
        if (is_folder)
  	change_folder_and_display_error (data->impl, data->file, TRUE);
        else
