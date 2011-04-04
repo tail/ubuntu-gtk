@@ -1,3 +1,16 @@
+gtk+2.0 (2.24.3-0ubuntu5+multiarch.1) natty; urgency=low
+
+  * merge from natty.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Sun, 03 Apr 2011 18:00:15 -0700
+
+gtk+2.0 (2.24.3-0ubuntu5) natty; urgency=low
+
+  * debian/patches/100_overlay_scrollbar_loading.patch
+    - support for dynamically loading overlay scrollbars (LP: #730740)
+
+ -- Ken VanDine <ken.vandine@canonical.com>  Wed, 30 Mar 2011 08:57:26 -0400
+
 gtk+2.0 (2.24.3-0ubuntu4+multiarch.2) natty; urgency=low
 
   * debian/patches/098_multiarch_module_path.patch: Fall back to the
