@@ -1,3 +1,10 @@
+gtk+2.0 (2.24.3-0ubuntu4+multiarch.2) natty; urgency=low
+
+  * debian/patches/098_multiarch_module_path.patch: Fall back to the
+    hard-coded pre-multiarch module directory.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Mon, 28 Mar 2011 17:13:59 -0700
+
 gtk+2.0 (2.24.3-0ubuntu4+multiarch.1) natty; urgency=low
 
   * Merge from natty.
