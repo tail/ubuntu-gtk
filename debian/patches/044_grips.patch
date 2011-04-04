@@ -1,10 +1,10 @@
 ## Description: add some description
 ## Origin/Author: add some origin or author
 ## Bug: bug URL
-Index: gtk+-2.24.3/gtk/gtk.symbols
+Index: gtk+-2.24.4/gtk/gtk.symbols
 ===================================================================
---- gtk+-2.24.3.orig/gtk/gtk.symbols	2011-03-15 18:00:37.923481796 +1100
-+++ gtk+-2.24.3/gtk/gtk.symbols	2011-03-15 18:00:39.243558846 +1100
+--- gtk+-2.24.4.orig/gtk/gtk.symbols	2011-04-04 10:57:59.396596969 +1000
++++ gtk+-2.24.4/gtk/gtk.symbols	2011-04-04 10:58:00.236596968 +1000
 @@ -5381,6 +5381,7 @@
  gtk_window_get_modal
  gtk_window_get_position
@@ -30,10 +30,10 @@ Index: gtk+-2.24.3/gtk/gtk.symbols
  gtk_window_set_icon
  #ifndef _WIN64
  gtk_window_set_icon_from_file PRIVATE
-Index: gtk+-2.24.3/gtk/gtkalias.h
+Index: gtk+-2.24.4/gtk/gtkalias.h
 ===================================================================
---- gtk+-2.24.3.orig/gtk/gtkalias.h	2011-03-15 04:13:57.000000000 +1100
-+++ gtk+-2.24.3/gtk/gtkalias.h	2011-03-15 18:00:39.243558846 +1100
+--- gtk+-2.24.4.orig/gtk/gtkalias.h	2011-04-02 08:43:12.000000000 +1100
++++ gtk+-2.24.4/gtk/gtkalias.h	2011-04-04 10:58:00.236596968 +1000
 @@ -12827,6 +12827,9 @@
  extern __typeof (gtk_window_get_group) IA__gtk_window_get_group __attribute((visibility("hidden")));
  #define gtk_window_get_group IA__gtk_window_get_group
@@ -64,10 +64,10 @@ Index: gtk+-2.24.3/gtk/gtkalias.h
  extern __typeof (gtk_window_set_accept_focus) IA__gtk_window_set_accept_focus __attribute((visibility("hidden")));
  #define gtk_window_set_accept_focus IA__gtk_window_set_accept_focus
  
-Index: gtk+-2.24.3/gtk/gtkaliasdef.c
+Index: gtk+-2.24.4/gtk/gtkaliasdef.c
 ===================================================================
---- gtk+-2.24.3.orig/gtk/gtkaliasdef.c	2011-03-15 04:13:56.000000000 +1100
-+++ gtk+-2.24.3/gtk/gtkaliasdef.c	2011-03-15 18:00:39.243558846 +1100
+--- gtk+-2.24.4.orig/gtk/gtkaliasdef.c	2011-04-02 08:43:10.000000000 +1100
++++ gtk+-2.24.4/gtk/gtkaliasdef.c	2011-04-04 10:58:00.246596968 +1000
 @@ -12830,6 +12830,9 @@
  #undef gtk_window_get_group 
  extern __typeof (gtk_window_get_group) gtk_window_get_group __attribute((alias("IA__gtk_window_get_group"), visibility("default")));
@@ -98,10 +98,10 @@ Index: gtk+-2.24.3/gtk/gtkaliasdef.c
  #undef gtk_window_set_accept_focus 
  extern __typeof (gtk_window_set_accept_focus) gtk_window_set_accept_focus __attribute((alias("IA__gtk_window_set_accept_focus"), visibility("default")));
  
-Index: gtk+-2.24.3/gtk/gtkassistant.c
+Index: gtk+-2.24.4/gtk/gtkassistant.c
 ===================================================================
---- gtk+-2.24.3.orig/gtk/gtkassistant.c	2011-02-20 01:31:37.000000000 +1100
-+++ gtk+-2.24.3/gtk/gtkassistant.c	2011-03-15 18:00:39.243558846 +1100
+--- gtk+-2.24.4.orig/gtk/gtkassistant.c	2011-02-20 01:31:37.000000000 +1100
++++ gtk+-2.24.4/gtk/gtkassistant.c	2011-04-04 10:58:00.246596968 +1000
 @@ -1413,6 +1413,9 @@
      {
        container = GTK_CONTAINER (widget);
@@ -112,10 +112,10 @@ Index: gtk+-2.24.3/gtk/gtkassistant.c
        assistant_paint_colored_box (widget);
  
        gtk_container_propagate_expose (container, priv->header_image, event);
-Index: gtk+-2.24.3/gtk/gtkrange.c
+Index: gtk+-2.24.4/gtk/gtkrange.c
 ===================================================================
---- gtk+-2.24.3.orig/gtk/gtkrange.c	2011-02-20 01:31:37.000000000 +1100
-+++ gtk+-2.24.3/gtk/gtkrange.c	2011-03-15 18:00:39.243558846 +1100
+--- gtk+-2.24.4.orig/gtk/gtkrange.c	2011-03-18 11:14:36.000000000 +1100
++++ gtk+-2.24.4/gtk/gtkrange.c	2011-04-04 10:58:00.246596968 +1000
 @@ -39,6 +39,7 @@
  #include "gtkrange.h"
  #include "gtkscale.h"
@@ -153,7 +153,7 @@ Index: gtk+-2.24.3/gtk/gtkrange.c
    widget_class->map = gtk_range_map;
    widget_class->unmap = gtk_range_unmap;
    widget_class->expose_event = gtk_range_expose;
-@@ -1532,6 +1538,67 @@
+@@ -1534,6 +1540,67 @@
    requisition->height = range_rect.height + border.top + border.bottom;
  }
  
@@ -221,7 +221,7 @@ Index: gtk+-2.24.3/gtk/gtkrange.c
  static void
  gtk_range_size_allocate (GtkWidget     *widget,
                           GtkAllocation *allocation)
-@@ -1540,6 +1607,7 @@
+@@ -1542,6 +1609,7 @@
  
    range = GTK_RANGE (widget);
  
@@ -229,7 +229,7 @@ Index: gtk+-2.24.3/gtk/gtkrange.c
    widget->allocation = *allocation;
    
    range->layout->recalc_marks = TRUE;
-@@ -1556,11 +1624,36 @@
+@@ -1558,11 +1626,36 @@
  }
  
  static void
@@ -267,7 +267,7 @@ Index: gtk+-2.24.3/gtk/gtkrange.c
  
    range = GTK_RANGE (widget);
  
-@@ -1570,7 +1663,11 @@
+@@ -1572,7 +1665,11 @@
  
    widget->window = gtk_widget_get_parent_window (widget);
    g_object_ref (widget->window);
@@ -280,10 +280,10 @@ Index: gtk+-2.24.3/gtk/gtkrange.c
    attributes.window_type = GDK_WINDOW_CHILD;
    attributes.x = widget->allocation.x;
    attributes.y = widget->allocation.y;
-Index: gtk+-2.24.3/gtk/gtkstatusbar.c
+Index: gtk+-2.24.4/gtk/gtkstatusbar.c
 ===================================================================
---- gtk+-2.24.3.orig/gtk/gtkstatusbar.c	2011-02-20 01:31:37.000000000 +1100
-+++ gtk+-2.24.3/gtk/gtkstatusbar.c	2011-03-15 18:00:39.253559423 +1100
+--- gtk+-2.24.4.orig/gtk/gtkstatusbar.c	2011-02-20 01:31:37.000000000 +1100
++++ gtk+-2.24.4/gtk/gtkstatusbar.c	2011-04-04 10:58:00.246596968 +1000
 @@ -72,20 +72,8 @@
  static void     gtk_statusbar_unrealize         (GtkWidget         *widget);
  static void     gtk_statusbar_map               (GtkWidget         *widget);
@@ -708,10 +708,10 @@ Index: gtk+-2.24.3/gtk/gtkstatusbar.c
      }
  }
  
-Index: gtk+-2.24.3/gtk/gtkwindow.c
+Index: gtk+-2.24.4/gtk/gtkwindow.c
 ===================================================================
---- gtk+-2.24.3.orig/gtk/gtkwindow.c	2011-03-15 18:00:37.923481796 +1100
-+++ gtk+-2.24.3/gtk/gtkwindow.c	2011-03-15 18:00:39.253559423 +1100
+--- gtk+-2.24.4.orig/gtk/gtkwindow.c	2011-04-04 10:57:59.406596969 +1000
++++ gtk+-2.24.4/gtk/gtkwindow.c	2011-04-04 10:58:00.246596968 +1000
 @@ -95,6 +95,8 @@
    PROP_TRANSIENT_FOR,
    PROP_OPACITY,
@@ -1539,10 +1539,10 @@ Index: gtk+-2.24.3/gtk/gtkwindow.c
    gtk_window_set_policy_internal (window, FALSE, resizable, FALSE);
  }
  
-Index: gtk+-2.24.3/gtk/gtkwindow.h
+Index: gtk+-2.24.4/gtk/gtkwindow.h
 ===================================================================
---- gtk+-2.24.3.orig/gtk/gtkwindow.h	2011-02-20 01:31:37.000000000 +1100
-+++ gtk+-2.24.3/gtk/gtkwindow.h	2011-03-15 18:00:39.253559423 +1100
+--- gtk+-2.24.4.orig/gtk/gtkwindow.h	2011-02-20 01:31:37.000000000 +1100
++++ gtk+-2.24.4/gtk/gtkwindow.h	2011-04-04 10:58:00.246596968 +1000
 @@ -404,6 +404,17 @@
  GList *          gtk_window_group_list_windows  (GtkWindowGroup     *window_group);
  

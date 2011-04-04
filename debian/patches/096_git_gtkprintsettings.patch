@@ -8,11 +8,11 @@ If resolution has not been set then use default resolution from ppd.
 https://bugzilla.gnome.org/show_bug.cgi?id=635254
 
 ---
-diff --git a/modules/printbackends/cups/gtkprintbackendcups.c b/modules/printbackends/cups/gtkprintbackendcups.c
-index 614e752..2e1e1a9 100644
---- a/modules/printbackends/cups/gtkprintbackendcups.c
-+++ b/modules/printbackends/cups/gtkprintbackendcups.c
-@@ -4091,23 +4091,29 @@ set_option_from_settings (GtkPrinterOption *option,
+Index: gtk+-2.24.4/modules/printbackends/cups/gtkprintbackendcups.c
+===================================================================
+--- gtk+-2.24.4.orig/modules/printbackends/cups/gtkprintbackendcups.c	2011-02-20 01:31:37.000000000 +1100
++++ gtk+-2.24.4/modules/printbackends/cups/gtkprintbackendcups.c	2011-04-04 10:59:32.806596928 +1000
+@@ -4095,23 +4095,29 @@
  	gtk_printer_option_set (option, cups_value);
        else
  	{
@@ -57,5 +57,3 @@ index 614e752..2e1e1a9 100644
      }
    else if (strcmp (option->name, "gtk-paper-type") == 0)
      map_settings_to_option (option, media_type_map, G_N_ELEMENTS (media_type_map),
-
-

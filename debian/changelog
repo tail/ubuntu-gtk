@@ -1,3 +1,17 @@
+gtk+2.0 (2.24.4-0ubuntu1+multiarch.1) natty; urgency=low
+
+  * Merge from natty.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Sun, 03 Apr 2011 22:12:23 -0700
+
+gtk+2.0 (2.24.4-0ubuntu1) natty; urgency=low
+
+  * New upstream release
+  * debian/patches/096_git_combo_hasentry.patch:
+    - Applied upstream
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Mon, 04 Apr 2011 10:37:35 +1000
+
 gtk+2.0 (2.24.3-0ubuntu5+multiarch.1) natty; urgency=low
 
   * merge from natty.
