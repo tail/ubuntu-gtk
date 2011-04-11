@@ -1,3 +1,9 @@
+gtk+2.0 (2.24.4-0ubuntu1+multiarch.2) natty; urgency=low
+
+  * No-change rebuild to pick up a build for armel
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Mon, 11 Apr 2011 13:04:41 -0700
+
 gtk+2.0 (2.24.4-0ubuntu1+multiarch.1) natty; urgency=low
 
   * Merge from natty.
