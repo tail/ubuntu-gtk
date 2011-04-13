@@ -6,10 +6,10 @@ Subject: GtkImage: Add "use-fallback" property
 So that icon-name and GIcon type of GtkImages can use automatic
 fallback names.
 ---
-Index: gtk+2.0-2.23.90/gtk/gtkimage.c
+Index: gtk+2.0-2.24.4/gtk/gtkimage.c
 ===================================================================
---- gtk+2.0-2.23.90.orig/gtk/gtkimage.c	2011-01-06 18:15:12.000000000 +0100
-+++ gtk+2.0-2.23.90/gtk/gtkimage.c	2011-01-20 15:12:58.000000000 +0100
+--- gtk+2.0-2.24.4.orig/gtk/gtkimage.c	2011-04-13 12:26:48.104712854 -0500
++++ gtk+2.0-2.24.4/gtk/gtkimage.c	2011-04-13 12:28:19.576702233 -0500
 @@ -138,6 +138,7 @@
  
    gint pixel_size;
@@ -53,11 +53,23 @@ Index: gtk+2.0-2.23.90/gtk/gtkimage.c
    g_type_class_add_private (object_class, sizeof (GtkImagePrivate));
  }
  
-@@ -477,6 +497,17 @@
+@@ -387,8 +407,10 @@
+ 			GParamSpec   *pspec)
+ {
+   GtkImage *image;
++  GtkImagePrivate *priv;
+ 
+   image = GTK_IMAGE (object);
++  priv = GTK_IMAGE_GET_PRIVATE (image);
+   
+   switch (prop_id)
+     {
+@@ -477,6 +499,18 @@
  				image->icon_size);
        break;
  
 +    case PROP_USE_FALLBACK:
++      priv->use_fallback = g_value_get_boolean(value);
 +      if (image->storage_type == GTK_IMAGE_ICON_NAME)
 +        gtk_image_set_from_icon_name (image,
 +				      image->data.name.icon_name,
@@ -71,7 +83,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkimage.c
      default:
        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
        break;
-@@ -574,6 +605,10 @@
+@@ -574,6 +608,10 @@
      case PROP_STORAGE_TYPE:
        g_value_set_enum (value, image->storage_type);
        break;
@@ -82,7 +94,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkimage.c
        
      default:
        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-@@ -1667,6 +1702,8 @@
+@@ -1667,6 +1705,8 @@
    icon_theme = gtk_icon_theme_get_for_screen (screen);
    settings = gtk_settings_get_for_screen (screen);
    flags = GTK_ICON_LOOKUP_USE_BUILTIN;
@@ -91,7 +103,7 @@ Index: gtk+2.0-2.23.90/gtk/gtkimage.c
    if (image->data.name.pixbuf == NULL)
      {
        if (priv->pixel_size != -1)
-@@ -1750,6 +1787,8 @@
+@@ -1750,6 +1790,8 @@
    icon_theme = gtk_icon_theme_get_for_screen (screen);
    settings = gtk_settings_get_for_screen (screen);
    flags = GTK_ICON_LOOKUP_USE_BUILTIN;
