@@ -1,4 +1,4 @@
-gtk+2.0 (2.24.4-0ubuntu2) UNRELEASED; urgency=low
+gtk+2.0 (2.24.4-0ubuntu2) natty; urgency=low
 
   * debian/patches/093_gtk3_gtkimage_fallbacks_use.patch: Make sure to
     save the value of use_fallback when it's changed. (LP: #746495)
