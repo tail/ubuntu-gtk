@@ -1,3 +1,16 @@
+gtk+2.0 (2.24.4-0ubuntu2multiarch.1) natty; urgency=low
+
+  * Merge from natty.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Thu, 14 Apr 2011 23:37:48 -0700
+
+gtk+2.0 (2.24.4-0ubuntu2) natty; urgency=low
+
+  * debian/patches/093_gtk3_gtkimage_fallbacks_use.patch: Make sure to
+    save the value of use_fallback when it's changed. (LP: #746495)
+
+ -- Ted Gould <ted@ubuntu.com>  Wed, 13 Apr 2011 12:14:57 -0500
+
 gtk+2.0 (2.24.4-0ubuntu1+multiarch.2) natty; urgency=low
 
   * No-change rebuild to pick up a build for armel
