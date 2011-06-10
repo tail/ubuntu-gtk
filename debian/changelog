@@ -1,3 +1,10 @@
+gtk+2.0 (2.24.4-0ubuntu3) oneiric; urgency=low
+
+  * debian/patches/010_make_bg_changes_queue_repaint.patch
+    - Make background changes queue a repaint
+
+ -- Ken VanDine <ken.vandine@canonical.com>  Thu, 09 Jun 2011 11:31:18 -0400
+
 gtk+2.0 (2.24.4-0ubuntu2) natty; urgency=low
 
   * debian/patches/093_gtk3_gtkimage_fallbacks_use.patch: Make sure to
