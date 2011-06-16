@@ -1,3 +1,12 @@
+gtk+2.0 (2.24.5-0ubuntu1) oneiric; urgency=low
+
+  * New upstream version
+  * 010_make_bg_changes_queue_repaint: dropped, the fix is in the new version
+  * include_m4_dir.patch: include the m4 directory from the previous version, 
+    it's not shipped with the new tarball but required for the autoreconf run
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 16 Jun 2011 11:11:24 +0200
+
 gtk+2.0 (2.24.4-0ubuntu3) oneiric; urgency=low
 
   * debian/patches/010_make_bg_changes_queue_repaint.patch

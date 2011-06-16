@@ -4,7 +4,6 @@
 004_gtk+-ximian-gtk2-filesel-navbutton-5.patch
 005_support_disabling_x11_extensions.patch
 009_gtk-export-filechooser.patch
-010_make_bg_changes_queue_repaint.patch
 011_immodule-cache-dir.patch
 012_ubuntu-set-grab-add.patch
 015_default-fallback-icon-theme.patch
@@ -28,3 +27,4 @@
 096_git_gtkprintsettings.patch
 097_statusicon_image_fallback.patch
 100_overlay_scrollbar_loading.patch
+include_m4_dir.patch
