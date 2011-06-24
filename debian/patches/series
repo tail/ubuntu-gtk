@@ -26,5 +26,6 @@
 095_git_menus_scrolling.patch
 096_git_gtkprintsettings.patch
 097_statusicon_image_fallback.patch
+098_multiarch_module_path.patch
 100_overlay_scrollbar_loading.patch
 include_m4_dir.patch
