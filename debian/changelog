@@ -1,10 +1,10 @@
-gtk+2.0 (2.24.5-0ubuntu4) UNRELEASED; urgency=low
+gtk+2.0 (2.24.5-0ubuntu4) oneiric; urgency=low
 
   * debian/control.in: Make libgtk2.0-bin Architecture: any, as the symlinks
     now point to multiarch directories, and the /i386-* links are broken on
     other architectures.
 
- -- Martin Pitt <martin.pitt@ubuntu.com>  Tue, 19 Jul 2011 15:11:13 +0200
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Tue, 19 Jul 2011 15:58:58 +0200
 
 gtk+2.0 (2.24.5-0ubuntu3) oneiric; urgency=low
 
