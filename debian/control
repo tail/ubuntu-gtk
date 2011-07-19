@@ -110,7 +110,7 @@ Description: Common files for the GTK+ graphical user interface library
 
 Package: libgtk2.0-bin
 Section: misc
-Architecture: all
+Architecture: any
 Depends: ${misc:Depends},
          libgtk2.0-0 (>= ${source:Version}),
          libgtk2.0-common
