@@ -1,9 +1,9 @@
-gtk+2.0 (2.24.5-0ubuntu5) UNRELEASED; urgency=low
+gtk+2.0 (2.24.5-0ubuntu5) oneiric; urgency=low
 
   * debian/rules: ensure libgtk2.0-bin is also taken into account as an arch:any
     package now. (LP: #810747)
 
- -- Mathieu Trudel-Lapierre <mathieu-tl@ubuntu.com>  Tue, 19 Jul 2011 14:53:09 -0400
+ -- Mathieu Trudel-Lapierre <mathieu-tl@ubuntu.com>  Tue, 19 Jul 2011 16:15:49 -0400
 
 gtk+2.0 (2.24.5-0ubuntu4) oneiric; urgency=low
 
