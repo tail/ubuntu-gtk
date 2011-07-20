@@ -1,3 +1,11 @@
+gtk+2.0 (2.24.5-0ubuntu6) oneiric; urgency=low
+
+  * debian/patches/043_ubuntu_menu_proxy.patch:
+    - Don't overwrite 'ubuntu-local' property when 'show-local' changes.
+      LP: #743265
+
+ -- Michael Terry <mterry@ubuntu.com>  Wed, 20 Jul 2011 12:31:52 -0400
+
 gtk+2.0 (2.24.5-0ubuntu5) oneiric; urgency=low
 
   * debian/rules: ensure libgtk2.0-bin is also taken into account as an arch:any
