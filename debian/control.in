@@ -215,6 +215,7 @@ Description: Examples files for the GTK+ 2.0
 Package: @PIXBUF_PKG@
 Section: graphics
 Architecture: any
+Multi-Arch: same
 Depends: ${misc:Depends},
          ${shlibs:Depends},
          @SHARED_PKG@ (= ${binary:Version}),

@@ -1,3 +1,10 @@
+gtk+2.0 (2.24.5-0ubuntu7) UNRELEASED; urgency=low
+
+  * Mark gtk2-engines-pixbuf Multi-Arch: same, as it already installs to the
+    multiarch path.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Sun, 14 Aug 2011 12:12:56 -0700
+
 gtk+2.0 (2.24.5-0ubuntu6) oneiric; urgency=low
 
   * debian/patches/043_ubuntu_menu_proxy.patch:

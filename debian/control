@@ -215,6 +215,7 @@ Description: Examples files for the GTK+ 2.0
 Package: gtk2-engines-pixbuf
 Section: graphics
 Architecture: any
+Multi-Arch: same
 Depends: ${misc:Depends},
          ${shlibs:Depends},
          libgtk2.0-0 (= ${binary:Version}),
