@@ -1,9 +1,9 @@
-gtk+2.0 (2.24.5-0ubuntu7) UNRELEASED; urgency=low
+gtk+2.0 (2.24.5-0ubuntu7) oneiric; urgency=low
 
   * Mark gtk2-engines-pixbuf Multi-Arch: same, as it already installs to the
     multiarch path.
 
- -- Steve Langasek <steve.langasek@ubuntu.com>  Sun, 14 Aug 2011 12:12:56 -0700
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Tue, 16 Aug 2011 12:35:42 -0700
 
 gtk+2.0 (2.24.5-0ubuntu6) oneiric; urgency=low
 
