@@ -1,3 +1,9 @@
+gtk+2.0 (2.24.5-0ubuntu8) UNRELEASED; urgency=low
+
+  * debian/watch: Look for bz2 tarballs, and restrict to GTK 2 versions.
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Thu, 08 Sep 2011 15:44:07 +0200
+
 gtk+2.0 (2.24.5-0ubuntu7) oneiric; urgency=low
 
   * Mark gtk2-engines-pixbuf Multi-Arch: same, as it already installs to the
