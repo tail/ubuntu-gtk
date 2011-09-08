@@ -1,4 +1,4 @@
-gtk+2.0 (2.24.6-0ubuntu1) UNRELEASED; urgency=low
+gtk+2.0 (2.24.6-0ubuntu1) oneiric; urgency=low
 
   * debian/watch: Look for bz2 tarballs, and restrict to GTK 2 versions.
   * New upstream bug fix release.
@@ -8,7 +8,7 @@ gtk+2.0 (2.24.6-0ubuntu1) UNRELEASED; urgency=low
   * debian/libgail-doc.install, debian/libgtk2.0-doc.install.in: Install
     documentation from the source tree, as it's not being installed any more.
 
- -- Martin Pitt <martin.pitt@ubuntu.com>  Thu, 08 Sep 2011 15:44:07 +0200
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Thu, 08 Sep 2011 20:30:15 +0200
 
 gtk+2.0 (2.24.5-0ubuntu7) oneiric; urgency=low
 
