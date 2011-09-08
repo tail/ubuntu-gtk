@@ -1,6 +1,10 @@
-gtk+2.0 (2.24.5-0ubuntu8) UNRELEASED; urgency=low
+gtk+2.0 (2.24.6-0ubuntu1) UNRELEASED; urgency=low
 
   * debian/watch: Look for bz2 tarballs, and restrict to GTK 2 versions.
+  * New upstream bug fix release.
+  * Drop 094_git_fileselector_error.patch, include_m4_dir.patch: Included
+    upstream.
+  * 003_gdk.pc_privates.patch, 009_gtk-export-filechooser.patch: Unfuzz.
 
  -- Martin Pitt <martin.pitt@ubuntu.com>  Thu, 08 Sep 2011 15:44:07 +0200
 
