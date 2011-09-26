@@ -1,3 +1,11 @@
+gtk+2.0 (2.24.6-0ubuntu3) oneiric; urgency=low
+
+  * debian/patches/010_make_bg_changes_queue_repaint.patch
+    - re-added patch to make background changes queue a repaint, needed for
+      overlay scrollbars
+
+ -- Ken VanDine <ken.vandine@canonical.com>  Mon, 26 Sep 2011 10:37:13 -0400
+
 gtk+2.0 (2.24.6-0ubuntu2) oneiric; urgency=low
 
   * Add 000git_file_chooser.patch: Cherrypick file dialog file type selector
