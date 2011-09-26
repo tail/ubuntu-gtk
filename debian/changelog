@@ -1,4 +1,4 @@
-gtk+2.0 (2.24.6-0ubuntu2) UNRELEASED; urgency=low
+gtk+2.0 (2.24.6-0ubuntu2) oneiric; urgency=low
 
   * Add 000git_file_chooser.patch: Cherrypick file dialog file type selector
     fix from upstream git.
