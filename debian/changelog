@@ -11,7 +11,7 @@ gtk+2.0 (2.24.6-0ubuntu2) oneiric; urgency=low
   * Add 000git_file_chooser.patch: Cherrypick file dialog file type selector
     fix from upstream git.
 
- -- Martin Pitt <martin.pitt@ubuntu.com>  Thu, 15 Sep 2011 10:52:11 +0200
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Thu, 15 Sep 2011 12:25:18 +0200
 
 gtk+2.0 (2.24.6-0ubuntu1) oneiric; urgency=low
 

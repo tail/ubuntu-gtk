@@ -50,3 +50,4 @@ index f058570..10d83ab 100644
 +        gdk_window_invalidate_rect_full (window, NULL, TRUE, CLEAR_BG_ALL);
      }
  }
+
