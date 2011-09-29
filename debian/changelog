@@ -1,3 +1,13 @@
+gtk+2.0 (2.24.6-0ubuntu4) UNRELEASED; urgency=low
+
+  * debian/patches/100_overlay_scrollbar_loading.patch
+    - Fix a crasher in Qt apps using gtk style caused by the overlay 
+      scrollbars (LP: #805303)
+  * debian/libgtk2.0-0.symbols
+    - Updated symbols from 100_overlay_scrollbar_loading.patch
+
+ -- Ken VanDine <ken.vandine@canonical.com>  Wed, 28 Sep 2011 11:43:38 -0400
+
 gtk+2.0 (2.24.6-0ubuntu3) oneiric; urgency=low
 
   * debian/patches/010_make_bg_changes_queue_repaint.patch
