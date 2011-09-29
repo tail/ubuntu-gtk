@@ -4,8 +4,8 @@
 Index: gtk+2.0-2.24.6/gtk/gtkmain.c
 ===================================================================
 --- gtk+2.0-2.24.6.orig/gtk/gtkmain.c	2011-09-28 13:23:08.000000000 +0200
-+++ gtk+2.0-2.24.6/gtk/gtkmain.c	2011-09-28 16:54:04.000000000 +0200
-@@ -709,6 +709,77 @@
++++ gtk+2.0-2.24.6/gtk/gtkmain.c	2011-09-29 09:15:01.000000000 +0200
+@@ -709,6 +709,78 @@
  #endif  
  }
  
@@ -24,15 +24,16 @@ Index: gtk+2.0-2.24.6/gtk/gtkmain.c
 +  use_overlay_scrollbar = use;
 +}
 +
++G_GNUC_INTERNAL
 +GtkWidget*
-+ubuntu_gtk_overlay_scrollbar_new (GtkOrientation orientation, GtkAdjustment* adjustment)
++_ubuntu_gtk_overlay_scrollbar_new (GtkOrientation orientation, GtkAdjustment* adjustment)
 +{
 +  g_return_if_fail (os_scrollbar_new);
 +  return os_scrollbar_new (orientation, adjustment);
 +}
 +
 +/*
-+ * ubuntu_gtk_overlay_scrollbar_init:
++ * _overlay_scrollbar_init:
 + *
 + * Initialize local use of the overlay-scrollbar module.
 + * 
@@ -45,7 +46,7 @@ Index: gtk+2.0-2.24.6/gtk/gtkmain.c
 + * empty value.
 + */
 +static void
-+_ubuntu_gtk_overlay_scrollbar_init (void)
++_overlay_scrollbar_init (void)
 +{
 +  GModule *module = NULL;
 +  gpointer symbol = NULL;
@@ -83,11 +84,11 @@ Index: gtk+2.0-2.24.6/gtk/gtkmain.c
  static void
  do_post_parse_initialization (int    *argc,
  			      char ***argv)
-@@ -752,6 +823,7 @@
+@@ -752,6 +824,7 @@
  
    _gtk_accel_map_init ();
    _gtk_rc_init ();
-+  _ubuntu_gtk_overlay_scrollbar_init ();
++  _overlay_scrollbar_init ();
  
    /* Set the 'initialized' flag.
     */
@@ -144,12 +145,12 @@ Index: gtk+2.0-2.24.6/gtk/gtkscrolledwindow.c
 Index: gtk+2.0-2.24.6/gtk/gtkhscrollbar.c
 ===================================================================
 --- gtk+2.0-2.24.6.orig/gtk/gtkhscrollbar.c	2011-09-28 13:23:01.000000000 +0200
-+++ gtk+2.0-2.24.6/gtk/gtkhscrollbar.c	2011-09-28 16:46:26.000000000 +0200
++++ gtk+2.0-2.24.6/gtk/gtkhscrollbar.c	2011-09-29 09:15:28.000000000 +0200
 @@ -34,6 +34,9 @@
  
  G_DEFINE_TYPE (GtkHScrollbar, gtk_hscrollbar, GTK_TYPE_SCROLLBAR)
  
-+GtkWidget* ubuntu_gtk_overlay_scrollbar_new (GtkOrientation, GtkAdjustment*);
++GtkWidget* _ubuntu_gtk_overlay_scrollbar_new (GtkOrientation, GtkAdjustment*);
 +gboolean ubuntu_gtk_get_use_overlay_scrollbar(void);
 +
  static void
@@ -160,7 +161,7 @@ Index: gtk+2.0-2.24.6/gtk/gtkhscrollbar.c
                          NULL);
  
 +  if (ubuntu_gtk_get_use_overlay_scrollbar())
-+    return ubuntu_gtk_overlay_scrollbar_new (GTK_ORIENTATION_HORIZONTAL, adjustment);
++    return _ubuntu_gtk_overlay_scrollbar_new (GTK_ORIENTATION_HORIZONTAL, adjustment);
 +
    return g_object_new (GTK_TYPE_HSCROLLBAR,
                         "adjustment", adjustment,
@@ -168,12 +169,12 @@ Index: gtk+2.0-2.24.6/gtk/gtkhscrollbar.c
 Index: gtk+2.0-2.24.6/gtk/gtkvscrollbar.c
 ===================================================================
 --- gtk+2.0-2.24.6.orig/gtk/gtkvscrollbar.c	2011-09-28 13:23:01.000000000 +0200
-+++ gtk+2.0-2.24.6/gtk/gtkvscrollbar.c	2011-09-28 16:46:02.000000000 +0200
++++ gtk+2.0-2.24.6/gtk/gtkvscrollbar.c	2011-09-29 09:15:45.000000000 +0200
 @@ -32,6 +32,9 @@
  #include "gtkintl.h"
  #include "gtkalias.h"
  
-+GtkWidget* ubuntu_gtk_overlay_scrollbar_new (GtkOrientation, GtkAdjustment*);
++GtkWidget* _ubuntu_gtk_overlay_scrollbar_new (GtkOrientation, GtkAdjustment*);
 +gboolean ubuntu_gtk_get_use_overlay_scrollbar (void);
 +
  /**
@@ -184,7 +185,7 @@ Index: gtk+2.0-2.24.6/gtk/gtkvscrollbar.c
                          NULL);
  
 +  if (ubuntu_gtk_get_use_overlay_scrollbar())
-+    return ubuntu_gtk_overlay_scrollbar_new (GTK_ORIENTATION_VERTICAL, adjustment);
++    return _ubuntu_gtk_overlay_scrollbar_new (GTK_ORIENTATION_VERTICAL, adjustment);
 +
    return g_object_new (GTK_TYPE_VSCROLLBAR,
                         "adjustment", adjustment,

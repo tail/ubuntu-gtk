@@ -1,4 +1,4 @@
-gtk+2.0 (2.24.6-0ubuntu4) UNRELEASED; urgency=low
+gtk+2.0 (2.24.6-0ubuntu4) oneiric; urgency=low
 
   * debian/patches/100_overlay_scrollbar_loading.patch
     - Fix a crasher in Qt apps using gtk style caused by the overlay 
