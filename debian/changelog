@@ -1,9 +1,9 @@
-gtk+2.0 (2.24.6-0ubuntu5) UNRELEASED; urgency=low
+gtk+2.0 (2.24.6-0ubuntu5) oneiric; urgency=low
 
   * debian/patches/101_filechooser.patch
     - Fix a crash when opening file chooser dialog twice (LP: #851383)
 
- -- Mario Limonciello <Mario_Limonciello@Dell.com>  Wed, 05 Oct 2011 12:34:52 -0500
+ -- Mario Limonciello <Mario_Limonciello@Dell.com>  Wed, 05 Oct 2011 13:43:25 -0500
 
 gtk+2.0 (2.24.6-0ubuntu4) oneiric; urgency=low
 
