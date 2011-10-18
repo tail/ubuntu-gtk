@@ -49,7 +49,7 @@ Build-Depends-Indep: docbook-xml,
                      libatk1.0-doc,
                      libpango1.0-doc,
                      libcairo2-doc
-Standards-Version: 3.9.1
+Standards-Version: 3.9.2
 Vcs-Bzr: https://code.launchpad.net/~ubuntu-desktop/gtk/ubuntu
 Homepage: http://www.gtk.org/
 
