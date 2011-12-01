@@ -1,3 +1,15 @@
+gtk+2.0 (2.24.8-0ubuntu1) precise; urgency=low
+
+  * New upstream release 
+    - gtkfilechooser should be more robust to malformed URIs
+      in .gtk-bookmarks (LP: #189494)
+  * debian/patches/010_make_bg_changes_queue_repaint.patch
+    - dropped it introduces performance regressions in some gtk2 
+      apps (LP: #889019)
+  * 101_filechooser.patch, 000git_file_chooser.patch: dropped, upstream
+
+ -- Ken VanDine <ken.vandine@canonical.com>  Thu, 01 Dec 2011 11:40:06 -0500
+
 gtk+2.0 (2.24.6-0ubuntu6) precise; urgency=low
 
   * debian/patches/065_gir_set_packages.patch
