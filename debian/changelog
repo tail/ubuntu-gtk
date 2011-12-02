@@ -1,3 +1,13 @@
+gtk+2.0 (2.24.8-0ubuntu2) UNRELEASED; urgency=low
+
+  * Pass -XNEWS -Xchangelog.Debian -XREADME to dh_compress calls to workaround
+    LP #871083; fixes installation on multiarch systems; LP: #898973.
+  * Pass DB2HTML=non-existent to configure as to prevent building the docs if
+    the build system has db2html installed; most notably this fixes a FTBFS
+    with -j2 for me.
+
+ -- Loïc Minier <loic.minier@ubuntu.com>  Fri, 02 Dec 2011 13:59:39 +0100
+
 gtk+2.0 (2.24.8-0ubuntu1) precise; urgency=low
 
   * New upstream release 

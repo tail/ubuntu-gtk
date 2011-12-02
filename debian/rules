@@ -123,6 +123,7 @@ configure_flags := \
 			--enable-test-print-backend \
 			--enable-introspection=no \
 			--with-xinput=yes \
+			DB2HTML=non-existent \
 			--build=$(DEB_BUILD_GNU_TYPE)
 ifneq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
 	configure_flags += --host=$(DEB_HOST_GNU_TYPE)
@@ -292,7 +293,7 @@ binary-indep: build $(maybe_check) install $(call dh_subst_files,$(BINARY_INDEP_
 	dh_installdocs -p$(COMMON_PKG) -i
 	dh_installman -i
 	dh_link -i
-	dh_compress -i -X.sgml -X.devhelp
+	dh_compress -i -X.sgml -X.devhelp -XNEWS -Xchangelog.Debian -XREADME
 	dh_fixperms -i
 	dh_installdeb -i
 	dh_gencontrol -i
@@ -326,7 +327,7 @@ binary-arch: build $(maybe_check) install $(call dh_subst_files,$(BINARY_ARCH_PK
 	dh_strip -s --dbg-package=$(DEBUG_PKG) -N$(UDEB_PKG) -Nlibgail18 -Nlibgail-common
 	dh_strip -plibgail18 -plibgail-common --dbg-package=libgail-dbg
 	dh_strip -p$(UDEB_PKG)
-	dh_compress -s -X.sgml -X.devhelp
+	dh_compress -s -X.sgml -X.devhelp -XNEWS -Xchangelog.Debian -XREADME
 	dh_fixperms -s -X$(LIBDIR)/$(SHARED_PKG)
 	dh_makeshlibs -p$(SHARED_PKG) \
 		-X$(MODULES_BASE_PATH) \
