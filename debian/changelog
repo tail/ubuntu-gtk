@@ -1,3 +1,12 @@
+gtk+2.0 (2.24.8-0ubuntu3) precise; urgency=low
+
+  * Revert DB2HTML=non-existent change, documentation *is* being built, just
+    not needed for binar-arch packages; will need to solve the -j2 issue
+    differently: the docs are generated for all of the builds in parallel in
+    srcdir instead of build-dir, which causes problems.
+
+ -- Loïc Minier <loic.minier@ubuntu.com>  Fri, 02 Dec 2011 18:36:42 +0100
+
 gtk+2.0 (2.24.8-0ubuntu2) precise; urgency=low
 
   * Pass -XNEWS -Xchangelog.Debian -XREADME to dh_compress calls to workaround
