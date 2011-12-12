@@ -26,3 +26,4 @@
 097_statusicon_image_fallback.patch
 098_multiarch_module_path.patch
 100_overlay_scrollbar_loading.patch
+gailitem-set-alt-name.patch

@@ -1,0 +1,98 @@
+Index: gtk+2.0-2.24.8/modules/other/gail/gailitem.c
+===================================================================
+--- gtk+2.0-2.24.8.orig/modules/other/gail/gailitem.c	2011-11-11 04:38:03.000000000 +1100
++++ gtk+2.0-2.24.8/modules/other/gail/gailitem.c	2011-12-12 13:53:56.491256320 +1100
+@@ -30,6 +30,8 @@
+ static void                  gail_item_class_init      (GailItemClass *klass);
+ static void                  gail_item_init            (GailItem      *item);
+ static const gchar*          gail_item_get_name        (AtkObject     *obj);
++static void                  gail_item_set_name        (AtkObject     *obj,
++                                                        const gchar   *name);
+ static gint                  gail_item_get_n_children  (AtkObject     *obj);
+ static AtkObject*            gail_item_ref_child       (AtkObject     *obj,
+                                                         gint          i);
+@@ -103,6 +105,7 @@
+   gobject_class->finalize = gail_item_finalize;
+ 
+   class->get_name = gail_item_get_name;
++  class->set_name = gail_item_set_name;
+   class->get_n_children = gail_item_get_n_children;
+   class->ref_child = gail_item_ref_child;
+   class->initialize = gail_item_real_initialize;
+@@ -188,6 +191,11 @@
+       g_free (item->text);
+       item->text = NULL;
+     }
++  if (item->alt_text)
++    {
++      g_free (item->alt_text);
++      item->alt_text = NULL;
++    }
+   G_OBJECT_CLASS (gail_item_parent_class)->finalize (object);
+ }
+ 
+@@ -202,6 +210,22 @@
+   if (name == NULL)
+     {
+       /*
++       * Check for an alternate name first
++       */
++      GailItem *item;
++
++      item = GAIL_ITEM (obj);
++
++      if (item->alt_text != NULL)
++        {
++          if (item->text != NULL)
++              g_free (item->text);
++
++          item->text = g_strdup (item->alt_text);
++          return item->text;
++        }
++
++      /*
+        * Get the label child
+        */
+       GtkWidget *widget;
+@@ -291,6 +315,29 @@
+   return name;
+ }
+ 
++static void
++gail_item_set_name (AtkObject*   obj,
++                    const gchar* name)
++{
++  GailItem *item;
++
++  g_return_if_fail (GAIL_IS_ITEM (obj));
++
++  item = GAIL_ITEM (obj);
++
++  if (item->alt_text != NULL)
++    g_free (item->alt_text);
++
++  if (name != NULL)
++    {
++      item->alt_text = g_strdup (name);
++    }
++  else
++    {
++      item->alt_text = NULL;
++    }
++}
++
+ /*
+  * We report that this object has no children
+  */
+Index: gtk+2.0-2.24.8/modules/other/gail/gailitem.h
+===================================================================
+--- gtk+2.0-2.24.8.orig/modules/other/gail/gailitem.h	2011-11-11 04:38:03.000000000 +1100
++++ gtk+2.0-2.24.8/modules/other/gail/gailitem.h	2011-12-12 13:50:43.587251381 +1100
+@@ -42,6 +42,7 @@
+   GailTextUtil  *textutil;
+ 
+   gchar *text;
++  gchar *alt_text;
+ };
+ 
+ GType gail_item_get_type (void);
