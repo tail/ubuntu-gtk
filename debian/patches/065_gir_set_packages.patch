@@ -1,22 +1,9 @@
-From 57434e403a73ee3c543717278ed2a7d3dacfeffd Mon Sep 17 00:00:00 2001
-From: Ken VanDine <ken.vandine@canonical.com>
-Date: Tue, 18 Oct 2011 15:19:16 -0400
-Subject: [PATCH] Include <package/> tag in generated GIR
-
-Specify pkg-config name when generating GIR files, used for mapping GIR
-name to pkg-config names
-
-https://bugzilla.gnome.org/show_bug.cgi?id=635287
----
- gdk/Makefile.am |   10 +++++++---
- gtk/Makefile.am |    6 ++++--
- 2 files changed, 11 insertions(+), 5 deletions(-)
-
-diff --git a/gdk/Makefile.am b/gdk/Makefile.am
-index 4adb2f0..4aaba3b 100644
---- a/gdk/Makefile.am
-+++ b/gdk/Makefile.am
-@@ -3,6 +3,7 @@ include $(top_srcdir)/Makefile.decl
+=== modified file 'gdk/Makefile.am'
+Index: gtk+-2.24.7/gdk/Makefile.am
+===================================================================
+--- gtk+-2.24.7.orig/gdk/Makefile.am	2011-08-16 04:30:51.000000000 +0200
++++ gtk+-2.24.7/gdk/Makefile.am	2011-10-18 20:15:07.000000000 +0200
+@@ -3,6 +3,7 @@
  -include $(INTROSPECTION_MAKEFILE)
  INTROSPECTION_GIRS =
  INTROSPECTION_SCANNER_ARGS = \
@@ -24,7 +11,7 @@ index 4adb2f0..4aaba3b 100644
     --add-include-path=../gdk
  INTROSPECTION_COMPILER_ARGS = \
     --includedir=$(srcdir) \
-@@ -198,10 +199,11 @@ introspection_files = 		\
+@@ -198,10 +199,11 @@
          gdkenumtypes.h
  
  Gdk-2.0.gir: $(gdktargetlib) Makefile
@@ -37,7 +24,7 @@ index 4adb2f0..4aaba3b 100644
  Gdk_2_0_gir_CFLAGS = $(INCLUDES)
  INTROSPECTION_GIRS += Gdk-2.0.gir
  
-@@ -239,10 +241,12 @@ x11_introspection_files = 		\
+@@ -239,10 +241,12 @@
          x11/gdkx.h
  
  GdkX11-2.0.gir: $(gdktargetlib) Gdk-2.0.gir Makefile
@@ -52,11 +39,11 @@ index 4adb2f0..4aaba3b 100644
  GdkX11_2_0_gir_CFLAGS = $(INCLUDES) -L$(top_builddir)/gdk
  INTROSPECTION_GIRS += GdkX11-2.0.gir
  
-diff --git a/gtk/Makefile.am b/gtk/Makefile.am
-index 15343df..cf38fe5 100644
---- a/gtk/Makefile.am
-+++ b/gtk/Makefile.am
-@@ -3,6 +3,7 @@ include $(top_srcdir)/Makefile.decl
+Index: gtk+-2.24.7/gtk/Makefile.am
+===================================================================
+--- gtk+-2.24.7.orig/gtk/Makefile.am	2011-10-18 00:38:28.000000000 +0200
++++ gtk+-2.24.7/gtk/Makefile.am	2011-10-18 20:15:07.000000000 +0200
+@@ -3,6 +3,7 @@
  -include $(INTROSPECTION_MAKEFILE)
  INTROSPECTION_GIRS =
  INTROSPECTION_SCANNER_ARGS = \
@@ -64,7 +51,7 @@ index 15343df..cf38fe5 100644
  	--add-include-path=../gdk
  INTROSPECTION_COMPILER_ARGS = \
  	--includedir=$(srcdir) \
-@@ -1010,11 +1011,11 @@ introspection_files = \
+@@ -1010,11 +1011,11 @@
      gtktypebuiltins.c
  
  Gtk-2.0.gir: $(INTROSPECTION_SCANNER) $(gtktargetlib) $(top_builddir)/gdk/Gdk-2.0.gir Makefile
@@ -78,7 +65,7 @@ index 15343df..cf38fe5 100644
  Gtk_2_0_gir_CFLAGS = \
  		$(INCLUDES) \
  		-UGDK_DISABLE_DEPRECATED \
-@@ -1022,6 +1023,7 @@ Gtk_2_0_gir_CFLAGS = \
+@@ -1022,6 +1023,7 @@
  		-DGTK_TEXT_USE_INTERNAL_UNSUPPORTED_API
  Gtk_2_0_gir_LIBS = $(gtktargetlib)
  Gtk_2_0_gir_FILES = $(addprefix $(srcdir)/, $(introspection_files))
@@ -86,6 +73,3 @@ index 15343df..cf38fe5 100644
  INTROSPECTION_GIRS += Gtk-2.0.gir
  
  girdir = $(datadir)/gir-1.0
--- 
-1.7.5.4
-
