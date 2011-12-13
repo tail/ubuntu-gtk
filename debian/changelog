@@ -1,4 +1,4 @@
-gtk+2.0 (2.24.8-2ubuntu1) UNRELEASED; urgency=low
+gtk+2.0 (2.24.8-2ubuntu1) precise; urgency=low
 
   * debian/patches/git_buggy_icon_view_update.patch:
     - git commit reverting a buggy icon view patch leading to 
@@ -63,7 +63,7 @@ gtk+2.0 (2.24.8-2ubuntu1) UNRELEASED; urgency=low
     - don't keep an old conflicts on appmenu-gtk, it was a transitional thing   
   
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 13 Dec 2011 19:06:05 +0100
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 13 Dec 2011 19:29:04 +0100
 
 gtk+2.0 (2.24.8-2) unstable; urgency=low
 
