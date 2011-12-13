@@ -1,5 +1,8 @@
 gtk+2.0 (2.24.8-2ubuntu1) UNRELEASED; urgency=low
 
+  * debian/patches/git_buggy_icon_view_update.patch:
+    - git commit reverting a buggy icon view patch leading to 
+      segfaults in lxappearance (lp: #899322)
   * Resynchronize on Debian
   * debian/libgtk2.0-0.symbols:
     - Add Ubuntu specific symbols
