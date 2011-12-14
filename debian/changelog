@@ -1,3 +1,11 @@
+gtk+2.0 (2.24.8-2ubuntu2) precise; urgency=low
+
+  * debian/patches/099_printer_filename_fix.patch
+    - Fix to the print dialog for print to file, make sure a non-hidden filename 
+      is the default (LP: #488857)
+
+ -- Ken VanDine <ken.vandine@canonical.com>  Wed, 14 Dec 2011 13:46:18 -0500
+
 gtk+2.0 (2.24.8-2ubuntu1) precise; urgency=low
 
   * debian/patches/git_buggy_icon_view_update.patch:
