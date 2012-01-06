@@ -1,4 +1,4 @@
-gtk+2.0 (2.24.8-2ubuntu3) UNRELEASED; urgency=low
+gtk+2.0 (2.24.8-2ubuntu3) precise; urgency=low
 
   * debian/patches/gailitemaccessible-set-alt-name.patch: Drop, as the
     existing code already does what we want it to do. I misunderstood the call
@@ -6,7 +6,7 @@ gtk+2.0 (2.24.8-2ubuntu3) UNRELEASED; urgency=low
     class. This means that apps can set alternative accessible names for menu items
     without any extra code needed in GTK at all.
 
- -- Luke Yelavich <themuso@ubuntu.com>  Fri, 06 Jan 2012 20:43:51 +1100
+ -- Luke Yelavich <themuso@ubuntu.com>  Fri, 06 Jan 2012 20:54:23 +1100
 
 gtk+2.0 (2.24.8-2ubuntu2) precise; urgency=low
 
