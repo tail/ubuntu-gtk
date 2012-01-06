@@ -26,5 +26,4 @@
 098_multiarch_module_path.patch
 099_printer_filename_fix.patch
 100_overlay_scrollbar_loading.patch
-gailitem-set-alt-name.patch
 git_buggy_icon_view_update.patch

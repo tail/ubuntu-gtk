@@ -1,3 +1,13 @@
+gtk+2.0 (2.24.8-2ubuntu3) UNRELEASED; urgency=low
+
+  * debian/patches/gailitemaccessible-set-alt-name.patch: Drop, as the
+    existing code already does what we want it to do. I misunderstood the call
+    to the get_name method in the parent class, in this case, the AtkObject
+    class. This means that apps can set alternative accessible names for menu items
+    without any extra code needed in GTK at all.
+
+ -- Luke Yelavich <themuso@ubuntu.com>  Fri, 06 Jan 2012 20:43:51 +1100
+
 gtk+2.0 (2.24.8-2ubuntu2) precise; urgency=low
 
   * debian/patches/099_printer_filename_fix.patch
