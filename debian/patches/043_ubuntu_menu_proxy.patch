@@ -1,11 +1,11 @@
 ## Description: add some description
 ## Origin/Author: add some origin or author
 ## Bug: bug URL
-Index: gtk+2.0-2.24.5/gtk/Makefile.am
+Index: gtk+2.0-2.24.8/gtk/Makefile.am
 ===================================================================
---- gtk+2.0-2.24.5.orig/gtk/Makefile.am	2011-07-19 09:10:44.000000000 -0400
-+++ gtk+2.0-2.24.5/gtk/Makefile.am	2011-07-19 09:14:08.706398687 -0400
-@@ -249,6 +249,8 @@
+--- gtk+2.0-2.24.8.orig/gtk/Makefile.am	2012-01-12 10:59:30.064850584 +0100
++++ gtk+2.0-2.24.8/gtk/Makefile.am	2012-01-12 10:59:31.952859946 +0100
+@@ -246,6 +246,8 @@
  	gtkmenu.h		\
  	gtkmenubar.h		\
  	gtkmenuitem.h		\
@@ -14,7 +14,7 @@ Index: gtk+2.0-2.24.5/gtk/Makefile.am
  	gtkmenushell.h		\
  	gtkmenutoolbutton.h	\
  	gtkmessagedialog.h	\
-@@ -519,6 +521,8 @@
+@@ -516,6 +518,8 @@
  	gtkmenu.c		\
  	gtkmenubar.c		\
  	gtkmenuitem.c		\
@@ -23,10 +23,10 @@ Index: gtk+2.0-2.24.5/gtk/Makefile.am
  	gtkmenushell.c		\
  	gtkmenutoolbutton.c	\
  	gtkmessagedialog.c	\
-Index: gtk+2.0-2.24.5/gtk/gtk.h
+Index: gtk+2.0-2.24.8/gtk/gtk.h
 ===================================================================
---- gtk+2.0-2.24.5.orig/gtk/gtk.h	2011-02-19 09:31:37.000000000 -0500
-+++ gtk+2.0-2.24.5/gtk/gtk.h	2011-07-19 09:10:44.000000000 -0400
+--- gtk+2.0-2.24.8.orig/gtk/gtk.h	2012-01-12 10:59:29.888849711 +0100
++++ gtk+2.0-2.24.8/gtk/gtk.h	2012-01-12 10:59:31.956859969 +0100
 @@ -65,6 +65,8 @@
  #include <gtk/gtkcellview.h>
  #include <gtk/gtkcheckbutton.h>
@@ -36,11 +36,11 @@ Index: gtk+2.0-2.24.5/gtk/gtk.h
  #include <gtk/gtkclipboard.h>
  #include <gtk/gtkcolorbutton.h>
  #include <gtk/gtkcolorsel.h>
-Index: gtk+2.0-2.24.5/gtk/gtk.symbols
+Index: gtk+2.0-2.24.8/gtk/gtk.symbols
 ===================================================================
---- gtk+2.0-2.24.5.orig/gtk/gtk.symbols	2011-07-19 09:10:44.000000000 -0400
-+++ gtk+2.0-2.24.5/gtk/gtk.symbols	2011-07-19 09:14:09.810398653 -0400
-@@ -2606,6 +2606,21 @@
+--- gtk+2.0-2.24.8.orig/gtk/gtk.symbols	2012-01-12 10:59:31.808859232 +0100
++++ gtk+2.0-2.24.8/gtk/gtk.symbols	2012-01-12 10:59:31.956859969 +0100
+@@ -2600,6 +2600,21 @@
  #endif
  #endif
  
@@ -62,7 +62,7 @@ Index: gtk+2.0-2.24.5/gtk/gtk.symbols
  #if IN_HEADER(__GTK_MENU_SHELL_H__)
  #if IN_FILE(__GTK_MENU_SHELL_C__)
  gtk_menu_shell_activate_item
-@@ -2620,6 +2635,7 @@
+@@ -2614,6 +2629,7 @@
  gtk_menu_shell_select_item
  gtk_menu_shell_set_take_focus
  gtk_menu_shell_get_take_focus
@@ -70,10 +70,10 @@ Index: gtk+2.0-2.24.5/gtk/gtk.symbols
  #endif
  #endif
  
-Index: gtk+2.0-2.24.5/gtk/gtkmenubar.c
+Index: gtk+2.0-2.24.8/gtk/gtkmenubar.c
 ===================================================================
---- gtk+2.0-2.24.5.orig/gtk/gtkmenubar.c	2011-02-19 09:31:37.000000000 -0500
-+++ gtk+2.0-2.24.5/gtk/gtkmenubar.c	2011-07-19 10:09:40.706295821 -0400
+--- gtk+2.0-2.24.8.orig/gtk/gtkmenubar.c	2012-01-12 10:59:29.968850108 +0100
++++ gtk+2.0-2.24.8/gtk/gtkmenubar.c	2012-01-12 11:03:59.838188316 +0100
 @@ -107,7 +107,7 @@
    widget_class->size_allocate = gtk_menu_bar_size_allocate;
    widget_class->expose_event = gtk_menu_bar_expose;
@@ -83,7 +83,7 @@ Index: gtk+2.0-2.24.5/gtk/gtkmenubar.c
    menu_shell_class->submenu_placement = GTK_TOP_BOTTOM;
    menu_shell_class->get_popup_delay = gtk_menu_bar_get_popup_delay;
    menu_shell_class->move_current = gtk_menu_bar_move_current;
-@@ -218,8 +218,37 @@
+@@ -218,8 +218,26 @@
  }
  
  static void
@@ -98,17 +98,6 @@ Index: gtk+2.0-2.24.5/gtk/gtkmenubar.c
 +                NULL);
 +
 +  gtk_widget_queue_resize (widget);
-+
-+  /*
-+  if (local)
-+    {
-+      gtk_widget_show (widget);
-+    }
-+  else
-+    {
-+      gtk_widget_hide (widget);
-+    }
-+  */
 +}
 +
 +static void
@@ -121,7 +110,7 @@ Index: gtk+2.0-2.24.5/gtk/gtkmenubar.c
  }
  
  GtkWidget*
-@@ -284,13 +313,27 @@
+@@ -284,13 +302,22 @@
    gint nchildren;
    GtkRequisition child_requisition;
    gint ipadding;
@@ -140,17 +129,53 @@ Index: gtk+2.0-2.24.5/gtk/gtkmenubar.c
 +                NULL);
 +
 +  if (!local)
-+    {
-+      requisition->width = 0;
-+      requisition->height = 0;
-+
-+      return;
-+    }
++    return;
 +
    if (gtk_widget_get_visible (widget))
      {
        menu_bar = GTK_MENU_BAR (widget);
-@@ -626,8 +669,15 @@
+@@ -367,6 +394,7 @@
+   GtkTextDirection direction;
+   gint ltr_x, ltr_y;
+   gint ipadding;
++  gboolean local = FALSE;
+ 
+   g_return_if_fail (GTK_IS_MENU_BAR (widget));
+   g_return_if_fail (allocation != NULL);
+@@ -377,6 +405,32 @@
+ 
+   direction = gtk_widget_get_direction (widget);
+ 
++  g_object_get (widget,
++                "ubuntu-local",
++                &local,
++                NULL);
++
++  if (!local)
++    {
++      GtkAllocation zero = { 0, 0, 0, 0 };
++      GdkWindow *window;
++
++      /* We manually assign an empty allocation to the menubar to
++       * prevent the container from attempting to draw it at all.
++       */
++      gtk_widget_set_allocation (widget, &zero);
++
++      /* Then we move the GdkWindow belonging to the menubar outside of
++       * the clipping rectangle of the parent window so that we can't
++       * see it.
++       */
++      window = gtk_widget_get_window (widget);
++      if (window != NULL)
++        gdk_window_move_resize (window, -1, -1, 1, 1);
++
++      return;
++    }
++
+   widget->allocation = *allocation;
+   if (gtk_widget_get_realized (widget))
+     gdk_window_move_resize (widget->window,
+@@ -626,8 +680,15 @@
  	      GtkMenuShell *menu_shell = GTK_MENU_SHELL (menubars->data);
  
                _gtk_menu_shell_set_keyboard_mode (menu_shell, TRUE);
@@ -168,10 +193,10 @@ Index: gtk+2.0-2.24.5/gtk/gtkmenubar.c
  	      
  	      g_list_free (menubars);
  	      
-Index: gtk+2.0-2.24.5/gtk/gtkmenushell.c
+Index: gtk+2.0-2.24.8/gtk/gtkmenushell.c
 ===================================================================
---- gtk+2.0-2.24.5.orig/gtk/gtkmenushell.c	2011-02-19 09:31:37.000000000 -0500
-+++ gtk+2.0-2.24.5/gtk/gtkmenushell.c	2011-07-19 10:09:14.650296626 -0400
+--- gtk+2.0-2.24.8.orig/gtk/gtkmenushell.c	2012-01-12 10:59:29.932849927 +0100
++++ gtk+2.0-2.24.8/gtk/gtkmenushell.c	2012-01-12 10:59:31.960859983 +0100
 @@ -37,6 +37,7 @@
  #include "gtkmenubar.h"
  #include "gtkmenuitem.h"
@@ -377,10 +402,10 @@ Index: gtk+2.0-2.24.5/gtk/gtkmenushell.c
 +
  #define __GTK_MENU_SHELL_C__
  #include "gtkaliasdef.c"
-Index: gtk+2.0-2.24.5/gtk/tests/Makefile.am
+Index: gtk+2.0-2.24.8/gtk/tests/Makefile.am
 ===================================================================
---- gtk+2.0-2.24.5.orig/gtk/tests/Makefile.am	2011-02-19 09:31:37.000000000 -0500
-+++ gtk+2.0-2.24.5/gtk/tests/Makefile.am	2011-07-19 09:10:44.000000000 -0400
+--- gtk+2.0-2.24.8.orig/gtk/tests/Makefile.am	2012-01-12 10:59:30.004850284 +0100
++++ gtk+2.0-2.24.8/gtk/tests/Makefile.am	2012-01-12 10:59:31.960859983 +0100
 @@ -45,6 +45,10 @@
  recentmanager_SOURCES 		 = recentmanager.c
  recentmanager_LDADD   		 = $(progs_ldadd)
@@ -392,10 +417,10 @@ Index: gtk+2.0-2.24.5/gtk/tests/Makefile.am
  TEST_PROGS			+= floating
  floating_SOURCES		 = floating.c
  floating_LDADD			 = $(progs_ldadd)
-Index: gtk+2.0-2.24.5/gtk/tests/menuproxy.c
+Index: gtk+2.0-2.24.8/gtk/tests/menuproxy.c
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.24.5/gtk/tests/menuproxy.c	2011-07-19 09:10:44.000000000 -0400
++++ gtk+2.0-2.24.8/gtk/tests/menuproxy.c	2012-01-12 10:59:31.960859983 +0100
 @@ -0,0 +1,278 @@
 +/*
 + * Copyright (C) 2009 Canonical, Ltd.
@@ -675,10 +700,10 @@ Index: gtk+2.0-2.24.5/gtk/tests/menuproxy.c
 +
 +  return g_test_run();
 +}
-Index: gtk+2.0-2.24.5/gtk/ubuntumenuproxy.c
+Index: gtk+2.0-2.24.8/gtk/ubuntumenuproxy.c
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.24.5/gtk/ubuntumenuproxy.c	2011-07-19 09:10:44.000000000 -0400
++++ gtk+2.0-2.24.8/gtk/ubuntumenuproxy.c	2012-01-12 10:59:31.960859983 +0100
 @@ -0,0 +1,249 @@
 +/*
 + * Copyright (C) 2010 Canonical, Ltd.
@@ -929,10 +954,10 @@ Index: gtk+2.0-2.24.5/gtk/ubuntumenuproxy.c
 +
 +#define __UBUNTU_MENU_PROXY_C__
 +#include "gtkaliasdef.c"
-Index: gtk+2.0-2.24.5/gtk/ubuntumenuproxy.h
+Index: gtk+2.0-2.24.8/gtk/ubuntumenuproxy.h
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.24.5/gtk/ubuntumenuproxy.h	2011-07-19 09:10:44.000000000 -0400
++++ gtk+2.0-2.24.8/gtk/ubuntumenuproxy.h	2012-01-12 10:59:31.960859983 +0100
 @@ -0,0 +1,74 @@
 +/*
 + * Copyright (C) 2010 Canonical, Ltd.
@@ -1008,10 +1033,10 @@ Index: gtk+2.0-2.24.5/gtk/ubuntumenuproxy.h
 +G_END_DECLS
 +
 +#endif /* __UBUNTU_MENU_PROXY_H__ */
-Index: gtk+2.0-2.24.5/gtk/ubuntumenuproxymodule.c
+Index: gtk+2.0-2.24.8/gtk/ubuntumenuproxymodule.c
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.24.5/gtk/ubuntumenuproxymodule.c	2011-07-19 09:10:44.000000000 -0400
++++ gtk+2.0-2.24.8/gtk/ubuntumenuproxymodule.c	2012-01-12 10:59:31.964860005 +0100
 @@ -0,0 +1,212 @@
 +/*
 + * Copyright (C) 2010 Canonical, Ltd.
@@ -1225,10 +1250,10 @@ Index: gtk+2.0-2.24.5/gtk/ubuntumenuproxymodule.c
 +
 +#define __UBUNTU_MENU_PROXY_MODULE_C__
 +#include "gtkaliasdef.c"
-Index: gtk+2.0-2.24.5/gtk/ubuntumenuproxymodule.h
+Index: gtk+2.0-2.24.8/gtk/ubuntumenuproxymodule.h
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+2.0-2.24.5/gtk/ubuntumenuproxymodule.h	2011-07-19 09:10:44.000000000 -0400
++++ gtk+2.0-2.24.8/gtk/ubuntumenuproxymodule.h	2012-01-12 10:59:31.964860005 +0100
 @@ -0,0 +1,69 @@
 +/*
 + * Copyright (C) 2010 Canonical, Ltd.
@@ -1299,10 +1324,10 @@ Index: gtk+2.0-2.24.5/gtk/ubuntumenuproxymodule.h
 +G_END_DECLS
 +
 +#endif /* __UBUNTU_MENU_PROXY_MODULE_H__ */
-Index: gtk+2.0-2.24.5/gtk/gtkwindow.c
+Index: gtk+2.0-2.24.8/gtk/gtkwindow.c
 ===================================================================
---- gtk+2.0-2.24.5.orig/gtk/gtkwindow.c	2011-06-15 18:37:19.000000000 -0400
-+++ gtk+2.0-2.24.5/gtk/gtkwindow.c	2011-07-19 09:14:09.882398651 -0400
+--- gtk+2.0-2.24.8.orig/gtk/gtkwindow.c	2012-01-12 10:59:29.868849616 +0100
++++ gtk+2.0-2.24.8/gtk/gtkwindow.c	2012-01-12 10:59:31.968860029 +0100
 @@ -94,7 +94,8 @@
    PROP_GRAVITY,
    PROP_TRANSIENT_FOR,
@@ -1357,10 +1382,10 @@ Index: gtk+2.0-2.24.5/gtk/gtkwindow.c
      default:
        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
        break;
-Index: gtk+2.0-2.24.5/gtk/gtkmenuitem.c
+Index: gtk+2.0-2.24.8/gtk/gtkmenuitem.c
 ===================================================================
---- gtk+2.0-2.24.5.orig/gtk/gtkmenuitem.c	2011-06-15 18:37:19.000000000 -0400
-+++ gtk+2.0-2.24.5/gtk/gtkmenuitem.c	2011-07-19 09:14:08.346398698 -0400
+--- gtk+2.0-2.24.8.orig/gtk/gtkmenuitem.c	2012-01-12 10:59:29.848849513 +0100
++++ gtk+2.0-2.24.8/gtk/gtkmenuitem.c	2012-01-12 10:59:31.968860029 +0100
 @@ -1395,7 +1395,17 @@
  				  widget);
      }
