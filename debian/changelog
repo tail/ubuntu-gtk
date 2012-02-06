@@ -1,3 +1,12 @@
+gtk+2.0 (2.24.10-0ubuntu1) UNRELEASED; urgency=low
+
+  * New upstream version, dropped patches included in the new version
+  * debian/patches/090_logging_file_saves.patch:
+    - improve the logging of saved filed, thanks Siegfried Gevatter 
+      (lp: #920961)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 06 Feb 2012 21:43:45 +0100
+
 gtk+2.0 (2.24.8-2ubuntu4) precise; urgency=low
 
   * debian/patches/git_dnd_on_vnc.patch: git patch to fix dnd on severs not 

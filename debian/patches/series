@@ -14,9 +14,9 @@
 060_ignore-random-icons.patch
 062_dnd_menubar.patch
 063_treeview_almost_fixed.patch
-065_gir_set_packages.patch
 071_no_offscreen_widgets_grabbing.patch
 072_indicator_menu_update.patch
+090_logging_file_saves.patch
 091_bugzilla_tooltip_refresh.patch
 092_default_to_xdg_document_dir.patch
 093_gtk3_gtkimage_fallbacks_use.patch
@@ -26,5 +26,4 @@
 098_multiarch_module_path.patch
 099_printer_filename_fix.patch
 100_overlay_scrollbar_loading.patch
-git_buggy_icon_view_update.patch
-git_dnd_on_vnc.patch
+

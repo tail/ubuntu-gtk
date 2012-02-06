@@ -1,8 +1,8 @@
 === modified file 'gdk/Makefile.am'
-Index: gtk+-2.24.7/gdk/Makefile.am
+Index: gtk+-2.24.9/gdk/Makefile.am
 ===================================================================
---- gtk+-2.24.7.orig/gdk/Makefile.am	2011-08-16 04:30:51.000000000 +0200
-+++ gtk+-2.24.7/gdk/Makefile.am	2011-10-18 20:15:07.000000000 +0200
+--- gtk+-2.24.9.orig/gdk/Makefile.am	2012-01-24 20:38:37.000000000 +0100
++++ gtk+-2.24.9/gdk/Makefile.am	2012-01-25 12:29:30.928436184 +0100
 @@ -3,6 +3,7 @@
  -include $(INTROSPECTION_MAKEFILE)
  INTROSPECTION_GIRS =
@@ -11,7 +11,7 @@ Index: gtk+-2.24.7/gdk/Makefile.am
     --add-include-path=../gdk
  INTROSPECTION_COMPILER_ARGS = \
     --includedir=$(srcdir) \
-@@ -198,10 +199,11 @@
+@@ -199,10 +200,11 @@
          gdkenumtypes.h
  
  Gdk-2.0.gir: $(gdktargetlib) Makefile
@@ -24,7 +24,7 @@ Index: gtk+-2.24.7/gdk/Makefile.am
  Gdk_2_0_gir_CFLAGS = $(INCLUDES)
  INTROSPECTION_GIRS += Gdk-2.0.gir
  
-@@ -239,10 +241,12 @@
+@@ -240,10 +242,12 @@
          x11/gdkx.h
  
  GdkX11-2.0.gir: $(gdktargetlib) Gdk-2.0.gir Makefile
@@ -39,10 +39,10 @@ Index: gtk+-2.24.7/gdk/Makefile.am
  GdkX11_2_0_gir_CFLAGS = $(INCLUDES) -L$(top_builddir)/gdk
  INTROSPECTION_GIRS += GdkX11-2.0.gir
  
-Index: gtk+-2.24.7/gtk/Makefile.am
+Index: gtk+-2.24.9/gtk/Makefile.am
 ===================================================================
---- gtk+-2.24.7.orig/gtk/Makefile.am	2011-10-18 00:38:28.000000000 +0200
-+++ gtk+-2.24.7/gtk/Makefile.am	2011-10-18 20:15:07.000000000 +0200
+--- gtk+-2.24.9.orig/gtk/Makefile.am	2012-01-24 20:38:37.000000000 +0100
++++ gtk+-2.24.9/gtk/Makefile.am	2012-01-25 12:29:30.928436184 +0100
 @@ -3,6 +3,7 @@
  -include $(INTROSPECTION_MAKEFILE)
  INTROSPECTION_GIRS =
@@ -68,7 +68,7 @@ Index: gtk+-2.24.7/gtk/Makefile.am
 @@ -1022,6 +1023,7 @@
  		-DGTK_TEXT_USE_INTERNAL_UNSUPPORTED_API
  Gtk_2_0_gir_LIBS = $(gtktargetlib)
- Gtk_2_0_gir_FILES = $(addprefix $(srcdir)/, $(introspection_files))
+ Gtk_2_0_gir_FILES = $(introspection_files)
 +Gtk_2_0_gir_EXPORT_PACKAGES = gtk+-2.0
  INTROSPECTION_GIRS += Gtk-2.0.gir
  
