@@ -273,7 +273,7 @@ binary-indep: build $(maybe_check) install $(call dh_subst_files,$(BINARY_INDEP_
 	dh_installdocs -p$(COMMON_PKG) -i
 	dh_installman -i
 	dh_link -i
-	dh_compress -i -X.sgml -X.devhelp -XNEWS -Xchangelog.Debian -XREADME
+	dh_compress -i -X.sgml -X.devhelp
 	dh_fixperms -i
 	dh_installdeb -i
 	dh_gencontrol -i
