@@ -10,7 +10,6 @@
 041_ia32-libs.patch
 042_treeview_single-focus.patch
 043_ubuntu_menu_proxy.patch
-044_grips.patch
 060_ignore-random-icons.patch
 062_dnd_menubar.patch
 063_treeview_almost_fixed.patch
