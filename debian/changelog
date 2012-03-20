@@ -1,13 +1,21 @@
+gtk+2.0 (2.24.10-0ubuntu4) precise; urgency=low
+
+  * debian/patches/044_grips.patch:
+    - revert dropping, there is a public api in there and we need to fix the
+      rdepends before dropping it
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 23 Feb 2012 22:24:09 +0100
+
 gtk+2.0 (2.24.10-0ubuntu3) precise; urgency=low
+
+  * debian/patches/044_grips.patch:
+    - dropped, our default theme has no grip and the patch leaded to issues
+      with some applications like libreoffice lp: #749986
+  * debian/control.in: update gir depends
 
   [ Martin Pitt ]
   * debian/rules: Revert forced non-compression of doc files, gzip has been
     fixed now. (LP: #871083)
-
-  [ Sebastien Bacher ]
-  * debian/patches/044_grips.patch:
-    - dropped, our default theme has no grip and the patch leaded to issues
-      with some applications like libreoffice lp: #749986
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 23 Feb 2012 21:53:41 +0100
 
