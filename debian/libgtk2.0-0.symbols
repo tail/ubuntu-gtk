@@ -4632,7 +4632,6 @@ libgtk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gtk_window_get_gravity@Base 2.8.0
  gtk_window_get_group@Base 2.10.0
  gtk_window_get_has_frame@Base 2.8.0
- gtk_window_get_has_resize_grip@Base 2.23.90
  gtk_window_get_icon@Base 2.8.0
  gtk_window_get_icon_list@Base 2.8.0
  gtk_window_get_icon_name@Base 2.8.0
@@ -4642,7 +4641,6 @@ libgtk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gtk_window_get_opacity@Base 2.12.0
  gtk_window_get_position@Base 2.8.0
  gtk_window_get_resizable@Base 2.8.0
- gtk_window_get_resize_grip_area@Base 2.23.90
  gtk_window_get_role@Base 2.8.0
  gtk_window_get_screen@Base 2.8.0
  gtk_window_get_size@Base 2.8.0
@@ -4679,7 +4677,6 @@ libgtk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gtk_window_remove_mnemonic@Base 2.8.0
  gtk_window_reshow_with_initial_size@Base 2.8.0
  gtk_window_resize@Base 2.8.0
- gtk_window_resize_grip_is_visible@Base 2.23.90
  gtk_window_set_accept_focus@Base 2.8.0
  gtk_window_set_auto_startup_notification@Base 2.8.0
  gtk_window_set_decorated@Base 2.8.0
@@ -4697,7 +4694,6 @@ libgtk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gtk_window_set_geometry_hints@Base 2.8.0
  gtk_window_set_gravity@Base 2.8.0
  gtk_window_set_has_frame@Base 2.8.0
- gtk_window_set_has_resize_grip@Base 2.23.90
  gtk_window_set_icon@Base 2.8.0
  gtk_window_set_icon_from_file@Base 2.8.0
  gtk_window_set_icon_list@Base 2.8.0

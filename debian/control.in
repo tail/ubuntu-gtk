@@ -58,6 +58,10 @@ Recommends: hicolor-icon-theme,
             @BIN_PKG@
 Suggests: librsvg2-common,
           gvfs
+Breaks: lxdm (<< 0.4.1-0ubuntu6),
+        gtk-sharp2 (<< 2.12.10-2ubuntu2),
+        lxlauncher (<< 0.2.2-1ubuntu2),
+        xfdesktop4 (<< 4.8.3-2ubuntu4)
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Description: GTK+ graphical user interface library

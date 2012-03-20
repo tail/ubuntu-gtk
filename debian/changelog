@@ -1,3 +1,18 @@
+gtk+2.0 (2.24.10-0ubuntu5) precise; urgency=low
+
+  * debian/control.in:
+    - breaks on the binaries which were using the grip function backported
+  * debian/libgtk2.0-0.symbols:
+    debian/patches/044_grips.patch:
+    - dropped the feature is only in gtk3 upstream, the backport had 
+      issues and most upstream softwares are not made to deal with it.
+      the grips will be also dropped from the default gtk3 theme since unity
+      has resize borders (lp: #744993)
+    - will fix issues with libreoffice (lp: #749986) and splash screens 
+      in other softwares (lp: #704105, #734381)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 24 Feb 2012 18:39:56 +0100
+
 gtk+2.0 (2.24.10-0ubuntu4) precise; urgency=low
 
   * debian/patches/044_grips.patch:
