@@ -151,6 +151,7 @@ Recommends: python (>= 2.4),
             debhelper
 Suggests: @DOC_PKG@
 Replaces: gir-repository-dev
+Breaks: gir1.0-gtk-2.0
 Description: development files for the GTK+ library
  GTK+ is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, GTK+ is suitable
