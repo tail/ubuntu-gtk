@@ -1,3 +1,9 @@
+gtk+2.0 (2.24.11-0ubuntu1) UNRELEASED; urgency=low
+
+  * New upstream version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Sun, 29 Jul 2012 11:57:17 +0200
+
 gtk+2.0 (2.24.10-0ubuntu6) precise-proposed; urgency=low
 
   * debian/control.in: Add an extra Breaks: gir1.0-gtk-2.0, to nudge apt to
