@@ -1,8 +1,8 @@
-gtk+2.0 (2.24.11-0ubuntu1) UNRELEASED; urgency=low
+gtk+2.0 (2.24.11-0ubuntu1) quantal; urgency=low
 
   * New upstream version
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Sun, 29 Jul 2012 11:57:17 +0200
+ -- Sebastien Bacher <seb128@ubuntu.com>  Sun, 29 Jul 2012 12:02:36 +0200
 
 gtk+2.0 (2.24.10-0ubuntu6) precise-proposed; urgency=low
 
