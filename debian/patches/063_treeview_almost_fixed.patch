@@ -2,10 +2,10 @@
 # Ubuntu: https://bugs.launchpad.net/ubuntu/+source/gtk+2.0/+bug/514879
 # Upstream: https://bugzilla.gnome.org/607447
 === modified file 'gtk/gtktreeprivate.h'
-Index: gtk+-2.24.3/gtk/gtktreeprivate.h
+Index: gtk+-2.24.12/gtk/gtktreeprivate.h
 ===================================================================
---- gtk+-2.24.3.orig/gtk/gtktreeprivate.h	2011-02-20 01:31:37.000000000 +1100
-+++ gtk+-2.24.3/gtk/gtktreeprivate.h	2011-03-15 18:00:44.903885840 +1100
+--- gtk+-2.24.12.orig/gtk/gtktreeprivate.h	2011-09-18 09:59:38.000000000 +1200
++++ gtk+-2.24.12/gtk/gtktreeprivate.h	2012-09-04 16:42:48.718564047 +1200
 @@ -265,6 +265,7 @@
  
    guint fixed_height_mode : 1;
@@ -14,10 +14,10 @@ Index: gtk+-2.24.3/gtk/gtktreeprivate.h
  
    guint reorderable : 1;
    guint header_has_focus : 1;
-Index: gtk+-2.24.3/gtk/gtktreeview.c
+Index: gtk+-2.24.12/gtk/gtktreeview.c
 ===================================================================
---- gtk+-2.24.3.orig/gtk/gtktreeview.c	2011-03-15 18:00:36.383391486 +1100
-+++ gtk+-2.24.3/gtk/gtktreeview.c	2011-03-15 18:00:44.903885840 +1100
+--- gtk+-2.24.12.orig/gtk/gtktreeview.c	2012-09-04 16:42:43.974564211 +1200
++++ gtk+-2.24.12/gtk/gtktreeview.c	2012-09-04 16:42:48.718564047 +1200
 @@ -137,6 +137,7 @@
    PROP_ENABLE_SEARCH,
    PROP_SEARCH_COLUMN,
@@ -60,7 +60,7 @@ Index: gtk+-2.24.3/gtk/gtktreeview.c
      case PROP_HOVER_SELECTION:
        tree_view->priv->hover_selection = g_value_get_boolean (value);
        break;
-@@ -8351,7 +8365,15 @@
+@@ -8352,7 +8366,15 @@
    if (tree == NULL)
      goto done;
  

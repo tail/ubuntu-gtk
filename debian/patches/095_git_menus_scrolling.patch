@@ -5,10 +5,10 @@ Subject: Fix interaction between scrolling menus and automatic mnemonics
 
 https://bugzilla.gnome.org/show_bug.cgi?id=612611
 ---
-Index: gtk+2.0-2.24.3/gtk/gtkmenu.c
+Index: gtk+-2.24.12/gtk/gtkmenu.c
 ===================================================================
---- gtk+2.0-2.24.3.orig/gtk/gtkmenu.c	2011-03-15 16:35:16.199990348 +0100
-+++ gtk+2.0-2.24.3/gtk/gtkmenu.c	2011-03-15 16:36:56.595990395 +0100
+--- gtk+-2.24.12.orig/gtk/gtkmenu.c	2011-11-23 01:36:41.000000000 +1300
++++ gtk+-2.24.12/gtk/gtkmenu.c	2012-09-04 16:45:35.922558258 +1200
 @@ -236,7 +236,8 @@
  static void gtk_menu_deactivate	    (GtkMenuShell      *menu_shell);
  static void gtk_menu_show_all       (GtkWidget         *widget);
@@ -55,7 +55,7 @@ Index: gtk+2.0-2.24.3/gtk/gtkmenu.c
  	  
  	  gtk_widget_show (GTK_WIDGET (menu));
  	  gtk_widget_show (menu->tearoff_window);
-@@ -4196,7 +4197,8 @@
+@@ -4201,7 +4202,8 @@
  }
  
  static void
@@ -65,7 +65,7 @@ Index: gtk+2.0-2.24.3/gtk/gtkmenu.c
  {
    GtkWidget *widget;
    GtkRequisition requisition;
-@@ -4427,7 +4429,8 @@
+@@ -4432,7 +4434,8 @@
  			 requisition.width, requisition.height);
      }
    

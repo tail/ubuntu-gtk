@@ -1,9 +1,9 @@
 === modified file 'gtk/gtk.symbols'
-Index: gtk+-2.24.3/gtk/gtk.symbols
+Index: gtk+-2.24.12/gtk/gtk.symbols
 ===================================================================
---- gtk+-2.24.3.orig/gtk/gtk.symbols	2011-03-15 18:00:27.832882477 +1100
-+++ gtk+-2.24.3/gtk/gtk.symbols	2011-03-15 18:00:29.232966723 +1100
-@@ -5329,6 +5329,7 @@
+--- gtk+-2.24.12.orig/gtk/gtk.symbols	2011-10-18 11:35:29.000000000 +1300
++++ gtk+-2.24.12/gtk/gtk.symbols	2012-09-04 16:42:40.382564335 +1200
+@@ -5323,6 +5323,7 @@
  gtk_widget_get_realized
  gtk_widget_set_mapped
  gtk_widget_get_mapped
@@ -11,11 +11,11 @@ Index: gtk+-2.24.3/gtk/gtk.symbols
  #endif
  #endif
  
-Index: gtk+-2.24.3/gtk/gtkwidget.c
+Index: gtk+-2.24.12/gtk/gtkwidget.c
 ===================================================================
---- gtk+-2.24.3.orig/gtk/gtkwidget.c	2011-02-20 02:10:21.000000000 +1100
-+++ gtk+-2.24.3/gtk/gtkwidget.c	2011-03-15 18:00:29.242967328 +1100
-@@ -11419,5 +11419,15 @@
+--- gtk+-2.24.12.orig/gtk/gtkwidget.c	2012-09-04 06:28:02.000000000 +1200
++++ gtk+-2.24.12/gtk/gtkwidget.c	2012-09-04 16:42:40.382564335 +1200
+@@ -11449,5 +11449,15 @@
    return res;
  }
  
@@ -31,10 +31,10 @@ Index: gtk+-2.24.3/gtk/gtkwidget.c
 +
  #define __GTK_WIDGET_C__
  #include "gtkaliasdef.c"
-Index: gtk+-2.24.3/gtk/gtkwidget.h
+Index: gtk+-2.24.12/gtk/gtkwidget.h
 ===================================================================
---- gtk+-2.24.3.orig/gtk/gtkwidget.h	2011-02-20 01:31:37.000000000 +1100
-+++ gtk+-2.24.3/gtk/gtkwidget.h	2011-03-15 18:00:29.242967328 +1100
+--- gtk+-2.24.12.orig/gtk/gtkwidget.h	2011-08-16 14:30:52.000000000 +1200
++++ gtk+-2.24.12/gtk/gtkwidget.h	2012-09-04 16:42:40.382564335 +1200
 @@ -1346,6 +1346,9 @@
  						       GtkWidget *toplevel,
  						       gpointer   user_data);

@@ -8,11 +8,11 @@ If resolution has not been set then use default resolution from ppd.
 https://bugzilla.gnome.org/show_bug.cgi?id=635254
 
 ---
-Index: gtk+-2.24.4/modules/printbackends/cups/gtkprintbackendcups.c
+Index: gtk+-2.24.12/modules/printbackends/cups/gtkprintbackendcups.c
 ===================================================================
---- gtk+-2.24.4.orig/modules/printbackends/cups/gtkprintbackendcups.c	2011-02-20 01:31:37.000000000 +1100
-+++ gtk+-2.24.4/modules/printbackends/cups/gtkprintbackendcups.c	2011-04-04 10:59:32.806596928 +1000
-@@ -4095,23 +4095,29 @@
+--- gtk+-2.24.12.orig/modules/printbackends/cups/gtkprintbackendcups.c	2012-08-25 12:26:10.000000000 +1200
++++ gtk+-2.24.12/modules/printbackends/cups/gtkprintbackendcups.c	2012-09-04 16:45:38.198558179 +1200
+@@ -4263,23 +4263,29 @@
  	gtk_printer_option_set (option, cups_value);
        else
  	{

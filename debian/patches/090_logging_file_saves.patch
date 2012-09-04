@@ -1,6 +1,8 @@
---- gtk+-2.24.10.gnome/gtk/gtkrecentmanager.c	2012-02-06 21:52:29.917827141 +0100
-+++ gtk+-2.24.10/gtk/gtkrecentmanager.c	2012-02-06 21:56:17.109838137 +0100
-@@ -892,7 +892,7 @@
+Index: gtk+-2.24.12/gtk/gtkrecentmanager.c
+===================================================================
+--- gtk+-2.24.12.orig/gtk/gtkrecentmanager.c	2012-09-04 06:28:02.000000000 +1200
++++ gtk+-2.24.12/gtk/gtkrecentmanager.c	2012-09-04 16:42:53.590563878 +1200
+@@ -907,7 +907,7 @@
    GtkRecentManager *manager = user_data;
    GtkRecentData recent_data;
    GFileInfo *file_info;
@@ -9,7 +11,7 @@
  
    uri = g_file_get_uri (file);
  
-@@ -916,7 +916,11 @@
+@@ -931,7 +931,11 @@
        g_object_unref (file_info);
      }
    else

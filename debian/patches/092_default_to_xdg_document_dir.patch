@@ -4,11 +4,11 @@ Description: Use XDG_DOCUMENTS_DIR as default for 'Print to File'
  GtkPrinterOptionWidget.
 Author: Bilal Akhtar <bilalakhtar@ubuntu.com>
 Bug-Ubuntu: https://launchpad.net/bugs/611011
-Index: gtk+-2.23.1/gtk/gtkprinteroptionwidget.c
+Index: gtk+-2.24.12/gtk/gtkprinteroptionwidget.c
 ===================================================================
---- gtk+-2.23.1.orig/gtk/gtkprinteroptionwidget.c	2010-11-10 14:54:30.205111001 +1100
-+++ gtk+-2.23.1/gtk/gtkprinteroptionwidget.c	2010-11-10 14:55:30.781111001 +1100
-@@ -793,6 +793,8 @@
+--- gtk+-2.24.12.orig/gtk/gtkprinteroptionwidget.c	2012-01-11 13:06:05.000000000 +1300
++++ gtk+-2.24.12/gtk/gtkprinteroptionwidget.c	2012-09-04 16:45:23.506558688 +1200
+@@ -824,6 +824,8 @@
          priv->entry = gtk_entry_new ();
          priv->combo = gtk_file_chooser_button_new (source->display_text,
                                                     GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER);

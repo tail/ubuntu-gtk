@@ -1,11 +1,11 @@
 ## Description: enable overlay scrollbars
 ## Origin/Author: Andrea Cimitan <andrea.cimitan@canonical.com>
 === modified file 'gtk/gtkmain.c'
-Index: gtk+2.0-2.24.6/gtk/gtkmain.c
+Index: gtk+-2.24.12/gtk/gtkmain.c
 ===================================================================
---- gtk+2.0-2.24.6.orig/gtk/gtkmain.c	2011-09-28 13:23:08.000000000 +0200
-+++ gtk+2.0-2.24.6/gtk/gtkmain.c	2011-09-29 09:15:01.000000000 +0200
-@@ -709,6 +709,78 @@
+--- gtk+-2.24.12.orig/gtk/gtkmain.c	2012-09-04 16:42:50.466563986 +1200
++++ gtk+-2.24.12/gtk/gtkmain.c	2012-09-04 16:45:43.506557995 +1200
+@@ -710,6 +710,78 @@
  #endif  
  }
  
@@ -84,7 +84,7 @@ Index: gtk+2.0-2.24.6/gtk/gtkmain.c
  static void
  do_post_parse_initialization (int    *argc,
  			      char ***argv)
-@@ -752,6 +824,7 @@
+@@ -753,6 +825,7 @@
  
    _gtk_accel_map_init ();
    _gtk_rc_init ();
@@ -92,10 +92,10 @@ Index: gtk+2.0-2.24.6/gtk/gtkmain.c
  
    /* Set the 'initialized' flag.
     */
-Index: gtk+2.0-2.24.6/gtk/gtkscrolledwindow.c
+Index: gtk+-2.24.12/gtk/gtkscrolledwindow.c
 ===================================================================
---- gtk+2.0-2.24.6.orig/gtk/gtkscrolledwindow.c	2011-09-28 13:23:01.000000000 +0200
-+++ gtk+2.0-2.24.6/gtk/gtkscrolledwindow.c	2011-09-28 16:24:47.000000000 +0200
+--- gtk+-2.24.12.orig/gtk/gtkscrolledwindow.c	2011-08-16 14:30:52.000000000 +1200
++++ gtk+-2.24.12/gtk/gtkscrolledwindow.c	2012-09-04 16:45:43.506557995 +1200
 @@ -71,6 +71,8 @@
   *    under A) at least correspond to the space taken up by its scrollbars.
   */
@@ -142,10 +142,10 @@ Index: gtk+2.0-2.24.6/gtk/gtkscrolledwindow.c
    if (class->scrollbar_spacing >= 0)
      return class->scrollbar_spacing;
    else
-Index: gtk+2.0-2.24.6/gtk/gtkhscrollbar.c
+Index: gtk+-2.24.12/gtk/gtkhscrollbar.c
 ===================================================================
---- gtk+2.0-2.24.6.orig/gtk/gtkhscrollbar.c	2011-09-28 13:23:01.000000000 +0200
-+++ gtk+2.0-2.24.6/gtk/gtkhscrollbar.c	2011-09-29 09:15:28.000000000 +0200
+--- gtk+-2.24.12.orig/gtk/gtkhscrollbar.c	2011-08-16 14:30:52.000000000 +1200
++++ gtk+-2.24.12/gtk/gtkhscrollbar.c	2012-09-04 16:45:43.506557995 +1200
 @@ -34,6 +34,9 @@
  
  G_DEFINE_TYPE (GtkHScrollbar, gtk_hscrollbar, GTK_TYPE_SCROLLBAR)
@@ -166,10 +166,10 @@ Index: gtk+2.0-2.24.6/gtk/gtkhscrollbar.c
    return g_object_new (GTK_TYPE_HSCROLLBAR,
                         "adjustment", adjustment,
                         NULL);
-Index: gtk+2.0-2.24.6/gtk/gtkvscrollbar.c
+Index: gtk+-2.24.12/gtk/gtkvscrollbar.c
 ===================================================================
---- gtk+2.0-2.24.6.orig/gtk/gtkvscrollbar.c	2011-09-28 13:23:01.000000000 +0200
-+++ gtk+2.0-2.24.6/gtk/gtkvscrollbar.c	2011-09-29 09:15:45.000000000 +0200
+--- gtk+-2.24.12.orig/gtk/gtkvscrollbar.c	2011-08-16 14:30:52.000000000 +1200
++++ gtk+-2.24.12/gtk/gtkvscrollbar.c	2012-09-04 16:45:43.506557995 +1200
 @@ -32,6 +32,9 @@
  #include "gtkintl.h"
  #include "gtkalias.h"

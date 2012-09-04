@@ -1,7 +1,9 @@
 === modified file 'gtk/gtkprinteroptionwidget.c'
---- old/gtk/gtkprinteroptionwidget.c	2011-02-23 15:56:37 +0000
-+++ new/gtk/gtkprinteroptionwidget.c	2011-12-08 07:18:44 +0000
-@@ -882,11 +882,19 @@
+Index: gtk+-2.24.12/gtk/gtkprinteroptionwidget.c
+===================================================================
+--- gtk+-2.24.12.orig/gtk/gtkprinteroptionwidget.c	2012-09-04 16:45:23.506558688 +1200
++++ gtk+-2.24.12/gtk/gtkprinteroptionwidget.c	2012-09-04 16:45:41.914558050 +1200
+@@ -929,11 +929,19 @@
              dirname = g_path_get_dirname (filename);
              text = g_filename_to_utf8 (basename, -1, NULL, NULL, NULL);
  
@@ -23,4 +25,3 @@
              g_free (text);
              g_free (basename);
              g_free (dirname);
-
