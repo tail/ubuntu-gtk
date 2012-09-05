@@ -1,10 +1,10 @@
-gtk+2.0 (2.24.12-0ubuntu1) UNRELEASED; urgency=low
+gtk+2.0 (2.24.12-0ubuntu1) quantal; urgency=low
 
   * New upstream bugfix release
   * debian/patches/091_bugzilla_tooltip_refresh.patch:
     - Applied upstream
 
- -- Robert Ancell <robert.ancell@canonical.com>  Tue, 04 Sep 2012 16:39:49 +1200
+ -- Robert Ancell <robert.ancell@canonical.com>  Wed, 05 Sep 2012 17:27:55 +1200
 
 gtk+2.0 (2.24.11-0ubuntu1) quantal; urgency=low
 
