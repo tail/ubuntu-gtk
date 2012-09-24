@@ -1,4 +1,4 @@
-gtk+2.0 (2.24.13-0ubuntu1) UNRELEASED; urgency=low
+gtk+2.0 (2.24.13-0ubuntu1) quantal-proposed; urgency=low
 
   [ Till Kamppeter ]
   * debian/patches/print-dialog-show-options-of-remote-dnssd-printers.patch:
