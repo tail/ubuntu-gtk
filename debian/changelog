@@ -1,3 +1,11 @@
+gtk+2.0 (2.24.12-0ubuntu2) UNRELEASED; urgency=low
+
+  * debian/patches/print-dialog-show-options-of-remote-dnssd-printers.patch:
+    Make printing on remote DNS-SD/Bonjour-shared printers working
+    (LP: #1053891).
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Mon, 24 Sep 2012 13:19:30 +0200
+
 gtk+2.0 (2.24.12-0ubuntu1) quantal; urgency=low
 
   * New upstream bugfix release

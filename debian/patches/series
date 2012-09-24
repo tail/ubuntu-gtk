@@ -24,4 +24,5 @@
 098_multiarch_module_path.patch
 099_printer_filename_fix.patch
 100_overlay_scrollbar_loading.patch
+print-dialog-show-options-of-remote-dnssd-printers.patch
 
