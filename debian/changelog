@@ -1,4 +1,4 @@
-gtk+2.0 (2.24.13-0ubuntu2) UNRELEASED; urgency=low
+gtk+2.0 (2.24.13-0ubuntu2) quantal-proposed; urgency=low
 
   * debian/patches/100_overlay_scrollbar_loading.patch:
     - don't crash with latest overlay-scrollbar version
