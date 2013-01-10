@@ -1,3 +1,9 @@
+gtk+2.0 (2.24.14-0ubuntu1) raring; urgency=low
+
+  * New upstream release
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Thu, 10 Jan 2013 12:53:20 +1300
+
 gtk+2.0 (2.24.13-0ubuntu2) quantal-proposed; urgency=low
 
   * debian/patches/100_overlay_scrollbar_loading.patch:
