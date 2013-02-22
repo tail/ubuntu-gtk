@@ -2,10 +2,10 @@ Description: Don't query immodules for the local tree when cross-compiling or
              when --disable-shared was given
 Bug: http://bugzilla.gnome.org/show_bug.cgi?id=346531
 
-Index: gtk+-2.24.6/configure.in
+Index: gtk+-2.24.6/configure.ac
 ===================================================================
---- gtk+-2.24.6.orig/configure.in	2011-08-30 22:21:47.000000000 +0200
-+++ gtk+-2.24.6/configure.in	2011-10-05 11:31:45.486226953 +0200
+--- gtk+-2.24.6.orig/configure.ac	2011-08-30 22:21:47.000000000 +0200
++++ gtk+-2.24.6/configure.ac	2011-10-05 11:31:45.486226953 +0200
 @@ -151,6 +151,7 @@
  dnl Initialize libtool
  AC_PROG_CC

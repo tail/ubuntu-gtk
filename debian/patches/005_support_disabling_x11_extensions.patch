@@ -3,10 +3,10 @@ Author: Cyril Brulebois <kibi@debian.org>
 
 Support disabling X11 extensions
 
-Index: gtk+-2.24.12/configure.in
+Index: gtk+-2.24.12/configure.ac
 ===================================================================
---- gtk+-2.24.12.orig/configure.in	2012-09-04 16:42:33.446564576 +1200
-+++ gtk+-2.24.12/configure.in	2012-09-04 16:42:38.198564411 +1200
+--- gtk+-2.24.12.orig/configure.ac	2012-09-04 16:42:33.446564576 +1200
++++ gtk+-2.24.12/configure.ac	2012-09-04 16:42:38.198564411 +1200
 @@ -242,6 +242,18 @@
                [AC_HELP_STRING([--enable-xinerama],
  	                      [support xinerama extension if available [default=yes]])],,
