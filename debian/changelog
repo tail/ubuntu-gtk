@@ -1,4 +1,4 @@
-gtk+2.0 (2.24.16-1ubuntu1) UNRELEASED; urgency=low
+gtk+2.0 (2.24.16-1ubuntu1) raring; urgency=low
 
   [ Jeremy Bicha ]
   * Sync with Debian. Remaining changes:
