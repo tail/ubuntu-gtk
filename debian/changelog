@@ -1,11 +1,7 @@
 gtk+2.0 (2.24.16-1ubuntu1) UNRELEASED; urgency=low
 
-  * TODO: Fix 043_ubuntu_menu_proxy.patch,
-    perhaps compare with the GTK3 version
+  [ Jeremy Bicha ]
   * Sync with Debian. Remaining changes:
-  * debian/patches/099_printer_filename_fix.patch
-    - Fix to the print dialog for print to file, make sure a non-hidden filename 
-      is the default (LP: #488857)
   * debian/libgtk2.0-0.symbols:
     - Add Ubuntu specific symbols
   * debian/patches/012_ubuntu-set-grab-add.patch
@@ -39,15 +35,22 @@ gtk+2.0 (2.24.16-1ubuntu1) UNRELEASED; urgency=low
       gtkprintsettings resolution settings 
   * debian/patches/097_statusicon_image_fallback.patch: Make GtkStatusIcon
     images use fallbacks by default if the property is available.
+  * debian/patches/098_multiarch_module_path.patch:
+    - Fallback to the pre-multiarch directory for compatibility
+  * debian/patches/099_printer_filename_fix.patch
+    - Fix to the print dialog for print to file, make sure a non-hidden filename 
+      is the default (LP: #488857)
   * debian/patches/100_overlay_scrollbar_loading.patch
     - support for dynamically loading overlay scrollbars
   * debian/patches/print-dialog-show-options-of-remote-dnssd-printers.patch:
-    Make printing on remote DNS-SD/Bonjour-shared printers working
-    (LP: #1053891).
+    Make printing on remote DNS-SD/Bonjour-shared printers work
   * Dropped changes:
     - Extra breaks/replaces not needed after Precise
 
- -- Jeremy Bicha <jbicha@ubuntu.com>  Sun, 24 Feb 2013 20:17:53 -0500
+  [ Rico Tzschichholz ]
+  * 043_ubuntu_menu_proxy.patch: Refreshed
+
+ -- Rico Tzschichholz <ricotz@ubuntu.com>  Mon, 25 Feb 2013 04:48:13 +0100
 
 gtk+2.0 (2.24.16-1) experimental; urgency=low
 
