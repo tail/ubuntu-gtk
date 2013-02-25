@@ -150,7 +150,7 @@ OPTLIBDIR :=
 # list of flavors to run the test suite on
 CHECK_FLAVORS := $(filter opt shared static, $(FLAVORS))
 
-DH_INSTALLDOCS_FILES := NEWS README ChangeLog
+DH_INSTALLDOCS_FILES := NEWS README AUTHORS
 
 # macro computing the list of 'debian/<pkg>.*" files which have a corresponding
 # ".in" file; pass the list of packages in $(1)
@@ -278,7 +278,7 @@ binary-indep: build $(maybe_check) install $(call dh_subst_files,$(BINARY_INDEP_
 	dh_installdeb -i
 	dh_gencontrol -i
 	dh_md5sums -i
-	dh_builddeb -i
+	dh_builddeb -i -- -Zxz
 
 binary-arch: build $(maybe_check) install $(call dh_subst_files,$(BINARY_ARCH_PKGS)) debian/dh_gtkmodules debian/dh_gtkmodules.1
 	dh_testdir
@@ -298,7 +298,7 @@ binary-arch: build $(maybe_check) install $(call dh_subst_files,$(BINARY_ARCH_PK
 	dh_strip -s --dbg-package=$(DEBUG_PKG) -N$(UDEB_PKG) -Nlibgail18 -Nlibgail-common
 	dh_strip -plibgail18 -plibgail-common --dbg-package=libgail-dbg
 	dh_strip -p$(UDEB_PKG)
-	dh_compress -s -X.sgml -X.devhelp -XNEWS -Xchangelog.Debian -XREADME
+	dh_compress -s -X.sgml -X.devhelp
 	dh_fixperms -s -X$(LIBDIR)/$(SHARED_PKG)
 	dh_makeshlibs -p$(SHARED_PKG) \
 		-X$(MODULES_BASE_PATH) \
@@ -322,7 +322,7 @@ binary-arch: build $(maybe_check) install $(call dh_subst_files,$(BINARY_ARCH_PK
 	-rm -f debian/shlibs.local
 	dh_gencontrol -s
 	dh_md5sums -s
-	dh_builddeb -s
+	dh_builddeb -s -- -Zxz
 
 list-missing:
 	perl -w debian/dh_listmissing.pl $(foreach f,$(FLAVORS),$(subst $(CURDIR)/,,$(installbasedir))/$(f)) 2>&1 | \

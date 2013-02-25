@@ -1,169 +1,30 @@
-gtk+2.0 (2.24.16-0ubuntu1) UNRELEASED; urgency=low
+gtk+2.0 (2.24.16-1ubuntu1) UNRELEASED; urgency=low
 
-  * New upstream release.
-  * Refresh patches
-
- -- Jeremy Bicha <jbicha@ubuntu.com>  Wed, 20 Feb 2013 21:43:53 -0500
-
-gtk+2.0 (2.24.14-0ubuntu1) raring; urgency=low
-
-  * New upstream release
-
- -- Robert Ancell <robert.ancell@canonical.com>  Thu, 10 Jan 2013 12:53:20 +1300
-
-gtk+2.0 (2.24.13-0ubuntu2) quantal-proposed; urgency=low
-
-  * debian/patches/100_overlay_scrollbar_loading.patch:
-    - don't crash with latest overlay-scrollbar version
-
- -- Didier Roche <didrocks@ubuntu.com>  Tue, 25 Sep 2012 11:51:50 +0200
-
-gtk+2.0 (2.24.13-0ubuntu1) quantal-proposed; urgency=low
-
-  [ Till Kamppeter ]
-  * debian/patches/print-dialog-show-options-of-remote-dnssd-printers.patch:
-    Make printing on remote DNS-SD/Bonjour-shared printers working
-    (LP: #1053891).
-
-  [ Didier Roche ]
-  * New upstream release:
-    - F10 always opens the menu, cannot be overriden (LP: #937822)
-
- -- Didier Roche <didrocks@ubuntu.com>  Mon, 24 Sep 2012 13:56:56 +0200
-
-gtk+2.0 (2.24.12-0ubuntu1) quantal; urgency=low
-
-  * New upstream bugfix release
-  * debian/patches/091_bugzilla_tooltip_refresh.patch:
-    - Applied upstream
-
- -- Robert Ancell <robert.ancell@canonical.com>  Wed, 05 Sep 2012 17:27:55 +1200
-
-gtk+2.0 (2.24.11-0ubuntu1) quantal; urgency=low
-
-  * New upstream version
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Sun, 29 Jul 2012 12:02:36 +0200
-
-gtk+2.0 (2.24.10-0ubuntu6) precise-proposed; urgency=low
-
-  * debian/control.in: Add an extra Breaks: gir1.0-gtk-2.0, to nudge apt to
-    remove this instead of keeping that obsolete and non-existing package
-    during upgrades. (LP: #963069)
-
- -- Martin Pitt <martin.pitt@ubuntu.com>  Mon, 26 Mar 2012 13:25:39 +0200
-
-gtk+2.0 (2.24.10-0ubuntu5) precise; urgency=low
-
-  * debian/control.in:
-    - breaks on the binaries which were using the grip function backported
-  * debian/libgtk2.0-0.symbols:
-    debian/patches/044_grips.patch:
-    - dropped the feature is only in gtk3 upstream, the backport had 
-      issues and most upstream softwares are not made to deal with it.
-      the grips will be also dropped from the default gtk3 theme since unity
-      has resize borders (lp: #744993)
-    - will fix issues with libreoffice (lp: #749986) and splash screens 
-      in other softwares (lp: #704105, #734381)
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 24 Feb 2012 18:39:56 +0100
-
-gtk+2.0 (2.24.10-0ubuntu4) precise; urgency=low
-
-  * debian/patches/044_grips.patch:
-    - revert dropping, there is a public api in there and we need to fix the
-      rdepends before dropping it
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 23 Feb 2012 22:24:09 +0100
-
-gtk+2.0 (2.24.10-0ubuntu3) precise; urgency=low
-
-  * debian/patches/044_grips.patch:
-    - dropped, our default theme has no grip and the patch leaded to issues
-      with some applications like libreoffice lp: #749986
-  * debian/control.in: update gir depends
-
-  [ Martin Pitt ]
-  * debian/rules: Revert forced non-compression of doc files, gzip has been
-    fixed now. (LP: #871083)
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 23 Feb 2012 21:53:41 +0100
-
-gtk+2.0 (2.24.10-0ubuntu1) precise; urgency=low
-
-  * New upstream version, dropped patches included in the new version
-  * debian/patches/090_logging_file_saves.patch:
-    - improve the logging of saved filed, thanks Siegfried Gevatter 
-      (lp: #920961)
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 06 Feb 2012 22:03:26 +0100
-
-gtk+2.0 (2.24.8-2ubuntu4) precise; urgency=low
-
-  * debian/patches/git_dnd_on_vnc.patch: git patch to fix dnd on severs not 
-    supporting "shape", i.e some vnc servers (lp: #587856) 
-  * debian/patches/043_ubuntu_menu_proxy.patch:
-    - updated patch from Cimi, should fix some visual issue (lp: #915241)
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 16 Jan 2012 18:19:28 +0100
-
-gtk+2.0 (2.24.8-2ubuntu3) precise; urgency=low
-
-  * debian/patches/gailitemaccessible-set-alt-name.patch: Drop, as the
-    existing code already does what we want it to do. I misunderstood the call
-    to the get_name method in the parent class, in this case, the AtkObject
-    class. This means that apps can set alternative accessible names for menu items
-    without any extra code needed in GTK at all.
-
- -- Luke Yelavich <themuso@ubuntu.com>  Fri, 06 Jan 2012 20:54:23 +1100
-
-gtk+2.0 (2.24.8-2ubuntu2) precise; urgency=low
-
+  * TODO: Fix 043_ubuntu_menu_proxy.patch,
+    perhaps compare with the GTK3 version
+  * Sync with Debian. Remaining changes:
   * debian/patches/099_printer_filename_fix.patch
     - Fix to the print dialog for print to file, make sure a non-hidden filename 
       is the default (LP: #488857)
-
- -- Ken VanDine <ken.vandine@canonical.com>  Wed, 14 Dec 2011 13:46:18 -0500
-
-gtk+2.0 (2.24.8-2ubuntu1) precise; urgency=low
-
-  * debian/patches/git_buggy_icon_view_update.patch:
-    - git commit reverting a buggy icon view patch leading to 
-      segfaults in lxappearance (lp: #899322)
-  * Resynchronize on Debian
   * debian/libgtk2.0-0.symbols:
     - Add Ubuntu specific symbols
-  * debian/rules:
-    - Use dh_autoreconf
-    - Use -XNEWS -Xchangelog.Debian -XREADME to dh_compress calls to 
-      workaround a gzip issue leading to different md5sum between builds
   * debian/patches/012_ubuntu-set-grab-add.patch
     - Added ubuntu_gtk_widget_set_has_grab so we can grab sliders and 
       things in menus, needed by ido
   * debian/patches/043_menu_proxy.patch
     - Add GtkMenuProxy support for remoting menus.
-  * debian/patches/044_grips.patch:
-    - Backport from the gtk3 resize grips to the natty gtk2 version
-  * debian/patches/061_use_pdf_as_default_printing_standard.patch:
-    - dropped, the issue has been fixed upstream differently since
   * debian/patches/062_dnd_menubar.patch:
     - Allow click on menubars for dnd
   * debian/patches/063_treeview_almost_fixed.patch:
     - Add an ubuntu-almost-fixed-height-mode property, (required for
       software-center)
-  * debian/patches/065_gir_set_packages.patch
-    - Added _gir_PACKAGES for each gir created, to match gir to pkg which is
-      needed by vapigen-0.12
-  * debian/patches/070_mandatory-relibtoolize.patch:
-    - Dropped, we are using dh-autoreconf instead
   * debian/patches/071_no_offscreen_widgets_grabbing.patch:
     - Don't let offscreen widgets do grabbing
   * debian/patches/072_indicator_menu_update.patch:
     - change by Cody Russell to send an update event on menu changes,
       should make the bluetooth indicator refresh correctly
-  * debian/patches/091_bugzilla_tooltip_refresh.patch:
-    - Upstream bugzilla change to have better looking tooltips the gtk theme
-      need to set "new-tooltip-style" to use those
+  * debian/patches/090_logging_file_saves.patch:
+    - improve the logging of saved files
   * debian/patches/092_default_to_xdg_document_dir.patch:
     - Use $XDG_DOCUMENTS_DIR as default directory rather than the home
       directory for the 'Print to File' function.
@@ -180,24 +41,98 @@ gtk+2.0 (2.24.8-2ubuntu1) precise; urgency=low
     images use fallbacks by default if the property is available.
   * debian/patches/100_overlay_scrollbar_loading.patch
     - support for dynamically loading overlay scrollbars
-  * debian/patches/gailitem-set-alt-name.patch: Extend the GailItem object
-    so applications can set an alternative textual description for a menu
-    item that has an icon, where the icon is used to give the user more
-    information about the item in question. This textual description is
-    used by assistive technologies such as Orca to label the menu item.
+  * debian/patches/print-dialog-show-options-of-remote-dnssd-printers.patch:
+    Make printing on remote DNS-SD/Bonjour-shared printers working
+    (LP: #1053891).
   * Dropped changes:
-  * debian/control.in:
-    - don't keep an old conflicts on appmenu-gtk, it was a transitional thing   
-  
+    - Extra breaks/replaces not needed after Precise
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 13 Dec 2011 19:29:04 +0100
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Sun, 24 Feb 2013 20:17:53 -0500
+
+gtk+2.0 (2.24.16-1) experimental; urgency=low
+
+  * New upstream release.
+    + debian/patches:
+      - Refreshed.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sun, 24 Feb 2013 13:00:16 +0100
+
+gtk+2.0 (2.24.14-1) experimental; urgency=low
+
+  * New upstream release.
+  * Refresh patches.
+  * Remove a few no longer needed Replaces.
+  * Remove explicit Build-Depends on gir packages.
+  * Make libgtk2.0-dev depend on gir1.2-gtk-2.0.
+
+ -- Michael Biebl <biebl@debian.org>  Sat, 05 Jan 2013 07:32:25 +0100
+
+gtk+2.0 (2.24.13-1) experimental; urgency=low
+
+  * New upstream release
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Wed, 03 Oct 2012 20:32:26 +0200
+
+gtk+2.0 (2.24.10-2) unstable; urgency=low
+
+  [ Josselin Mouette ]
+  * Update epoch on libxrandr dependencies.
+
+  [ Ansgar Burchardt ]
+  * debian/rules: Use xz compression for binary packages. Closes: #683912
+
+  [ Michael Biebl ]
+  * debian/libgtk2.0-0.postrm.in: Drop "rm -rf /etc/gtk-2.0" on purge since
+    this removes files owned by libgtk2.0-common. The generated cache files
+    for gdk pixbuf loaders and gtk input method modules have been moved out of
+    /etc a long time ago. Closes: #681962
+
+ -- Michael Biebl <biebl@debian.org>  Mon, 06 Aug 2012 17:55:03 +0200
+
+gtk+2.0 (2.24.10-1) unstable; urgency=low
+
+  * New upstream release.
+  * Remove debian/patches/070-dont-crash-when-printing.patch, merged upstream.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 22 Feb 2012 16:37:06 +0100
+
+gtk+2.0 (2.24.9-2) unstable; urgency=low
+
+  * debian/patches/070-dont-crash-when-printing.patch:
+    - Fix crash due to incorrect handling of custom CUPS options. Patch
+      cherry-picked from upstream Git. Closes: #658710
+
+ -- Michael Biebl <biebl@debian.org>  Mon, 06 Feb 2012 13:24:19 +0100
+
+gtk+2.0 (2.24.9-1) unstable; urgency=low
+
+  * New upstream release.
+  * Remove debian/patches/070_revert_gtk_iconview_layout.patch, merged
+    upstream.
+  * Update debian/patches/065_gir_set_packages.patch.
+  * Don't install a duplicate of the ChangeLog file as ChangeLog.gz. It's
+    already installed as changelog.gz via dh_installchangelogs.
+  * Install AUTHORS file.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 03 Feb 2012 23:10:17 +0100
+
+gtk+2.0 (2.24.8-3) unstable; urgency=low
+
+  * Change section of gir1.2-gtk-2.0 to introspection.
+  * debian/patches/044_tracker_fts.patch:
+    - Enable tracker fulltext search.
+  * debian/patches/070_revert_gtk_iconview_layout.patch:
+    - Revert "iconview: layout items immediately when setting a GtkTreeModel"
+      as this could lead to a crash in GtkIconView. Closes: #650609
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 18 Jan 2012 13:12:35 +0100
 
 gtk+2.0 (2.24.8-2) unstable; urgency=low
 
   * Move /etc/gtk-2.0 to libgtk2.0-common.
   * Add appropriate Breaks/Replaces to handle it.
   * Remove gtk-query-immodules-2.0 from libgtk2.0-bin since it is 
-    clearly not Multi-Arch compatible. It should not be needed anyway, 
+    clearly not Multi-Arch compatible. It should not be needed anyway,
     everything is handled by triggers from the private directory.
   * Remove incorrect M-A: same statement for the debug package.
   * gtk2-engines-pixbuf is M-A: same.
@@ -210,7 +145,7 @@ gtk+2.0 (2.24.8-1) unstable; urgency=low
   * New upstream release.
   * Remove debian/patches/070_tracker.patch, fixed upstream by using the
     Tracker D-Bus interface.
-  * Refresh debian/patches/015_default-fallback-icon-theme.patch-
+  * Refresh debian/patches/015_default-fallback-icon-theme.patch.
 
  -- Michael Biebl <biebl@debian.org>  Sat, 12 Nov 2011 01:58:12 +0100
 
