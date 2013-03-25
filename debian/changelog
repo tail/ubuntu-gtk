@@ -1,8 +1,25 @@
+gtk+2.0 (2.24.17-0ubuntu2) UNRELEASED; urgency=low
+
+  * restore 2.24.16-1ubuntu2 dropped by error (not commited to the vcs),
+    should fix multiarch issues (lp: #1160024)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 25 Mar 2013 23:37:42 +0100
+
 gtk+2.0 (2.24.17-0ubuntu1) raring; urgency=low
 
   * New upstream version
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 25 Mar 2013 19:44:15 +0100
+
+gtk+2.0 (2.24.16-1ubuntu2) raring; urgency=low
+
+  * Remove dh_installdoc calls which install files that are supposed to be
+    symlinked to the -common package. These symlinks get overwritten later on
+    (by dh_compress), turning back into real files and breaking multiarch
+    coinstallability (LP: #1132881)
+  * Symlink AUTHORS files to -common too
+
+ -- Iain Lane <iain.lane@canonical.com>  Mon, 25 Feb 2013 17:46:26 +0000
 
 gtk+2.0 (2.24.16-1ubuntu1) raring; urgency=low
 

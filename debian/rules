@@ -286,9 +286,6 @@ binary-arch: build $(maybe_check) install $(call dh_subst_files,$(BINARY_ARCH_PK
 	dh_install -s
 	# changelog.gz symlinks will be overwritten by dh_link
 	dh_installchangelogs -s ChangeLog
-	# do not merge the calls: dh_installdocs only installs in the first pkg
-	dh_installdocs -p$(EXAMPLES_PKG) $(DH_INSTALLDOCS_FILES)
-	dh_installdocs -p$(PIXBUF_PKG) $(DH_INSTALLDOCS_FILES)
 	# install copyright in all packages; the -p is for the special behavior
 	# of dh_installdocs (ship README.Debian etc. in the first package)
 	dh_installdocs -p$(PIXBUF_PKG) -s
