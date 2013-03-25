@@ -1,9 +1,9 @@
-gtk+2.0 (2.24.17-0ubuntu2) UNRELEASED; urgency=low
+gtk+2.0 (2.24.17-0ubuntu2) raring; urgency=low
 
   * restore 2.24.16-1ubuntu2 dropped by error (not commited to the vcs),
     should fix multiarch issues (lp: #1160024)
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 25 Mar 2013 23:37:42 +0100
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 25 Mar 2013 23:41:01 +0100
 
 gtk+2.0 (2.24.17-0ubuntu1) raring; urgency=low
 
