@@ -1,3 +1,9 @@
+gtk+2.0 (2.24.17-0ubuntu1) UNRELEASED; urgency=low
+
+  * New upstream version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 25 Mar 2013 17:23:21 +0100
+
 gtk+2.0 (2.24.16-1ubuntu1) raring; urgency=low
 
   [ Jeremy Bicha ]
