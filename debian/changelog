@@ -1,3 +1,9 @@
+gtk+2.0 (2.24.18-0ubuntu1) UNRELEASED; urgency=low
+
+  * New upstream version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 13 May 2013 19:50:36 +0200
+
 gtk+2.0 (2.24.17-0ubuntu2) raring; urgency=low
 
   * restore 2.24.16-1ubuntu2 dropped by error (not commited to the vcs),
