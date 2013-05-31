@@ -1,3 +1,10 @@
+gtk+2.0 (2.24.18-0ubuntu2) UNRELEASED; urgency=low
+
+  * debian/patches/gtk-shell-shows-menubar.patch:
+    - Add setting for checking if the shell uses a global menu bar.
+
+ -- William Hua <william.hua@canonical.com>  Fri, 31 May 2013 17:24:02 -0400
+
 gtk+2.0 (2.24.18-0ubuntu1) saucy; urgency=low
 
   * New upstream version
