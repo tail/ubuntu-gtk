@@ -1,0 +1,49 @@
+--- a/gdk/x11/gdksettings.c
++++ b/gdk/x11/gdksettings.c
+@@ -80,7 +80,8 @@
+   "Net/EnableInputFeedbackSounds\0" "gtk-enable-input-feedback-sounds\0"
+   "Net/EnableEventSounds\0"   "gtk-enable-event-sounds\0"
+   "Gtk/CursorBlinkTimeout\0"  "gtk-cursor-blink-timeout\0"
+-  "Gtk/AutoMnemonics\0"       "gtk-auto-mnemonics\0";
++  "Gtk/AutoMnemonics\0"       "gtk-auto-mnemonics\0"
++  "Gtk/ShellShowsMenubar\0"   "gtk-shell-shows-menubar\0";
+ 
+ 
+ static const struct
+@@ -133,5 +134,6 @@
+   { 1573, 1603 },
+   { 1636, 1658 },
+   { 1682, 1705 },
+-  { 1730, 1748 }
++  { 1730, 1748 },
++  { 1767, 1789 }
+ };
+--- a/gtk/gtksettings.c
++++ b/gtk/gtksettings.c
+@@ -126,7 +126,8 @@
+   PROP_TOOLBAR_STYLE,
+   PROP_TOOLBAR_ICON_SIZE,
+   PROP_AUTO_MNEMONICS,
+-  PROP_PRIMARY_BUTTON_WARPS_SLIDER
++  PROP_PRIMARY_BUTTON_WARPS_SLIDER,
++  PROP_SHELL_SHOWS_MENUBAR
+ };
+ 
+ 
+@@ -1042,6 +1043,16 @@
+                                              NULL);
+ 
+   g_assert (result == PROP_PRIMARY_BUTTON_WARPS_SLIDER);
++
++  result = settings_install_property_parser (class,
++                                             g_param_spec_boolean ("gtk-shell-shows-menubar",
++                                                                   P_("Desktop shell shows the menubar"),
++                                                                   P_("Set to TRUE if the desktop environment "
++                                                                      "is displaying the menubar, FALSE if "
++                                                                      "the app should display it itself."),
++                                                                   FALSE, GTK_PARAM_READWRITE),
++                                             NULL);
++  g_assert (result == PROP_SHELL_SHOWS_MENUBAR);
+ }
+ 
+ static void

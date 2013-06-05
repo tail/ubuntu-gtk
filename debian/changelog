@@ -1,3 +1,20 @@
+gtk+2.0 (2.24.18-0ubuntu2) UNRELEASED; urgency=low
+
+  * debian/control.in:
+    - Conflicts on appmenu-gtk since we drop the patches needed for it
+  * debian/patches/012_ubuntu-set-grab-add.patch,
+    debian/patches/043_ubuntu_menu_proxy.patch,
+    debian/patches/072_indicator_menu_update.patch,
+    debian/libgtk2.0-0.symbols:
+    - drop old menu patches, we deprecate appmenu-gtk in favor of the new
+      unity-gtk-module code
+  * debian/patches/gtk-shell-shows-menubar.patch:
+    -list gtk-shell-shows-menubar setting, that's required to have 
+     the local menubars hidding under unity in favor of the unity ones, 
+     thanks William Hua for the work on those changes
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 03 Jun 2013 15:47:10 +0200
+
 gtk+2.0 (2.24.18-0ubuntu1) saucy; urgency=low
 
   * New upstream version
