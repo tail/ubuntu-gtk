@@ -1,7 +1,5 @@
 gtk+2.0 (2.24.18-0ubuntu2) UNRELEASED; urgency=low
 
-  * debian/control.in:
-    - Conflicts on appmenu-gtk since we drop the patches needed for it
   * debian/patches/043_ubuntu_menu_proxy.patch,
     debian/patches/072_indicator_menu_update.patch,
     debian/libgtk2.0-0.symbols:
