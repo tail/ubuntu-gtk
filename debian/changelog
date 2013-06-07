@@ -1,4 +1,4 @@
-gtk+2.0 (2.24.18-0ubuntu2) UNRELEASED; urgency=low
+gtk+2.0 (2.24.18-0ubuntu2) saucy; urgency=low
 
   * debian/patches/043_ubuntu_menu_proxy.patch,
     debian/patches/072_indicator_menu_update.patch,
@@ -10,7 +10,7 @@ gtk+2.0 (2.24.18-0ubuntu2) UNRELEASED; urgency=low
      the local menubars hidding under unity in favor of the unity ones, 
      thanks William Hua for the work on those changes
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 03 Jun 2013 15:47:10 +0200
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 07 Jun 2013 17:15:49 +0200
 
 gtk+2.0 (2.24.18-0ubuntu1) saucy; urgency=low
 
