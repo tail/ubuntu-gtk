@@ -1,3 +1,9 @@
+gtk+2.0 (2.24.19-0ubuntu1) UNRELEASED; urgency=low
+
+  * New upstream version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 19 Jun 2013 18:42:04 +0200
+
 gtk+2.0 (2.24.18-0ubuntu2) saucy; urgency=low
 
   * debian/patches/043_ubuntu_menu_proxy.patch,

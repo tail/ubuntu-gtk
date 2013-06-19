@@ -20,20 +20,20 @@
  };
 --- a/gtk/gtksettings.c
 +++ b/gtk/gtksettings.c
-@@ -126,7 +126,8 @@
-   PROP_TOOLBAR_STYLE,
-   PROP_TOOLBAR_ICON_SIZE,
-   PROP_AUTO_MNEMONICS,
--  PROP_PRIMARY_BUTTON_WARPS_SLIDER
-+  PROP_PRIMARY_BUTTON_WARPS_SLIDER,
+@@ -139,7 +139,8 @@
+   PROP_LABEL_SELECT_ON_FOCUS,
+   PROP_COLOR_PALETTE,
+   PROP_IM_PREEDIT_STYLE,
+-  PROP_IM_STATUS_STYLE
++  PROP_IM_STATUS_STYLE,
 +  PROP_SHELL_SHOWS_MENUBAR
  };
  
- 
-@@ -1042,6 +1043,16 @@
-                                              NULL);
- 
-   g_assert (result == PROP_PRIMARY_BUTTON_WARPS_SLIDER);
+ /* --- prototypes --- */
+@@ -1205,6 +1206,16 @@
+                                                                 GTK_PARAM_READWRITE),
+                                              gtk_rc_property_parse_enum);
+   g_assert (result == PROP_IM_STATUS_STYLE);
 +
 +  result = settings_install_property_parser (class,
 +                                             g_param_spec_boolean ("gtk-shell-shows-menubar",
