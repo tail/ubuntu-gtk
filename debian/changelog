@@ -1,4 +1,4 @@
-gtk+2.0 (2.24.20-1ubuntu1) UNRELEASED; urgency=low
+gtk+2.0 (2.24.20-1ubuntu1) saucy; urgency=low
 
   * Merge with Debian (LP: #1198841), remaining changes:
     + debian/libgtk2.0-0.symbols:
@@ -39,7 +39,7 @@ gtk+2.0 (2.24.20-1ubuntu1) UNRELEASED; urgency=low
   * Drop the unused support for an 'opt' flavour which was a delta over Debian
     as they removed it some time ago, and was commented out anyway. 
 
- -- Iain Lane <iain.lane@canonical.com>  Mon, 08 Jul 2013 11:36:24 +0100
+ -- Iain Lane <iain.lane@canonical.com>  Mon, 08 Jul 2013 11:42:51 +0100
 
 gtk+2.0 (2.24.20-1) unstable; urgency=low
 
