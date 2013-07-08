@@ -5,11 +5,11 @@ Subject: Fix interaction between scrolling menus and automatic mnemonics
 
 https://bugzilla.gnome.org/show_bug.cgi?id=612611
 ---
-Index: gtk+-2.24.12/gtk/gtkmenu.c
+Index: b/gtk/gtkmenu.c
 ===================================================================
---- gtk+-2.24.12.orig/gtk/gtkmenu.c	2011-11-23 01:36:41.000000000 +1300
-+++ gtk+-2.24.12/gtk/gtkmenu.c	2012-09-04 16:45:35.922558258 +1200
-@@ -236,7 +236,8 @@
+--- a/gtk/gtkmenu.c
++++ b/gtk/gtkmenu.c
+@@ -233,7 +233,8 @@
  static void gtk_menu_deactivate	    (GtkMenuShell      *menu_shell);
  static void gtk_menu_show_all       (GtkWidget         *widget);
  static void gtk_menu_hide_all       (GtkWidget         *widget);
@@ -19,7 +19,7 @@ Index: gtk+-2.24.12/gtk/gtkmenu.c
  static void gtk_menu_reparent       (GtkMenu           *menu, 
  				     GtkWidget         *new_parent, 
  				     gboolean           unrealize);
-@@ -1156,7 +1157,7 @@
+@@ -1131,7 +1132,7 @@
    if (menu->torn_off)
      {
        gtk_window_set_screen (GTK_WINDOW (menu->tearoff_window), new_screen);
@@ -28,7 +28,7 @@ Index: gtk+-2.24.12/gtk/gtkmenu.c
      }
  
    gtk_window_set_screen (GTK_WINDOW (menu->toplevel), new_screen);
-@@ -1589,7 +1590,7 @@
+@@ -1564,7 +1565,7 @@
  
    /* Position the menu, possibly changing the size request
     */
@@ -37,7 +37,7 @@ Index: gtk+-2.24.12/gtk/gtkmenu.c
  
    /* Compute the size of the toplevel and realize it so we
     * can scroll correctly.
-@@ -1941,7 +1942,7 @@
+@@ -1916,7 +1917,7 @@
    g_return_if_fail (GTK_IS_MENU (menu));
  
    if (!menu->torn_off && gtk_widget_is_drawable (GTK_WIDGET (menu)))
@@ -46,7 +46,7 @@ Index: gtk+-2.24.12/gtk/gtkmenu.c
  }
  
  static void
-@@ -2119,7 +2120,7 @@
+@@ -2094,7 +2095,7 @@
  	  gtk_menu_set_tearoff_hints (menu, width);
  	    
  	  gtk_widget_realize (menu->tearoff_window);
@@ -55,7 +55,7 @@ Index: gtk+-2.24.12/gtk/gtkmenu.c
  	  
  	  gtk_widget_show (GTK_WIDGET (menu));
  	  gtk_widget_show (menu->tearoff_window);
-@@ -4201,7 +4202,8 @@
+@@ -4176,7 +4177,8 @@
  }
  
  static void
@@ -65,7 +65,7 @@ Index: gtk+-2.24.12/gtk/gtkmenu.c
  {
    GtkWidget *widget;
    GtkRequisition requisition;
-@@ -4432,7 +4434,8 @@
+@@ -4407,7 +4409,8 @@
  			 requisition.width, requisition.height);
      }
    

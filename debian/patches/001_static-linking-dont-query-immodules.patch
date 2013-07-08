@@ -2,8 +2,10 @@ Description: Don't query immodules for the local tree when cross-compiling or
              when --disable-shared was given
 Bug: http://bugzilla.gnome.org/show_bug.cgi?id=346531
 
---- a/configure.ac
-+++ b/configure.ac
+Index: gtk+-2.24.19/configure.ac
+===================================================================
+--- gtk+-2.24.19.orig/configure.ac	2013-06-28 23:39:49.071200389 +0200
++++ gtk+-2.24.19/configure.ac	2013-06-28 23:39:49.063200297 +0200
 @@ -150,6 +150,7 @@
  dnl Initialize libtool
  AC_PROG_CC
@@ -12,9 +14,11 @@ Bug: http://bugzilla.gnome.org/show_bug.cgi?id=346531
  
  dnl 
  dnl Check for a working C++ compiler, but do not bail out, if none is found.
---- a/modules/input/Makefile.am
-+++ b/modules/input/Makefile.am
-@@ -176,8 +176,12 @@
+Index: gtk+-2.24.19/modules/input/Makefile.am
+===================================================================
+--- gtk+-2.24.19.orig/modules/input/Makefile.am	2013-06-28 23:39:49.071200389 +0200
++++ gtk+-2.24.19/modules/input/Makefile.am	2013-06-28 23:39:49.063200297 +0200
+@@ -189,8 +189,12 @@
  if CROSS_COMPILING
  RUN_QUERY_IMMODULES_TEST=false
  else
@@ -27,7 +31,7 @@ Bug: http://bugzilla.gnome.org/show_bug.cgi?id=346531
  
  # Running this if cross compiling or if DESTDIR is set is going to
  # not work at all, so skip it.
-@@ -238,7 +242,18 @@
+@@ -253,7 +257,18 @@
  included-modules: $(noinst_LTLIBRARIES)
  
  gtk.immodules: Makefile.am $(module_LTLIBRARIES)

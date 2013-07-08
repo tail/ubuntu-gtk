@@ -1,8 +1,86 @@
+gtk+2.0 (2.24.20-1ubuntu1) UNRELEASED; urgency=low
+
+  * Merge with Debian (LP: #1198841), remaining changes:
+    + debian/libgtk2.0-0.symbols:
+      - Add Ubuntu specific symbols
+    + debian/patches/012_ubuntu-set-grab-add.patch
+      - Added ubuntu_gtk_widget_set_has_grab so we can grab sliders and 
+        things in menus, needed by ido
+    + debian/patches/062_dnd_menubar.patch:
+      - Allow click on menubars for dnd
+    + debian/patches/063_treeview_almost_fixed.patch:
+      - Add an ubuntu-almost-fixed-height-mode property, (required for
+        software-center)
+    + debian/patches/071_no_offscreen_widgets_grabbing.patch:
+      - Don't let offscreen widgets do grabbing
+    + debian/patches/090_logging_file_saves.patch:
+      - improve the logging of saved files
+    + debian/patches/092_default_to_xdg_document_dir.patch:
+      - Use $XDG_DOCUMENTS_DIR as default directory rather than the home
+        directory for the 'Print to File' function.
+    + debian/patches/093_gtk3_gtkimage_fallbacks_use.patch:
+      - Backported gtk3 patch to add a "use-fallback" property to GtkImage, using 
+        it "icon-name and GIcon type of GtkImages can use automatic fallback 
+        names.", it will be useful for the indicator stack
+    + debian/patches/095_git_menus_scrolling.patch:
+      - backported gtk3 commit to fix menu scrolling issues
+    + debian/patches/096_git_gtkprintsettings.patch:
+      - upstream git commit backported from the gtk3 serie, don't ignore the 
+        gtkprintsettings resolution settings 
+    + debian/patches/097_statusicon_image_fallback.patch: Make GtkStatusIcon
+      images use fallbacks by default if the property is available.
+    + debian/patches/098_multiarch_module_path.patch:
+      - Fallback to the pre-multiarch directory for compatibility
+    + debian/patches/099_printer_filename_fix.patch
+      - Fix to the print dialog for print to file, make sure a non-hidden filename 
+        is the default (LP: #488857)
+    + debian/patches/100_overlay_scrollbar_loading.patch
+      - support for dynamically loading overlay scrollbars
+  * Drop the unused support for an 'opt' flavour which was a delta over Debian
+    as they removed it some time ago, and was commented out anyway. 
+
+ -- Iain Lane <iain.lane@canonical.com>  Mon, 08 Jul 2013 11:36:24 +0100
+
+gtk+2.0 (2.24.20-1) unstable; urgency=low
+
+  * New upstream release.
+  * Remove debian/patches/011_immodule-cache-dir.patch, upstream changed the
+    location and name of the cache file to be consistent what's used in
+    gtk+3.0. It's now in $libdir/gtk-2.0/2.10.0/immodules.cache.
+  * Update and simplify our trigger for gtk-query-immodules-2.0, use the new
+    --update-cache option instead of redirecting stdout.
+  * Update postrm to clean up the renamed immodules.cache file.
+
+ -- Michael Biebl <biebl@debian.org>  Sat, 06 Jul 2013 00:10:40 +0200
+
+gtk+2.0 (2.24.19-1) unstable; urgency=low
+
+  * New upstream release.
+  * Refresh patches.
+  * Update Vcs-* URLs.
+  * Bump Standards-Version to 3.9.4. No further changes.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 28 Jun 2013 23:43:02 +0200
+
 gtk+2.0 (2.24.19-0ubuntu1) saucy; urgency=low
 
   * New upstream version
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 19 Jun 2013 19:46:25 +0200
+
+gtk+2.0 (2.24.18-1) unstable; urgency=low
+
+  [ Josselin Mouette ]
+  * Switch to interest-noawait for triggers. They only affect IM 
+    modules, so this is not likely to cause upgrade problems.
+
+  [ Michael Biebl ]
+  * New upstream release.
+    - Fixes incorrect selection in file chooser button. Closes: #708618
+  * Drop debian/patches/041_ia32-libs.patch since we properly support
+    multiarch now and no longer need the biarch hack.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 17 May 2013 14:15:18 +0200
 
 gtk+2.0 (2.24.18-0ubuntu2) saucy; urgency=low
 
@@ -23,6 +101,28 @@ gtk+2.0 (2.24.18-0ubuntu1) saucy; urgency=low
   * New upstream version
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 13 May 2013 20:44:00 +0200
+
+gtk+2.0 (2.24.17-2) unstable; urgency=low
+
+  * Upload to unstable.
+  * Drop the unused opt flavor.
+  * Don't install the doc-base.in file for libgtk2.0-doc.
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 07 May 2013 18:43:19 +0200
+
+gtk+2.0 (2.24.17-1) experimental; urgency=low
+
+  [ Iain Lane ]
+  * Remove dh_installdoc calls which install files that are supposed to be
+    symlinked to the -common package. These symlinks get overwritten later on
+    (by dh_compress), turning back into real files and breaking multiarch
+    coinstallability (LP: #1132881)
+  * Symlink AUTHORS files to -common too
+
+  [ Emilio Pozuelo Monfort ]
+  * New upstream release.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Mon, 04 Mar 2013 23:18:24 +0100
 
 gtk+2.0 (2.24.17-0ubuntu2) raring; urgency=low
 
@@ -3527,4 +3627,3 @@ gtk+2.0 (2.0.0-1) unstable; urgency=low
   * Initial Release.
 
  -- Akira TAGOH <tagoh@debian.org>  Wed, 13 Mar 2002 00:07:25 +0900
-

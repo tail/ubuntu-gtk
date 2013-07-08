@@ -5,10 +5,10 @@ Description: Fall back to the hard-coded pre-multiarch module directory
 Author: Steve Langasek <steve.langasek@linaro.org>
 Forwarded: not-needed
 
-Index: gtk+2.0-2.24.3/gtk/gtkmodules.c
+Index: b/gtk/gtkmodules.c
 ===================================================================
---- gtk+2.0-2.24.3.orig/gtk/gtkmodules.c
-+++ gtk+2.0-2.24.3/gtk/gtkmodules.c
+--- a/gtk/gtkmodules.c
++++ b/gtk/gtkmodules.c
 @@ -60,6 +60,7 @@
    gchar *home_gtk_dir = NULL;
    gchar *module_path;

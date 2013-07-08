@@ -2521,11 +2521,11 @@ libgtk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gtk_notebook_get_show_tabs@Base 2.8.0
  gtk_notebook_get_tab_detachable@Base 2.10.0
  gtk_notebook_get_tab_hborder@Base 2.22.0
+ gtk_notebook_get_tab_vborder@Base 2.22.0
  gtk_notebook_get_tab_label@Base 2.8.0
  gtk_notebook_get_tab_label_text@Base 2.8.0
  gtk_notebook_get_tab_pos@Base 2.8.0
  gtk_notebook_get_tab_reorderable@Base 2.10.0
- gtk_notebook_get_tab_vborder@Base 2.22.0
  gtk_notebook_get_type@Base 2.8.0
  gtk_notebook_insert_page@Base 2.8.0
  gtk_notebook_insert_page_menu@Base 2.8.0
@@ -3828,8 +3828,8 @@ libgtk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gtk_text_view_move_visually@Base 2.8.0
  gtk_text_view_new@Base 2.8.0
  gtk_text_view_new_with_buffer@Base 2.8.0
- gtk_text_view_place_cursor_onscreen@Base 2.8.0
  gtk_text_view_reset_im_context@Base 2.22.0
+ gtk_text_view_place_cursor_onscreen@Base 2.8.0
  gtk_text_view_scroll_mark_onscreen@Base 2.8.0
  gtk_text_view_scroll_to_iter@Base 2.8.0
  gtk_text_view_scroll_to_mark@Base 2.8.0
@@ -4473,8 +4473,8 @@ libgtk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gtk_widget_get_extension_events@Base 2.8.0
  gtk_widget_get_has_tooltip@Base 2.12.0
  gtk_widget_get_has_window@Base 2.18.0
- gtk_widget_get_mapped@Base 2.20.0
  gtk_widget_get_modifier_style@Base 2.8.0
+ gtk_widget_get_mapped@Base 2.20.0
  gtk_widget_get_name@Base 2.8.0
  gtk_widget_get_no_show_all@Base 2.8.0
  gtk_widget_get_pango_context@Base 2.8.0
