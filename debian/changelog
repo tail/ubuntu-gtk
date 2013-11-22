@@ -1,3 +1,107 @@
+gtk+2.0 (2.24.22-1ubuntu1) trusty; urgency=low
+
+  * Merge with Debian, remaining changes:
+    + debian/libgtk2.0-0.symbols:
+      - Add Ubuntu specific symbols
+    + debian/patches/012_ubuntu-set-grab-add.patch
+      - Added ubuntu_gtk_widget_set_has_grab so we can grab sliders and 
+        things in menus, needed by ido
+    + debian/patches/062_dnd_menubar.patch:
+      - Allow click on menubars for dnd
+    + debian/patches/063_treeview_almost_fixed.patch:
+      - Add an ubuntu-almost-fixed-height-mode property, (required for
+        software-center)
+    + debian/patches/071_no_offscreen_widgets_grabbing.patch:
+      - Don't let offscreen widgets do grabbing
+    + debian/patches/090_logging_file_saves.patch:
+      - improve the logging of saved files
+    + debian/patches/092_default_to_xdg_document_dir.patch:
+      - Use $XDG_DOCUMENTS_DIR as default directory rather than the home
+        directory for the 'Print to File' function.
+    + debian/patches/093_gtk3_gtkimage_fallbacks_use.patch:
+      - Backported gtk3 patch to add a "use-fallback" property to GtkImage,
+        using it "icon-name and GIcon type of GtkImages can use automatic
+        fallback names.", it will be useful for the indicator stack
+    + debian/patches/095_git_menus_scrolling.patch:
+      - backported gtk3 commit to fix menu scrolling issues
+    + debian/patches/096_git_gtkprintsettings.patch:
+      - upstream git commit backported from the gtk3 serie, don't ignore the 
+        gtkprintsettings resolution settings 
+    + debian/patches/097_statusicon_image_fallback.patch: Make GtkStatusIcon
+      images use fallbacks by default if the property is available.
+    + debian/patches/098_multiarch_module_path.patch:
+      - Fallback to the pre-multiarch directory for compatibility
+    + debian/patches/099_printer_filename_fix.patch
+      - Fix to the print dialog for print to file, make sure a non-hidden filename 
+        is the default (LP: #488857)
+    + debian/patches/100_overlay_scrollbar_loading.patch
+      - support for dynamically loading overlay scrollbars
+    + debian/patches/gtk-shell-shows-menubar.patch:
+      - list gtk-shell-shows-menubar setting, that's required to have the local
+        menubars hidding under unity in favor of the unity ones,
+
+ -- Iain Lane <iain.lane@canonical.com>  Fri, 22 Nov 2013 14:19:02 +0000
+
+gtk+2.0 (2.24.22-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 22 Oct 2013 23:33:46 +0200
+
+gtk+2.0 (2.24.21-1ubuntu1) trusty; urgency=low
+
+  * Merge with Debian, remaining changes:
+    + debian/libgtk2.0-0.symbols:
+      - Add Ubuntu specific symbols
+    + debian/patches/012_ubuntu-set-grab-add.patch
+      - Added ubuntu_gtk_widget_set_has_grab so we can grab sliders and 
+        things in menus, needed by ido
+    + debian/patches/062_dnd_menubar.patch:
+      - Allow click on menubars for dnd
+    + debian/patches/063_treeview_almost_fixed.patch:
+      - Add an ubuntu-almost-fixed-height-mode property, (required for
+        software-center)
+    + debian/patches/071_no_offscreen_widgets_grabbing.patch:
+      - Don't let offscreen widgets do grabbing
+    + debian/patches/090_logging_file_saves.patch:
+      - improve the logging of saved files
+    + debian/patches/092_default_to_xdg_document_dir.patch:
+      - Use $XDG_DOCUMENTS_DIR as default directory rather than the home
+        directory for the 'Print to File' function.
+    + debian/patches/093_gtk3_gtkimage_fallbacks_use.patch:
+      - Backported gtk3 patch to add a "use-fallback" property to GtkImage, using 
+        it "icon-name and GIcon type of GtkImages can use automatic fallback 
+        names.", it will be useful for the indicator stack
+    + debian/patches/095_git_menus_scrolling.patch:
+      - backported gtk3 commit to fix menu scrolling issues
+    + debian/patches/096_git_gtkprintsettings.patch:
+      - upstream git commit backported from the gtk3 serie, don't ignore the 
+        gtkprintsettings resolution settings 
+    + debian/patches/097_statusicon_image_fallback.patch: Make GtkStatusIcon
+      images use fallbacks by default if the property is available.
+    + debian/patches/098_multiarch_module_path.patch:
+      - Fallback to the pre-multiarch directory for compatibility
+    + debian/patches/099_printer_filename_fix.patch
+      - Fix to the print dialog for print to file, make sure a non-hidden filename 
+        is the default (LP: #488857)
+    + debian/patches/100_overlay_scrollbar_loading.patch
+      - support for dynamically loading overlay scrollbars
+  * debian/patches/0001-Actually-look-in-usr-share-gtk-2.0-for-default-rc-fi.patch:
+    Check in the right directory for rc files.
+
+ -- Iain Lane <iain.lane@canonical.com>  Mon, 21 Oct 2013 17:08:29 +0100
+
+gtk+2.0 (2.24.21-1) unstable; urgency=low
+
+  * New upstream release.
+  * Use the official field for udebs: Package-Type.
+  * Update 001_static-linking-dont-query-immodules.patch, follow upstream and
+    use immodules.cache instead of gtk.immodules.
+  * Install gtk-doc API documentation for gtk and gdk to the correct location
+    so it can be found by devhelp. Closes: #718360
+
+ -- Michael Biebl <biebl@debian.org>  Sat, 21 Sep 2013 23:37:03 +0200
+
 gtk+2.0 (2.24.20-1ubuntu1) saucy; urgency=low
 
   * Merge with Debian (LP: #1198841), remaining changes:
@@ -3627,3 +3731,4 @@ gtk+2.0 (2.0.0-1) unstable; urgency=low
   * Initial Release.
 
  -- Akira TAGOH <tagoh@debian.org>  Wed, 13 Mar 2002 00:07:25 +0900
+

@@ -1,5 +1,5 @@
-usr/share/doc/@DOC_PKG@/gdk usr/share/gtk-doc/html/gdk
-usr/share/doc/@DOC_PKG@/gtk usr/share/gtk-doc/html/gtk
+usr/share/doc/@DOC_PKG@/gdk2 usr/share/gtk-doc/html/gdk2
+usr/share/doc/@DOC_PKG@/gtk2 usr/share/gtk-doc/html/gtk2
 usr/share/doc/@DOC_PKG@/faq usr/share/gtk-doc/html/gtk-faq
 usr/share/doc/@DOC_PKG@/tutorial usr/share/gtk-doc/html/gtk-tutorial
 usr/share/doc/libatk1.0-doc/atk usr/share/doc/@DOC_PKG@/atk
