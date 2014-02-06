@@ -25,3 +25,4 @@
 100_overlay_scrollbar_loading.patch
 print-dialog-show-options-of-remote-dnssd-printers.patch
 gtk-shell-shows-menubar.patch
+backport_search_printer_location.patch
