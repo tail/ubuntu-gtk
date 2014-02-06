@@ -1,4 +1,4 @@
-gtk+2.0 (2.24.22-1ubuntu2) UNRELEASED; urgency=medium
+gtk+2.0 (2.24.22-1ubuntu2) trusty; urgency=medium
 
   * debian/patches/backport_search_printer_location.patch
     -  The list of printers should be searchable/sortable (lp: #1188571) 
