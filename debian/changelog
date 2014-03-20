@@ -1,3 +1,11 @@
+gtk+2.0 (2.24.23-0ubuntu1) UNRELEASED; urgency=medium
+
+  * New upstream version
+  * debian/patches/git_print_default_location.patch:
+    - Print to a file in the current directory by default
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 20 Mar 2014 15:23:26 +0100
+
 gtk+2.0 (2.24.22-1ubuntu2) trusty; urgency=medium
 
   * debian/patches/backport_search_printer_location.patch
