@@ -1,4 +1,4 @@
-gtk+2.0 (2.24.23-0ubuntu1.1) UNRELEASED; urgency=medium
+gtk+2.0 (2.24.23-0ubuntu1.1) trusty; urgency=medium
 
   * Backport GtkMountOperation signal fix (LP: #1316509)
 
