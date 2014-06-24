@@ -1,3 +1,13 @@
+gtk+2.0 (2.24.24-0ubuntu1) utopic; urgency=medium
+
+  * New upstream release
+  * update-icon-caches: Pass the new --include-image-data flag to preserve
+    compatibility.
+  * git_print_default_location.patch,
+    backport_gtkmountoperation_signal_fix.patch: Drop, included upstream.
+
+ -- Iain Lane <iain.lane@canonical.com>  Tue, 24 Jun 2014 12:49:26 +0100
+
 gtk+2.0 (2.24.23-0ubuntu1.1) trusty; urgency=medium
 
   * Backport GtkMountOperation signal fix (LP: #1316509)
