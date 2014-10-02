@@ -1,0 +1,26 @@
+From 1d0e2d58385bd01fdb753bf40ba2f4c32ccd0cc8 Mon Sep 17 00:00:00 2001
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Mon, 29 Sep 2014 16:05:57 -0400
+Subject: pixbuf engine: Avoid a crash if widget is NULL
+
+Commit 85f2a721cf introduced an unconditional call to
+gtk_widget_get_direction(). This does not work for 'foreign'
+uses of the theme engine, e.g. in Qt, where widget is NULL.
+
+This was reported as a crash in Fedora here:
+https://bugzilla.redhat.com/show_bug.cgi?id=924683
+
+diff --git a/modules/engines/pixbuf/pixbuf-draw.c b/modules/engines/pixbuf/pixbuf-draw.c
+index 9239bd1..5448d81 100644
+--- a/modules/engines/pixbuf/pixbuf-draw.c
++++ b/modules/engines/pixbuf/pixbuf-draw.c
+@@ -131,7 +131,7 @@ draw_simple_image(GtkStyle       *style,
+ 	match_data->orientation = GTK_ORIENTATION_HORIZONTAL;
+     }
+ 
+-  if (!(match_data->flags & THEME_MATCH_DIRECTION))
++  if (widget && !(match_data->flags & THEME_MATCH_DIRECTION))
+     {
+       match_data->flags |= THEME_MATCH_DIRECTION;
+       match_data->direction = gtk_widget_get_direction (widget);
+-- 
