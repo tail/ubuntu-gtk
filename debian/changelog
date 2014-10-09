@@ -1,4 +1,4 @@
-gtk+2.0 (2.24.24-0ubuntu3) UNRELEASED; urgency=medium
+gtk+2.0 (2.24.24-0ubuntu3) utopic; urgency=medium
 
   * Apply patch from Adam Smith, backported from gtk+3.0, to allow windows to
     be dragged using blank spaces in the toolbar as well as the menubar. (LP:
@@ -7,7 +7,7 @@ gtk+2.0 (2.24.24-0ubuntu3) UNRELEASED; urgency=medium
     Cherry-pick from upstream to work around abort() inside GLib occuring in
     applications that do not intialise GDK for threading right. (LP: #1374030)
 
- -- Iain Lane <iain.lane@canonical.com>  Thu, 09 Oct 2014 12:33:49 +0100
+ -- Iain Lane <iain.lane@canonical.com>  Thu, 09 Oct 2014 12:38:20 +0100
 
 gtk+2.0 (2.24.24-0ubuntu2) utopic; urgency=medium
 
