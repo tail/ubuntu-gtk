@@ -1,8 +1,8 @@
 gtk+2.0 (2.24.25-0ubuntu1) UNRELEASED; urgency=medium
 
   * New upstream release
-  * 0001-threads-Do-not-release-the-GDK-lock-if-it-hasn-t-bee.patch: Drop,
-    applied upstream in this release.
+  * 0001-threads-Do-not-release-the-GDK-lock-if-it-hasn-t-bee.patch,
+    git_widget_null_handling.patch: Drop, applied upstream in this release.
   * debian/watch: Use https, not http, to please uscan.
 
  -- Iain Lane <iain.lane@canonical.com>  Mon, 13 Oct 2014 17:21:47 +0100
