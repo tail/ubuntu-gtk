@@ -1,4 +1,4 @@
-gtk+2.0 (2.24.25-0ubuntu2) UNRELEASED; urgency=medium
+gtk+2.0 (2.24.25-0ubuntu2) vivid; urgency=medium
 
   * debian/patches/use-secrets-service-for-cups-auth_info.patch
     - Backport of auth_info storing (LP: #445333)
