@@ -2743,7 +2743,7 @@ libgtk-x11-2.0.so.0 libgtk2.0-0 #MINVER#
  gtk_print_backend_printer_list_is_done@Base 2.10.0
  gtk_print_backend_remove_printer@Base 2.10.0
  gtk_print_backend_set_list_done@Base 2.10.0
- gtk_print_backend_set_password@Base 2.18.0
+ gtk_print_backend_set_password@Base 2.24.25-0ubuntu2
  gtk_print_capabilities_get_type@Base 2.10.0
  gtk_print_context_create_pango_context@Base 2.10.0
  gtk_print_context_create_pango_layout@Base 2.10.0

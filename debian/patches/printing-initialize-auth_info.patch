@@ -1,0 +1,27 @@
+Description: printing: Properly initialize auth_info in gtkprintbackend.c
+ auth_info should be a NULL-terminated array as it is used in
+ e.g. g_strdupv invocations iterating over its elements until
+ a NULL element is encountered.
+ .
+
+ gtk+2.0 (2.24.25-0ubuntu2) vivid; urgency=medium
+
+   * debian/patches/printing-initialize-auth_info.patch
+     - Fix to an upstream bug:
+       https://bugzilla.gnome.org/show_bug.cgi?id=737777
+Author: Dariusz Gadomski <dariusz.gadomski@canonical.com>
+Bug: https://bugzilla.gnome.org/show_bug.cgi?id=737777
+
+Index: gtk+2.0-2.24.23/gtk/gtkprintbackend.c
+===================================================================
+--- gtk+2.0-2.24.23.orig/gtk/gtkprintbackend.c	2014-10-02 14:41:55.098269081 +0200
++++ gtk+2.0-2.24.23/gtk/gtkprintbackend.c	2014-10-02 14:42:13.086269331 +0200
+@@ -759,7 +759,7 @@
+ 
+   priv->auth_info_required = g_strdupv (ai_required);
+   length = g_strv_length (ai_required);
+-  priv->auth_info = g_new0 (gchar *, length);
++  priv->auth_info = g_new0 (gchar *, length + 1);
+   priv->store_auth_info = FALSE;
+ 
+   dialog = gtk_dialog_new_with_buttons ( _("Authentication"), NULL, GTK_DIALOG_MODAL, 

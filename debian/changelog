@@ -1,3 +1,15 @@
+gtk+2.0 (2.24.25-0ubuntu2) UNRELEASED; urgency=medium
+
+  * debian/patches/use-secrets-service-for-cups-auth_info.patch
+    - Backport of auth_info storing (LP: #445333)
+  * debian/patches/printing-initialize-auth_info.patch
+    - Fix to an upstream bug:
+      https://bugzilla.gnome.org/show_bug.cgi?id=737777
+  * Bump minimum version of gtk_print_backend_set_password due to addition of
+    new boolean parameter.
+
+ -- Dariusz Gadomski <dariusz.gadomski@canonical.com>  Fri, 21 Nov 2014 12:36:11 +0100
+
 gtk+2.0 (2.24.25-0ubuntu1) utopic; urgency=medium
 
   * New upstream release
