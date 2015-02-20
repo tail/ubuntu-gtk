@@ -1,3 +1,11 @@
+gtk+2.0 (2.24.26-0ubuntu1) UNRELEASED; urgency=medium
+
+  * New upstream release.
+    + Protect gdk_event_apply_filters_safe from changes in the filter list
+    (LP: #1351890)
+
+ -- Iain Lane <iain.lane@canonical.com>  Fri, 20 Feb 2015 12:07:14 +0000
+
 gtk+2.0 (2.24.25-0ubuntu2) vivid; urgency=medium
 
   * debian/patches/use-secrets-service-for-cups-auth_info.patch
