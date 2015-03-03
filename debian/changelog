@@ -1,4 +1,4 @@
-gtk+2.0 (2.24.26-0ubuntu2) UNRELEASED; urgency=medium
+gtk+2.0 (2.24.26-0ubuntu2) vivid; urgency=medium
 
   * 0002-gdk-Fix-GdkWindowFilter-internal-refcounting.patch
     0003-gdkwindow-Fix-event-unref-iteration.patch: Cherry-pick two commits
@@ -6,7 +6,7 @@ gtk+2.0 (2.24.26-0ubuntu2) UNRELEASED; urgency=medium
     event_apply_filters change in 2.24.26. This was causing crashes in some
     applications, such as Spotify.
 
- -- Iain Lane <iain@orangesquash.org.uk>  Tue, 03 Mar 2015 17:47:08 +0000
+ -- Iain Lane <iain.lane@canonical.com>  Tue, 03 Mar 2015 18:11:59 +0000
 
 gtk+2.0 (2.24.26-0ubuntu1) vivid; urgency=medium
 
