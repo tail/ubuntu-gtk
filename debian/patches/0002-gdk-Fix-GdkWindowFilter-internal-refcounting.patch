@@ -1,0 +1,244 @@
+From 5efefdb6550b3f00d5ca159c2ff74326bfd0e94b Mon Sep 17 00:00:00 2001
+From: Christophe Fergeau <cfergeau@redhat.com>
+Date: Tue, 3 Mar 2015 15:37:41 +0100
+Subject: [PATCH 1/2] gdk: Fix GdkWindowFilter internal refcounting
+
+Running gnome-shell under valgrind, I saw the attached invalid write.
+Basically we can destroy a window during event processing, and the old
+window_remove_filters simply called g_free() on the filter, ignoring
+the refcount.  Then later in event processing we call filter->refcount--,
+which is writing to free()d memory.
+
+Fix this by centralizing list mutation and refcount handling inside
+a new shared _gdk_window_filter_unref() function, and using that
+everywhere.
+
+==13876== Invalid write of size 4
+==13876==    at 0x446B181: gdk_event_apply_filters (gdkeventsource.c:86)
+==13876==    by 0x446B411: _gdk_events_queue (gdkeventsource.c:188)
+==13876==    by 0x44437EF: gdk_display_get_event (gdkdisplay.c:410)
+==13876==    by 0x446B009: gdk_event_source_dispatch (gdkeventsource.c:317)
+==13876==    by 0x4AB7159: g_main_context_dispatch (gmain.c:2436)
+==13876==    by 0x4AB7957: g_main_context_iterate.clone.5 (gmain.c:3087)
+==13876==    by 0x4AB806A: g_main_loop_run (gmain.c:3295)
+==13876==    by 0x8084D6B: main (main.c:722)
+==13876==  Address 0x1658bcac is 12 bytes inside a block of size 16 free'd
+==13876==    at 0x4005EAD: free (vg_replace_malloc.c:366)
+==13876==    by 0x4ABE515: g_free (gmem.c:263)
+==13876==    by 0x444BCC9: window_remove_filters (gdkwindow.c:1873)
+==13876==    by 0x4454BA3: _gdk_window_destroy_hierarchy (gdkwindow.c:2043)
+==13876==    by 0x447BF6E: gdk_window_destroy_notify (gdkwindow-x11.c:1115)
+==13876==    by 0x43588E2: _gtk_socket_windowing_filter_func (gtksocket-x11.c:518)
+==13876==    by 0x446B170: gdk_event_apply_filters (gdkeventsource.c:79)
+==13876==    by 0x446B411: _gdk_events_queue (gdkeventsource.c:188)
+==13876==    by 0x44437EF: gdk_display_get_event (gdkdisplay.c:410)
+==13876==    by 0x446B009: gdk_event_source_dispatch (gdkeventsource.c:317)
+==13876==    by 0x4AB7159: g_main_context_dispatch (gmain.c:2436)
+==13876==    by 0x4AB7957: g_main_context_iterate.clone.5 (gmain.c:3087)
+
+https://bugzilla.gnome.org/show_bug.cgi?id=637464
+
+Backport of 806c04411d306680353cf90cffee98ce73e122f2 to
+the gtk-2-24 branch. 806c0441 was authored by Colin Walters
+<walters@verbum.org>
+
+Without this patch, the spotify linux client was crashing during
+playback of some songs when using gtk+ 2.24.26
+
+https://bugzilla.gnome.org/show_bug.cgi?id=745536
+---
+ gdk/gdkinternals.h      |  3 +++
+ gdk/gdkwindow.c         | 68 +++++++++++++++++++++++++++++++++++--------------
+ gdk/x11/gdkevents-x11.c | 35 ++++++++++++-------------
+ 3 files changed, 70 insertions(+), 36 deletions(-)
+
+diff --git a/gdk/gdkinternals.h b/gdk/gdkinternals.h
+index 97a1daa..e748125 100644
+--- a/gdk/gdkinternals.h
++++ b/gdk/gdkinternals.h
+@@ -299,6 +299,9 @@ extern gchar     *_gdk_display_arg_name;
+ void      _gdk_events_queue  (GdkDisplay *display);
+ GdkEvent* _gdk_event_unqueue (GdkDisplay *display);
+ 
++void _gdk_event_filter_unref        (GdkWindow      *window,
++				     GdkEventFilter *filter);
++
+ GList* _gdk_event_queue_find_first   (GdkDisplay *display);
+ void   _gdk_event_queue_remove_link  (GdkDisplay *display,
+ 				      GList      *node);
+diff --git a/gdk/gdkwindow.c b/gdk/gdkwindow.c
+index 29c878f..fa52f04 100644
+--- a/gdk/gdkwindow.c
++++ b/gdk/gdkwindow.c
+@@ -1931,23 +1931,62 @@ gdk_window_ensure_native (GdkWindow *window)
+   return TRUE;
+ }
+ 
+-static void
+-window_remove_filters (GdkWindow *window)
++/**
++ * _gdk_event_filter_unref:
++ * @window: (allow-none): A #GdkWindow, or %NULL to be the global window
++ * @filter: A window filter
++ *
++ * Release a reference to @filter.  Note this function may
++ * mutate the list storage, so you need to handle this
++ * if iterating over a list of filters.
++ */
++void
++_gdk_event_filter_unref (GdkWindow       *window,
++                         GdkEventFilter  *filter)
+ {
+-  GdkWindowObject *obj = (GdkWindowObject*) window;
++  GList **filters;
++  GList *tmp_list;
++
++  if (window == NULL)
++    filters = &_gdk_default_filters;
++  else
++    {
++      GdkWindowObject *private;
++      private = (GdkWindowObject *) window;
++      filters = &private->filters;
++    }
+ 
+-  if (obj->filters)
++  for (tmp_list = *filters; tmp_list; tmp_list = tmp_list->next)
+     {
+-      GList *tmp_list;
++      GdkEventFilter *iter_filter = tmp_list->data;
++      GList *node;
++
++      if (iter_filter != filter)
++        continue;
+ 
+-      for (tmp_list = obj->filters; tmp_list; tmp_list = tmp_list->next)
+-	g_free (tmp_list->data);
++      g_assert (iter_filter->ref_count > 0);
+ 
+-      g_list_free (obj->filters);
+-      obj->filters = NULL;
++      filter->ref_count--;
++      if (filter->ref_count != 0)
++        continue;
++
++      node = tmp_list;
++      tmp_list = tmp_list->next;
++
++      *filters = g_list_remove_link (*filters, node);
++      g_free (filter);
++      g_list_free_1 (node);
+     }
+ }
+ 
++static void
++window_remove_filters (GdkWindow *window)
++{
++  GdkWindowObject *obj = (GdkWindowObject*) window;
++  while (obj->filters)
++    _gdk_event_filter_unref (window, obj->filters->data);
++}
++
+ /**
+  * _gdk_window_destroy_hierarchy:
+  * @window: a #GdkWindow
+@@ -2600,16 +2639,7 @@ gdk_window_remove_filter (GdkWindow     *window,
+       if ((filter->function == function) && (filter->data == data))
+         {
+           filter->flags |= GDK_EVENT_FILTER_REMOVED;
+-          filter->ref_count--;
+-          if (filter->ref_count != 0)
+-            return;
+-
+-          if (private)
+-            private->filters = g_list_remove_link (private->filters, node);
+-          else
+-            _gdk_default_filters = g_list_remove_link (_gdk_default_filters, node);
+-          g_list_free_1 (node);
+-          g_free (filter);
++	  _gdk_event_filter_unref (window, filter);
+ 
+           return;
+         }
+diff --git a/gdk/x11/gdkevents-x11.c b/gdk/x11/gdkevents-x11.c
+index 8de98c5..07c24b0 100644
+--- a/gdk/x11/gdkevents-x11.c
++++ b/gdk/x11/gdkevents-x11.c
+@@ -96,7 +96,7 @@ struct _GdkEventTypeX11
+ 
+ static gint	 gdk_event_apply_filters (XEvent   *xevent,
+ 					  GdkEvent *event,
+-					  GList    **filters);
++					  GdkWindow *window);
+ static gboolean	 gdk_event_translate	 (GdkDisplay *display,
+ 					  GdkEvent   *event, 
+ 					  XEvent     *xevent,
+@@ -341,12 +341,20 @@ gdk_event_get_graphics_expose (GdkWindow *window)
+ static gint
+ gdk_event_apply_filters (XEvent *xevent,
+ 			 GdkEvent *event,
+-			 GList **filters)
++			 GdkWindow *window)
+ {
+   GList *tmp_list;
+   GdkFilterReturn result;
+   
+-  tmp_list = *filters;
++  if (window == NULL)
++    tmp_list = _gdk_default_filters;
++  else
++    {
++      GdkWindowObject *window_private;
++      window_private = (GdkWindowObject *) window;
++      tmp_list = window_private->filters;
++    }
++
+   
+   while (tmp_list)
+     {
+@@ -362,18 +370,12 @@ gdk_event_apply_filters (XEvent *xevent,
+       filter->ref_count++;
+       result = filter->function (xevent, event, filter->data);
+ 
+-      /* get the next node after running the function since the
+-         function may add or remove a next node */
+-      node = tmp_list;
+-      tmp_list = tmp_list->next;
++      /* Protect against unreffing the filter mutating the list */
++      node = tmp_list->next;
+ 
+-      filter->ref_count--;
+-      if (filter->ref_count == 0)
+-        {
+-          *filters = g_list_remove_link (*filters, node);
+-          g_list_free_1 (node);
+-          g_free (filter);
+-        }
++      _gdk_event_filter_unref (window, filter);
++
++      tmp_list = node;
+ 
+       if (result != GDK_FILTER_CONTINUE)
+         return result;
+@@ -964,8 +966,7 @@ gdk_event_translate (GdkDisplay *display,
+     {
+       /* Apply global filters */
+       GdkFilterReturn result;
+-      result = gdk_event_apply_filters (xevent, event,
+-                                        &_gdk_default_filters);
++      result = gdk_event_apply_filters (xevent, event, NULL);
+       
+       if (result != GDK_FILTER_CONTINUE)
+         {
+@@ -1071,7 +1072,7 @@ gdk_event_translate (GdkDisplay *display,
+ 	  g_object_ref (filter_window);
+ 	  
+ 	  result = gdk_event_apply_filters (xevent, event,
+-					    &filter_private->filters);
++					    filter_window);
+ 	  
+ 	  g_object_unref (filter_window);
+       
+-- 
+2.1.4
+

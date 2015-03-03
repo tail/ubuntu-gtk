@@ -29,3 +29,5 @@ backport_search_printer_location.patch
 menubar_toolbar_dragging.patch
 use-secrets-service-for-cups-auth_info.patch
 printing-initialize-auth_info.patch
+0002-gdk-Fix-GdkWindowFilter-internal-refcounting.patch
+0003-gdkwindow-Fix-event-unref-iteration.patch

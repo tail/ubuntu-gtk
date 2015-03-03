@@ -1,0 +1,46 @@
+From 22eb70adab72a5c14f063ea15f8195087ff1dcd8 Mon Sep 17 00:00:00 2001
+From: Colin Walters <walters@verbum.org>
+Date: Fri, 17 Dec 2010 15:36:51 -0500
+Subject: [PATCH 2/2] gdkwindow: Fix event unref iteration
+
+We were double looping previously which caused a NULL deref.
+
+(cherry picked from commit d08ff485f28f23427bff1b3aac64ab3f77a8664d)
+---
+ gdk/gdkwindow.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/gdk/gdkwindow.c b/gdk/gdkwindow.c
+index fa52f04..a0500ce 100644
+--- a/gdk/gdkwindow.c
++++ b/gdk/gdkwindow.c
+@@ -1956,11 +1956,15 @@ _gdk_event_filter_unref (GdkWindow       *window,
+       filters = &private->filters;
+     }
+ 
+-  for (tmp_list = *filters; tmp_list; tmp_list = tmp_list->next)
++  tmp_list = *filters;
++  while (tmp_list)
+     {
+       GdkEventFilter *iter_filter = tmp_list->data;
+       GList *node;
+ 
++      node = tmp_list;
++      tmp_list = tmp_list->next;
++
+       if (iter_filter != filter)
+         continue;
+ 
+@@ -1970,9 +1974,6 @@ _gdk_event_filter_unref (GdkWindow       *window,
+       if (filter->ref_count != 0)
+         continue;
+ 
+-      node = tmp_list;
+-      tmp_list = tmp_list->next;
+-
+       *filters = g_list_remove_link (*filters, node);
+       g_free (filter);
+       g_list_free_1 (node);
+-- 
+2.1.4
+
