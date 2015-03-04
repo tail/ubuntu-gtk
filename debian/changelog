@@ -1,3 +1,12 @@
+gtk+2.0 (2.24.27-0ubuntu1) UNRELEASED; urgency=medium
+
+  * New upstream release.
+  * 0002-gdk-Fix-GdkWindowFilter-internal-refcounting.patch
+    0003-gdkwindow-Fix-event-unref-iteration.patch: Drop, these are upstream
+    in this release.
+
+ -- Iain Lane <iain.lane@canonical.com>  Wed, 04 Mar 2015 13:10:49 +0000
+
 gtk+2.0 (2.24.26-0ubuntu2) vivid; urgency=medium
 
   * 0002-gdk-Fix-GdkWindowFilter-internal-refcounting.patch
