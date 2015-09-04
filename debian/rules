@@ -5,6 +5,9 @@ DISABLE_UPDATE_UPLOADERS := 1
 include /usr/share/gnome-pkg-tools/1/rules/uploaders.mk
 include /usr/share/gnome-pkg-tools/1/rules/gnome-get-source.mk
 
+DPKG_EXPORT_BUILDFLAGS = 1
+-include /usr/share/dpkg/buildflags.mk
+
 GNOME_MODULE := gtk+
 
 # Uncomment this to turn on verbose mode.
@@ -125,9 +128,13 @@ endif
 
 shared_configure_flags := $(configure_flags) \
 			--enable-shared \
-			--enable-introspection=yes \
+			--enable-introspection \
+			--enable-man \
 			--disable-static
-shared_udeb_configure_flags := $(shared_configure_flags) \
+shared_udeb_configure_flags := $(configure_flags) \
+			--enable-shared \
+			--disable-static \
+			--disable-introspection \
 			--disable-xcomposite \
 			--disable-xdamage \
 			--disable-xfixes \

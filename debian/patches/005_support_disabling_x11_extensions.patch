@@ -3,10 +3,10 @@ Author: Cyril Brulebois <kibi@debian.org>
 
 Support disabling X11 extensions
 
-Index: gtk+-2.24.19/configure.ac
+Index: gtk+-2.24.27/configure.ac
 ===================================================================
---- gtk+-2.24.19.orig/configure.ac	2013-06-28 23:39:59.259316868 +0200
-+++ gtk+-2.24.19/configure.ac	2013-06-28 23:39:59.255316823 +0200
+--- gtk+-2.24.27.orig/configure.ac	2015-05-10 21:12:24.060665181 +0200
++++ gtk+-2.24.27/configure.ac	2015-05-10 21:12:24.060665181 +0200
 @@ -241,6 +241,18 @@
                [AC_HELP_STRING([--enable-xinerama],
  	                      [support xinerama extension if available [default=yes]])],,
@@ -26,7 +26,7 @@ Index: gtk+-2.24.19/configure.ac
  AC_ARG_ENABLE(rebuilds,
                [AC_HELP_STRING([--disable-rebuilds],
                                [disable all source autogeneration rules])],,
-@@ -1192,7 +1204,8 @@
+@@ -1190,7 +1202,8 @@
    AM_CONDITIONAL(XINPUT_XFREE, test x$with_xinput = xxfree || test x$with_xinput = xyes)
  
    # Check for the RANDR extension
@@ -36,7 +36,7 @@ Index: gtk+-2.24.19/configure.ac
       AC_DEFINE(HAVE_RANDR, 1, [Have the Xrandr extension library])
  
       X_PACKAGES="$X_PACKAGES xrandr"
-@@ -1208,7 +1221,8 @@
+@@ -1206,7 +1219,8 @@
  
    # Checks for XFixes extension
    
@@ -46,7 +46,7 @@ Index: gtk+-2.24.19/configure.ac
      AC_DEFINE(HAVE_XFIXES, 1, [Have the XFIXES X extension])
      
      X_PACKAGES="$X_PACKAGES xfixes"
-@@ -1217,7 +1231,8 @@
+@@ -1215,7 +1229,8 @@
  
    # Checks for Xcomposite extension
  
@@ -56,7 +56,7 @@ Index: gtk+-2.24.19/configure.ac
      AC_DEFINE(HAVE_XCOMPOSITE, 1, [Have the XCOMPOSITE X extension])
  
      X_PACKAGES="$X_PACKAGES xcomposite"
-@@ -1226,7 +1241,7 @@
+@@ -1224,7 +1239,7 @@
  
    # Checks for Xdamage extension
  

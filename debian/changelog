@@ -1,3 +1,79 @@
+gtk+2.0 (2.24.28-1ubuntu1) wily; urgency=low
+
+  * Merge from Debian unstable (LP: #1485548).  Remaining changes:
+    - d/libgtk2.0-0.symbols: update symbols file.
+    - d/libgtk2.0-dev.manpages: add gtk-builder-convert.1 manpage.
+    - d/rules: enable manpage.
+    - d/update-icon-caches: run with "--include-image-data" flag.
+    - add Ubuntu patches:
+      + debian/patches/012_ubuntu-set-grab-add.patch
+        - Added ubuntu_gtk_widget_set_has_grab so we can grab sliders and 
+          things in menus, needed by ido
+      + debian/patches/062_dnd_menubar.patch:
+        - Allow click on menubars for dnd
+      + debian/patches/063_treeview_almost_fixed.patch:
+        - Add an ubuntu-almost-fixed-height-mode property, (required for
+          software-center)
+      + debian/patches/071_no_offscreen_widgets_grabbing.patch:
+        - Don't let offscreen widgets do grabbing
+      + debian/patches/090_logging_file_saves.patch:
+        - improve the logging of saved files
+      + debian/patches/092_default_to_xdg_document_dir.patch:
+        - Use $XDG_DOCUMENTS_DIR as default directory rather than the home
+          directory for the 'Print to File' function.
+      + debian/patches/093_gtk3_gtkimage_fallbacks_use.patch:
+        - Backported gtk3 patch to add a "use-fallback" property to GtkImage,
+          using it "icon-name and GIcon type of GtkImages can use automatic
+          fallback names.", it will be useful for the indicator stack
+      + debian/patches/095_git_menus_scrolling.patch:
+        - backported gtk3 commit to fix menu scrolling issues
+      + debian/patches/096_git_gtkprintsettings.patch:
+        - upstream git commit backported from the gtk3 serie, don't ignore the 
+          gtkprintsettings resolution settings 
+      + debian/patches/097_statusicon_image_fallback.patch: Make GtkStatusIcon
+        images use fallbacks by default if the property is available.
+      + debian/patches/098_multiarch_module_path.patch:
+        - Fallback to the pre-multiarch directory for compatibility
+      + debian/patches/099_printer_filename_fix.patch
+        - Fix to the print dialog for print to file, make sure a non-hidden filename 
+          is the default
+      + debian/patches/100_overlay_scrollbar_loading.patch
+        - support for dynamically loading overlay scrollbars
+      + debian/patches/gtk-shell-shows-menubar.patch:
+        - list gtk-shell-shows-menubar setting, that's required to have the local
+          menubars hidding under unity in favor of the unity ones,
+      + debian/patches/print-dialog-show-options-of-remote-dnssd-printers.patch:
+        - Make printing on remote DNS-SD/Bonjour-shared printers work
+      + debian/patches/backport_search_printer_location.patch
+        -  The list of printers should be searchable/sortable
+      + debian/patches/menubar_toolbar_dragging.patch:
+        - Allow windows to be dragged using blank spaces in the toolbar as
+          well as the menubar
+      + debian/patches/use-secrets-service-for-cups-auth_info.patch
+        - Backport of auth_info storing
+      + debian/patches/printing-initialize-auth_info.patch
+        - Fix to an upstream bug:
+          https://bugzilla.gnome.org/show_bug.cgi?id=737777
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Mon, 17 Aug 2015 12:49:04 +0200
+
+gtk+2.0 (2.24.28-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Refresh patches.
+  * Drop obsolete Breaks/Conflicts/Replaces from pre-wheezy.
+  * Stop including image data when generating the icon caches since the cache
+    files tend to grow rather large and aren't that useful anymore nowadays.
+  * Explicitly build the man pages, upstream no longer ships them in the dist
+    tarball.
+  * Add Build-Depends on docbook-xsl and libxml2-utils and move docbook-xml
+    and docbook-utils from Build-Depends-Indep to Build-Depends. Those are
+    required to build the man pages which are shipped in arch:any packages.
+  * Bump Standards-Version to 3.9.6.
+  * Don't enable introspection and man pages for udeb build.
+
+ -- Michael Biebl <biebl@debian.org>  Sun, 07 Jun 2015 17:00:08 +0200
+
 gtk+2.0 (2.24.28-0ubuntu1) wily; urgency=medium
 
   * New upstream bugfix release.
@@ -34,6 +110,41 @@ gtk+2.0 (2.24.26-0ubuntu1) vivid; urgency=medium
 
  -- Iain Lane <iain.lane@canonical.com>  Fri, 20 Feb 2015 17:48:37 +0000
 
+gtk+2.0 (2.24.25-3) unstable; urgency=medium
+
+  * 0002-gdk-Fix-GdkWindowFilter-internal-refcounting.patch
+    0003-gdkwindow-Fix-event-unref-iteration.patch: Cherry-pick two commits
+    from upstream gtk2 branch to fix refcounting errors in light of the
+    event_apply_filters change in the previous upload. This was causing
+    crashes in some applications, such as Spotify.
+
+ -- Iain Lane <laney@debian.org>  Tue, 03 Mar 2015 18:39:45 +0000
+
+gtk+2.0 (2.24.25-2) unstable; urgency=medium
+
+  * debian/patches/0001-Make-gdk_event_apply_filters-safe-against-changes-in.patch:
+    Cherry-pick patch from upstream stable branch to protect
+    gdk_event_apply_filters_safe from changes in the filter list (Closes:
+    #777142)
+
+ -- Iain Lane <laney@debian.org>  Mon, 02 Mar 2015 09:56:09 +0000
+
+gtk+2.0 (2.24.25-1) unstable; urgency=medium
+
+  * Team upload
+  * debian/watch: change http://download.gnome.org to https, uscan doesn't
+    like being redirected
+  * New upstream release
+    - tolerates incorrect use of gtk_main() after initializing threads
+      with gtk_init() but before taking the lock with gdk_threads_enter(),
+      which has historically worked on GNU systems because glibc's mutexes
+      are more permissive than the new implementation in GLib 2.42
+      (Closes: #758619, #763602, #763625, #763690, #763735,
+      but the affected packages should still use Gdk's threading API properly)
+    - update debian/copyright
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 10 Oct 2014 18:33:05 +0100
+
 gtk+2.0 (2.24.25-0ubuntu2) vivid; urgency=medium
 
   * debian/patches/use-secrets-service-for-cups-auth_info.patch
@@ -54,6 +165,16 @@ gtk+2.0 (2.24.25-0ubuntu1) utopic; urgency=medium
   * debian/watch: Use https, not http, to please uscan.
 
  -- Iain Lane <iain.lane@canonical.com>  Mon, 13 Oct 2014 18:05:44 +0100
+
+gtk+2.0 (2.24.24-1) unstable; urgency=medium
+
+  * New upstream release 2.24.24.
+  * debian/patches/099_format_security_fixes.patch: Drop, included in this
+    upstream release.
+  * update-icon-caches: Pass the new --include-image-data flag to preserve
+    compatibility.
+
+ -- Iain Lane <laney@debian.org>  Tue, 24 Jun 2014 11:43:22 +0100
 
 gtk+2.0 (2.24.24-0ubuntu3) utopic; urgency=medium
 
@@ -82,6 +203,16 @@ gtk+2.0 (2.24.24-0ubuntu1) utopic; urgency=medium
     backport_gtkmountoperation_signal_fix.patch: Drop, included upstream.
 
  -- Iain Lane <iain.lane@canonical.com>  Tue, 24 Jun 2014 12:49:26 +0100
+
+gtk+2.0 (2.24.23-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump Standards-Version to 3.9.5.
+  * Enable hardening build flags using /usr/share/dpkg/buildflags.mk.
+  * debian/patches/099_format_security_fixes.patch: Fix a format string
+    vulnerability in the pixbuf engine.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 04 Apr 2014 15:34:45 +0200
 
 gtk+2.0 (2.24.23-0ubuntu1.1) trusty; urgency=medium
 
