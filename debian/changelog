@@ -1,3 +1,9 @@
+gtk+2.0 (2.24.28-1tail0) UNRELEASED; urgency=medium
+
+  * Applied patch from https://bugzilla.gnome.org/show_bug.cgi?id=747280.
+
+ -- Jason Yan <tailofthesun@gmail.com>  Thu, 17 Sep 2015 12:11:22 -0700
+
 gtk+2.0 (2.24.28-1ubuntu1) wily; urgency=low
 
   * Merge from Debian unstable (LP: #1485548).  Remaining changes:
